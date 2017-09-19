@@ -5,7 +5,7 @@ R package to compute the iMKT. This is, to quantify the different selection regi
 
 In summary, the diverse selection regimes are:
 
-    Strongly deleterious (d)
-    Weakly deleterious (b)
-    Neutral (f)
-    Adaptive fixations (α)
+   - Strongly deleterious (d)
+   - Weakly deleterious (b)
+   - Neutral (f)
+   - Adaptive fixations (α)
