@@ -10,6 +10,7 @@ In summary, the diverse selection regimes are:
    - Neutral (f)
    - Adaptive fixations (α)
 
+-----------------------------------------------------------
 
 Functions included in the package:
 
