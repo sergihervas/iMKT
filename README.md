@@ -9,3 +9,11 @@ In summary, the diverse selection regimes are:
    - Weakly deleterious (b)
    - Neutral (f)
    - Adaptive fixations (α)
+
+
+Functions included in the package:
+
+   - fitMKmodel: two-step nls2() model fit at a given level of precision (res)
+   - predictNLS: get a CI using Monte Carlo simulation based upon a fitted model
+   - asymptoticMK: compute alpha asymptotic
+   - integrativeMK: compute d, b and f
