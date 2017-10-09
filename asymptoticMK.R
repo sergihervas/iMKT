@@ -1,12 +1,15 @@
 ## only fits exponential model, depends on fitMKmodel and predictNLS
-## has no watchdog, it does not check data, no error handling yet
+## includes watchdog
 ## returns only a table with results, no plot
 
 asymptoticMK <- function(x, y, xlow=0, xhigh=1) {
   
   ## loading required packages
-  require(MASS, quietly = TRUE)
-  require(nls2, quietly = TRUE)
+  require(MASS, quietly=TRUE)
+  require(nls2, quietly=TRUE)
+  
+  ## check data: if there is an error, watchdog stops computation
+  watchdog(x, y, xlow, xhigh)
    
   ## assign proper names to the columns of x and y 
   names(x) <- c("daf", "pN", "pS")
