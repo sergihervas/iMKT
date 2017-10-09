@@ -18,4 +18,6 @@ Functions included in the package:
    - predictNLS: get a CI using Monte Carlo simulation based upon a fitted model
    - asymptoticMK: compute alpha asymptotic (uses fitMKmodel & predictNLS)
    - integrativeMK: compute d, b and f (uses asymptoticMK)
-   - watchdog: check input data for asymptoticMK. error handling.
+   - watchdog: check input data for asymptoticMK error handling
+   - plot1: horizontal plot of d, b and f fractions
+   - plot2: scatter plot of alpha values + shaded b fraction
