@@ -2,7 +2,7 @@
 ## compute d (strongly deleterious sites), b (weakly del) and f (neutral)
 ## includes asymptoticMK output
 
-iMK <- function(x,y) {
+iMK <- function(x, y, xlow, xhigh) {
   
   m <- as.numeric(y$m0f)
   m0 <- as.numeric(y$m4f)
@@ -11,7 +11,7 @@ iMK <- function(x,y) {
   
   names(x) <- c("daf","pN","pS")
    
-  t1 <- asymptoticMK(x, y, 0, 1)
+  t1 <- asymptoticMK(x, y, xlow, xhigh)
   a_asym <- as.numeric(t1$alpha_asymptotic)
   a_low <- t1$CI_low ##CIs
   
