@@ -2,7 +2,7 @@
 ## has no watchdog, it does not check data, no error handling yet
 ## returns only a table with results, no plot
 
-asymptoticMK_final <- function(x, y, xlow=0, xhigh=1) {
+asymptoticMK <- function(x, y, xlow=0, xhigh=1) {
   
   ## loading required packages
   require(MASS, quietly = TRUE)
