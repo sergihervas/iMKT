@@ -25,7 +25,7 @@ plot2 <- function(x, y, df, xlow, xhigh) {
   #y = a + b * exp(-c*x) function written in a way ggplot can parse it
   y1 <- function(x) { df$a + df$b * exp(-df$c * x) }
   # prepare shader dataframe
-  xs <- seq(xlow, xhigh, length.out = 100)
+  xs <- seq(xlow, xhigh, length.out=nrow(x)*5)
   ysmax <- rep(alpha_asymptotic, length(xs))
   ysmin <- y1(xs)
   shader_df <- data.frame(xs, ysmin, ysmax)
@@ -50,8 +50,8 @@ plot2 <- function(x, y, df, xlow, xhigh) {
     theme(axis.title=element_text(size=rel(1.5))) +
     xlab("derived allele frequency") + ylab("Adaptation (alpha)") +
     #alphas labels
-    annotate("text", x=0.75, y=alpha_asymptotic-0.2, label=paste0("alpha asymptotic = ", alpha_asymptotic), family="", color="red", size=6) +
-    annotate("text",x=0.75, y=alpha_original-0.1, label=paste0("alpha original = ",alpha_original), family="", color="blue", size=6)
+    annotate("text", x=xhigh-0.3, y=alpha_asymptotic-0.2, label=paste0("alpha asymptotic = ", alpha_asymptotic), family="", color="red", size=6) +
+    annotate("text",x=xhigh-0.3, y=alpha_original-0.1, label=paste0("alpha original = ",alpha_original), family="", color="blue", size=6)
   
   return(p)
 }
