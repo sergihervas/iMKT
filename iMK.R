@@ -39,7 +39,7 @@ iMK <- function(x, y, xlow, xhigh) {
     row <- x[i, ]
     
     if (row$alpha < a_low) {
-      wd <- wd + ((a_asym - row$alpha) * row$m)
+      wd <- wd + ((a_asym - row$alpha) * row$m) #ponderate by pN+pS
     } else { break }
   }
   
