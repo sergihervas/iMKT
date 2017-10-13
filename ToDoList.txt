@@ -11,3 +11,5 @@ List of things to do:
 - User manual
 - Vignette 
 - Update sample data
+
+- Implement GUI through web-server??!!
