@@ -2,6 +2,12 @@
 ## compute d (strongly deleterious sites), b (weakly del) and f (neutral)
 ## includes asymptoticMK output
 
+### IMPORTANT MESSAGE: ###
+## If we want to compare datasets, they must contain a very similar number of unrelated samples, as the
+## whole methodology depends on the ratio: segregating sites / analyzed sites.
+## If one data file contains many more samples and therefore, more segregating sites (assuming that bigger
+## the sample size, higher the number of rare SNPs detected), results may be strongly biased.
+
 iMK <- function(x, y, xlow, xhigh) {
   
   m <- as.numeric(y$m0f)
@@ -19,7 +25,8 @@ iMK <- function(x, y, xlow, xhigh) {
   x$S <- x$pS/sum(x$pS)           #relative prop of 0
   x$pN <- as.numeric(x$pN)
   x$pS <- as.numeric(x$pS)
-  x$m <- (x$pN+x$pS)/(sum(x$pN)+sum(x$pS))
+  #x$m <- (x$pN+x$pS)/(sum(x$pN)+sum(x$pS))
+  x$m <- x$pN/sum(x$pN) #proportion of i sites in each bin
   
   ## alpha for each bin
   x$alpha <- 1 - ((d0*x$pN)/(d*x$pS))
@@ -39,7 +46,7 @@ iMK <- function(x, y, xlow, xhigh) {
     row <- x[i, ]
     
     if (row$alpha < a_low) {
-      wd <- wd + ((a_asym - row$alpha) * row$m) #ponderate by pN+pS
+      wd <- wd + ((a_asym - row$alpha) * row$m) #ponderate by pN
     } else { break }
   }
   
