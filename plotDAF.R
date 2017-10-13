@@ -13,27 +13,27 @@ plotDAF <- function(x) {
   x$S <- x$pS/sum(x$pS)
 
   p1 <- ggplot() +
-    geom_point(data=x, aes(x=daf, y=pS, color="pS"), size=3) + 
-    geom_point(data=x, aes(x=daf, y=pN, color="pN"), size=3) +
+    geom_point(data=x, aes(x=daf, y=pS, color="p0"), size=3) + 
+    geom_point(data=x, aes(x=daf, y=pN, color="pi"), size=3) +
     theme_classic() +
     theme(axis.text=element_text(size=rel(1.5))) +
     theme(axis.title=element_text(size=rel(1.5))) +
     xlab("Derived Allele Frequency") + ylab("Number of Sites") +
     ggtitle("DAF distribution\nNumber of Sites") + 
     theme(plot.title=element_text(size=rel(1.5))) +
-    scale_colour_manual(name="", values=c(pS="blue", pN="red")) +
+    scale_colour_manual(name="", values=c(p0="blue", pi="red")) +
     theme(legend.text = element_text(size=rel(1.5)))
                         
   p2 <- ggplot() +
-    geom_point(data=x, aes(x=daf, y=S, color="pS"), size=3) + 
-    geom_point(data=x, aes(x=daf, y=N, color="pN"), size=3) +
+    geom_point(data=x, aes(x=daf, y=S, color="p0"), size=3) + 
+    geom_point(data=x, aes(x=daf, y=N, color="pi"), size=3) +
     theme_classic() +
     theme(axis.text=element_text(size=rel(1.5))) +
     theme(axis.title=element_text(size=rel(1.5))) +
     xlab("Derived Allele Frequency") + ylab("Proportion of Sites") +
     ggtitle("DAF distribution\nProportion of sites") + 
     theme(plot.title=element_text(size=rel(1.5))) +
-    scale_colour_manual(name="", values=c(pS="blue", pN="red")) +
+    scale_colour_manual(name="", values=c(p0="blue", pi="red")) +
     theme(legend.text = element_text(size=rel(1.5)))
   
   p <- list(p1, p2)
