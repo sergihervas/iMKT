@@ -26,8 +26,6 @@ iMK <- function(x, y, xlow, xhigh) {
   x$S <- x$pS/sum(x$pS)           #relative prop of 0
   x$pN <- as.numeric(x$pN)
   x$pS <- as.numeric(x$pS)
-  #x$m <- (x$pN+x$pS)/(sum(x$pN)+sum(x$pS))
-  x$m <- x$pN/sum(x$pN) #proportion of i sites in each bin
   
   ## alpha for each bin
   x$alpha <- 1 - ((d0*x$pN)/(d*x$pS))
@@ -47,7 +45,7 @@ iMK <- function(x, y, xlow, xhigh) {
     row <- x[i, ]
     
     if (row$alpha < a_low) {
-      wd <- wd + ((a_asym - row$alpha) * row$m) #ponderate by pN
+      wd <- wd + ((a_asym - row$alpha) * row$N) #ponderate by relative proportion of i 
     } else { break }
   }
   
