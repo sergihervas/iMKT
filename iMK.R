@@ -19,6 +19,7 @@ iMK <- function(x, y, xlow, xhigh) {
    
   t1 <- asymptoticMK(x, y, xlow, xhigh)
   a_asym <- as.numeric(t1$alpha_asymptotic)
+  a_original <- as.numeric(t1$alpha_original)
   a_low <- t1$CI_low ##CIs
   
   x$N <- x$pN/sum(x$pN)           #relative proportion of i
@@ -56,8 +57,13 @@ iMK <- function(x, y, xlow, xhigh) {
   ## real neural sites!
   f <- f - b
   
+  ## include DGRP alphas
+  dgrp <- DGRP(x, y)
+  a_05 <- dgrp[1,2]
+  a_10 <- dgrp[2,2] 
+  
   ## iMKT information
-  out1 <- rbind(cbind("d",d),cbind("b",b),cbind("f",f),cbind("alpha_asymptotic",a_asym))
+  out1 <- rbind(cbind("d",d),cbind("b",b),cbind("f",f),cbind("alpha_original",a_original),cbind("alpha_asymptotic",a_asym),cbind("alpha_DGRP05",a_05),cbind("alpha_DGRP10",a_10))
   out1 <- as.data.frame(out1)
   names(out1) <- c("Parameter","Value")
   out1$Value <- as.numeric(as.character(out1$Value))
@@ -68,8 +74,11 @@ iMK <- function(x, y, xlow, xhigh) {
   out2 <- t1
   out2[2:8] <- round(out2[2:8],4)
   
-  ## double output: table from iMK and table from asymptoticMK
-  out <- list(out1,out2)
-  names(out) <- c("iMK","asymptoticMK") 
+  ## alpha DGRP information
+  out3 <- dgrp
+  out3[2:3] <- round(out3[2:3],4)
+  
+  out <- list(out1,out2,out3)
+  names(out) <- c("iMK","asymptoticMK","DGRP")
   return(out) 
 }
