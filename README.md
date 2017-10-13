@@ -16,8 +16,9 @@ Functions included in the package:
 
    - fitMKmodel: two-step nls2() model fit at a given level of precision (res)
    - predictNLS: get a CI using Monte Carlo simulation based upon a fitted model
-   - asymptoticMK: compute alpha asymptotic (uses fitMKmodel & predictNLS)
-   - iMK: compute d, b and f (uses asymptoticMK)
    - watchdog_asymptoticMK: check input data for asymptoticMK error handling
-   - plot1: horizontal plot of d, b and f fractions
-   - plot2: scatter plot of alpha values + shaded b fraction
+   - asymptoticMK: compute alpha asymptotic (uses fitMKmodel & predictNLS)
+   - DGRP: compute alpha following DGRP methodology at 2 cutoffs: 0.05 & 0.1
+   - iMK: compute d, b and f (uses asymptoticMK & DGRP)
+   - plot1: horizontal plot of d, b and f fractions (uses previous)
+   - plot2: scatter plot of alpha values + shaded b fraction (uses previous)
