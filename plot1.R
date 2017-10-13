@@ -9,7 +9,10 @@ plot1 <- function(df) {
   
   names(df) <- c("param","value"); rownames(df) <- NULL
   
+  df <- df[df$param != "alpha_original", ]
   df <- df[df$param != "alpha_asymptotic", ]
+  df <- df[df$param != "alpha_DGRP05", ]
+  df <- df[df$param != "alpha_DGRP10", ]
   df <- droplevels(df)
   
   #replace names
