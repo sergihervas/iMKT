@@ -20,5 +20,6 @@ Functions included in the package:
    - asymptoticMK: compute alpha asymptotic (uses fitMKmodel & predictNLS)
    - DGRP: compute alpha following DGRP methodology at 2 cutoffs: 0.05 & 0.1
    - iMK: compute d, b and f (uses asymptoticMK & DGRP)
-   - plot1: horizontal plot of d, b and f fractions (uses previous)
-   - plot2: scatter plot of alpha values + shaded b fraction (uses previous)
+   - plotIMK: horizontal plot of d, b and f fractions (uses previous)
+   - plotALPHA: scatter plot of alpha values + shaded b fraction (uses previous)
+   - plotDAF: double scatter plot of DAF distributions
