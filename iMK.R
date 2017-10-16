@@ -38,14 +38,16 @@ iMK <- function(x, y, xlow, xhigh) {
   ## strongly del (letal) sites
   d <- 1 - f #sites not segregating  
   
+  x <- na.omit(x); x <- droplevels(x)
+  
   ## weakly deleterious sites
   wd <- 0
-  x <- na.omit(x); x <- droplevels(x)
   for (i in 1:nrow(x)) {
     row <- x[i, ]
     
     if (row$alpha < a_low) {
-      wd <- wd + ((a_asym - row$alpha) * row$N) #ponderate by relative proportion of i 
+      wd <- wd + ((a_asym - row$alpha) * row$N)
+                   # row$N = row$pN / sum(x$pN)
     } else { break }
   }
   
