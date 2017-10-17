@@ -31,7 +31,6 @@ DGRP <- function(x, y) {
     Pineutralb <- Pi * fneutralb
     Pi_wd <- Pib - Pineutralb
     Pineutral <- round(Pineutralb + Pio)
-    if(P0 == "NaN") {P0 <- 0}
     if(Pineutral == "NaN") {Pineutral <- 0}
     alpha <- 1 - ((Pineutral/P0) * (D0/Di))
     
