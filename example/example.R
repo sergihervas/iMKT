@@ -17,3 +17,22 @@ plotALPHA(x, y, w$asymptoticMK, 0, 1)
 
 #check watchdog:
 # w <- iMK(x, y, 0, 1.4)
+
+
+xlow <- 0
+xhigh <- 1
+
+result <- iMK(x, y, xlow, xhigh)
+result
+
+
+
+
+plotDAF(x)
+
+
+plotIMK(result$iMK)
+
+
+plotALPHA(x, y, result$asymptoticMK, xlow, xhigh)
+
