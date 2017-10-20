@@ -107,6 +107,12 @@ watchdog <- function(x, y, xlow, xhigh){
     stop("malformed xlow (must be numeric)")
   if (is.na(xhigh) || is.null(xhigh))
     stop("malformed xhigh (must be numeric)")
+    
+  # Checks if number of sites (m, m0) is not higher than divergenge (d, d0), the sum of the polimorphisms (p|p0) or the divergenge + the sum of the polimorphsms
+  if (d>m || sum(p)>m || sum(p)+d>m)
+    stop("number of non-synonymous sites higher than the divergence of non-synonymous sites or higher than the sum of the non-synonimous polymorfisms")
+  if (d0>m0 || sum(p0)>m0 || sum(p)+d0>m0)
+    stop("number of synonymous sites higher than the divergence of synonymous sites or higher than the sum of the synonimous polymorfisms")
   
   #error handling: check if variables are numeric
   #it makes no sence as we forced them to be numeric... should check that!
