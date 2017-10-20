@@ -5,7 +5,8 @@
 DGRP <- function(x, y) {
   
   out <- NULL
-  names(x) <- c("daf","pN","pS")
+  ##### Not defined####
+  #names(x) <- c("daf","pN","pS")
   mi <- as.numeric(y$m0f)
   m0 <- as.numeric(y$m4f)
   di <- as.numeric(y$D0f)
