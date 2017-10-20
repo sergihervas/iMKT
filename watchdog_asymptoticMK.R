@@ -18,8 +18,9 @@ watchdog <- function(x, y, xlow, xhigh){
     stop("argument y contains no data rows")
   
   ##assign proper names to the columns of x and y. MUST CHECK THAT!
-  names(x) <- c("daf", "pN", "pS")
-  names(y) <- c("Chr",  "Pop",	"m0f",	"D0f",	"m4f",	"D4f")
+  ####Not defined###### 
+  #names(x) <- c("daf", "pN", "pS")
+  #names(y) <- c("Chr",  "Pop",	"m0f",	"D0f",	"m4f",	"D4f")
   
   #error handling: input colnames 
   #for arg x
@@ -44,9 +45,10 @@ watchdog <- function(x, y, xlow, xhigh){
       )
   
   ##parse the data from argument x
-  f <- x[[1]] #derived alelle frequencies
-  p <- x[[2]] #non-synonymous polymorphism 
-  p0 <- x[[3]] #synonymous polymorphism
+  ####### dependent on the column name
+  f <- x$daf #derived alelle frequencies
+  p <- x$pN #non-synonymous polymorphism 
+  p0 <- x$pS #synonymous polymorphism
   
   #error handling: check if variables are good
   if (any(is.na(f)))
@@ -110,9 +112,9 @@ watchdog <- function(x, y, xlow, xhigh){
     
   # Checks if number of sites (m, m0) is not higher than divergenge (d, d0), the sum of the polimorphisms (p|p0) or the divergenge + the sum of the polimorphsms
   if (d>m || sum(p)>m || sum(p)+d>m)
-    stop("number of non-synonymous sites higher than the divergence of non-synonymous sites or higher than the sum of the non-synonimous polymorfisms")
+    stop("m must be higher than p, d and p+d")
   if (d0>m0 || sum(p0)>m0 || sum(p)+d0>m0)
-    stop("number of synonymous sites higher than the divergence of synonymous sites or higher than the sum of the synonimous polymorfisms")
+    stop("m0 must be higher than p0, d0 and p0+d0")
   
   #error handling: check if variables are numeric
   #it makes no sence as we forced them to be numeric... should check that!
