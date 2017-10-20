@@ -62,7 +62,7 @@ asymptoticMK <- function(x, y, xlow=0, xhigh=1) {
   const_c <- coef(mod1)["const_c"]
   
   ## output table
-  result_df <- data.frame(model="exponential", a=const_a, b=const_b, c=const_c, alpha_asymptotic=alpha_1_est, CI_low=ci_pred[6], ci_high=ci_pred[7], alpha_original=alpha_nonasymp, row.names=NULL)
+  result_df <- data.frame(model="exponential", a=const_a, b=const_b, c=const_c, alpha_asymptotic=alpha_1_est, CI_low=ci_pred[6], CI_high=ci_pred[7], alpha_original=alpha_nonasymp, row.names=NULL)
   return(result_df)
 }
 
