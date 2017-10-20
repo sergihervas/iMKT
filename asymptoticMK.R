@@ -12,13 +12,14 @@ asymptoticMK <- function(x, y, xlow=0, xhigh=1) {
   watchdog_asymptoticMK(x, y, xlow, xhigh)
    
   ## assign proper names to the columns of x and y 
-  names(x) <- c("daf", "pN", "pS")
-  names(y) <- c("Chr",  "Pop",  "m0f",  "D0f",  "m4f",  "D4f")
+  #####Not defined####
+  #names(x) <- c("daf", "pN", "pS")
+  #names(y) <- c("Chr",  "Pop",  "m0f",  "D0f",  "m4f",  "D4f")
   
   ## parse the data from argument x
-  f <- x[[1]] #derived alelle frequencies
-  p <- x[[2]] #non-synonymous polymorphism 
-  p0 <- x[[3]] #synonymous polymorphism
+  f <- x$daf #derived alelle frequencies
+  p <- x$pN #non-synonymous polymorphism 
+  p0 <- x$pS #synonymous polymorphism
   
   ## parse the data from argument y
   m <- as.numeric(y$m0f) #number of non-synonymous analyzed positions   
