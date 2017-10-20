@@ -15,7 +15,8 @@ iMK <- function(x, y, xlow, xhigh) {
   d <- as.numeric(y$D0f)
   d0 <- as.numeric(y$D4f)
   
-  names(x) <- c("daf","pN","pS")
+  ####Not defined###
+  #names(x) <- c("daf","pN","pS")
    
   t1 <- asymptoticMK(x, y, xlow, xhigh)
   a_asym <- as.numeric(t1$alpha_asymptotic)
