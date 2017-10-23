@@ -7,7 +7,8 @@ plot2 <- function(x, y, df, xlow, xhigh) {
   require(ggplot2, quietly=TRUE)
   
   ## parse data: should include watchdog adapted
-  names(x) <- c("daf","pN","pS")
+  ## Not defined colnames
+  ##names(x) <- c("daf","pN","pS")
   d <- as.numeric(y$D0f)
   d0 <- as.numeric(y$D4f)
   
