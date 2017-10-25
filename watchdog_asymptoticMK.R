@@ -7,6 +7,10 @@ watchdog <- function(x, y, xlow, xhigh){
   
   data_is_good <- FALSE
   
+  ######### Detecting if the colnames are the correct ones ############
+  if (!("daf" %in% colnames(x) & "pS" %in% colnames(x) & "pN" %in% colnames(x)))
+    stop("required header doesn't have the correct names: daf, pN, pS")
+  
   #error handling: check data formatting
   if (NCOL(x) != 3)
     stop("argument x does not contain exactly three tab-separated columns")
