@@ -6,7 +6,8 @@ plotDAF <- function(x) {
   #load package
   require(ggplot2, quietly=T)
   
-  names(x)[1] <- "daf"
+  ###Column names not associated
+  ###names(x)[1] <- "daf"
   x$pN <- as.numeric(x$pN)
   x$N <- x$pN/sum(x$pN)
   x$pS <- as.numeric(x$pS)  
