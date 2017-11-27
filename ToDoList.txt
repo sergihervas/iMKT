@@ -12,4 +12,6 @@ List of things to do:
 - Vignette 
 - Update sample data
 
+- SERGI: Li function (+ include in iMK)
+
 - Implement GUI through web-server??!!
