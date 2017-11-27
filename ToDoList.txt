@@ -2,7 +2,7 @@ List of things to do:
 
 - Discuss input, maybe create parser
 - Discuss output, update plots and include table -> html/pdf for non expert R users?
-- Update watchdog D
+- Update watchdog: adapt to diverse functions
 - Error handling when function fails
 - Documentation of all functions
 - Rename certain variables in asymptoticMK and iMK (0f, 4f)
