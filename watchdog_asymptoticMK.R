@@ -3,7 +3,7 @@
 ## should check and discuss many things. Use as an example for now!
 ## mix between Messer & Haller and Vasily work
 
-watchdog2 <- function(x, y, xlow, xhigh){
+watchdog <- function(x, y, xlow, xhigh){
   
   data_is_good <- FALSE
   
