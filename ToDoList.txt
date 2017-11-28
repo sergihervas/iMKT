@@ -19,8 +19,6 @@ List of things to do:
 -- Multiple datasets (Jesus)
 -- Assymptotic: done (revisar)
 
-
-
 - Reference Messer & Haller code
 
 - Documentation of all functions
