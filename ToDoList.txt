@@ -6,8 +6,9 @@ List of things to do:
 
 - Update watchdog: adapt to diverse functions
 -- Delete watchdog and add stops and messages inside the functions (Jesus) (selected: i, neutral: 0)
-
 - Error handling when function fails (Jesus)
+- System.time(Re-run iMKT) and compare(gene.input/concatgenes.input) (Jesus)
+- Build package (connect to other packages, CRAN, tests and hidden datasets) (Jesus)
 
 - Rename certain variables in asymptoticMK and iMK (0f, 4f) (Marta)
 - Check consistency of variables and style along functions (Marta)
@@ -18,7 +19,7 @@ List of things to do:
 -- Multiple datasets (Jesus)
 -- Assymptotic: done (revisar)
 
-- Comparar tiempos genes vs genes concatenados (Jesus)
+
 
 - Reference Messer & Haller code
 
