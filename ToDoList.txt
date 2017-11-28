@@ -1,13 +1,28 @@
 List of things to do:
 
-- Discuss input, maybe create parser
+ ̶-̶ ̶D̶i̶s̶c̶u̶s̶s̶ ̶i̶n̶p̶u̶t̶,̶ ̶m̶a̶y̶b̶e̶ ̶c̶r̶e̶a̶t̶e̶ ̶p̶a̶r̶s̶e̶r̶
+ 
 - Discuss output, update plots and include table -> html/pdf for non expert R users?
+
 - Update watchdog: adapt to diverse functions
-- Error handling when function fails
-- Documentation of all functions
-- Rename certain variables in asymptoticMK and iMK (0f, 4f)
-- Check consistency of variables and style along functions
+-- Delete watchdog and add stops and messages inside the functions (Jesus) (selected: i, neutral: 0)
+
+- Error handling when function fails (Jesus)
+
+- Rename certain variables in asymptoticMK and iMK (0f, 4f) (Marta)
+- Check consistency of variables and style along functions (Marta)
+- Functions:
+-- Standard: done
+-- FWW: done, but add loop, graph (in progress Marta)
+-- DGRP: to do, " " (Marta)
+-- Multiple datasets (Jesus)
+-- Assymptotic: done (revisar)
+
+- Comparar tiempos genes vs genes concatenados (Jesus)
+
 - Reference Messer & Haller code
+
+- Documentation of all functions
 - User manual
 - Vignette 
 - Update sample data
