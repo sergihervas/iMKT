@@ -13,5 +13,6 @@ List of things to do:
 - Update sample data
 
 - SERGI: Li function (+ include in iMK); StandardMKT function (+ include in iMK)
+-- standardMKT done, Li in progress (Marta)
 
 - Implement GUI through web-server??!!
