@@ -12,7 +12,7 @@ DGRP <- function(x, y) {
   di <- as.numeric(y$D0f)
   d0 <- as.numeric(y$D4f)
   
-  ns <- c(0.05, 0.1)
+  ns <- c(0, 0.05, 0.1)
   for (n in ns) {
     
     x1 <- x[x$daf < n, ] #below DAF

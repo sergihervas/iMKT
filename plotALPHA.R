@@ -1,7 +1,7 @@
 ## alpha plot 
 ## input: x, y, alpha asymptotic output (iMK$asymptoticMK), xlow and xhigh for asymptoticMK (or iMK)
 
-plot2 <- function(x, y, df, xlow, xhigh) {
+plotALPHA <- function(x, y, df, xlow, xhigh) {
   
   ## load packages
   require(ggplot2, quietly=TRUE)

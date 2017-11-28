@@ -2,7 +2,7 @@
 ## iMK horizontal plot 
 ## input: table from iMK (1 observation) = iMK$iMK
 
-plot1 <- function(df) {
+plotIMK <- function(df) {
   
   #load packages
   require(ggplot2, quietly=TRUE)
