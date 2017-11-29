@@ -10,7 +10,6 @@ asymptoticMK <- function(x, y, xlow=0, xhigh=1) {
   
   ## check data: if there is an error, watchdog stops computation
   watchdog(x, y, xlow, xhigh)
-   
   ## assign proper names to the columns of x and y 
   #####Not defined####
   #names(x) <- c("daf", "pN", "pS")
