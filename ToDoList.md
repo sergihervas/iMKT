@@ -16,7 +16,10 @@
 - Check consistency of variables and style along functions (Marta)
 - Functions:
 	- Standard: done
-	- FWW: done, but add loop, graph (in progress Marta)
+	- FWW: 
+		~~- done~~  
+		~~- add loop~~  
+		- graph cutoffs simple (in progress Marta)
 	- DGRP: to do, " " (Marta)
 	- Multiple datasets (Jesus)
 	- Assymptotic: done (revisar)
