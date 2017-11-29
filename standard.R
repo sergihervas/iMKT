@@ -37,3 +37,4 @@ mkt_standard <- function(daf = "Data frame containing the DAF, Pn and Ps",
   # Return output in list format
   return(output)
 }
+mkt_standard(x,y)
