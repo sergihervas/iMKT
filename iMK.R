@@ -9,8 +9,11 @@
 ## the sample size, higher the number of rare SNPs detected), results may be strongly biased.
 
 iMK <- function(x, y, xlow, xhigh) {
+  
+  check<-check_input(x, y, xlow, xhigh)
   if(check$data==FALSE)
     stop(check$print_errors)
+  
   
   m <- as.numeric(y$m0f)
   m0 <- as.numeric(y$m4f)

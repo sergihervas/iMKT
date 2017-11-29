@@ -9,7 +9,9 @@ asymptoticMK <- function(x, y, xlow=0, xhigh=1) {
   require(nls2, quietly=TRUE)
   
   ## check data: if there is an error, watchdog stops computation
-  check_input(x, y, xlow, xhigh)
+  check<-check_input(x, y, xlow, xhigh)
+  if(check$data==FALSE)
+    stop(check$print_errors)
   ## assign proper names to the columns of x and y 
   #####Not defined####
   #names(x) <- c("daf", "pN", "pS")
