@@ -27,7 +27,7 @@ watchdog <- function(x, y, xlow, xhigh){
   ##Assign proper names to the columns of x and y
   names(x) <- c("daf", "Pi", "P0")
   names(y) <- c("Chr",  "Pop",	"mi",	"Di",	"m0",	"D0")
-
+  
   #error handling: input colnames 
   #for arg x
   
@@ -52,15 +52,15 @@ watchdog <- function(x, y, xlow, xhigh){
   #     stop("argument y has a numeric column name;
   #          probably the required header row is missing")
   #     )
-
+  
   
   ##parse the data from argument x
   ####### dependent on the column name
   f <- x$daf #derived alelle frequencies
   Pi <- x$Pi #non-synonymous polymorphism 
   P0 <- x$P0 #synonymous polymorphism
-
-    #error handling: check if variables are good
+  
+  #error handling: check if variables are good
   if (any(is.na(f)))
     stop("f contains NA values (not allowed)")
   if (any(is.na(Pi)))
