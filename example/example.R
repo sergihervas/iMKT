@@ -9,7 +9,7 @@ x <- read.table("example/RAL_Chr2L.txt", header=T) #polymorphism file (DAF)
 y <- read.table("example/RAL_Chr2L_div.txt", header=T) #divergence and m file
 
 ## 3rd. perform analysis ##
-w <- iMK(x, y, 0, 1)
+system.time(w <- iMK(x, y, 0, 1))
 w #check out results
 plotDAF(x) #plots
 plotIMK(w$iMK)
