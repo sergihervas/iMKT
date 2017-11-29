@@ -14,10 +14,11 @@ watchdog <- function(x, y, xlow, xhigh){
   #error handling: check data formatting
   if (NCOL(x) != 3 || NCOL(x) <3)
     stop(paste0("Argument x does not contain three tab-separated columns.Argument subsitute(x), at least three data rows are required to constrain the fit"))
-  if ((NROW(x) < 0 || NROW(x)!=19)) 
+  if (NROW(x) < 0) 
     stop("Argument x contains no data rows or x categories are not correct define. Check the header!")
-  # else if (NROW(x) < 0 || NROW(x)!=9)
-  #   stop("Argument x contains no data rows or x categories are not correct define. Check the header!")
+  if(NROW(x)==20){}
+  else if (NROW(x)!=10)
+    stop("Daf categories in x are not correct define. Check the header!")
   if (NCOL(y) != 6)
     stop(paste0("Argument y does not contain six tab-separated columns"))
   if (NROW(y) <= 0 & (NROW(y)<3))
