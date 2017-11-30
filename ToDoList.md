@@ -28,7 +28,7 @@
 		- ~~graph cutoffs simple (Marta)~~
 	- Modify perl functions to extract the correct files. Review the categories, ask Sergi
 	- Put in functions comparision scripts (Jesus)
-	- Multiple_datasets(...): (Jesus)
+	- ~~Multiple_datasets(...): (Jesus)~~
 	- Assymptotic: done (check variable and tables names)
 
 - Reference Messer & Haller code (Question: Shall we write to them to let them know we're implementing their code into another package?)
