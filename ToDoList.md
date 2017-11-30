@@ -36,4 +36,4 @@
 - Implement GUI through web-server (Django)  
 
 ## Beta Tests
-- Check inputs works with check_input( ) (Marta, Jesus)
+- Check inputs works with check_input(...) (Marta, Jesus)
