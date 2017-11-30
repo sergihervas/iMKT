@@ -37,3 +37,4 @@
 
 ## Beta Tests
 - Check inputs works with check_input(...) (Marta, Jesus)
+- Check functions independently (Marta, Jesus)

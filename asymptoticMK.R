@@ -12,6 +12,14 @@ asymptoticMK <- function(x, y, xlow=0, xhigh=1) {
   check<-check_input(x, y, xlow, xhigh)
   if(check$data==FALSE)
     stop(check$print_errors)
+  
+  # tryCatch({
+  #     if(any(x[3]<=0)){
+  #     result_df <- data.frame(model="exponential", a=NaN, b=NaN, c=NaN, alpha_asymptotic=NaN, CI_low=NaN, CI_high=NaN, alpha_original=NaN, row.names=NULL)},
+  #     error=cat("Your input files has the following(s) errors: \n x$P0 has one o more 0 values, cannot compute asymptotic. Returning results with NaN \n \n")
+  #     finally = {
+  #       return(result_df)})
+
   ## assign proper names to the columns of x and y 
   #####Not defined####
   #names(x) <- c("daf", "pN", "pS")

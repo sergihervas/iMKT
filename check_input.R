@@ -26,7 +26,7 @@ check_input <- function(x, y, xlow, xhigh){
     data_is_good<-FALSE
     error<-"Argument y does not contain six tab-separated columns"
     main_errors<-append(main_errors,error)}
-  if (NROW(y) <= 0 & (NROW(y)<3)){
+  if (NROW(y) < 0 & (NROW(y)<3)){
     data_is_good<-FALSE
     error<-"Argument y contains no data rows"
     main_errors<-append(main_errors,error)}
@@ -118,7 +118,7 @@ check_input <- function(x, y, xlow, xhigh){
     data_is_good<-FALSE
     error<-"f contains all values == 0 (not allowed)"
     main_errors<-append(main_errors,error)}
-  if (any(Pi <= 0)||all(Pi == 0)){   # note that zero is allowed, although not recommended
+  if (any(Pi < 0)||all(Pi == 0)){   # note that zero is allowed, although not recommended
     data_is_good<-FALSE
     error<-"Pi contains values < 0 (not allowed) Pi contains all values == 0 (not allowed)"
     main_errors<-append(main_errors,error)}
