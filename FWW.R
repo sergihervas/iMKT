@@ -54,7 +54,7 @@ mkt_fww <- function(daf = "Data frame containing the DAF, Pn and Ps",
   
   # Declare output data frame
   output <- data.frame(cutoff = numeric(0), alpha = numeric(0), pvalue = integer(0))
-  #out <- NULL
+  
   mkt_tables <-  list()
   list_cutoffs <- c(0, 0.05, 0.1)
   
