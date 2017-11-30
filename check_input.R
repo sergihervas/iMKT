@@ -1,7 +1,8 @@
 ## ERROR HANDLING
 ## function which checks input data for asymptoticMK
-## should check and discuss many things. Use as an example for now!
-## mix between Messer & Haller and Vasily work
+## should check and discuss many things. Use as an example for now! NEED TO DISSCUSS predictNLS.R: Error in as.list(object$call$formula)[[3]] : subscript out of bounds 
+## mix between Messer & Haller
+# Author = Sergi Hervás, Jesús Murga
 
 check_input <- function(x, y, xlow, xhigh){
   
@@ -117,13 +118,13 @@ check_input <- function(x, y, xlow, xhigh){
     data_is_good<-FALSE
     error<-"f contains all values == 0 (not allowed)"
     main_errors<-append(main_errors,error)}
-  if (any(Pi < 0)||all(Pi == 0)){   # note that zero is allowed, although not recommended
+  if (any(Pi <= 0)||all(Pi == 0)){   # note that zero is allowed, although not recommended
     data_is_good<-FALSE
     error<-"Pi contains values < 0 (not allowed) Pi contains all values == 0 (not allowed)"
     main_errors<-append(main_errors,error)}
   # if (all(Pi == 0))    # not all can be zero, however
   #   error<-"p contains all values == 0 (not allowed)"
-  if (any(P0 <= 0)||all(P0 == 0)){
+  if (any(P0 < 0)||all(P0 == 0)){
     data_is_good<-FALSE
     error<-"P0 contains values <= 0 (not allowed) or P0 contains all values == 0 (not allowed)"
     main_errors<-append(main_errors,error)}
@@ -133,9 +134,9 @@ check_input <- function(x, y, xlow, xhigh){
   
   #Incorpore at begging when check the input length
   # error handling: check if argument x has enough data points
-  # if (NROW(x) < 3)
-  # error<-"Argument x: at least three data rows are required to constrain the fit"
-  # 
+  if (NROW(x) < 3)
+  error<-"Argument x: at least three data rows are required to constrain the fit"
+
   ##parse the data from argument y and force it to be numeric... NOT SENSE CHECK THEN IS.NULL OR NUMERIC
   # NOT FORCE TO BE NUMERIC, CHECK IF VALUES ARE NOT NUMERIC [not force+not is.null]
   mi <- as.numeric(y$mi) #number of non-synonymous sites

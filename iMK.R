@@ -23,10 +23,10 @@ iMK <- function(x, y, xlow, xhigh) {
   ####Not defined###
   #names(x) <- c("daf","pN","pS")
    
-  t1 <- asymptoticMK(x, y, xlow, xhigh)
-  a_asym <- as.numeric(t1$alpha_asymptotic)
-  a_original <- as.numeric(t1$alpha_original)
-  a_low <- t1$CI_low ##CIs
+  # t1 <- asymptoticMK(x, y, xlow, xhigh)
+  # a_asym <- as.numeric(t1$alpha_asymptotic)
+  # a_original <- as.numeric(t1$alpha_original)
+  # a_low <- t1$CI_low ##CIs
   
   x$N <- x$pN/sum(x$pN)           #relative proportion of i
   x$S <- x$pS/sum(x$pS)           #relative prop of 0

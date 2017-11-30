@@ -15,7 +15,7 @@
 mkt_standard <- function(daf = "Data frame containing the DAF, Pn and Ps", 
                      divergence = "Data frame that contains the number of non-synonymous sites analyzed (m0f), number of synonymous sites analyzed (m4f), total number of non-synonymous divergent sites (D0f) and number of synonymous divergent sites (D4f)") {
   # Print errors if data not correct
-  check<-check_input(x, y, xlow, xhigh)
+  check<-check_input(daf, divergence, 0, 1)
   if(check$data==FALSE)
     stop(check$print_errors)
   # Shows a message when using the function
