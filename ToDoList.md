@@ -10,7 +10,7 @@
 	- ~~Watchdog only in assymtoticMKT(It is Needed in all functions? If just in assymptotic, include it inside the function)~~
 	- Check if some dataset not execute the asymototic (p0<=0). Include inside asysmtotic( check_input(...)) parameter to stop this functions but continue on loop (require for multiple_dataset(...) and iMK (...) (Jesus **in progress**)
 
-- System.time(Re-run iMKT) and compare (gene.input/concatgenes.input) (Jesus **in progress**;)  
+- System.time(Re-run iMKT) and compare (gene.input/concatgenes.input) (Jesus **in progress**)  
 - Build package (connect to other packages (require knitr, ggplot2, nls2), CRAN or bioconductor, tests and hidden datasets) (Jesus)
 
 - ~~Rename certain variables in asymptoticMK and iMK (0f, 4f) (Marta)~~
@@ -22,18 +22,23 @@
 		- ~~add loop~~  
 		- ~~graph cutoffs simple (Marta)~~
 	- ~~DGRP: to do, " " (Marta)~~
+		- ~~done~~  
+		- add loop and graph cuttoff (**in progress**, Marta)
+		- Asked Sònia about b, y - when they are negative is because you haven't completely removed the slightly deleterious variants. She sets the values to 0 then. Ask Antonio for a better estimation?
+		- ~~graph cutoffs simple (Marta)~~
 	- Put in functions comparision scripts (Jesus)
 	- Multiple_datasets(...): (Jesus)
 	- Assymptotic: done (check variable and tables names)
 
-- Reference Messer & Haller code
+- Reference Messer & Haller code (Question: Shall we write to them to let them know we're implementing their code into another package?)
 
-- Documentation of all functions
-- User manual
-- Vignette 
-- Update sample data
+- Documentation of all functions (Marta)
+- User manual (Marta)
+- Vignette (Marta)
+- Update sample data (Marta)
+- Example tutorial with sample data (Marta)
 
-- Implement GUI through web-server (Django)  
+- Implement GUI through web-server (with Django) (Ask Esteve for help?)  
 
 ## Beta Tests
 - Check inputs works with check_input(...) (Marta, Jesus)
