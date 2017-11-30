@@ -11,7 +11,7 @@
 	- ~~Check if some dataset not execute the asymototic (p0<=0). Include inside asysmtotic( check_input(...)) parameter to stop this functions but continue on loop (require for multiple_dataset(...) and iMK (...) (Jesus)~~
 
 - System.time(Re-run iMKT) and compare (gene.input/concatgenes.input) (Jesus **in progress**)  
-- Build package (connect to other packages (require knitr, ggplot2, nls2), CRAN or bioconductor, tests and hidden datasets) (Jesus)
+- Build package (connect to other packages (require knitr, ggplot2, nls2, ggthemes, extragrid), CRAN or bioconductor, tests and hidden datasets) (Jesus)
 
 - Rename certain variables in asymptoticMK and iMK (0f, 4f) (Marta)
 - ~~Check consistency of variables and style along functions (Marta)~~
@@ -43,5 +43,5 @@
 
 ## Beta Tests
 - Check inputs works with check_input(...) (Marta, Jesus)
-- Check functions independently (Marta, Jesus)
+- Check functions independently. Error in DGRP (Marta, Jesus)
 - Review tryCatch({...}) as proper error (Jesus)

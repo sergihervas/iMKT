@@ -97,4 +97,5 @@ mkt_fww <- function(daf = "Data frame containing the DAF, Pn and Ps",
 
     return(list_output)
 }
-mkt_fww(x,y)
+# mkt_fww(x,y)
+

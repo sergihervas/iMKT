@@ -19,7 +19,8 @@ mkt_standard <- function(daf = "Data frame containing the DAF, Pn and Ps",
   #  if(check$data==FALSE)
   # stop(check$print_errors)
   # Shows a message when using the function
-  packageStartupMessage("MKT standard function")
+  # packageStartupMessage("MKT standard function")
+  check<-check_input(x, y, 0, 1)
   
   # Declare output data frame
   output <- data.frame(alpha = numeric(0), pvalue = integer(0))
@@ -41,4 +42,5 @@ mkt_standard <- function(daf = "Data frame containing the DAF, Pn and Ps",
   # Return output in list format
   return(output)
 }
-mkt_standard(x,y)
+# mkt_standard(x,y)
+std<-cmpfun(mkt_standard)
