@@ -13,7 +13,7 @@
 - System.time(Re-run iMKT) and compare (gene.input/concatgenes.input) (Jesus **in progress**)  
 - Build package (connect to other packages (require knitr, ggplot2, nls2), CRAN or bioconductor, tests and hidden datasets) (Jesus)
 
-- ~~Rename certain variables in asymptoticMK and iMK (0f, 4f) (Marta)~~
+- Rename certain variables in asymptoticMK and iMK (0f, 4f) (Marta)
 - ~~Check consistency of variables and style along functions (Marta)~~
 - Functions:
 	- ~~Standard: done~~
