@@ -43,6 +43,14 @@ theme_Publication <- function(base_size=14, base_family="helvetica") {
 
 library(ggplot2)
 library(gridExtra)
+library(cowplot)
+library(reshape2)
+
+scale_fill_Publication <- function(...){
+  library(scales)
+  discrete_scale("fill","Publication",manual_pal(values = c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33")), ...)
+  
+}
 ####################################################
 ################# MKT-FWW function #################
 ####################################################
@@ -57,8 +65,8 @@ mkt_DGRP <- function(daf = "Data frame containing the DAF, Pn and Ps",
   output <- data.frame(cutoff = numeric(0), alpha = numeric(0), slighlty_deleterious = numeric(0), neutral = numeric(0), pvalue = integer(0))
   
   mkt_tables <-  list()
-  
-  list_cutoffs <- c(0, 0.05, 0.2)
+  fractions <- data.frame(row.names = c("d","f","b"))
+  list_cutoffs <- c(0, 0.02, 0.05, 0.5)
   
   for (cutoff in list_cutoffs) {
     
@@ -83,18 +91,28 @@ mkt_DGRP <- function(daf = "Data frame containing the DAF, Pn and Ps",
     # Estimation of alpha
     alpha <- 1-((Pi_neutral/P0)*(mkt_table_standard[1,2]/mkt_table_standard[2,2]))
     
-    # Estimation of b
+    # Estimation of b: weakly deleterious
     b <- (Pi_wd/P0)*(divergence$m4f/divergence$m0f)
     
-    # Estimation of y
+    # ??????? Estimation of y: recently neutral sites
     y <- ((Pi_neutral/P0)-(mkt_table_standard[2,2]/mkt_table_standard[1,2]))*(divergence$m4f/divergence$m0f)
+    
+    # Estimation of f: neutral sites
+    f <- (divergence$m4f*Pi_neutral)/(as.numeric(divergence$m0f)*as.numeric(P0))
+    
+    # d, strongly deleterious sites
+    d <- 1-(f+b)
     
     # Fisher's exact test p-value from the MKT
     m <- matrix(c(P0,Pi_neutral,divergence$D4f,divergence$D0f), ncol=2)
     pvalue <- fisher.test(m)$p.value
-  
-    # Store output  
+
+    # Fractions graph
+    fraction <-data.frame(c(d,f,b))
+    names(fraction) <- cutoff
+    fractions <- cbind(fractions,fraction)
     
+    # Store output  
     output_cutoff <- cbind(cutoff,alpha,pvalue)
     output <- rbind(output,output_cutoff)
     
@@ -115,10 +133,20 @@ mkt_DGRP <- function(daf = "Data frame containing the DAF, Pn and Ps",
   
   names(output) <- c("Cut-off","α","Fisher's exact test P-value")
   
-  list_output <-list(output,plot,mkt_tables)
-  names(list_output) <- c("Results","Graph", "MKT tables")
+  fractions_melt <- melt(fractions) 
+  fractions_melt$Fraction <-  rep(c("d", "f", "b"),nrow(fractions_melt)/3)
+  
+  plotfraction <- ggplot(fractions_melt) + geom_bar(stat = "identity",aes(x=variable, y = value, fill = Fraction)) + coord_flip() + theme_Publication() + scale_fill_Publication(breaks=c("d","f","b"), labels=c(expression(italic("d")), expression(italic("f")),expression(italic("b")))) + ylab(label = "Fraction") + xlab(label = "Cut-off") 
+  plotfraction
+  
+  plot<-plot_grid(plot,plotfraction, nrow = 2,  labels = c("A", "B"), rel_heights = c(2, 1))
+  
+  list_output <-list(output,plot,mkt_tables, fractions)
+  names(list_output) <- c("Results","Graph", "MKT tables","Fractions")
+  
+
   
   return(list_output)
 }
 
-# mkt_DGRP(daf,divergence)
+mkt_DGRP(daf,divergence)
