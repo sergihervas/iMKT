@@ -28,6 +28,7 @@
 	- Modify perl functions to extract the correct files. Review the categories.(Sergi)
 	- Put in functions comparision scripts (Jesus)
 	- ~~Multiple_datasets(...): (Jesus)~~
+		- Just need to add a variable to check file list (Jesus)
 	- Assymptotic: done (check variable and tables names)
 
 - Reference Messer & Haller code (Question: Shall we write to them to let them know we're implementing their code into another package?)
