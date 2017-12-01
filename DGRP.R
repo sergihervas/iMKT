@@ -149,4 +149,4 @@ mkt_DGRP <- function(daf = "Data frame containing the DAF, Pn and Ps",
   return(list_output)
 }
 
-mkt_DGRP(daf,divergence)
+# mkt_DGRP(daf,divergence)

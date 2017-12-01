@@ -40,7 +40,7 @@ multiple_datasets<-function(directory="Directory",test="MKT type"){
 f<-cmpfun(multiple_datasets)
 
 for(i in 1:3){
-  print(system.time(for(i in 1:100){multiple_datasets(directory = "~/Test",test = "standard")}))
+  print(system.time(for(i in 1:1000){multiple_datasets(directory = "~/Test",test = "standard")}))
 }
 
 for(i in 1:3){
