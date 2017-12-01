@@ -5,11 +5,10 @@
 
 ## 2nd. read data ##
 #setwd("...")
-x <- read.table("GitHub/iMKT/example/RAL_Chr2L.daf10.txt", header=T) #polymorphism file (DAF)
-y <- read.table("GitHub/iMKT/example/RAL_Chr2L_div.txt", header=T) #divergence and m file
-
-w<-mkt_standard(x, y)
-
+x <- read.table("~/MKT/iMKT/example/RAL_Chr2L.daf10.txt", header=T) #polymorphism file (DAF)
+y <- read.table("~/MKT/iMKT/example/RAL_Chr2L_div.txt", header=T) #divergence and m file
+w<-mkt_DGRP(x, y)
+w
 ## 3rd. perform analysis ##
 print("Time iMKT")
 for(i in 1:3){
