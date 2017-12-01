@@ -11,9 +11,8 @@
 	- ~~Check if some dataset not execute the asymototic (p0<=0). Include inside asysmtotic( check_input(...)) parameter to stop this functions but continue on loop (require for multiple_dataset(...) and iMK (...) (Jesus)~~
 
 - System.time(Re-run iMKT) and compare (gene.input/concatgenes.input) (Jesus **in progress**)  
-- Build package (connect to other packages (require knitr, ggplot2, nls2, ggthemes, extragrid), CRAN or bioconductor, tests and hidden datasets) (Jesus)
+- Build package (connect to other packages (require knitr, ggplot2, nls2, ggthemes, extragrid), CRAN or bioconductor, tests and hidden datasets) (Jesus **in progress**)
 
-- Rename certain variables in asymptoticMK and iMK (0f, 4f) (Marta)
 - ~~Check consistency of variables and style along functions (Marta)~~
 - Functions:
 	- ~~Standard: done~~
@@ -23,17 +22,18 @@
 		- ~~graph cutoffs simple (Marta)~~
 	- ~~DGRP: to do, " " (Marta)~~
 		- ~~done~~  
-		- add loop and graph cuttoff (**in progress**, Marta)
+		- ~~add loop and graph cuttoff (Marta)~~
 		- Asked Sònia about b, y - when they are negative is because you haven't completely removed the slightly deleterious variants. She sets the values to 0 then. Ask Antonio for a better estimation?
 		- ~~graph cutoffs simple (Marta)~~
-	- Modify perl functions to extract the correct files. Review the categories, ask Sergi
+	- Modify perl functions to extract the correct files. Review the categories.(Sergi)
 	- Put in functions comparision scripts (Jesus)
 	- ~~Multiple_datasets(...): (Jesus)~~
 	- Assymptotic: done (check variable and tables names)
 
 - Reference Messer & Haller code (Question: Shall we write to them to let them know we're implementing their code into another package?)
 
-- Documentation of all functions (Marta, Jesus)
+- ~~Documentation of all functions (Marta, Jesus)~~
+	- Main structure done, need to rewrite correctly.
 - User manual (Marta, Jesus)
 - Vignette (Marta, Jesus)
 - Update sample data (Marta, Jesus)
