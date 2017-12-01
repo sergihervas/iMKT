@@ -18,7 +18,7 @@
 #'
 #'MKT corrected by the DGRP method
 #'$Results
-#' Cut-off          α Fisher's exact test P-value
+#' Cut-off          α Fishers exact test P-value
 #'1    0.00 0.07371226                2.175330e-14
 #'2    0.05 0.25019053               1.122252e-169
 #'3    0.20 0.20888331               4.789022e-115

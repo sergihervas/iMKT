@@ -14,7 +14,7 @@
 #'
 #'MKT corrected by the FWW method
 #'$Results
-#'  Cut-off          α Fisher's exact test P-value
+#'  Cut-off          α Fishers exact test P-value
 #'1    0.00 0.07371226                 2.17533e-14
 #'2    0.05 0.45085643                 0.00000e+00
 #'3    0.10 0.45085643                 0.00000e+00
