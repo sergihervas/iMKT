@@ -1,3 +1,26 @@
+#' iMK compute all the MKT extensions 
+#' Date = 30/11/2016
+#' Author = Sergi Hervás, Marta Coronado
+#'
+#' EXPLANATION
+#'
+#'
+#' @param x dad file
+#' @param y divergence file
+#' @param xlow fit curve
+#' @param ylow fit curv
+#'
+#' @return None
+#'
+#' @examples
+#' asymptoticMK
+#' mkt_DGPR
+#' mkt_fww
+#' mkt_standard
+#' @export
+#' 
+
+
 ## iMK
 ## compute d (strongly deleterious sites), b (weakly del) and f (neutral)
 ## includes asymptoticMK output

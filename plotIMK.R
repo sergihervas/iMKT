@@ -1,6 +1,16 @@
+#' iMK horizontal plot 
+#' Date = 30/11/2016
+#' Author = Marta Coronado, Sergi Hervàs
+#'
+#'
+#' @param df table from iMK (1 observation) = iMK$iMK
+#'
+#' @return None
+#'
+#' @examples
+#' @export
+#' 
 
-## iMK horizontal plot 
-## input: table from iMK (1 observation) = iMK$iMK
 
 plotIMK <- function(df) {
   

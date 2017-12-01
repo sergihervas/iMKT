@@ -1,10 +1,28 @@
+#' Get a CI using Monte Carlo simulation based upon a fitted model.  This is necessary because
+# getting confidence intervals for non-linear models is a complicated business, apparently. Authors thanks to Andrej-Nikolai Spiess (http://www.dr-spiess.de) for this code.
+#' Directly retrieved from: https://github.com/MesserLab/asymptoticMK
+#' Date = 30/11/2016
+#' Author = REFER AUTHROS? CONTACT WITH PETROV LAB
+#'
+#'
+#' @param alpha_trimmed correspond to the vectors with alpha and frequency (DAF) values
+#' @param f_trimmed  correspond to the vectors with alpha and frequency (DAF) values
+#' @param res ASK SERGI
+#'
+#' @return None
+#'
+#' @examples
+#' 
+#' @export
+#' 
+
+
 # Get a CI using Monte Carlo simulation based upon a fitted model.  This is necessary because
 # getting confidence intervals for non-linear models is a complicated business, apparently.
 # Thanks to Andrej-Nikolai Spiess (http://www.dr-spiess.de) for this code.
 # See: https://www.r-bloggers.com/predictnls-part-1-monte-carlo-simulation-confidence-intervals-for-nls-models/
 # Or, if that link goes stale: http://stats.stackexchange.com/a/251501/141766
 
-# directly retrieved from: https://github.com/MesserLab/asymptoticMK
 
 predictNLS <- function(object, newdata, level = 0.95, nsim = 10000) {
   

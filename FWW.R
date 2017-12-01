@@ -1,6 +1,54 @@
-#################################################################
-################# MKT corrected with FWW method #################
-#################################################################
+#' MKT corrected with FWW method
+#'
+#' Creates a plot of the crayon colors in \code{\link{brocolors}}
+#' The standard McDonald and Kreitman test (MKT) is used to detect the signature of selection at the molecular level. The MKT compares the amount of variation within a species (polymorphism, P) to the divergence (D) between species at two types of sites, one of which is putatively netral and used as the reference to detect selection at the other type of site. In the standard MKT, these sites are synonymous (putatively neutral, 0) and non-synonymous sites (selected sites, i) in a coding region. Under strict neutrality, the ratio of the number of selected and neutral polymorphic sites (Pi/P0) is equal to the ratio of the number of selected and neutral divergence sites (Di/D0).
+#'' The null hypothesis of neutrality is rejected in a MKT when Di/D0 > Pi/P0. The excess of divergence relative to polymorphism for class i, is interpreted as adaptive selection for a subset of sites i. The fraction of adaptive fixations, α, is estimated from 1-(PN/PS)(Ds/Dn). The significance of the test can be assesed with a Fisher exact test.
+#' The estimate of α can be easily biased by the segregation of slightly deleterious non-synonymous substitutions. Specifically, slightly deleterious mutations tend to contribute more to polymorphism than to divergence, and thus, lead to an underestimation of alpha. Bevause they tend to segregate at lower frequencies than do neutral mutations, they can be apartially controled for by removing low frequency polymorphisms from the analysis (Fay et al. 2001). This is known as the FWW method.
+#' @param x dad file
+#' @param y divergence file
+#' 
+# ' @return None
+#'
+#' @examples
+#' mkt_fww(x,y)
+#'
+#'MKT corrected by the FWW method
+#'$Results
+#'  Cut-off          α Fishers exact test P-value
+#'1    0.00 0.07371226                 2.17533e-14
+#'2    0.05 0.45085643                 0.00000e+00
+#'3    0.10 0.45085643                 0.00000e+00
+#'
+#'$Graph
+#'
+#'$`MKT tables`
+#'$`MKT tables`$`Cutoff =  0`
+#'
+#'
+#'|               | Polymorphism| Divergence|
+#'|:--------------|------------:|----------:|
+#'|Neutral class  |        32308|      52537|
+#'|Selected class |        31125|      54641|
+#'
+#'$`MKT tables`$`Cutoff =  0.05`
+#'
+#'
+#'|               | Polymorphism| Divergence|
+#'|:--------------|------------:|----------:|
+#'|Neutral class  |        15119|      52537|
+#'|Selected class |         8635|      54641|
+#'
+#'$`MKT tables`$`Cutoff =  0.1`
+#'
+#'
+#'|               | Polymorphism| Divergence|
+#'|:--------------|------------:|----------:|
+#'|Neutral class  |        15119|      52537|
+#'|Selected class |         8635|      54641|
+#'
+#'
+#' @export
+#' 
 
 # Date = 28/11/2016
 # Author = Sergi Hervás, Marta Coronado

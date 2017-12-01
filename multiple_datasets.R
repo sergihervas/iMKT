@@ -1,7 +1,16 @@
-x <- read.table("~/GitHub/iMKT/example/RAL_Chr2L.daf10.txt", header=T) #polymorphism file (DAF)
-y <- read.table("~/GitHub/iMKT/example/RAL_Chr2L_div.txt", header=T) #divergence and m file
-# 
-w<-mkt_standard(x, y);w
+#' Execute any test  with all the files in a directory. The files need to be called id.daf.txt and id.divergence.txt
+#' Date = 30/11/2016
+#' Author = Jesús Murga, Marta Coronado
+#'
+#'
+#' @param directory dad file
+#' @param test divergence file
+#'
+#' @return None
+#'
+#' @examples
+#' @export
+#'
 
 multiple_datasets<-function(directory="Directory",test="MKT type"){
   wd<-directory
@@ -10,7 +19,7 @@ multiple_datasets<-function(directory="Directory",test="MKT type"){
   subset_daf<-list.files(wd,pattern = "daf.*$")
   subset_divergence<-list.files(wd,pattern = "divergence.*$")
   names<-sub("*.daf.*", "", subset_daf)
-  
+
   if(test=="standard"){
     for (i in names){
       daf<-(grep(paste0(i,".daf"),subset_daf,value=T))
@@ -37,15 +46,6 @@ multiple_datasets<-function(directory="Directory",test="MKT type"){
   }
 }
 
-f<-cmpfun(multiple_datasets)
-
-for(i in 1:3){
-  print(system.time(for(i in 1:100){multiple_datasets(directory = "~/Test",test = "standard")}))
-}
-
-for(i in 1:3){
-  print(system.time(for(i in 1:1000){f(directory = "~/Test",test = "standar")}))
-}
 
 
 

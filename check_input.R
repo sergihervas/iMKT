@@ -1,8 +1,24 @@
+#' Error handling to compute correctly each MKT type. ¿mix between Messer & Haller? Preguntar Sergi
+#' Date = 30/11/2016
+#'' Author = Sergi Hervás, Jesús Murga
+#'
+#'
+#' @param x dad file
+#' @param y divergence file
+#' @param xlow fit curve
+#' @param ylow fit curv
+#'
+#' @return None
+#'
+#' @examples
+#' 
+#' @export
+#'
+
 ## ERROR HANDLING
 ## function which checks input data for asymptoticMK
 ## should check and discuss many things. Use as an example for now! NEED TO DISSCUSS predictNLS.R: Error in as.list(object$call$formula)[[3]] : subscript out of bounds 
-## mix between Messer & Haller
-# Author = Sergi Hervás, Jesús Murga
+
 
 check_input <- function(x, y, xlow, xhigh){
   

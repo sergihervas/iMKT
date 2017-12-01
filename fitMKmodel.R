@@ -1,5 +1,19 @@
-# core code for two-step nls2() model fit at a given level of precision (res, usually set at 10)
-# alpha_trimmed and f_trimmed correspond to the vectors with alpha and frequency (DAF) values
+#'  Core code for two-step nls2() model fit at a given level of precision (res, usually set at 10)
+#' Directly retrieved from: https://github.com/MesserLab/asymptoticMK
+#' Date = 30/11/2016
+#' Author = REFER AUTHROS? CONTACT WITH PETROV LAB
+#'
+#'
+#' @param alpha_trimmed correspond to the vectors with alpha and frequency (DAF) values
+#' @param f_trimmed  correspond to the vectors with alpha and frequency (DAF) values
+#' @param res ASK SERGI
+#'
+#' @return None
+#'
+#' @examples
+#' 
+#' @export
+#' 
 fitMKmodel <- function(alpha_trimmed, f_trimmed, res) {
   
   ## load nls2 package

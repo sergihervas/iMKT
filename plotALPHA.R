@@ -1,5 +1,21 @@
-## alpha plot 
-## input: x, y, alpha asymptotic output (iMK$asymptoticMK), xlow and xhigh for asymptoticMK (or iMK)
+#' Alpha plot 
+#' Date = 30/11/2016
+#' Author = Marta Coronado, Sergi Hervàs
+#'
+#'
+#' @param x daf file
+#' @param y divergence file
+#' @param df alpha asymptotic output (iMK$asymptoticMK)
+#' @param xlow fit curve
+#' @param ylow fit curve
+#'
+#' @return None
+#'
+#' @examples
+#' @export
+#' 
+
+## 
 
 plotALPHA <- function(x, y, df, xlow, xhigh) {
   
