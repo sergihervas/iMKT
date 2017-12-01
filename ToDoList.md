@@ -44,5 +44,5 @@
 
 ## Beta Tests
 - Check inputs works with check_input(...) (Marta, Jesus)
-- Check functions independently. Error in DGRP (Marta, Jesus)
+- Check functions independently. ~~Error in DGRP (Marta, Jesus)~~
 - Review tryCatch({...}) as proper error (Jesus)

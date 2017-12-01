@@ -19,7 +19,7 @@
 #'$α
 #'[1] 0.07371226
 #'
-#'$`Fisher's exact test P-value`
+#'$`Fishers exact test P-value`
 #'[1] 2.17533e-14
 #'
 #'$`MKT table`
