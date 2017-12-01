@@ -66,7 +66,7 @@ mkt_DGRP <- function(daf = "Data frame containing the DAF, Pn and Ps",
   
   mkt_tables <-  list()
   fractions <- data.frame(row.names = c("d","f","b"))
-  list_cutoffs <- c(0, 0.05, 0.2)
+  list_cutoffs <- c(0, 0.02, 0.05, 0.5)
   
   for (cutoff in list_cutoffs) {
     
@@ -134,7 +134,7 @@ mkt_DGRP <- function(daf = "Data frame containing the DAF, Pn and Ps",
   names(output) <- c("Cut-off","α","Fisher's exact test P-value")
   
   fractions_melt <- melt(fractions) 
-  fractions_melt$Fraction <-  rep(c("d", "f", "b"),3)
+  fractions_melt$Fraction <-  rep(c("d", "f", "b"),nrow(fractions_melt)/3)
   
   plotfraction <- ggplot(fractions_melt) + geom_bar(stat = "identity",aes(x=variable, y = value, fill = Fraction)) + coord_flip() + theme_Publication() + scale_fill_Publication(breaks=c("d","f","b"), labels=c(expression(italic("d")), expression(italic("f")),expression(italic("b")))) + ylab(label = "Fraction") + xlab(label = "Cut-off") 
   plotfraction
@@ -149,4 +149,4 @@ mkt_DGRP <- function(daf = "Data frame containing the DAF, Pn and Ps",
   return(list_output)
 }
 
-# mkt_DGRP(daf,divergence)
+mkt_DGRP(daf,divergence)
