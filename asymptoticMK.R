@@ -1,5 +1,29 @@
+#' Asymtotic MKT developed in Messer, P. W. & Petrov, D. A. Frequent adaptation and the McDonald-Kreitman test. Proceedings of the National Academy of Sciences 110, 8615–8620 (2013).
+#' Directly retrieved from: https://github.com/MesserLab/asymptoticMK
+#' Date = 30/11/2016
+#' Author = Sergi Hervás, Marta Coronado
+#'
+#' The standard McDonald and Kreitman test (MKT) is used to detect the signature of selection at the molecular level. The MKT compares the amount of variation within a species (polymorphism, P) to the divergence (D) between species at two types of sites, one of which is putatively netral and used as the reference to detect selection at the other type of site. In the standard MKT, these sites are synonymous (putatively neutral, 0) and non-synonymous sites (selected sites, i) in a coding region. Under strict neutrality, the ratio of the number of selected and neutral polymorphic sites (Pi/P0) is equal to the ratio of the number of selected and neutral divergence sites (Di/D0).
+# The null hypothesis of neutrality is rejected in a MKT when Di/D0 > Pi/P0. The excess of divergence relative to polymorphism for class i, is interpreted as adaptive selection for a subset of sites i. The fraction of adaptive fixations, α, is estimated from 1-(PN/PS)(Ds/Dn). The significance of the test can be assesed with a Fisher exact test.
+#'
+#'
+#' @param x dad file
+#' @param y divergence file
+#' @param xlow fit curve
+#' @param ylow fit curv
+#'
+#' @return None
+#'
+#' @examples
+#' asymptoticMK(x,y)
+#'
+#'    model         a         b        c alpha_asymptotic    CI_low   CI_high alpha_original
+#'  exponential 0.6196499 -1.408415 19.54174        0.6196499 0.5987227 0.6399943      0.2343012
+#' @export
+#' 
+
+
 ## only fits exponential model, depends on fitMKmodel and predictNLS
-## includes watchdog
 ## returns only a table with results, no plot
 
 asymptoticMK <- function(x, y, xlow=0, xhigh=1) {

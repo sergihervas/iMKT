@@ -1,5 +1,16 @@
-## daf plot
-## input x: daf, pN, pS
+#' Daf plot 
+#' Date = 30/11/2016
+#' Author = Marta Coronado, Sergi Hervàs
+#'
+#'
+#' @param x daf file: daf, pN, pS
+#'
+#' @return None
+#'
+#' @examples
+#' @export
+#' 
+## input 
 
 plotDAF <- function(x) {
   
