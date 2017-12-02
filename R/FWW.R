@@ -20,8 +20,7 @@
 #' @importFrom ggthemes theme_foundation
 #' @importFrom cowplot plot_grid
 #' @export
-#' 
-#' @export
+#'
 
 
 # Date = 28/11/2016
