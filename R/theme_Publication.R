@@ -11,14 +11,13 @@
 #' @return plot theme
 #'
 #' @examples
-#' @import cowplot
+#' @importFrom ggplot2
+#' @importFrom ggthemes theme_foundation
+#' @import cowplot plot_grid
 #' @import grid 
 #' @import gridExtra
-#' @import ggplot2 
-#' @importFrom ggplot2 ggsave
-#' @import ggthemes
-#' @importFrom ggthemes theme_map
 #' @export
+#' 
 theme_Publication <- function(base_size=14, base_family="helvetica") {
   # library('grid')
   # library('ggthemes')

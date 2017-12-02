@@ -16,11 +16,9 @@
 #' @import knitr 
 #' @import utils
 #' @import stats
-#' @import ggplot2 
-#' @importFrom ggplot2 ggsave
-#' @import ggthemes
-#' @importFrom ggthemes theme_map
-#' @import cowplot
+#' @importFrom ggplot2
+#' @importFrom ggthemes theme_foundation
+#' @import cowplot plot_grid 
 #' @import grid 
 #' @import gridExtra
 #' @import scales
