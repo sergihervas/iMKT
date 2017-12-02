@@ -5,7 +5,8 @@
 #'
 #' @param directory dad file
 #' @param test divergence file
-#'
+#' @param fullanalyis TRUE indicates execute the analysis for all the files in a folder 
+#' @param idlist List of genes or datasets to analyze
 #' @return None
 #'
 #' @examples

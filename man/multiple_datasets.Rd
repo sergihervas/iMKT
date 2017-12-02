@@ -13,6 +13,10 @@ multiple_datasets(directory = "Directory", test = "mkt type",
 \item{directory}{dad file}
 
 \item{test}{divergence file}
+
+\item{fullanalyis}{TRUE indicates execute the analysis for all the files in a folder}
+
+\item{idlist}{List of genes or datasets to analyze}
 }
 \value{
 None
