@@ -1,0 +1,272 @@
+#' Error handling to compute correctly each MKT type. ¿mix between Messer & Haller? Preguntar Sergi
+#' Date = 30/11/2016
+#'' Author = Sergi Hervás, Jesús Murga
+#'
+#'
+#' @param daf dad file
+#' @param divergence divergence file
+#' @param xlow fit curve
+#' @param xhigh fit curv
+#'
+#' @return None
+#'
+#' @examples
+#' @import utils
+#' @import stats
+#' @export
+#'
+
+## ERROR HANDLING
+## function which checks input data for asymptoticMK
+## should check and discuss many things. Use as an example for now! NEED TO DISSCUSS predictNLS.R: Error in as.list(object$call$formula)[[3]] : subscript out of bounds 
+
+
+check_input <- function(daf, divergence, xlow, xhigh){
+  
+  data_is_good <- TRUE
+  main_errors<-'Your input files has the following(s) errors: '
+  ######### Parsing NROW and NCOL ############
+  #error handling: check data formatting
+  if (NCOL(daf) != 3 || NCOL(daf) <3){
+    data_is_good<-FALSE
+    error<-"Argument daf does not contain three tab-separated columns.Argument daf, at least three data rows are required to constrain the fit"
+    main_errors<-append(main_errors,error)}
+  if (NROW(daf) < 0){
+    data_is_good<-FALSE
+    error<-"Argument daf contains no data rows or daf categories are not correct define. Check the header!"
+    main_errors<-append(main_errors,error)}
+  if(NROW(daf)!=20 & NROW(daf)!=10){
+    data_is_good<-FALSE
+    error<-"Daf categories in daf are not correct define. Check the header!"
+    main_errors<-append(main_errors,error)}
+  if (NCOL(divergence) != 6){
+    data_is_good<-FALSE
+    error<-"Argument divergence does not contain sidaf tab-separated columns"
+    main_errors<-append(main_errors,error)}
+  if (NROW(divergence) < 0 & (NROW(divergence)<3)){
+    data_is_good<-FALSE
+    error<-"Argument divergence contains no data rows"
+    main_errors<-append(main_errors,error)}
+  
+  ##Assign proper names to the columns of daf and divergence
+  names(daf) <- c("daf", "Pi", "P0")
+  names(divergence) <- c("Chr",  "Pop",  "mi", "Di", "m0", "D0")
+  
+  #error handling: input colnames 
+  #for arg daf
+  
+  # NO LO ENTIENDO,
+  # daf.colnames <- names(daf)
+  # suppressWarnings(#the goal is to generate NAs here, so we dont need no warnings
+  #   if (!is.na(as.numeric(daf.colnames[1])) ||
+  #         !is.na(as.numeric(daf.colnames[2])) ||
+  #         !is.na(as.numeric(daf.colnames[3])))
+  #     error<-"argument daf has a numeric column name;
+  #          probabldivergence the required header row is missing")
+  # 
+  # #for arg divergence
+  # divergence.colnames <- names(divergence)
+  # suppressWarnings(
+  #   if (!is.na(as.numeric(divergence.colnames[1])) ||
+  #         !is.na(as.numeric(divergence.colnames[2])) ||
+  #         !is.na(as.numeric(divergence.colnames[3])) ||
+  #         !is.na(as.numeric(divergence.colnames[4])) ||
+  #         !is.na(as.numeric(divergence.colnames[5])) ||
+  #         !is.na(as.numeric(divergence.colnames[6])))
+  #     error<-"argument divergence has a numeric column name;
+  #          probabldivergence the required header row is missing"
+  #     )
+  
+  
+  ##parse the data from argument daf
+  ####### dependent on the column name
+  f <- daf$daf #derived alelle frequencies
+  Pi <- daf$Pi #non-synonymous polymorphism 
+  P0 <- daf$P0 #synonymous polymorphism
+  
+  #error handling: check if variables are good
+  if (any(is.na(f))){
+    data_is_good<-FALSE
+    error<-"f contains NA values (not allowed)"
+    main_errors<-append(main_errors,error)}
+  if (any(is.na(Pi))){
+    data_is_good<-FALSE
+    error<-"pi contains NA values (not allowed)"
+    main_errors<-append(main_errors,error)}
+  if (any(is.na(P0))){
+    data_is_good<-FALSE
+    error<-"p0 contains NA values (not allowed)"
+    main_errors<-append(main_errors,error)}
+  #error handling: check if variables are numeric
+  if (!is.numeric(f)){
+    data_is_good<-FALSE
+    error<-"f is not numeric"
+    main_errors<-append(main_errors,error)}
+  if (!is.numeric(Pi)){
+    data_is_good<-FALSE
+    error<-"pi is not numeric"
+    main_errors<-append(main_errors,error)}
+  if (!is.numeric(P0)){
+    data_is_good<-FALSE
+    error<-"p0 is not numeric"
+    main_errors<-append(main_errors,error)}
+  ##JUST CHECK IF THE VARIABLE IS NUMERIC, IF NOT, THEN stop. NOT NEED NULL. JUST stop IT IF AREN'T NUMERIC
+  # if (is.null(f))
+  #   error<-"f malformed (must be numeric)"
+  # if (is.null(pi))
+  #   error<-"p malformed (must be numeric)"
+  # if (is.null(p0))
+  #   error<-"p0 malformed (must be numeric)"
+  # 
+  # #error handling: check if variables are numeric
+  # if (!is.numeric(f))
+  #   error<-"f is not numeric"
+  # if (!is.numeric(Pi))
+  #   error<-"p is not numeric"
+  # if (!is.numeric(P0))
+  #   error<-"p0 is not numeric"
+  
+  #error handling: check if variables are not out of bounds.
+  if (any(f < 0.0) || any(f > 1.0)){
+    data_is_good<-FALSE
+    error<-"f contains values out of the required range [0,1]"
+    main_errors<-append(main_errors,error)}
+  if (all(f == 0)){
+    data_is_good<-FALSE
+    error<-"f contains all values == 0 (not allowed)"
+    main_errors<-append(main_errors,error)}
+  if (any(Pi < 0)||all(Pi == 0)){   # note that zero is allowed, although not recommended
+    data_is_good<-FALSE
+    error<-"Pi contains values < 0 (not allowed) Pi contains all values == 0 (not allowed)"
+    main_errors<-append(main_errors,error)}
+  # if (all(Pi == 0))    # not all can be zero, however
+  #   error<-"p contains all values == 0 (not allowed)"
+  if (any(P0 < 0)||all(P0 == 0)){
+    data_is_good<-FALSE
+    error<-"P0 contains values <= 0 (not allowed) or P0 contains all values == 0 (not allowed)"
+    main_errors<-append(main_errors,error)}
+  # if (all(p0 == 0))
+  #   error<-"p0 contains all values == 0 (not allowed)"
+  
+  
+  #Incorpore at begging when check the input length
+  # error handling: check if argument daf has enough data points
+  if (NROW(daf) < 3)
+  error<-"Argument daf: at least three data rows are required to constrain the fit"
+
+  ##parse the data from argument divergence and force it to be numeric... NOT SENSE CHECK THEN IS.NULL OR NUMERIC
+  # NOT FORCE TO BE NUMERIC, CHECK IF VALUES ARE NOT NUMERIC [not force+not is.null]
+  mi <- as.numeric(divergence$mi) #number of non-synonymous sites
+  m0 <- as.numeric(divergence$m0) ##number of synonymous sites
+  Di <- as.numeric(divergence$Di) #non-synonymous divergence
+  D0 <- as.numeric(divergence$D0) #synonymous divergence
+  
+  #error handling: check if variables are good
+  if (is.na(mi) || !is.numeric(mi)){
+    data_is_good<-FALSE
+    error<-"malformed m (must be numeric)"
+    data_is_good<-FALSE
+    main_errors<-append(main_errors,error)}
+  if (is.na(m0) || !is.numeric(m0)){
+    error<-"malformed m0 (must be numeric)"
+    data_is_good<-FALSE
+    main_errors<-append(main_errors,error)}
+  if (is.na(D0) || !is.numeric(D0)){
+    data_is_good<-FALSE
+    error<-"malformed D0 (must be numeric)"
+    main_errors<-append(main_errors,error)}
+  if (is.na(Di) || !is.numeric(Di)){
+    data_is_good<-FALSE
+    error<-"malformed d (must be numeric)"
+    main_errors<-append(main_errors,error)}
+  if (is.na(xlow) || is.null(xlow)){
+    data_is_good<-FALSE
+    error<-"malformed xlow (must be numeric)"
+    main_errors<-append(main_errors,error)}
+  if (is.na(xhigh) || is.null(xhigh)){
+    data_is_good<-FALSE
+    error<-"malformed xhigh (must be numeric)"
+    main_errors<-append(main_errors,error)}
+  # Checks if number of sites (m, m0) is not higher than divergenge (d, D0), the sum of the polimorphisms (p|p0) or the divergenge + the sum of the polimorphsms
+  if (Di>mi || sum(Pi)>mi || sum(Pi)+Di>mi){
+    data_is_good<-FALSE
+    error<-"mi must be higher than Pi, Di and sum(Pi+Di)"
+    main_errors<-append(main_errors,error)}
+  if (D0>m0 || sum(P0)>m0 || sum(P0)+D0>m0){
+    data_is_good<-FALSE
+    error<-"m0 must be higher than P0, D0 and sum(P0+D0)"
+    main_errors<-append(main_errors,error)}
+  # #error handling: check if variables are numeric
+  # #it makes no sence as we forced them to be numeric... should check that!
+  # if (!is.numeric(m))
+  #   error<-"m is not numeric"
+  # if (!is.numeric(m0))
+  #   error<-"m0 is not numeric"
+  # if (!is.numeric(d))
+  #   error<-"d is not numeric"
+  # if (!is.numeric(D0))
+  #   error<-"D0 is not numeric"
+  
+  #error handling: check if variables are not out of bounds
+  if (mi <= 0){
+    data_is_good<-FALSE
+    error<-"m must be greater than zero"
+    main_errors<-append(main_errors,error)}
+  if (m0 <= 0){
+    data_is_good<-FALSE
+    error<-"m0 must be greater than zero"
+    main_errors<-append(main_errors,error)}
+  if (D0 <= 0){
+    data_is_good<-FALSE
+    error<-"D0 must be greater than zero"
+    main_errors<-append(main_errors,error)}
+  if (Di<= 0){
+    data_is_good<-FALSE
+    error<-"Di must be greater than zero"
+    main_errors<-append(main_errors,error)}
+  #error handling: check if cutoff values not null and numeric
+  if (is.na(xlow) || is.null(xlow) || !is.numeric(xlow)){
+    data_is_good<-FALSE
+    error<-"malformed xlow (must be numeric)"
+    main_errors<-append(main_errors,error)}
+  if (is.na(xhigh) || is.null(xhigh) || !is.numeric(xhigh)){
+    data_is_good<-FALSE
+    error<-"malformed xhigh (must be numeric)"
+    main_errors<-append(main_errors,error)}
+  #error handling: check if cutoff values are numeric
+  # if (!is.numeric(xlow))
+  #   error<-"xlow is not numeric"
+  # if (!is.numeric(xhigh))
+  #   error<-"xhigh is not numeric"
+  
+  #error handling: check if cutoff values are not out of bounds
+  if ((xlow < 0.0) || (xlow > 1.0)){
+    data_is_good<-FALSE
+    error<-"xlow must be in the interval [0,1]"
+    main_errors<-append(main_errors,error)}
+  if ((xhigh < 0.0) || (xhigh > 1.0)){
+    data_is_good<-FALSE
+    error<-"xhigh must be in the interval [0,1]"
+    main_errors<-append(main_errors,error)
+  }
+  if (xhigh <= xlow){
+    data_is_good<-FALSE
+    error<-"xhigh must be greater than xlow"
+    main_errors<-append(main_errors,error)}
+  cutoff_f1 <- xlow
+  cutoff_f2 <- xhigh
+  trim <- ((f >= cutoff_f1) & (f <= cutoff_f2))
+  
+  #error handling: check if trimmed f has enough data points
+  if (sum(trim) < 3){
+    data_is_good<-FALSE
+    error<-"Argument x: at least 3 data rows are required to constrain the fit;
+         after trimming the frequency range there are less than 3.
+         Consider changing cutoff values or not trimming your data."
+    main_errors<-append(main_errors,error)}
+  # data_is_good<-TRUE
+  #writeLines("data is good: TRUE\n"
+  
+  return(list(data=data_is_good,print_errors=main_errors))
+}
+

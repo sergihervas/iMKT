@@ -1,0 +1,28 @@
+Package: iMKT
+Title: McDonald and Kreitman Test and it extensions calculation
+Version: 0.1
+Date: 2017-12-01
+Description: McDonald and Kreitman and it extensions. It's great.
+Author: Marta Coronado <marta.coronado@uab.cat>
+		Sergi Hervàs <sergi.hervas@uab.cat>
+		Jesús Murga <jesus.murga@uab.cat>
+Maintainer: Jesús Murga <jesus.murga@uab.cat>
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+Depends:
+    R (>= 3.3.3),
+    ggplot2,
+    gridExtra,
+	cowplot,
+	reshape2,
+	ggthemes,
+	grid,
+	nls2,
+	MASS,
+	scales
+Imports:
+	knitr,
+	utils,
+	stats
