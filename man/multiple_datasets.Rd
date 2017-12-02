@@ -6,7 +6,8 @@
 Date = 30/11/2016
 Author = Jesús Murga, Marta Coronado}
 \usage{
-multiple_datasets(directory = "Directory", test = "MKT type")
+multiple_datasets(directory = "Directory", test = "mkt type",
+  fullanalyis = TRUE/FALSE, idlist = "listfile")
 }
 \arguments{
 \item{directory}{dad file}
