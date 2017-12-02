@@ -26,10 +26,6 @@
 #' @export
 #' 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 6cc92adbbc5e2ada6c044f842b72caae9ad2426e
 iMK <- function(daf, divergence, xlow, xhigh) {
   
   check <- check_input(daf, divergence, xlow, xhigh)
