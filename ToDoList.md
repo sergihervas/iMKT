@@ -39,6 +39,7 @@
 		- Just need to add a variable to check file list (Jesus) (Jesus **to do**)
 	- ~~Assymptotic: done (check variable and tables names)~~
 	- iMK (Marta **in progress**)
+	- Retrieve information by gene or genelist from PopFly and PopHuman (Jesús)
 
 - Reference Messer & Haller code (Question: Shall we write to them to let them know we're implementing their code into another package?)
 
