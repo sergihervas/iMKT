@@ -16,13 +16,13 @@
 #' @import knitr 
 #' @import utils
 #' @import stats
-#' @importFrom ggplot2
-#' @importFrom ggthemes theme_foundation theme
-#' @import cowplot plot_grid 
 #' @import grid 
 #' @import gridExtra
 #' @import scales
-#' @import reshape2 
+#' @import reshape2
+#' @importFrom ggplot2
+#' @importFrom ggthemes theme_foundation theme
+#' @import cowplot plot_grid
 #' @export
 #' 
 
