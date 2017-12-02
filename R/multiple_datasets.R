@@ -88,5 +88,5 @@ else{
  }
 
   
-c<-multiple_datasets(directory = "~/Test",test = "standard",fullanalyis = TRUE, idlist = "NA")
-c
+# multiple_datasets(directory = "~/Test",test = "standard",fullanalyis = TRUE, idlist = "NA")
+
