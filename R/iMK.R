@@ -85,8 +85,8 @@ iMK <- function(daf, divergence, xlow, xhigh) {
   
   ## include DGRP alphas
   dgrp <- mkt_DGRP(daf, divergence)
-  a_05 <- dgrp[1,2]
-  a_10 <- dgrp[2,2] 
+  a_05 <- dgrp$Results[2,2]
+  a_10 <- dgrp$Results[3,2]
   
   ## iMKT information
   out1 <- rbind(cbind("d",d),cbind("b",b),cbind("f",f),cbind("alpha_original",a_original),cbind("alpha_asymptotic",a_asym),cbind("alpha_DGRP05",a_05),cbind("alpha_DGRP10",a_10))
@@ -102,7 +102,7 @@ iMK <- function(daf, divergence, xlow, xhigh) {
   
   ## alpha DGRP information
   out3 <- dgrp
-  out3[2:3] <- round(out3[2:3],4)
+  #out3[2:3] <- round(out3[2:3],4)
   
   out <- list(out1,out2,out3)
   names(out) <- c("iMK","asymptoticMK","DGRP")
