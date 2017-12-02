@@ -2,7 +2,8 @@
 ### List of things to do:
 
 - ~~Discuss input, maybe create parser~~
-- Discuss output, update plots and include table -> html/pdf for non expert R users?  
+- Discuss output, update plots and include table -> html/pdf for non expert R users?  (Marta **on progres**)
+- Plot functions (plotalpha, plotdaf, plotimkr) are not necessary, the plots are done inside the iMK function: remove them (Marta)
 - ~~Update watchdog: adapt to diverse functions~~
 - ~~Delete watchdog and add stops and messages inside the functions (Jesus) (selected: i, neutral: 0)~~
 - ~~Error handling when function fails (Jesus):~~
@@ -39,7 +40,7 @@
 		- ~~add loop and graph cuttoff (Marta)~~
 		- Asked Sònia about b, y - when they are negative is because you haven't completely removed the slightly deleterious variants. She sets the values to 0 then. Ask Antonio for a better estimation?
 		- ~~graph cutoffs simple (Marta)~~
-	- Modify perl functions to extract the correct files. Review the categories.(Sergi)
+	- Modify perl functions to extract the correct files. Review the categories. (Sergi)
 	- Put in functions comparision scripts (Jesus)
 	- ~~Multiple_datasets(...): (Jesus)~~
 		- ~~Add a variable to check file list (Jesus)~~
