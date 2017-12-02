@@ -16,11 +16,16 @@
 - Build package:
 	- ~~Main structure (Jesus)~~
 	- ~~Review license (Need to talk, probably GPL-3)~~
-	- Extra stuff about Roxygen2 and the .Rd format 
-	- See section 'Suggested packages' in the 'Writing R Extensions' manual.  requireNamespace(). Packages: knitr, MASS, ggplot2, ggthemes, grid, nls2, extragrid, cowplot (Jesus **in progress**)
+	- Extra stuff about Roxygen2 and the .Rd format
+	- ~~See section 'Suggested packages' in the 'Writing R Extensions' manual.  requireNamespace(). Packages: knitr, MASS, ggplot2, ggthemes, grid, nls2, extragrid, cowplot (Jesus) ~~
 	- Github, CRAN or bioconductor. Marta: I'd say the package should be kept in Github, at least privately, so we can still improve it, easy to handle etc. Between CRAN/Bioconductor I'd choose Bioconductor for the following reasons: (1) The package will be announced on Twitter by core Bioconductor members and listed on Bioconductor website --> a lot of impact in the community. (2) Professional suppport. (3) It's easy to publish it if it's already on Bioconductor. (4) Packages can be submitted in Bioconductor through Github. (5) We'll have a doi and it's citable. Disadvantatges: much tougher review process than CRAN, must have a vignette, the code should be 80 characters wide, we can't use S3 class (???), the package must be re-updated each 6 months.    
-
-	- Tests and hidden datasets (Jesus **to do**)
+	- ~~Hidden datasets (Jesus)~~
+	- Tests (Jesus)
+	- ~~Document correctly functions (Marta, Jesus)~~
+		- Just need to rewrite correctly.
+		- Change RD files to S4 class (bioconductor) (Jesús)
+	- User manual (Marta, Jesus)
+	- Vignettes (Marta, Jesus)
 
 - ~~Check consistency of variables and style along functions (Marta)~~
 - Functions:
@@ -37,17 +42,14 @@
 	- Modify perl functions to extract the correct files. Review the categories.(Sergi)
 	- Put in functions comparision scripts (Jesus)
 	- ~~Multiple_datasets(...): (Jesus)~~
-		- Just need to add a variable to check file list (Jesus) (Jesus **to do**)
+		- Add a variable to check file list (Jesus **in progress**)
 	- ~~Assymptotic: done (check variable and tables names)~~
 	- iMK (Marta **in progress**)
 	- Retrieve information by gene or genelist from PopFly and PopHuman (Jesús)
 
 - Reference Messer & Haller code (Question: Shall we write to them to let them know we're implementing their code into another package?)
 
-- ~~Documentation of all functions (Marta, Jesus)~~
-	- Main structure done, need to rewrite correctly.
-- User manual (Marta, Jesus)
-- Vignette (Marta, Jesus)
+
 - Update sample data (Marta, Jesus)
 - Example tutorial with sample data (Marta, Jesus)
 
