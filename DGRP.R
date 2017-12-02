@@ -97,11 +97,6 @@ library(gridExtra)
 library(cowplot)
 library(reshape2)
 
-scale_fill_Publication <- function(...){
-  library(scales)
-  discrete_scale("fill","Publication",manual_pal(values = c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33")), ...)
-  
-}
 ####################################################
 ################# MKT-FWW function #################
 ####################################################
@@ -184,10 +179,10 @@ mkt_DGRP <- function(daf = "Data frame containing the DAF, Pn and Ps",
   
   names(output) <- c("Cut-off","α","Fisher's exact test P-value")
   
-  fractions_melt <- melt(fractions) 
+  fractions_melt <- melt(fractions, id.vars=NULL) 
   fractions_melt$Fraction <-  rep(c("d", "f", "b"),3)
   
-  plotfraction <- ggplot(fractions_melt) + geom_bar(stat = "identity",aes(x=variable, y = value, fill = Fraction)) + coord_flip() + theme_Publication() + scale_fill_Publication(breaks=c("d","f","b"), labels=c(expression(italic("d")), expression(italic("f")),expression(italic("b")))) + ylab(label = "Fraction") + xlab(label = "Cut-off") 
+  plotfraction <- ggplot(fractions_melt) + geom_bar(stat = "identity",aes(x=variable, y = value, fill = Fraction)) + coord_flip() + theme_Publication() + ylab(label = "Fraction") + xlab(label = "Cut-off") + scale_fill_manual(values = c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33"), breaks=c("d","f","b"), labels=c(expression(italic("d")), expression(italic("f")),expression(italic("b"))))
   plotfraction
   
   plot<-plot_grid(plot,plotfraction, nrow = 2,  labels = c("A", "B"), rel_heights = c(2, 1))
@@ -200,4 +195,4 @@ mkt_DGRP <- function(daf = "Data frame containing the DAF, Pn and Ps",
   return(list_output)
 }
 
-mkt_DGRP(daf,divergence)
+#mkt_DGRP(daf,divergence)
