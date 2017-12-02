@@ -12,9 +12,9 @@
 #' @import knitr 
 #' @import utils
 #' @import stats
-#' @importFrom ggplot2
+#' @import ggplot2
 #' @importFrom ggthemes theme_foundation theme
-#' @import cowplot plot_grid
+#' @importFrom cowplot plot_grid
 #' @import grid 
 #' @import gridExtra
 #' @import scales

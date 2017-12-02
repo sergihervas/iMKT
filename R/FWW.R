@@ -16,9 +16,9 @@
 #' @import gridExtra
 #' @import scales
 #' @import reshape2
-#' @importFrom ggplot2
+#' @import ggplot2
 #' @importFrom ggthemes theme_foundation theme
-#' @import cowplot plot_grid
+#' @importFrom cowplot plot_grid
 #' @export
 #' 
 #' @export

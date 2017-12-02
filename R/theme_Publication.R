@@ -11,7 +11,7 @@
 #' @return plot theme
 #'
 #' @examples
-#' @importFrom ggplot2
+#' @import ggplot2
 #' @importFrom ggthemes theme_foundation theme
 #' @import grid 
 #' @import gridExtra
