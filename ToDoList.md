@@ -18,7 +18,8 @@
 	- ~~Review license (Need to talk, probably GPL-3)~~
 	- Extra stuff about Roxygen2 and the .Rd format 
 	- See section 'Suggested packages' in the 'Writing R Extensions' manual.  requireNamespace(). Packages: knitr, MASS, ggplot2, ggthemes, grid, nls2, extragrid, cowplot (Jesus **in progress**)
-	- Github, CRAN or bioconductor 
+	- Github, CRAN or bioconductor. Marta: I'd say the package should be kept in Github, at least privately, so we can still improve it, easy to handle etc. Between CRAN/Bioconductor I'd choose Bioconductor for the following reasons: (1) The package will be announced on Twitter by core Bioconductor members and listed on Bioconductor website --> a lot of impact in the community. (2) Professional suppport. (3) It's easy to publish it if it's already on Bioconductor. (4) Packages can be submitted in Bioconductor through Github. (5) We'll have a doi and it's citable. Disadvantatges: much tougher review process than CRAN, must have a vignette, the code should be 80 characters wide, we can't use S3 class (???), the package must be re-updated each 6 months.    
+
 	- Tests and hidden datasets (Jesus **to do**)
 
 - ~~Check consistency of variables and style along functions (Marta)~~
