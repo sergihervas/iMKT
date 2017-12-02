@@ -45,7 +45,8 @@
 		- ~~Add a variable to check file list (Jesus)~~
 	- ~~Assymptotic: done (check variable and tables names)~~
 	- iMK (Marta **in progress**)
-	- Retrieve information by gene or genelist from PopFly and PopHuman (Jesús)
+	- ~~Retrieve information by gene or genelist from PopFly and PopHuman (Jesús)~~
+		- Just need a folder to check the URLs and the format output
 
 - Reference Messer & Haller code (Question: Shall we write to them to let them know we're implementing their code into another package?)
 
