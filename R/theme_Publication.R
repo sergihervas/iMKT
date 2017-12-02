@@ -11,10 +11,11 @@
 #' @return plot theme
 #'
 #' @examples
-#' @import ggplot2
-#' @importFrom ggthemes theme_foundation theme
 #' @import grid 
 #' @import gridExtra
+#' @import ggplot2
+#' @importFrom ggthemes theme_foundation
+
 #' @export
 #' 
 theme_Publication <- function(base_size=14, base_family="helvetica") {
