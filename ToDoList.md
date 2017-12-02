@@ -11,7 +11,7 @@
 	- ~~Check if some dataset not execute the asymototic (p0<=0). Include inside asysmtotic( check_input(...)) parameter to stop this functions but continue on loop (require for multiple_dataset(...) and iMK (...) (Jesus)~~
 
 - System.time(Re-run iMKT):  
-	- ~~First	approach, three datasets from concatenate.genes in 1000 iteration loop ~ 100seconds (Jesus) ~~ 
+	- ~~First	approach, three datasets from concatenate.genes in 1000 iteration loop 100seconds aprox (Jesus) ~~ 
 	- Check times between genes and concatenate.genes dataset. Same expected time ~ 
 - Build package:
 	- ~~Main structure (Jesus)~~
