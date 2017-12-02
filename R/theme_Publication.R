@@ -1,23 +1,22 @@
-#' MKT corrected with DGRP method
+#' ggplot theme for publication ready Plots
 #'
-#' Date = 30/11/2016
-#' Author = Sergi Hervás, Marta Coronado
+#' Date = 04/07/2015
+#' Author = Koundinya Desiraju
 #'
-#' Default theme use for plot images. It has enough quality to publish anything
-#'
+#' Default theme used for plot images. From http://rpubs.com/Koundy/71792
 #'
 #' @param base_size base size required from theme_Publication
 #' @param base_family font to load in theme_Publication
 #' 
-#' @return MKT corrected by the DGRP method
+#' @return plot theme
 #'
 #' @examples
 #' @import cowplot
 #' @import grid 
 #' @import gridExtra
 #' @import ggplot2 
-#' @import ggthemes
 #' @importFrom ggplot2 ggsave
+#' @import ggthemes
 #' @importFrom ggthemes theme_map
 #' @export
 theme_Publication <- function(base_size=14, base_family="helvetica") {
