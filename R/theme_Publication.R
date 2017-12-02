@@ -12,8 +12,7 @@
 #'
 #' @examples
 #' @importFrom ggplot2
-#' @importFrom ggthemes theme_foundation
-#' @import cowplot plot_grid
+#' @importFrom ggthemes theme_foundation theme
 #' @import grid 
 #' @import gridExtra
 #' @export
