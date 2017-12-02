@@ -42,7 +42,7 @@
 	- Modify perl functions to extract the correct files. Review the categories.(Sergi)
 	- Put in functions comparision scripts (Jesus)
 	- ~~Multiple_datasets(...): (Jesus)~~
-		- Add a variable to check file list (Jesus **in progress**)
+		- ~~Add a variable to check file list (Jesus)~~
 	- ~~Assymptotic: done (check variable and tables names)~~
 	- iMK (Marta **in progress**)
 	- Retrieve information by gene or genelist from PopFly and PopHuman (Jesús)
