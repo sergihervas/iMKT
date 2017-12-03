@@ -41,7 +41,7 @@ mkt_fww <- function(daf = "Data frame containing the DAF, Pn and Ps",
   packageStartupMessage("MKT corrected by the FWW method")
   
   # Declare output data frame
-  output <- data.frame(cutoff = numeric(0), alpha = numeric(0), pvalue = integer(0))
+  output <- list()
   
   mkt_tables <-  list()
   list_cutoffs <- c(0, 0.05, 0.1)
@@ -60,16 +60,13 @@ mkt_fww <- function(daf = "Data frame containing the DAF, Pn and Ps",
     pvalue <- fisher.test(mkt_table)$p.value
     
     # Store output  
+    output[[paste("Cutoff = ",cutoff)]] <- c(alpha,pvalue)
     
-    output_cutoff <- cbind(cutoff,alpha,pvalue)
-    output <- rbind(output,output_cutoff)
     
-    mkt_table <- knitr::kable(mkt_table,caption = "cutoff")
-    
-    mkt_tables[[paste("Cutoff = ",cutoff)]]  <- mkt_table
+    mkt_tables[[paste("Cutoff = ",cutoff)]]  <- knitr::kable(mkt_table,caption = "cutoff")
   }
   
-  output <- as.data.frame(output)
+  output <- as.data.frame(do.call("rbind",output))
   
   plot <- ggplot(output, aes(x=as.factor(cutoff), y=alpha, group=1)) +
     geom_line(color="#386cb0") + 
@@ -78,7 +75,7 @@ mkt_fww <- function(daf = "Data frame containing the DAF, Pn and Ps",
     xlab("Cut-off") + ylab("alpha.symbol") 
   plot
   
-  names(output) <- c("Cut-off","alpha.symbol","Fisher's exact test P-value")
+  names(output) <- c("alpha.symbol","Fisher's exact test P-value")
   
   list_output <-list(output,plot,mkt_tables)
   names(list_output) <- c("Results","Graph", "MKT tables")

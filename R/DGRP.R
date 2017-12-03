@@ -45,7 +45,7 @@ mkt_DGRP <- function(daf = "Data frame containing the DAF, Pn and Ps",
   packageStartupMessage("MKT corrected by the DGRP method")
   
   # Declare output data frame
-  output <- data.frame(cutoff = numeric(0), alpha = numeric(0), slighlty_deleterious = numeric(0), neutral = numeric(0), pvalue = integer(0))
+  output <- list()
   
   mkt_tables <-  list()
   fractions <- data.frame(row.names = c("d","f","b"))
@@ -96,8 +96,8 @@ mkt_DGRP <- function(daf = "Data frame containing the DAF, Pn and Ps",
     fractions <- cbind(fractions,fraction)
     
     # Store output  
-    output_cutoff <- cbind(cutoff,alpha,pvalue)
-    output <- rbind(output,output_cutoff)
+    output[[paste("Cutoff = ",cutoff)]] <- c(alpha,pvalue)
+    
     
     mkt_table <- knitr::kable(mkt_table,caption = "cutoff")
     
@@ -105,7 +105,7 @@ mkt_DGRP <- function(daf = "Data frame containing the DAF, Pn and Ps",
     
   } 
   mkt_tables[[paste("MKT standard table")]]  <- mkt_table_standard
-  output <- as.data.frame(output)
+  output <- as.data.frame(do.call("rbind",output))
   
   plot <- ggplot(output, aes(x=as.factor(cutoff), y=alpha, group=1)) +
     geom_line(color="#386cb0") + 
@@ -114,7 +114,7 @@ mkt_DGRP <- function(daf = "Data frame containing the DAF, Pn and Ps",
     xlab("Cut-off") + ylab("alpha.symbol") 
   plot
   
-  names(output) <- c("Cut-off","alpha.symbol","Fishers exact test P-value")
+  names(output) <- c("alpha.symbol","Fishers exact test P-value")
   
   fractions_melt <- melt(fractions, id.vars=NULL) 
   fractions_melt$Fraction <-  rep(c("d", "f", "b"),3)
