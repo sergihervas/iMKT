@@ -41,13 +41,15 @@
 		- Asked Sònia about b, y - when they are negative is because you haven't completely removed the slightly deleterious variants. She sets the values to 0 then. Ask Antonio for a better estimation?
 		- ~~graph cutoffs simple (Marta)~~
 	- Modify perl functions to extract the correct files. Review the categories. (Sergi)
+				[**SERGI: WHAT ARE THE CORRECT FILES??**]
 	- Put in functions comparision scripts (Jesus)
 	- ~~Multiple_datasets(...): (Jesus)~~
 		- ~~Add a variable to check file list (Jesus)~~
 	- ~~Assymptotic: done (check variable and tables names)~~
 	- iMK (Marta **in progress**)
 	- ~~Retrieve information by gene or genelist from PopFly and PopHuman (Jesus)~~
-		- Just need a folder to check the URLs and the format output (Jesus **in progess**)
+		- Just need a folder to check the URLs and the format output (Jesus **in progess**) 
+			[**http//popfly.uab.cat/files/... check this url**]
 
 - Reference Messer & Haller code (Question: Shall we write to them to let them know we're implementing their code into another package?)
 
