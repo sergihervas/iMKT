@@ -1,6 +1,6 @@
 #' iMK compute all the MKT extensions 
 #' Date = 30/11/2016
-#' Author = Sergi Hervás, Marta Coronado
+#' Author = Sergi Hervas, Marta Coronado
 #'
 #' EXPLANATION
 #'
