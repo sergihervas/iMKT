@@ -72,7 +72,7 @@ mkt_fww <- function(daf = "Data frame containing the DAF, Pn and Ps",
     geom_line(color="#386cb0") + 
     geom_point(size=2.5, color="#386cb0")+
     theme_Publication() +
-    xlab("Cut-off") + ylab("alpha.symbol") 
+    xlab("Cut-off") + ylab(expression(bold(paste("Adaptation (",alpha,")"))))
   plot
   
   names(output) <- c("alpha.symbol","Fisher's exact test P-value")

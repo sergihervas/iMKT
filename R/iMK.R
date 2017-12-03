@@ -141,10 +141,10 @@ iMK <- function(daf, divergence, xlow, xhigh, seed) {
    geom_ribbon(data=shader_df, aes_string(x="xs", ymin="ysmin", ymax="ysmax"), fill="gray30", alpha=0.2,inherit.aes=F) + 
    #customization
    theme_Publication() + #theme(panel.grid = element_blank()) +
-   xlab("Derived allele frequency") + ylab("Alpha") +
+   xlab("Derived allele frequency") + ylab(expression(bold(paste("Adaptation (",alpha,")")))) +
    #alphas labels
-   annotate("text", x=xhigh-0.2, y=asymptoticMK_table$alpha_asymptotic-0.2, label=paste0("alpha asymptotic = ", round(asymptoticMK_table$alpha_asymptotic, digits = 3)), color="#662506", size=4) +
-   annotate("text",x=xhigh-0.2, y=asymptoticMK_table$alpha_original-0.1, label=paste0("alpha original = ",round(asymptoticMK_table$alpha_original, digits = 3)), color="#386cb0", size=4) 
+   annotate("text", x=xhigh-0.2, y=asymptoticMK_table$alpha_asymptotic-0.2, label=paste0('alpha [asymptotic] == ', round(asymptoticMK_table$alpha_asymptotic, digits = 3)), parse=T, color="#662506", size=4) +
+   annotate("text",x=xhigh-0.2, y=asymptoticMK_table$alpha_original-0.1, label=paste0('alpha [standard] == ', round(asymptoticMK_table$alpha_original,digits = 3)), parse=T, color="#386cb0", size=4) 
   plot_alpha
   
   plots_iMKT <- plot_grid(plot_alpha,plotdaf, plotfraction, nrow = 3,  labels = c("A", "B", "C"), rel_heights = c(2, 2, 1))
