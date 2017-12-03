@@ -4,7 +4,7 @@
 - ~~Discuss input, maybe create parser~~
 - Discuss output, update plots and include table -> html/pdf for non expert R users?  (Marta **on progres**)
 - Plot functions (plotalpha, plotdaf, plotimkr) are not necessary, the plots are done inside the iMK function: remove them (Marta)
-- Plot c: y axis text should be bold (Sergi)
+- Plot c: y axis text should be bold (Sergi, Marta -- in reality the "Asymptotic MKT" text shouldn't appear xD)
 - ~~Update watchdog: adapt to diverse functions~~
 - ~~Delete watchdog and add stops and messages inside the functions (Jesus) (selected: i, neutral: 0)~~
 - ~~Error handling when function fails (Jesus):~~
