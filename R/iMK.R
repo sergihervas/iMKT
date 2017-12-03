@@ -58,11 +58,11 @@ iMK <- function(daf, divergence, xlow, xhigh, seed) {
   alpha_CI_low <- asymptoticMK_table$CI_low 
   
   # Estimate the relative proportion of non-synonymous and synonymous substitutions
+  daf$pN <- as.numeric(daf$pN) # Esto va aqui? En principio si el whatchdog (check data) lo comprueba ya ni hace falta
+  daf$pS <- as.numeric(daf$pS)
   daf$N <- daf$pN/sum(daf$pN)   
   daf$S <- daf$pS/sum(daf$pS)
-  daf$pN <- as.numeric(daf$pN) # Esto va aqui?
-  daf$pS <- as.numeric(daf$pS)
-  
+   
   ## Estimate alpha for each DAF category
   daf$alpha <- 1-((mkt_table_standard[1,2]*daf$pN)/(mkt_table_standard[2,2]*daf$pS))
   
@@ -97,9 +97,13 @@ iMK <- function(daf, divergence, xlow, xhigh, seed) {
   f <- f-b
   
   # Fraction of f, b and d sites
-  fraction <-data.frame(Fraction=c(d,f,b), Type = c("d","f","b"), MKT = rep("Asymptotic MKT", 3))
+  fraction <-data.frame(Fraction=c(d,f,b), Type = c("d","f","b"), MKT = rep("", 3))
   
-  plotfraction <- ggplot(fraction) + geom_bar(stat = "identity",aes_string(x = "MKT", y = "Fraction", fill = "Type")) + coord_flip() + theme_Publication() + ylab(label = "Fraction") + scale_fill_manual(values = c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33"), breaks=c("d","f","b"), labels=c(expression(italic("d")), expression(italic("f")),expression(italic("b")))) + theme(axis.title.y=element_blank(), axis.ticks.y=element_blank(), axis.text.y=element_blank(), panel.border = element_rect(colour = "black", fill=NA, size=1))  + scale_y_discrete(limit=seq(0,1,0.25), expand = c(0, 0))
+  plotfraction <- ggplot(fraction) + geom_bar(stat = "identity",aes_string(x = "MKT", y = "Fraction", fill = "Type")) + 
+    coord_flip() + theme_Publication() + ylab(label = "Fraction") + 
+    scale_fill_manual(values = c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33"), breaks=c("d","f","b"), labels=c(expression(italic("d")), expression(italic("f")),expression(italic("b")))) + 
+    theme(axis.title.y=element_blank(), axis.ticks.y=element_blank(), axis.text.y=element_blank(), panel.border = element_rect(colour = "black", fill=NA, size=1))  + 
+    scale_y_discrete(limit=seq(0,1,0.25), expand = c(0, 0))
   plotfraction
   
   # DAF graph
