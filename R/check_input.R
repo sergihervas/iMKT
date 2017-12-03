@@ -1,6 +1,6 @@
 #' Error handling to compute correctly each MKT type. ¿mix between Messer & Haller? Preguntar Sergi
 #' Date = 30/11/2016
-#'' Author = Sergi Hervás, Jesús Murga
+#'' Author = Sergi Hervas, Jesús Murga
 #'
 #'
 #' @param daf dad file
