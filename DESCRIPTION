@@ -1,10 +1,10 @@
 Package: iMKT
-Title: McDonald and Kreitman Test and it extensions calculation
+Title: McDonald and Kreitman Test and its extensions calculation
 Version: 0.1.1
 Date: 2017-12-01
-Description: McDonald and Kreitman and it extensions. It's great.
+Description: McDonald and Kreitman and its extensions. It's great.
 Author: Marta Coronado <marta.coronado@uab.cat>
-		Sergi Hervàs <sergi.hervas@uab.cat>
+		Sergi Hervas <sergi.hervas@uab.cat>
 		Jesús Murga <jesus.murga@uab.cat>
 Maintainer: Jesús Murga <jesus.murga@uab.cat>
 License: GPL-3
