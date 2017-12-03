@@ -4,9 +4,10 @@
 - Update Readme.md
 - ~~Discuss input, maybe create parser~~
 - Discuss output, update plots and include table -> html/pdf for non expert R users?  (Marta **in progress**)
+    - Discuss invisible(output)
 - Plot functions (plotalpha, plotdaf, plotimkr) are not necessary, the plots are done inside the iMK function: remove them (Marta)
-- Plot c: y axis text should be bold (Sergi, Marta -- in reality the "Asymptotic MKT" text shouldn't appear xD)
-- Do you think it's useful to compute ω, Ka and Ks (internally, then the user can acces it)? It's would be easier to compute ωα and ωd. [**S** yes we should include them. maybe inside the standard mkt function?]
+- ~~Plot c: y axis text should be bold (Sergi, Marta -- in reality the "Asymptotic MKT" text shouldn't appear xD)~~
+- Do you think it's useful to compute ω, Ka and Ks (internally, then the user can acces it)? It would be easier to compute ωα and ωd. [**S** yes we should include them. maybe inside the standard mkt function?]
 - ~~When yo run multiple times asymptotic_MK, the CI are different. We should add a set.seed parameter in case the user wants to make it reproducible. If the argument is empty, then set.seed is NULL. (Marta)~~
 - ~~Update watchdog: adapt to diverse functions~~
 - ~~Delete watchdog and add stops and messages inside the functions (Jesus) (selected: i, neutral: 0)~~
@@ -16,7 +17,7 @@
 	- ~~Check if some dataset not execute the asymototic (p0<=0). Include inside asysmtotic( check_input(...)) parameter to stop this functions but continue on loop (require for multiple_dataset(...) and iMK (...) (Jesus)~~
 
 - System.time(Re-run iMKT):  
-	- ~~First	approach, three datasets from concatenate.genes in 1000 iteration loop 100seconds aprox (Jesus)~~ 
+	- ~~First approach, three datasets from concatenate.genes in 1000 iteration loop 100seconds aprox (Jesus)~~ 
 	- Check times between genes and concatenate.genes dataset. Same expected time ~ 
 - Build package:
 	- ~~Main structure (Jesus)~~
