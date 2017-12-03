@@ -58,11 +58,11 @@ iMK <- function(daf, divergence, xlow, xhigh, seed) {
   alpha_CI_low <- asymptoticMK_table$CI_low 
   
   # Estimate the relative proportion of non-synonymous and synonymous substitutions
+  daf$pN <- as.numeric(daf$pN) # Esto va aqui? En principio si el whatchdog (check data) lo comprueba ya ni hace falta
+  daf$pS <- as.numeric(daf$pS)
   daf$N <- daf$pN/sum(daf$pN)   
   daf$S <- daf$pS/sum(daf$pS)
-  daf$pN <- as.numeric(daf$pN) # Esto va aqui?
-  daf$pS <- as.numeric(daf$pS)
-  
+   
   ## Estimate alpha for each DAF category
   daf$alpha <- 1-((mkt_table_standard[1,2]*daf$pN)/(mkt_table_standard[2,2]*daf$pS))
   
