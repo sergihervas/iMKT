@@ -96,7 +96,7 @@ mkt_DGRP <- function(daf = "Data frame containing the DAF, Pn and Ps",
     fractions <- cbind(fractions,fraction)
     
     # Store output  
-    output[[paste("Cutoff = ",cutoff)]] <- c(alpha,pvalue)
+    output[[paste("Cutoff = ",cutoff)]] <- c(cutoff, alpha, pvalue)
     
     
     mkt_table <- knitr::kable(mkt_table,caption = "cutoff")
@@ -107,6 +107,7 @@ mkt_DGRP <- function(daf = "Data frame containing the DAF, Pn and Ps",
   mkt_tables[[paste("MKT standard table")]]  <- mkt_table_standard
   output <- as.data.frame(do.call("rbind",output))
   
+  colnames(output) <- c("cutoff", "alpha", "pvalue")
   plot <- ggplot(output, aes(x=as.factor(cutoff), y=alpha, group=1)) +
     geom_line(color="#386cb0") + 
     geom_point(size=2.5, color="#386cb0")+
@@ -119,7 +120,7 @@ mkt_DGRP <- function(daf = "Data frame containing the DAF, Pn and Ps",
   fractions_melt <- melt(fractions, id.vars=NULL) 
   fractions_melt$Fraction <-  rep(c("d", "f", "b"),3)
   
-  plotfraction <- ggplot(fractions_melt) + geom_bar(stat = "identity",aes_string(x="variable", y = "value", fill = "Fraction")) + coord_flip() + theme_Publication() + ylab(label = "Fraction") + xlab(label = "Cut-off") + scale_fill_manual(values = c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33"), breaks=c("d","f","b"), labels=c(expression(italic("d")), expression(italic("f")),expression(italic("b"))))
+  plotfraction <- ggplot(fractions_melt) + geom_bar(stat = "identity",aes_string(x="variable", y = "value", fill = "Fraction"),color="black") + coord_flip() + theme_Publication() + ylab(label = "Fraction") + xlab(label = "Cut-off") + scale_fill_manual(values = c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33"), breaks=c("d","f","b"), labels=c(expression(italic("d")), expression(italic("f")),expression(italic("b"))))  + theme(axis.line = element_blank())  + scale_y_discrete(limit=seq(0,1,0.25), expand = c(0, 0))
   plotfraction
   
   plot<-plot_grid(plot,plotfraction, nrow = 2,  labels = c("A", "B"), rel_heights = c(2, 1))

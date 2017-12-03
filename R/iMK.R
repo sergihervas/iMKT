@@ -9,7 +9,7 @@
 #' @param divergence div file
 #' @param xlow fit curve
 #' @param xhigh curv
-#' @param seed [Optional] seed value
+#' @param seed seed value (optional). No seed by default
 #'
 #' @return None
 #'
@@ -99,7 +99,7 @@ iMK <- function(daf, divergence, xlow, xhigh, seed) {
   # Fraction of f, b and d sites
   fraction <-data.frame(Fraction=c(d,f,b), Type = c("d","f","b"), MKT = rep("Asymptotic MKT", 3))
   
-  plotfraction <- ggplot(fraction) + geom_bar(stat = "identity",aes_string(x = "MKT", y = "Fraction", fill = "Type")) + coord_flip() + theme_Publication() + ylab(label = "Fraction") + scale_fill_manual(values = c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33"), breaks=c("d","f","b"), labels=c(expression(italic("d")), expression(italic("f")),expression(italic("b")))) + theme(axis.title.y=element_blank())
+  plotfraction <- ggplot(fraction) + geom_bar(stat = "identity",aes_string(x = "MKT", y = "Fraction", fill = "Type")) + coord_flip() + theme_Publication() + ylab(label = "Fraction") + scale_fill_manual(values = c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33"), breaks=c("d","f","b"), labels=c(expression(italic("d")), expression(italic("f")),expression(italic("b")))) + theme(axis.title.y=element_blank(), axis.ticks.y=element_blank(), axis.text.y=element_blank(), panel.border = element_rect(colour = "black", fill=NA, size=1))  + scale_y_discrete(limit=seq(0,1,0.25), expand = c(0, 0))
   plotfraction
   
   # DAF graph
@@ -144,7 +144,7 @@ iMK <- function(daf, divergence, xlow, xhigh, seed) {
    xlab("Derived allele frequency") + ylab("Alpha") +
    #alphas labels
    annotate("text", x=xhigh-0.2, y=asymptoticMK_table$alpha_asymptotic-0.2, label=paste0("alpha asymptotic = ", round(asymptoticMK_table$alpha_asymptotic, digits = 3)), color="#662506", size=4) +
-   annotate("text",x=xhigh-0.2, y=asymptoticMK_table$alpha_original-0.1, label=paste0("alpha original = ",round(asymptoticMK_table$alpha_original, digits = 3)), color="#386cb0", size=4)
+   annotate("text",x=xhigh-0.2, y=asymptoticMK_table$alpha_original-0.1, label=paste0("alpha original = ",round(asymptoticMK_table$alpha_original, digits = 3)), color="#386cb0", size=4) 
   plot_alpha
   
   plots_iMKT <- plot_grid(plot_alpha,plotdaf, plotfraction, nrow = 3,  labels = c("A", "B", "C"), rel_heights = c(2, 2, 1))
