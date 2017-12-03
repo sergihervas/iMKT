@@ -106,59 +106,56 @@ iMK <- function(daf, divergence, xlow, xhigh, seed) {
   daf_graph <- daf[c("daf","pN","pS")]
   daf_graph<-melt(daf_graph,id.vars = "daf")
   
- plotdaf <-  ggplot(daf_graph) +
+  plotdaf <-  ggplot(daf_graph) +
     geom_point(aes_string(x="daf", y="value", color="variable"), size=3) +
     theme_Publication() + scale_color_manual(values =  c("#386cb0","#fdb462"), name ="Type", breaks=c("pN", "pS"), labels=c("Non-synonymous", "Synonymous")) +
     xlab("Derived Allele Frequency") + ylab("Number of Sites")
- plotdaf
+  plotdaf
  
- # Alpha graph
+  # Alpha graph
  
- y1 <- function(daf) {
-   asymptoticMK_table$a+asymptoticMK_table$b*exp(-asymptoticMK_table$c*daf)
-   }
+  y1 <- function(daf) {
+    asymptoticMK_table$a+asymptoticMK_table$b*exp(-asymptoticMK_table$c*daf)
+  }
  
- xs <- seq(xlow, xhigh, length.out=nrow(daf)*5)
- ysmax <- rep(asymptoticMK_table$alpha_asymptotic, length(xs))
- ysmin <- y1(xs)
- shader_df <- data.frame(xs, ysmin, ysmax)
+  xs <- seq(xlow, xhigh, length.out=nrow(daf)*5)
+  ysmax <- rep(asymptoticMK_table$alpha_asymptotic, length(xs))
+  ysmin <- y1(xs)
+  shader_df <- data.frame(xs, ysmin, ysmax)
  
- plot_alpha <- ggplot(daf, aes_string(x="daf", y="alpha"))  +
-   #confidence intervals
-   geom_rect(data=data.frame(xmin=-Inf, xmax=Inf, ymin=asymptoticMK_table$CI_low ,ymax=asymptoticMK_table$CI_high), aes_string(xmin="xmin", xmax="xmax", ymin="ymin", ymax="ymax"), fill="gray30", alpha=0.4, inherit.aes=F) +
-   #function curve
-   stat_function(fun=y1, color="#ef3b2c", size = 2) +
-   #asymptotic alpha
-   geom_hline(yintercept=asymptoticMK_table$alpha_asymptotic, color="#662506", linetype="dashed") +  
-   #alpha derived via classic MKT
-   geom_hline(yintercept=asymptoticMK_table$alpha_original, color="#386cb0", linetype="dashed") +
-   #cut-offs
-   geom_vline(xintercept=c(xlow, xhigh), color="gray10", linetype="dotted") +    
-   # points
-   geom_point(size=3, color = "gray15") +
- 
-   #shade the fraction of WDMs
-   geom_ribbon(data=shader_df, aes_string(x="xs", ymin="ysmin", ymax="ysmax"), fill="gray30", alpha=0.2,inherit.aes=F) + 
-   #customization
-   theme_Publication() + #theme(panel.grid = element_blank()) +
-   xlab("Derived allele frequency") + ylab(expression(bold(paste("Adaptation (",alpha,")")))) +
-   #alphas labels
-   annotate("text", x=xhigh-0.2, y=asymptoticMK_table$alpha_asymptotic-0.2, label=paste0('alpha [asymptotic] == ', round(asymptoticMK_table$alpha_asymptotic, digits = 3)), parse=T, color="#662506", size=4) +
-   annotate("text",x=xhigh-0.2, y=asymptoticMK_table$alpha_original-0.1, label=paste0('alpha [standard] == ', round(asymptoticMK_table$alpha_original,digits = 3)), parse=T, color="#386cb0", size=4) 
+  plot_alpha <- ggplot(daf, aes_string(x="daf", y="alpha"))  +
+    #confidence intervals
+    geom_rect(data=data.frame(xmin=-Inf, xmax=Inf, ymin=asymptoticMK_table$CI_low ,ymax=asymptoticMK_table$CI_high), aes_string(xmin="xmin", xmax="xmax", ymin="ymin", ymax="ymax"), fill="gray30", alpha=0.4, inherit.aes=F) +
+    #function curve
+    stat_function(fun=y1, color="#ef3b2c", size = 2) +
+    #asymptotic alpha
+    geom_hline(yintercept=asymptoticMK_table$alpha_asymptotic, color="#662506", linetype="dashed") +  
+    #alpha derived via classic MKT
+    geom_hline(yintercept=asymptoticMK_table$alpha_original, color="#386cb0", linetype="dashed") +
+    #cut-offs
+    geom_vline(xintercept=c(xlow, xhigh), color="gray10", linetype="dotted") +    
+    # points
+    geom_point(size=3, color = "gray15") +
+    #shade the fraction of WDMs
+    geom_ribbon(data=shader_df, aes_string(x="xs", ymin="ysmin", ymax="ysmax"), fill="gray30", alpha=0.2,inherit.aes=F) + 
+    #customization
+    theme_Publication() + #theme(panel.grid = element_blank()) +
+    xlab("Derived allele frequency") + ylab(expression(bold(paste("Adaptation (",alpha,")")))) +
+    #alphas labels
+    annotate("text", x=xhigh-0.2, y=asymptoticMK_table$alpha_asymptotic-0.2, label=paste0('alpha [asymptotic] == ', round(asymptoticMK_table$alpha_asymptotic, digits = 3)), parse=T, color="#662506", size=4) +
+    annotate("text",x=xhigh-0.2, y=asymptoticMK_table$alpha_original-0.1, label=paste0('alpha [standard] == ', round(asymptoticMK_table$alpha_original,digits = 3)), parse=T, color="#386cb0", size=4) 
   plot_alpha
   
   plots_iMKT <- plot_grid(plot_alpha,plotdaf, plotfraction, nrow = 3,  labels = c("A", "B", "C"), rel_heights = c(2, 2, 1))
   
   ## iMKT output
- fraction <- fraction[c("Type","Fraction")]
-  
+  fraction <- fraction[c("Type","Fraction")]
   asymptoticMK_table[2:8] <- round(asymptoticMK_table[2:8],4)
+    
+  #cat("Results:\n") # delete
+  #print(asymptoticMK_table, control=NULL) # delete
   
-  
-  cat("Results:\n") # delete
-  print(asymptoticMK_table, control=NULL) # delete
-  
-  output <- list(asymptoticMK_table,fraction, plots_iMKT)
+  output <- list(asymptoticMK_table, fraction, plots_iMKT)
   names(output) <- c("Asymptotic MK table", "Fractions of sites", "Graphs")
 
   invisible(output) # return(output) 
