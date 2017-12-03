@@ -6,7 +6,7 @@
 - Plot functions (plotalpha, plotdaf, plotimkr) are not necessary, the plots are done inside the iMK function: remove them (Marta)
 - Plot c: y axis text should be bold (Sergi, Marta -- in reality the "Asymptotic MKT" text shouldn't appear xD)
 - Do you think it's useful to compute ω, Ka and Ks (internally, then the user can acces it)? It's would be easier to compute ωα and ωd.
-- When yo run multiple times asymptotic_MK, the CI are different. We should add a set.seed parameter in case the user wants to make it reproducible. If the argument is empty, then set.seed is NULL.
+- ~~When yo run multiple times asymptotic_MK, the CI are different. We should add a set.seed parameter in case the user wants to make it reproducible. If the argument is empty, then set.seed is NULL. (Marta) ~~
 - ~~Update watchdog: adapt to diverse functions~~
 - ~~Delete watchdog and add stops and messages inside the functions (Jesus) (selected: i, neutral: 0)~~
 - ~~Error handling when function fails (Jesus):~~
