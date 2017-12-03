@@ -59,6 +59,7 @@
 		- Need talk about methods: (1)download and process whole dataset in R, (2)preload files in package (function to process them), (3)daf+div files in folder, call each one from R function.
 		- Best of three times to load http://popfly.uab.cat/files/genes/GenesData_ALL.tab in a data.frame using read.table(URL) = 3.391 seconds  
 		- Best of three times to load http://pophuman.uab.cat/files/genes/GenesData_ALL.tab in a data.frame using read.table(URL) = 94.418 seconds
+		- **S** check times using directories structure with andromeda IP.
 - Reference Messer & Haller code (Question: Shall we write to them to let them know we're implementing their code into another package?)
 
 
