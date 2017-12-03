@@ -7,10 +7,11 @@
 # The null hypothesis of neutrality is rejected in a MKT when Di/D0 > Pi/P0. The excess of divergence relative to polymorphism for class i, is interpreted as adaptive selection for a subset of sites i. The fraction of adaptive fixations, α, is estimated from 1-(PN/PS)(Ds/Dn). The significance of the test can be assesed with a Fisher exact test.
 #'
 #'
-#' @param daf dad file
+#' @param daf daf file
 #' @param divergence div file
 #' @param xlow fit curve
 #' @param xhigh fit curv
+#' @param seed seed value (optional). No seed by default
 #'
 #' @return None
 #'
@@ -26,7 +27,7 @@
 ## only fits exponential model, depends on fitMKmodel and predictNLS
 ## returns only a table with results, no plot
 
-asymptoticMK <- function(daf, divergence, xlow, xhigh) {
+asymptoticMK <- function(daf, divergence, xlow, xhigh, seed) {
   
   ## loading required packages
   # require(MASS, quietly=TRUE)
@@ -36,6 +37,12 @@ asymptoticMK <- function(daf, divergence, xlow, xhigh) {
   check<-check_input(daf, divergence, xlow, xhigh)
   if(check$data==FALSE)
     stop(check$print_errors)
+
+ if(missing(seed)) {
+    seed <- NULL
+  } else {
+   set.seed(seed)
+  }
   
   tryCatch({
     if(any(daf[3]<=0)){

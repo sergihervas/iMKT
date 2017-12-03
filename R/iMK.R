@@ -9,6 +9,7 @@
 #' @param divergence div file
 #' @param xlow fit curve
 #' @param xhigh curv
+#' @param seed [Optional] seed value
 #'
 #' @return None
 #'
@@ -26,11 +27,18 @@
 #' @export
 #' 
 
-iMK <- function(daf, divergence, xlow, xhigh) {
+iMK <- function(daf, divergence, xlow, xhigh, seed) {
   
   check <- check_input(daf, divergence, xlow, xhigh)
   if (check$data==FALSE)
     stop (check$print_errors)
+  
+  
+  if(missing(seed)) {
+    seed <- NULL
+  } else {
+    set.seed(seed)
+  }
   
   # Create MKT table standard
   mkt_table_standard <- data.frame(Polymorphism = c(sum(daf$pS), sum(daf$pN)), 
