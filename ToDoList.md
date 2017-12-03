@@ -4,6 +4,7 @@
 - ~~Discuss input, maybe create parser~~
 - Discuss output, update plots and include table -> html/pdf for non expert R users?  (Marta **on progres**)
 - Plot functions (plotalpha, plotdaf, plotimkr) are not necessary, the plots are done inside the iMK function: remove them (Marta)
+- Plot c: y axis text should be bold (Sergi)
 - ~~Update watchdog: adapt to diverse functions~~
 - ~~Delete watchdog and add stops and messages inside the functions (Jesus) (selected: i, neutral: 0)~~
 - ~~Error handling when function fails (Jesus):~~
@@ -40,8 +41,7 @@
 		- ~~add loop and graph cuttoff (Marta)~~
 		- Asked Sònia about b, y - when they are negative is because you haven't completely removed the slightly deleterious variants. She sets the values to 0 then. Ask Antonio for a better estimation?
 		- ~~graph cutoffs simple (Marta)~~
-	- Modify perl functions to extract the correct files. Review the categories. (Sergi)
-				[**SERGI: WHAT ARE THE CORRECT FILES??**]
+	- Modify perl functions to extract the correct files. Review the categories. (Sergi **in progress**)
 	- Put in functions comparision scripts (Jesus)
 	- ~~Multiple_datasets(...): (Jesus)~~
 		- ~~Add a variable to check file list (Jesus)~~
@@ -49,12 +49,14 @@
 	- iMK (Marta **in progress**)
 	- ~~Retrieve information by gene or genelist from PopFly and PopHuman (Jesus)~~
 		- Just need a folder to check the URLs and the format output (Jesus **in progess**) 
-			[**http//popfly.uab.cat/files/... check this url**]
+			[**http//popfly.uab.cat/files/genes/GenesData_ALL.tab; 
+			http//pophuman.uab.cat/files/genes/GenesData_ALL.tab**]
 
 - Reference Messer & Haller code (Question: Shall we write to them to let them know we're implementing their code into another package?)
 
 
 - Update sample data (Marta, Jesus)
+- Your input files x has the following(s) errors: x$P0 has one o more 0 values, cannot compute asymptotic. Returning results with NaN
 - Example tutorial with sample data (Marta, Jesus)
 
 - Implement GUI through web-server (with Django) (Ask Esteve for help?)  
