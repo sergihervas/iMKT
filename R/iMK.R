@@ -152,11 +152,15 @@ iMK <- function(daf, divergence, xlow, xhigh, seed) {
   ## iMKT output
  fraction <- fraction[c("Type","Fraction")]
   
-  asymptoticMK_table
   asymptoticMK_table[2:8] <- round(asymptoticMK_table[2:8],4)
+  
+  
+  cat("Results:\n") # delete
+  print(asymptoticMK_table, control=NULL) # delete
   
   output <- list(asymptoticMK_table,fraction, plots_iMKT)
   names(output) <- c("Asymptotic MK table", "Fractions of sites", "Graphs")
+
+  invisible(output) # return(output) 
   
-  return(output) 
 }
