@@ -60,19 +60,19 @@ mkt_fww <- function(daf = "Data frame containing the DAF, Pn and Ps",
     pvalue <- fisher.test(mkt_table)$p.value
     
     # Store output  
-    output[[paste("Cutoff = ",cutoff)]] <- c(alpha,pvalue)
+    output[[paste("Cutoff = ",cutoff)]] <- c(cutoff, alpha,pvalue)
     
     
     mkt_tables[[paste("Cutoff = ",cutoff)]]  <- knitr::kable(mkt_table,caption = "cutoff")
   }
   
   output <- as.data.frame(do.call("rbind",output))
-  
+  colnames(output) <- c("cutoff", "alpha", "pvalue")
   plot <- ggplot(output, aes(x=as.factor(cutoff), y=alpha, group=1)) +
     geom_line(color="#386cb0") + 
     geom_point(size=2.5, color="#386cb0")+
     theme_Publication() +
-    xlab("Cut-off") + ylab("alpha.symbol") 
+    xlab("Cut-off") + ylab(expression(bold(paste("Adaptation (",alpha,")"))))
   plot
   
   names(output) <- c("alpha.symbol","Fisher's exact test P-value")
