@@ -23,7 +23,6 @@
 #' @importFrom ggthemes theme_foundation
 #' @importFrom cowplot plot_grid
 #' @example
-#'mkt_DGRP(data/mydafdata.RData,data/mydivergecedata.RData)
 #' @export
 #' 
 
