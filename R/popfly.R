@@ -13,24 +13,43 @@
 
 ################################NEED A FOLDER WITH FILES TO CHECK HOW THE OUTPUT IT'S RETURNED################################
 
-subsetPopfly<-function(datos='data input',genes=c("gene1"),POP="population"){
+subsetPopfly<-function(datos='data input',genes=c("gene1"),POP=c("population"), recomb=TRUE/FALSE,bin){
   listofdaf<-list()
   listofdivergence<-list()
-  if (length(genes)==0 || POP == "")
-    stop("You need to specify at least one gene or one population!")
-  else if(length(genes)==1){
-    gene<-datos[datos[2] == genes & datos[1]==POP,]
-    return(gene)
-  }
-  else if(length(genes)!=1){
+  if (recomb == FALSE){
+    if (length(genes)==0 || POP == "")
+      stop("You need to specify at least one gene or one population!")
+    
+    else if(length(genes) == 1){
+      for (j in 1:length(POP)){
+        gene<-datos[datos[2]==genes & datos[1]==POP[j],]
+        subsetGenes<-rbind(subsetGenes,gene)}
+    }
+    
+    else if(length(genes)!=1){
       subsetGenes<-data.frame()
       for (i in 1:length(genes)){
-        gene<-datos[datos[2]==genes[i] & datos[1]==POP,]
-        print(gene)
-        subsetGenes<-rbind(subsetGenes,gene)}
-      return(subsetGenes)
+        for (j in 1:length(POP)){
+          gene<-datos[datos[2]==genes[i] & datos[1]==POP[j],]
+          # print(gene)
+          subsetGenes<-rbind(subsetGenes,gene)}
+      }
     }
+    
+    else if(POP == 'ALL'){
+      subsetGenes<-data.frame()
+      for (i in 1:length(genes)){
+        gene<-datos[datos[2]==genes[i],]
+        subsetGenes<-rbind(subsetGenes,gene)}
+    }
+  }
+  else if (recomb == TRUE){
+    bin
+    for (j in 1:length(POP)){}
+    
+  }
+  return(subsetGenes)
 }
 
-subsetPopfly(popfly,genes=c("FBgn0000055","FBgn0000055"),POP="RAL")
+# system.time(a<-subsetPopfly(popfly,genes=genes,POP=c("RAL","ZI","AM"),recomb = F))
 
