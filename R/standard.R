@@ -7,7 +7,7 @@
 # The null hypothesis of neutrality is rejected in a MKT when Di/D0 > Pi/P0. The excess of divergence relative to polymorphism for class i, is interpreted as adaptive selection for a subset of sites i. The fraction of adaptive fixations, alpha.symbol, is estimated from 1-(PN/PS)(Ds/Dn). The significance of the test can be assesed with a Fisher exact test.
 #'
 #'
-#' @param daf dad file
+#' @param daf daf file
 #' @param divergence divergence file
 #' 
 #' @return None

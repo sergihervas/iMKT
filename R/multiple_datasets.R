@@ -47,6 +47,7 @@ multiple_datasets<-function(directory="Directory",test="mkt type",fullanalyis=TR
     }
     return(result)
   }
+
 else{
   names<-sub("*.daf.*", "", subset_daf)
   if(test=="standard"){
@@ -68,7 +69,7 @@ else{
       z<-read.table(daf,header = T)
       c<-read.table(divergence,header = T)
       # result<-append(result,)
-      temp<-list("ID"=i,"StandarMKT"=mkt_fww(z,c))
+      temp<-list("ID"=i,"FWW"=mkt_fww(z,c))
       result<-append(result,temp)
     }
   }
@@ -79,11 +80,21 @@ else{
       z<-read.table(daf,header = T)
       c<-read.table(divergence,header = T)
       # result<-append(result,)
-      temp<-list("ID"=names[i],"StandarMKT"=mkt_DGRP(z,c))
+      temp<-list("ID"=names[i],"DGRP"=mkt_DGRP(z,c))
       result<-append(result,temp)
     }
   }
-  
+  else if(test=="iMK"){
+    for (i in 1:length(names)){
+      daf<-(grep(paste0(names[i],".daf"),subset_daf,value=T))
+      divergence<-(grep(paste0(names[i],".divergence"),subset_divergence,value = T))
+      z<-read.table(daf,header = T)
+      c<-read.table(divergence,header = T)
+      # result<-append(result,)
+      temp<-list("ID"=names[i],"iMKT"=iMK(z,c))
+      result<-append(result,temp)
+    }
+  }  
 }
   return(result)
  }

@@ -4,7 +4,7 @@
 \name{mydafdata}
 \alias{mydafdata}
 \title{Example data frames}
-\format{An object of class \code{data.frame} with 19 rows and 3 columns.}
+\format{An object of class \code{data.frame} with 20 rows and 3 columns.}
 \usage{
 mydafdata
 }

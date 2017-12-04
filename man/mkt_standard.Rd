@@ -8,7 +8,7 @@ mkt_standard(daf = "Data frame containing the DAF, Pn and Ps",
   divergence = "Data frame that contains sites analyzed and divergencen 0fold and 4fold")
 }
 \arguments{
-\item{daf}{dad file}
+\item{daf}{daf file}
 
 \item{divergence}{divergence file}
 }
@@ -17,7 +17,7 @@ None
 }
 \description{
 Date = 30/11/2016
-Author = Sergi Hervás, Marta Coronado
+Author = Sergi Hervas, Marta Coronado
 }
 \details{
 The standard McDonald and Kreitman test (MKT) is used to detect the signature of selection at the molecular level. The MKT compares the amount of variation within a species (polymorphism, P) to the divergence (D) between species at two types of sites, one of which is putatively netral and used as the reference to detect selection at the other type of site. In the standard MKT, these sites are synonymous (putatively neutral, 0) and non-synonymous sites (selected sites, i) in a coding region. Under strict neutrality, the ratio of the number of selected and neutral polymorphic sites (Pi/P0) is equal to the ratio of the number of selected and neutral divergence sites (Di/D0).

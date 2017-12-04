@@ -4,9 +4,9 @@
 \alias{iMK}
 \title{iMK compute all the MKT extensions 
 Date = 30/11/2016
-Author = Sergi Hervás, Marta Coronado}
+Author = Sergi Hervas, Marta Coronado}
 \usage{
-iMK(daf, divergence, xlow, xhigh)
+iMK(daf, divergence, xlow, xhigh, seed)
 }
 \arguments{
 \item{daf}{dad file}
@@ -16,6 +16,8 @@ iMK(daf, divergence, xlow, xhigh)
 \item{xlow}{fit curve}
 
 \item{xhigh}{curv}
+
+\item{seed}{seed value (optional). No seed by default}
 }
 \value{
 None

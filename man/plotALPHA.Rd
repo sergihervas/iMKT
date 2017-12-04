@@ -4,7 +4,7 @@
 \alias{plotALPHA}
 \title{Alpha plot 
 Date = 30/11/2016
-Author = Marta Coronado, Sergi Hervàs}
+Author = Marta Coronado, Sergi Hervas}
 \usage{
 plotALPHA(x, y, df, xlow, xhigh)
 }
@@ -25,5 +25,5 @@ None
 \description{
 Alpha plot 
 Date = 30/11/2016
-Author = Marta Coronado, Sergi Hervàs
+Author = Marta Coronado, Sergi Hervas
 }

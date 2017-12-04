@@ -5,18 +5,20 @@
 \title{Asymtotic MKT developed in Messer, P. W. & Petrov, D. A. Frequent adaptation and the McDonald-Kreitman test. Proceedings of the National Academy of Sciences 110, 8615–8620 (2013).
 Directly retrieved from: https://github.com/MesserLab/asymptoticMK
 Date = 30/11/2016
-Author = Sergi Hervás, Marta Coronado}
+Author = Sergi Hervas, Marta Coronado}
 \usage{
-asymptoticMK(daf, divergence, xlow, xhigh)
+asymptoticMK(daf, divergence, xlow, xhigh, seed)
 }
 \arguments{
-\item{daf}{dad file}
+\item{daf}{daf file}
 
 \item{divergence}{div file}
 
 \item{xlow}{fit curve}
 
 \item{xhigh}{fit curv}
+
+\item{seed}{seed value (optional). No seed by default}
 }
 \value{
 None
