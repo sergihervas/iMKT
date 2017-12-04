@@ -5,9 +5,9 @@
 - ~~Discuss input, maybe create parser~~
 - Discuss output, update plots and include table -> html/pdf for non expert R users?  (Marta **in progress**)
     - Discuss invisible(output)
-- Plot functions (plotalpha, plotdaf, plotimkr) are not necessary, the plots are done inside the iMK function: remove them (Marta)
+- ~~Plot functions (plotalpha, plotdaf, plotimkr) are not necessary, the plots are done inside the iMK function: remove them (Marta)~~
 - ~~Plot c: y axis text should be bold (Sergi, Marta -- in reality the "Asymptotic MKT" text shouldn't appear xD)~~
-- Do you think it's useful to compute ω, Ka and Ks (internally, then the user can acces it)? It would be easier to compute ωα and ωd. [**S** yes we should include them. maybe inside the standard mkt function?]
+- Do you think it's useful to compute ω, Ka and Ks (internally, then the user can acces it)? It would be easier to compute ωα and ωd. [**S** yes we should include them. maybe inside the standard mkt function? **J** I agree with **S**]
 - ~~When yo run multiple times asymptotic_MK, the CI are different. We should add a set.seed parameter in case the user wants to make it reproducible. If the argument is empty, then set.seed is NULL. (Marta)~~
 - ~~Update watchdog: adapt to diverse functions~~
 - ~~Delete watchdog and add stops and messages inside the functions (Jesus) (selected: i, neutral: 0)~~
@@ -29,7 +29,7 @@
 	- Tests (Jesus)
 	- ~~Document correctly functions (Marta, Jesus)~~
 		- Just need to rewrite correctly.
-		- Change RD files to S4 class (bioconductor) (Jesús)
+		- ~~Change RD files to S4 class (bioconductor) (Jesús). FINALLY NOT BIOCONDUCTOR~~
 	- User manual (Marta, Jesus)
 	- Vignettes (Marta, Jesus)
 
@@ -53,13 +53,14 @@
 	- ~~Assymptotic: done (check variable and tables names)~~
 	- iMK (Marta **in progress**)
 	- ~~Retrieve information by gene or genelist from PopFly and PopHuman (Jesus)~~
-		- Just need a folder to check the URLs and the format output (Jesus **in progess**) 
+		- ~~Just need a folder to check the URLs and the format output (Jesus)~~
 			- http://popfly.uab.cat/files/genes/GenesData_ALL.tab
 			- http://pophuman.uab.cat/files/genes/GenesData_ALL.tab
 		- Need talk about methods: ~~(1)download and process whole dataset in R~~, (2)preload files in package (function to process them), ~~(3)daf+div files in folder, call each one from R function.~~
 		- ~~Best of three times to load http://popfly.uab.cat/files/genes/GenesData_ALL.tab in a data.frame using read.table(URL) = 3.391 seconds~~
 		- ~~Best of three times to load http://pophuman.uab.cat/files/genes/GenesData_ALL.tab in a data.frame using read.table(URL) = 94.418 seconds~~
 		- ~~**S** check times using directories structure with andromeda IP.~~
+		- Add recomb else if to extract genes by recombination bin and population (Sergi)
 - ~~Reference Messer & Haller code (Question: Shall we write to them to let them know we're implementing their code into another package?)~~
 
 
