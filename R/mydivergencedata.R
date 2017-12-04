@@ -5,4 +5,6 @@
 #' @docType data
 #' @keywords datasets
 #' @examples
+"mydafdata"
 "mydivergencedata"
+"popfly"
