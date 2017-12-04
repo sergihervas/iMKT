@@ -10,7 +10,15 @@ subsetPopfly(datos = "data input", genes = c("gene1"),
   POP = c("population"), recomb = TRUE/FALSE, bin)
 }
 \arguments{
-\item{Genes}{Drosophila gene list}
+\item{datos}{PopFly dataset preload in package}
+
+\item{genes}{Drosophila gene list}
+
+\item{POP}{Drosophila gene population}
+
+\item{recomb}{Retrieve genes by recombinations values}
+
+\item{bin}{recombination value}
 }
 \value{
 None

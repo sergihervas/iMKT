@@ -6,3 +6,5 @@
 #' @keywords datasets
 #' @examples
 "mydafdata"
+"mydivergencedata"
+"popfly"

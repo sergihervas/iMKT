@@ -3,9 +3,12 @@
 #' Author = Jesús Murga, Marta Coronado
 #'
 #'
-#' @param Genes Drosophila gene list
+#' @param datos PopFly dataset preload in package
+#' @param genes Drosophila gene list
+#' @param POP Drosophila gene population
+#' @param recomb Retrieve genes by recombinations values
+#' @param bin recombination value
 #' @return None
-#'
 #' @examples
 #' @import utils
 #' @export
