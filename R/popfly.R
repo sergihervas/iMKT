@@ -35,7 +35,7 @@ subsetPopFly <- function(data="data",genes=c("gene1","gene2","..."), pops=c("pop
       for (i in subsetGenes$Name){
         print(i)
       
-        x <- subsetGenes[subsetGenes$Name == i &]
+        x <- subsetGenes[subsetGenes$Name == i]
         #x file
         print(x$DAF4f[2])
         print('+++++++++++++++')

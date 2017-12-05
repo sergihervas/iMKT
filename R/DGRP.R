@@ -17,7 +17,7 @@
 #' daf<-read.table("/home/jmurga/MKT/data.daf.txt",header=TRUE)
 #' div<-read.table("/home/jmurga/MKT/data.divergence.txt",header=TRUE)
 #' #Run the function!
-#' mkt_DGRP(daf,div)
+#' DGRP(daf,div)
 #'
 #' @import knitr 
 #' @import utils
@@ -37,7 +37,7 @@
 ################# MKT-FWW function #################
 ####################################################
 
-mkt_DGRP <- function(daf = "Data frame containing the DAF, Pn and Ps", 
+DGRP <- function(daf = "Data frame containing the DAF, Pn and Ps", 
                  divergence = "Data frame that contains sites analyzed and divergencen 0fold and 4fold") {
   
   # Shows a message when using the function
