@@ -3,56 +3,64 @@
 #' Author = Jesús Murga, Marta Coronado
 #'
 #'
-#' @param datos PopFly dataset preload in package
 #' @param genes Drosophila gene list
-#' @param POP Drosophila gene population
-#' @param recomb Retrieve genes by recombinations values
-#' @param bin recombination value
+#' @param pops Drosophila populations
+#' @param recomb group genes according to recombination values (must specify bin)
+#' @param bin number of recombination bins to compute
 #' @return None
 #' @examples
 #' @import utils
 #' @export
 #' 
 
-################################NEED A FOLDER WITH FILES TO CHECK HOW THE OUTPUT IT'S RETURNED################################
+################################NEED A FOLDER WITH FILES TO CHECK HOW THE OUTPUT IS RETURNED################################
 
-subsetPopfly<-function(datos='data input',genes=c("gene1"),POP=c("population"), recomb=TRUE/FALSE,bin){
-  listofdaf<-list()
-  listofdivergence<-list()
-  if (recomb == FALSE){
-    if (length(genes)==0 || POP == "")
-      stop("You need to specify at least one gene or one population!")
-    
-    else if(length(genes) == 1){
-      for (j in 1:length(POP)){
-        gene<-datos[datos[2]==genes & datos[1]==POP[j],]
-        subsetGenes<-rbind(subsetGenes,gene)}
-    }
-    
-    else if(length(genes)!=1){
-      subsetGenes<-data.frame()
-      for (i in 1:length(genes)){
-        for (j in 1:length(POP)){
-          gene<-datos[datos[2]==genes[i] & datos[1]==POP[j],]
-          # print(gene)
-          subsetGenes<-rbind(subsetGenes,gene)}
-      }
-    }
-    
-    else if(POP == 'ALL'){
-      subsetGenes<-data.frame()
-      for (i in 1:length(genes)){
-        gene<-datos[datos[2]==genes[i],]
-        subsetGenes<-rbind(subsetGenes,gene)}
+#data should be pre-loaded, so the function takes as input (genes, pops, recomb, bins)
+subsetPopFly <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2","..."), recomb=TRUE/FALSE, bins) { 
+  
+  if (length(genes) == 0 || length(pops) == 0) #check this...
+      stop("You must specify at least one gene and one population.")
+  
+  #if data is loaded in a sth called "popflydata"
+  subsetGenes <- popflydata[ ,(genes %in% popflydata$Name & POP &in% popflydata$Pop)] 
+  
+  if (recomb == FALSE) {
+    #do not keep recomb cols
+    subsetGenes <- subsetGenes[,-17] #dnt remember col name
+ 
+    #subsetGene contains the desired info. now, transform format and execute iMK
+    subsetGenes <- droplevels(subsetGenes)
+    for (i in levels(subsetGenes$Pop)) {
+      x <- subsetGenes[subsetGenes$Pop == i, ]
+
+      #x file
+      x$DAF0f <- as.character(x$DAF0f)
+      daf0f <- unlist(strsplit(x$DAF0f, split=";"))
+      x$DAF4f <- as.character(x$DAF4f)
+      daf4f <- unlist(strsplit(x$DAF4f, split=";"))
+      x1 <- cbind(daf0f,daf4f)
+      x1 <- as.data.frame(x1)
+      x1$daf <- seq(0.05,0.95,0.1)
+
+      #y file (must change input to add m values)
+      y <- rbind(subsetGenes$m0f, subsetGenes$D0f, subsetGenes$m4f, subsetGenes$D4f) #check order
+      y <- as.data.frame(y)
+      
+      #perform iMK and think how to return...
+      iMK(x, y, 0, 0.9)
     }
   }
-  else if (recomb == TRUE){
-    bin
-    for (j in 1:length(POP)){}
+  
+  else if (recomb == TRUE) { #if recomb=T user must specify bins!
+    if (bins == 0 || is.na(bins) || !is.integer(bins))
+      stop("If recomb=T, you must specify a number of bins (between 1 and 100)") #100? xd
     
+    #first bins loop. assign bin id to each gene 
+    
+    #group bins and sum pi, p0, di, d0, mi, m0
+    
+    #perform iMK for each bin and think how to return...
+    iMK(x, y, 0, 0.9) 
   }
-  return(subsetGenes)
 }
-
-# system.time(a<-subsetPopfly(popfly,genes=genes,POP=c("RAL","ZI","AM"),recomb = F))
-
+  
