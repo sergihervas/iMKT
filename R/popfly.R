@@ -1,6 +1,6 @@
 #' Extract a list of genes from PopFly
 #' Date = 30/11/2016
-#' Author = Jesús Murga, Marta Coronado
+#' Author = Jesús Murga, Marta Coronado, Sergi Hervas
 #'
 #'
 #' @param genes Drosophila gene list
