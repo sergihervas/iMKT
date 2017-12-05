@@ -17,13 +17,15 @@
 ### IN CONSTRUCTION ###
 #######################
 
-## data SHOULD BE pre-loaded in: genesPopFly
-# genesPopFly <- read.table("/home/sergi/Desktop/GenesData_recomb.tab", header=T)
+### DO NOT REMOVE: ###
+  
+  ## data SHOULD BE pre-loaded in: genesPopFly
+  # genesPopFly <- read.table("/home/sergi/Desktop/GenesData_recomb.tab", header=T)
+  ## test data 
+  # subsetPopFly("FBgn0000008",c("AM","AUS","SA"), F, 3)
 
-### test data 
-# subsetPopFly("FBgn0000008",c("AM","AUS","SA"), F, 3)
+### END OF DO NOT REMOVE ###
 
-##
 subsetPopFly <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2","..."), recomb=TRUE/FALSE, bins){ 
   
   ## CHECK INPUT VARIABLES, ERROR HANDLING ##
@@ -40,7 +42,7 @@ subsetPopFly <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",".
   ## argument pops  
   if (length(pops) == 0 || pops == "" || !is.character(pops)) { 
     stop("You must specify at least one population.") }
-  if (!all(pops %in% genesPopFly$Pop) == TRUE) { ##check!!!
+  if (!all(pops %in% genesPopFly$Pop) == TRUE) {
     stop("Select at least one of the following populations:\nAM, AUS, CHB, EA, EF, EG, ENA, EQA, FR, RAL, SA, SD, SP, USI, USW, ZI") }
   
   ## argument recomb
@@ -61,14 +63,12 @@ subsetPopFly <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",".
   subsetGenes <- genesPopFly[(genesPopFly$Name %in% genes & genesPopFly$Pop %in% pops), ]
   
   ## IF RECOMB == TRUE ##
-  ## create bins
   if (recomb == TRUE) {
-    
+    ## create bins
   }
   
   ## IF RECOMB == FALSE ##
   else if (recomb == FALSE) {
-    subsetGenes <- subsetGenes[,-18] #remove recomb column
     subsetGenes$Name <- as.factor(subsetGenes$Name)
     subsetGenes <- droplevels(subsetGenes) 
     
@@ -86,7 +86,7 @@ subsetPopFly <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",".
         x1$DAF4f <- as.character(x1$DAF4f)
         daf <-cbind(unlist(strsplit(x1$DAF0f, split=";")), unlist(strsplit(x1$DAF4f, split=";")))
         daf <- as.data.frame(daf)
-        daf$daf <- seq(0.1,1,0.1)
+        daf$daf <- seq(0.05,0.95,0.1)
         daf <- daf[,c(3,1,2)]
         names(daf) <- c("daf","pi","p0")
         
