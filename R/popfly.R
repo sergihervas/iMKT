@@ -34,7 +34,7 @@ subsetPopFly <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",".
   ## argument genes
   if (length(genes) == 0 || genes == "" || !is.character(genes)) {
     stop("You must specify at least one gene.") }
-  if (!all(genes %in% genesPopFly$Name) == TRUE) {
+  if (!all(genes %in% genesPopFly$Name) == TRUE) { ## --> report which genes cause problem <-- ##
     stop("MKT data is not available for the requested gene(s).\nRemember to use FlyBase IDs (FBgn...).") }
   
   ## argument pops  
