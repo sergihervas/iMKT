@@ -30,6 +30,8 @@
 ## only fits exponential model, depends on fitMKmodel and predictNLS
 ## returns only a table with results, no plot
 
+### Change description. Code adapted from Haller & Messer. asymptoticMK. G3, not Messer and Petrov.
+
 asymptoticMK <- function(daf, divergence, xlow, xhigh, seed) {
   
   ## check data: if there is an error, watchdog stoP0 computation
