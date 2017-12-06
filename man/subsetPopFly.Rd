@@ -4,12 +4,10 @@
 \alias{subsetPopFly}
 \title{subsetPopfly}
 \usage{
-subsetPopFly(data = "data input", genes = c("gene1", "gene2", "..."),
-  pops = c("pop1", "pop2", "..."), recomb = TRUE/FALSE, bins)
+subsetPopFly(genes = c("gene1", "gene2", "..."), pops = c("pop1", "pop2",
+  "..."), recomb = TRUE/FALSE, bins)
 }
 \arguments{
-\item{data}{PopFly dataset}
-
 \item{genes}{Drosophila gene list}
 
 \item{pops}{Drosophila populations}

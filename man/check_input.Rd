@@ -7,7 +7,7 @@
 check_input(daf, divergence, xlow, xhigh)
 }
 \arguments{
-\item{daf}{dad file}
+\item{daf}{daf file}
 
 \item{divergence}{divergence file}
 
