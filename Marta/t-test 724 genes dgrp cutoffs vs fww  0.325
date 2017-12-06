@@ -1,0 +1,100 @@
+> genes_724_cutoff_0.325_dgrp <- subset(output_1, output_1$cutoff==0.325)
+> sd(genes_724_cutoff_0.325_dgrp$alpha)
+[1] 0.1340958
+> t.test(genes_724_cutoff_0.325_dgrp$alpha,genes_724_li$alpha)
+
+	Welch Two Sample t-test
+
+data:  genes_724_cutoff_0.325_dgrp$alpha and genes_724_li$alpha
+t = -15.535, df = 1034.5, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.12036457 -0.09336807
+sample estimates:
+mean of x mean of y 
+0.7971350 0.9040013 
+
+> genes_724_cutoff_0.325_dgrp <- subset(output_1, output_1$cutoff==0.325)
+> genes_724_cutoff_0.025_dgrp <- subset(output_1, output_1$cutoff==0.025)
+> t.test(genes_724_cutoff_0.025_dgrp$alpha,genes_724_li$alpha)
+
+	Welch Two Sample t-test
+
+data:  genes_724_cutoff_0.025_dgrp$alpha and genes_724_li$alpha
+t = -13.487, df = 1081, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.10373805 -0.07738723
+sample estimates:
+mean of x mean of y 
+0.8134387 0.9040013 
+
+> genes_724_cutoff_0.075_dgrp <- subset(output_1, output_1$cutoff==0.075)
+> t.test(genes_724_cutoff_0.075_dgrp$alpha,genes_724_li$alpha)
+
+	Welch Two Sample t-test
+
+data:  genes_724_cutoff_0.075_dgrp$alpha and genes_724_li$alpha
+t = -13.67, df = 1063.5, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.10513026 -0.07873801
+sample estimates:
+mean of x mean of y 
+0.8120672 0.9040013 
+
+> genes_724_cutoff_0.125_dgrp <- subset(output_1, output_1$cutoff==0.125)
+> t.test(genes_724_cutoff_0.125_dgrp$alpha,genes_724_li$alpha)
+
+	Welch Two Sample t-test
+
+data:  genes_724_cutoff_0.125_dgrp$alpha and genes_724_li$alpha
+t = -14.281, df = 1078.3, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.10824069 -0.08208912
+sample estimates:
+mean of x mean of y 
+0.8088364 0.9040013 
+
+> genes_724_cutoff_0.225_dgrp <- subset(output_1, output_1$cutoff==0.225)
+> t.test(genes_724_cutoff_0.225_dgrp$alpha,genes_724_li$alpha)
+
+	Welch Two Sample t-test
+
+data:  genes_724_cutoff_0.225_dgrp$alpha and genes_724_li$alpha
+t = -15.094, df = 1059.3, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.11599979 -0.08930971
+sample estimates:
+mean of x mean of y 
+0.8013465 0.9040013 
+
+> genes_724_cutoff_0.275_dgrp <- subset(output_1, output_1$cutoff==0.275)
+> t.test(genes_724_cutoff_0.275_dgrp$alpha,genes_724_li$alpha)
+
+	Welch Two Sample t-test
+
+data:  genes_724_cutoff_0.275_dgrp$alpha and genes_724_li$alpha
+t = -15.327, df = 1056, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.11725103 -0.09063627
+sample estimates:
+mean of x mean of y 
+0.8000576 0.9040013 
+
+> genes_724_cutoff_0.175_dgrp <- subset(output_1, output_1$cutoff==0.175)
+> t.test(genes_724_cutoff_0.175_dgrp$alpha,genes_724_li$alpha)
+
+	Welch Two Sample t-test
+
+data:  genes_724_cutoff_0.175_dgrp$alpha and genes_724_li$alpha
+t = -14.768, df = 1069.2, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.11257772 -0.08617005
+sample estimates:
+mean of x mean of y 
+0.8046274 0.9040013 
