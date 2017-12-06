@@ -16,8 +16,8 @@
 #' @return None
 #'
 #' @examples
-#' daf<-read.table("/home/jmurga/MKT/data.daf.txt",header=TRUE)
-#' div<-read.table("/home/jmurga/MKT/data.divergence.txt",header=TRUE)
+#' daf<-read.table("/home/jmurga/MKT/Test/data.daf.txt",header=TRUE)
+#' div<-read.table("/home/jmurga/MKT/Test/data.divergence.txt",header=TRUE)
 #' asymptoticMK(daf=daf,divergence=div,xlow=0,xhigh=1)
 #'
 #' @import utils

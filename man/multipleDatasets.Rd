@@ -6,7 +6,7 @@
 Date = 30/11/2016
 Author = Jesús Murga, Marta Coronado}
 \usage{
-multipleDatasets(directory = "Directory", test = c("DGRP", "FWW"),
+multipleDatasets(directory = "Directory", test = c("DGRP", "FWW", "ALL"),
   fullanalyis = TRUE/FALSE, idlist = "listfile")
 }
 \arguments{

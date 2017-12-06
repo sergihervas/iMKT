@@ -49,8 +49,9 @@ check_input <- function(daf, divergence, xlow, xhigh){
   
     ##Assign proper names to the columns of daf and divergence
     names(daf) <- c("daf", "Pi", "P0")
-    names(divergence) <- c("Chr",  "Pop",  "mi", "Di", "m0", "D0")
-  
+    # names(divergence) <- c("Chr",  "Pop",  "mi", "Di", "m0", "D0")
+    names(divergence) <- c("mi", "Di", "m0", "D0")
+
   
     ##parse the data from argument daf
     ####### dependent on the column name

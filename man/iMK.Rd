@@ -25,3 +25,10 @@ None
 \description{
 EXPLANATION
 }
+\examples{
+#Load your Derived Allele Frequency file and Divergence file
+daf<-read.table("/home/jmurga/MKT/Test/data.daf.txt",header=TRUE)
+div<-read.table("/home/jmurga/MKT/Test/data.divergence.txt",header=TRUE)
+#Run the function!
+iMK(daf,div)
+}

@@ -23,7 +23,7 @@
 #' @export
 #' 
 
-multipleDatasets<-function(directory="Directory",test=c("DGRP","FWW"),fullanalyis=TRUE/FALSE,idlist="listfile"){
+multipleDatasets<-function(directory="Directory",test=c("DGRP","FWW","ALL"),fullanalyis=TRUE/FALSE,idlist="listfile"){
   
   wd<-directory;setwd(wd) #SET AND CREATE A WORKING DIRECTORY
   files<-list.files(wd) #LIST ALL FILES IN DIRECTORY

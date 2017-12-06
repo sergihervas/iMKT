@@ -27,8 +27,8 @@ The standard McDonald and Kreitman test (MKT) is used to detect the signature of
 }
 \examples{
 #Load your Derived Allele Frequency file and Divergence file
-daf<-read.table("/home/jmurga/MKT/data.daf.txt",header=TRUE)
-div<-read.table("/home/jmurga/MKT/data.divergence.txt",header=TRUE)
+daf<-read.table("/home/jmurga/MKT/Test/data.daf.txt",header=TRUE)
+div<-read.table("/home/jmurga/MKT/Test/data.divergence.txt",header=TRUE)
 #Run the function!
 DGRP(daf,div)
 
