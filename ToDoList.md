@@ -19,6 +19,20 @@
 - System.time(Re-run iMKT):  
 	- ~~First approach, three datasets from concatenate.genes in 1000 iteration loop 100seconds aprox (Jesus)~~ 
 	- Check times between genes and concatenate.genes dataset. Same expected time ~ 
+	- Functions timing in concatenate dataset (daf10): 
+		- standard =  0.082 seconds (best of three)
+		- FWW (with plot) =   0.191 seconds (best of three)
+		- DGRP (with plot) = 0.373 seconds (best of three)
+		- asymptotic = 0.228 seconds (best of three)
+		- iMK = 0.457 seconds (best of three)
+		- integrativeMKT = 1.408 seconds(best of three)
+	- Functions timing in genes dataset (daf10): 
+		- standard =  0.003 seconds (best of three)
+		- FWW (with plot) =   0.013 seconds (best of three)
+		- DGRP (with plot) = 0.139 seconds (best of three)
+		- asymptotic = 0.228 seconds (best of three)
+		- iMK = 0.481  seconds (best of three)
+		- integrativeMKT = 0.885 seconds (best of three)
 - Build package:
 	- ~~Main structure (Jesus)~~
 	- ~~Review license (Need to talk, probably GPL-3)~~
