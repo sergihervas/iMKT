@@ -25,7 +25,7 @@
 #'
 #' @export
 
-multipleDatasets<-function(directory="Directory",test=c("DGRP","FWW","ALL"),fullanalyis=TRUE/FALSE,idlist="listfile"){
+multipleDatasets<-function(directory="Directory",test=c("DGRP","FWW","ALL"),fullanalyis=TRUE/FALSE,idlist='NA'){
   
   wd<-directory;setwd(wd) #SET AND CREATE A WORKING DIRECTORY
   files<-list.files(wd) #LIST ALL FILES IN DIRECTORY
@@ -61,7 +61,7 @@ else{
       result[[names[i]]]<-temp
     }
   }
-  else if(test=="standard" & idlist == 'NA'){
+  else if(test=="standard"){
     for (i in 1:length(names)){
       daf<-(grep(paste0(names[i],".daf"),subset_daf,value=T))
       divergence<-(grep(paste0(names[i],".divergence"),subset_divergence,value = T))
@@ -111,4 +111,6 @@ else{
 
   
 # multipleDatasets(directory = "~/MKT/Test",test = c("standard","DGRP"),fullanalyis = TRUE, idlist = "NA")
-# multiple_datasets(directory = "~/MKT/Test",test = "standard",fullanalyis = FALSE, idlist = "idlist")
+# multipleDatasets(directory = "~/MKT/Test",test = "standard",fullanalyis = FALSE,idlist = "id")
+# multipleDatasets(directory = "~/MKT/Test",test = "standard",fullanalyis = TRUE)
+
