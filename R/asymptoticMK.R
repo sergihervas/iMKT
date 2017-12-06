@@ -26,20 +26,15 @@
 #' @import nls2
 #' @export
 
-
 ## only fits exponential model, depends on fitMKmodel and predictNLS
 ## returns only a table with results, no plot
 
 asymptoticMK <- function(daf, divergence, xlow, xhigh, seed) {
   
-  ## loading required packages
-  # require(MASS, quietly=TRUE)
-  # require(nls2, quietly=TRUE)
-  
   ## check data: if there is an error, watchdog stops computation
-  check<-check_input(daf, divergence, xlow, xhigh)
-  if(check$data==FALSE)
-    stop(check$print_errors)
+  check <- check_input(daf, divergence, xlow, xhigh)
+  if(check$data == FALSE) {
+    stop(check$print_errors) }
 
  if(missing(seed)) {
     seed <- NULL
@@ -47,30 +42,16 @@ asymptoticMK <- function(daf, divergence, xlow, xhigh, seed) {
    set.seed(seed)
   }
   
-  ### ??? ESTO DE DONDE HA SALIDO Y POR QUE??? ###
-  tryCatch({
-    if(any(daf[3]<=0)){
-      result_df <- data.frame(model="exponential", a=NaN, b=NaN, c=NaN, alpha_asymptotic=NaN, CI_low=NaN, CI_high=NaN, alpha_original=NaN, row.names=NULL)
-      cat("Your input files x has the following(s) errors: \n x$P0 has one o more 0 values, cannot compute asymptotic. Returning results with NaN \n \n")
-      return(result_df)}
-    })
-  
-  ## assign proper names to the columns of x and y 
-  #####Not defined####
-  #names(x) <- c("daf", "pN", "pS")
-  #names(y) <- c("Chr",  "Pop",  "m0f",  "D0f",  "m4f",  "D4f")
-  
   ## parse the data from argument x
   f <- daf$daf #derived alelle frequencies
   p <- daf$pN #non-synonymous polymorphism 
   p0 <- daf$pS #synonymous polymorphism
   
   ## parse the data from argument y
-  m <- as.numeric(divergence$m0f) #number of non-synonymous analyzed positions   
-  m0 <- as.numeric(divergence$m4f) ##number of synonymous analyzed positions
-  d <- as.numeric(divergence$D0f) #non-synonymous divergence
-  d0 <- as.numeric(divergence$D4f) #synonymous divergence
-  # pop <- y$Pop #population name, used for plotting...
+  m <- divergence$m0f #number of non-synonymous analyzed positions   
+  m0 <- divergence$m4f ##number of synonymous analyzed positions
+  d <- divergence$D0f #non-synonymous divergence
+  d0 <- divergence$D4f #synonymous divergence
   
   ## compute alpha values and trim
   alpha <- 1 - (d0/d) * (p/p0)
