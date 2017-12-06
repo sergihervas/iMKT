@@ -38,9 +38,9 @@ check_input <- function(daf, divergence, xlow, xhigh){
       dataIsGood<-FALSE
       error<-"Daf categories in daf are not correct define. Check the header!"
       mainErrors<-append(mainErrors,error)}
-    if (NCOL(divergence) != 6){
+    if (NCOL(divergence) != 4){
       dataIsGood<-FALSE
-      error<-"Argument divergence does not contain sidaf tab-separated columns"
+      error<-"Argument divergence does not contain four tab-separated columns"
       mainErrors<-append(mainErrors,error)}
     if (NROW(divergence) < 0 & (NROW(divergence) < 3)){
       dataIsGood<-FALSE
