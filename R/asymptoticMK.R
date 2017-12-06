@@ -50,9 +50,9 @@ asymptoticMK <- function(daf, divergence, xlow, xhigh, seed) {
   tryCatch({
     if(any(daf[3]<=0)){
       result_df <- data.frame(model="exponential", a=NaN, b=NaN, c=NaN, alpha_asymptotic=NaN, CI_low=NaN, CI_high=NaN, alpha_original=NaN, row.names=NULL)
-      return(result_df)
-      }}, error=cat("Your input files x has the following(s) errors: \n x$P0 has one o more 0 values, cannot compute asymptotic. Returning results with NaN \n \n")
-    )
+      cat("Your input files x has the following(s) errors: \n x$P0 has one o more 0 values, cannot compute asymptotic. Returning results with NaN \n \n")
+      return(result_df)}
+    })
   
   ## assign proper names to the columns of x and y 
   #####Not defined####

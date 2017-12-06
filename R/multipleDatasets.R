@@ -48,7 +48,18 @@ if (fullanalyis==FALSE & idlist!='NA'){
 # 
 else{
   names<-sub("*.daf.*", "", subset_daf)
-  if(test=="standard" & idlist == 'NA'){
+  if (test=="ALL"){
+    for (i in 1:length(names)){
+      daf<-(grep(paste0(names[i],".daf"),subset_daf,value=T))
+      divergence<-(grep(paste0(names[i],".divergence"),subset_divergence,value = T))
+      z<-read.table(daf,header = T)
+      c<-read.table(divergence,header = T)
+      # result<-append(result,)
+      temp<-list("ID"=names[i],"integrativeMKT"=integrativeMKT(z,c))
+      result[[names[i]]]<-temp
+    }
+  }
+  else if(test=="standard" & idlist == 'NA'){
     for (i in 1:length(names)){
       daf<-(grep(paste0(names[i],".daf"),subset_daf,value=T))
       divergence<-(grep(paste0(names[i],".divergence"),subset_divergence,value = T))
@@ -59,7 +70,6 @@ else{
       result[[names[i]]]<-temp
     }
   }
-
   else if(test=="FWW"){
     for (i in 1:length(names)){
       daf<-(grep(paste0(names[i],".daf"),subset_daf,value=T))
@@ -98,5 +108,5 @@ else{
 }
 
   
-# multiple_datasets(directory = "~/MKT/Test",test = "standard",fullanalyis = TRUE, idlist = "NA")
+# multipleDatasets(directory = "~/MKT/Test",test = c("standard","DGRP"),fullanalyis = TRUE, idlist = "NA")
 # multiple_datasets(directory = "~/MKT/Test",test = "standard",fullanalyis = FALSE, idlist = "idlist")
