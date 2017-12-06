@@ -47,6 +47,7 @@ asymptoticMK <- function(daf, divergence, xlow, xhigh, seed) {
    set.seed(seed)
   }
   
+  ### ??? ESTO DE DONDE HA SALIDO Y POR QUE??? ###
   tryCatch({
     if(any(daf[3]<=0)){
       result_df <- data.frame(model="exponential", a=NaN, b=NaN, c=NaN, alpha_asymptotic=NaN, CI_low=NaN, CI_high=NaN, alpha_original=NaN, row.names=NULL)
