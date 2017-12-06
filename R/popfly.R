@@ -4,6 +4,7 @@
 #'
 #' @details put details here
 #'
+#' @param data input PopFly or PopHuman data
 #' @param genes Drosophila gene list
 #' @param pops Drosophila populations
 #' @param recomb group genes according to recombination values (must specify number of bins)
@@ -31,9 +32,8 @@
   # SERGI TENGO QUE PONER UN ARGUMENTO DATA AL QUE LUEGO LE PASES genesPopFly, QUE ESTÁ PRECARGADO EN EL PAQUETE COMO popfly. SI NO LO HAGO ASÍ, EL PAQUETE TE DICE QUE TIENE VARIABLES SIN ASIGNAR.
 ### END OF DO NOT REMOVE ###
 
-subsetPopFly <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2","..."), recomb=TRUE/FALSE, bins){ 
+subsetPopFly <- function(data="popfly or pophuman",genes=c("gene1","gene2","..."), pops=c("pop1","pop2","..."), recomb=TRUE/FALSE, bins){ 
   
-  data<-
   
   ## CHECK INPUT VARIABLES, ERROR HANDLING ##
   ## numer of arguments
