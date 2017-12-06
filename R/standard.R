@@ -17,8 +17,7 @@
 #' daf<-read.table("/home/jmurga/MKT/data.daf.txt",header=TRUE)
 #' div<-read.table("/home/jmurga/MKT/data.divergence.txt",header=TRUE)
 #' #Run the function!
-#' mkt_standard(daf,div)
-#'
+#' standard(daf,div)
 #' @import knitr 
 #' @import utils
 #' @import stats
@@ -26,7 +25,7 @@
 #' @export 
 
 
-mkt_standard <- function(daf = "Data frame containing the DAF, Pn and Ps", 
+standard <- function(daf = "Data frame containing the DAF, Pn and Ps", 
                      divergence = "Data frame that contains sites analyzed and divergencen 0fold and 4fold") {
   # Print errors if data not correct
  # check<-check_input(daf, divergence, 0, 1)

@@ -4,7 +4,7 @@
 \alias{theme_Publication}
 \title{ggplot theme for publication ready Plots}
 \usage{
-theme_Publication(base_size = 14, base_family = "helvetica")
+theme_Publication(base_size = 14, base_family = "sans")
 }
 \arguments{
 \item{base_size}{base size required from theme_Publication}
