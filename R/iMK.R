@@ -1,9 +1,10 @@
-#' iMK compute all the MKT extensions 
+#' @title iMK
 #' Date = 30/11/2016
 #' Author = Sergi Hervas, Marta Coronado
 #'
-#' EXPLANATION
+#' @description \code{iMK()} iMK method
 #'
+#' @details put some details here
 #'
 #' @param daf dad file
 #' @param divergence div file

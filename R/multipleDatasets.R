@@ -1,7 +1,8 @@
-#' Execute any test  with all the files in a directory. The files need to be called id.daf.txt and id.divergence.txt
-#' Date = 30/11/2016
-#' Author = Jesús Murga, Marta Coronado
+#' @title multipleDatasets
+
+#' @description \code{multipleDatsets()} Execute any test  with all the files in a directory. The files need to be called id.daf.txt and id.divergence.txt
 #'
+#' @details put a description here
 #'
 #' @param directory dad file
 #' @param test divergence file

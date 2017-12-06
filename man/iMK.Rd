@@ -2,7 +2,7 @@
 % Please edit documentation in R/iMK.R
 \name{iMK}
 \alias{iMK}
-\title{iMK compute all the MKT extensions 
+\title{iMK
 Date = 30/11/2016
 Author = Sergi Hervas, Marta Coronado}
 \usage{
@@ -23,7 +23,10 @@ iMK(daf, divergence, xlow, xhigh, seed)
 None
 }
 \description{
-EXPLANATION
+\code{iMK()} iMK method
+}
+\details{
+put some details here
 }
 \examples{
 #Load your Derived Allele Frequency file and Divergence file

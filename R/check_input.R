@@ -1,6 +1,6 @@
-#' Error handling to compute correctly each MKT type. ¿mix between Messer & Haller? Preguntar Sergi
-#' Date = 30/11/2016
-#' Author = Sergi Hervas, Jesús Murga
+#' @title check_input
+#' 
+#' @description Error handling. Checks input data for asymptoticMKAuthor = Sergi Hervas, Jesús Murga
 #'
 #'
 #' @param daf dad file
@@ -9,8 +9,6 @@
 #' @param xhigh fit curv
 #'
 #' @return None
-#'
-#' @examples
 #'
 #' @import utils
 #' @import stats

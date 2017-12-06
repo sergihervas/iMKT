@@ -2,9 +2,7 @@
 % Please edit documentation in R/multipleDatasets.R
 \name{multipleDatasets}
 \alias{multipleDatasets}
-\title{Execute any test  with all the files in a directory. The files need to be called id.daf.txt and id.divergence.txt
-Date = 30/11/2016
-Author = Jesús Murga, Marta Coronado}
+\title{multipleDatasets}
 \usage{
 multipleDatasets(directory = "Directory", test = c("DGRP", "FWW", "ALL"),
   fullanalyis = TRUE/FALSE, idlist = "listfile")
@@ -22,7 +20,8 @@ multipleDatasets(directory = "Directory", test = c("DGRP", "FWW", "ALL"),
 None
 }
 \description{
-Execute any test  with all the files in a directory. The files need to be called id.daf.txt and id.divergence.txt
-Date = 30/11/2016
-Author = Jesús Murga, Marta Coronado
+\code{multipleDatsets()} Execute any test  with all the files in a directory. The files need to be called id.daf.txt and id.divergence.txt
+}
+\details{
+put a description here
 }

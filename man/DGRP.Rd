@@ -2,7 +2,7 @@
 % Please edit documentation in R/DGRP.R
 \name{DGRP}
 \alias{DGRP}
-\title{mkt_DGRP}
+\title{DGRP}
 \usage{
 DGRP(daf = "Data frame containing the DAF, Pn and Ps",
   divergence = "Data frame that contains sites analyzed and divergencen 0fold and 4fold",
@@ -19,7 +19,7 @@ DGRP(daf = "Data frame containing the DAF, Pn and Ps",
 MKT corrected by the DGRP method
 }
 \description{
-\code{mktDGRP()} Perform MKT corrected with DGRP method 
+\code{DGRP()} Perform MKT corrected with DGRP method 
 
 Load your Derived Allele Frequency file (remember you can use 10 or 20 categories) and Divergence file (it contains de divergents and analysed sites in the synonimous and non synonimous categories)
 

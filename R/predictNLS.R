@@ -1,9 +1,9 @@
-#' Get a CI using Monte Carlo simulation based upon a fitted model.  This is necessary because
-# getting confidence intervals for non-linear models is a complicated business, apparently. Authors thanks to Andrej-Nikolai Spiess (http://www.dr-spiess.de) for this code.
-#' Directly retrieved from: https://github.com/MesserLab/asymptoticMK
-#' Date = 30/11/2016
-#' Author = REFER AUTHROS? CONTACT WITH PETROV LAB
+#' @title predictNLSGet a CI using Monte Carlo simulation based upon a fitted model.  This is necessary because
 #'
+#' @description getting confidence intervals for non-linear models is a complicated business, apparently. Authors thanks to Andrej-Nikolai Spiess (http://www.dr-spiess.de) for this code.
+#' Directly retrieved from: https://github.com/MesserLab/asymptoticMK
+#' 
+#' @detail Put details here
 #'
 #' @param object input object
 #' @param newdata newdata object

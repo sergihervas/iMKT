@@ -2,10 +2,7 @@
 % Please edit documentation in R/predictNLS.R
 \name{predictNLS}
 \alias{predictNLS}
-\title{Get a CI using Monte Carlo simulation based upon a fitted model.  This is necessary because
-Directly retrieved from: https://github.com/MesserLab/asymptoticMK
-Date = 30/11/2016
-Author = REFER AUTHROS? CONTACT WITH PETROV LAB}
+\title{predictNLSGet a CI using Monte Carlo simulation based upon a fitted model.  This is necessary because}
 \usage{
 predictNLS(object, newdata, level = 0.95, nsim = 10000)
 }
@@ -22,8 +19,6 @@ predictNLS(object, newdata, level = 0.95, nsim = 10000)
 None
 }
 \description{
-Get a CI using Monte Carlo simulation based upon a fitted model.  This is necessary because
+getting confidence intervals for non-linear models is a complicated business, apparently. Authors thanks to Andrej-Nikolai Spiess (http://www.dr-spiess.de) for this code.
 Directly retrieved from: https://github.com/MesserLab/asymptoticMK
-Date = 30/11/2016
-Author = REFER AUTHROS? CONTACT WITH PETROV LAB
 }

@@ -1,9 +1,10 @@
-#'  Core code for two-step nls2() model fit at a given level of precision (res, usually set at 10)
+#' @title fitMKmodel
+#' 
+#' @description Core code for two-step nls2() model fit at a given level of precision (res, usually set at 10)
 #' Directly retrieved from: https://github.com/MesserLab/asymptoticMK
-#' Date = 30/11/2016
-#' Author = REFER AUTHROS? CONTACT WITH PETROV LAB
 #'
-#'
+#' @details Put details here
+#' 
 #' @param alpha_trimmed correspond to the vectors with alpha and frequency (DAF) values
 #' @param f_trimmed  correspond to the vectors with alpha and frequency (DAF) values
 #' @param res ASK SERGI

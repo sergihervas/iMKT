@@ -1,6 +1,8 @@
-#' Extract a list of genes from PopFly
-#' Date = 30/11/2016
-#' Author = Sergi Hervas, Jesús Murga, Marta Coronado
+#' @title subsetPopfly
+#'
+#' @description Extract a list of genes from PopFly
+#'
+#' @details put details here
 #'
 #' @param data PopFly dataset
 #' @param genes Drosophila gene list

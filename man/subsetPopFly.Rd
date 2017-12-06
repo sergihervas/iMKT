@@ -2,9 +2,7 @@
 % Please edit documentation in R/popfly.R
 \name{subsetPopFly}
 \alias{subsetPopFly}
-\title{Extract a list of genes from PopFly
-Date = 30/11/2016
-Author = Sergi Hervas, Jesús Murga, Marta Coronado}
+\title{subsetPopfly}
 \usage{
 subsetPopFly(data = "data input", genes = c("gene1", "gene2", "..."),
   pops = c("pop1", "pop2", "..."), recomb = TRUE/FALSE, bins)
@@ -25,8 +23,9 @@ None
 }
 \description{
 Extract a list of genes from PopFly
-Date = 30/11/2016
-Author = Sergi Hervas, Jesús Murga, Marta Coronado
+}
+\details{
+put details here
 }
 \examples{
 

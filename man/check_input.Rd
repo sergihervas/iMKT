@@ -2,9 +2,7 @@
 % Please edit documentation in R/check_input.R
 \name{check_input}
 \alias{check_input}
-\title{Error handling to compute correctly each MKT type. ¿mix between Messer & Haller? Preguntar Sergi
-Date = 30/11/2016
-Author = Sergi Hervas, Jesús Murga}
+\title{check_input}
 \usage{
 check_input(daf, divergence, xlow, xhigh)
 }
@@ -21,10 +19,5 @@ check_input(daf, divergence, xlow, xhigh)
 None
 }
 \description{
-Error handling to compute correctly each MKT type. ¿mix between Messer & Haller? Preguntar Sergi
-Date = 30/11/2016
-Author = Sergi Hervas, Jesús Murga
-}
-\examples{
-
+Error handling. Checks input data for asymptoticMKAuthor = Sergi Hervas, Jesús Murga
 }

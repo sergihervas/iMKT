@@ -2,10 +2,7 @@
 % Please edit documentation in R/fitMKmodel.R
 \name{fitMKmodel}
 \alias{fitMKmodel}
-\title{Core code for two-step nls2() model fit at a given level of precision (res, usually set at 10)
-Directly retrieved from: https://github.com/MesserLab/asymptoticMK
-Date = 30/11/2016
-Author = REFER AUTHROS? CONTACT WITH PETROV LAB}
+\title{fitMKmodel}
 \usage{
 fitMKmodel(alpha_trimmed, f_trimmed, res)
 }
@@ -22,8 +19,9 @@ None
 \description{
 Core code for two-step nls2() model fit at a given level of precision (res, usually set at 10)
 Directly retrieved from: https://github.com/MesserLab/asymptoticMK
-Date = 30/11/2016
-Author = REFER AUTHROS? CONTACT WITH PETROV LAB
+}
+\details{
+Put details here
 }
 \examples{
 

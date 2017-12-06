@@ -1,6 +1,6 @@
-#' @title mkt_DGRP
+#' @title DGRP
 #'
-#' @description \code{mktDGRP()} Perform MKT corrected with DGRP method 
+#' @description \code{DGRP()} Perform MKT corrected with DGRP method 
 #'
 #' Load your Derived Allele Frequency file (remember you can use 10 or 20 categories) and Divergence file (it contains de divergents and analysed sites in the synonimous and non synonimous categories)
 #'
