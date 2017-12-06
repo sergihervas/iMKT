@@ -33,7 +33,7 @@ check_input <- function(daf, divergence, xlow, xhigh){
         dataIsGood <- FALSE
         error <- "Argument daf contains no data rows or it is malformed. Check the header!"
         mainErrors<-append(mainErrors,error) }
-    if(NROW(daf)<= 10) { #I think we should allow other DAF categories!! maybe force at least 10? # I'd check that the minimum # of rows are 10, but then not to force to be 20 or 50, only check if the DAF frequency ranges from 0.1 to 0.9, for example
+    if(NROW(daf)< 10) { #I think we should allow other DAF categories!! maybe force at least 10? # I'd check that the minimum # of rows are 10, but then not to force to be 20 or 50, only check if the DAF frequency ranges from 0.1 to 0.9, for example
      dataIsGood <- FALSE
      error <- "Daf categories are less than 10. Check the header or change you input!"
      mainErrors <- append(mainErrors,error) }
