@@ -8,8 +8,8 @@
 #'
 #' @examples
 #' @import utils
+#'
 #' @export
-#' 
 
 ################################NEED A FOLDER WITH FILES TO CHECK HOW THE OUTPUT IT'S RETURNED################################
 # popfly<-function(Genes=c("gene1","gene2")){

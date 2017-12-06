@@ -25,3 +25,6 @@ Directly retrieved from: https://github.com/MesserLab/asymptoticMK
 Date = 30/11/2016
 Author = REFER AUTHROS? CONTACT WITH PETROV LAB
 }
+\examples{
+
+}

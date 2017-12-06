@@ -7,9 +7,13 @@
 #' @param pops Drosophila populations
 #' @param recomb group genes according to recombination values (must specify number of bins)
 #' @param bins number of recombination bins to compute (mandatory if recomb = TRUE)
+#'
 #' @return None
+#'
 #' @examples
+#'
 #' @import utils
+#'
 #' @export
 #' 
 

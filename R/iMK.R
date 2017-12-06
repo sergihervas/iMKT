@@ -18,7 +18,8 @@
 #' daf<-read.table("/home/jmurga/MKT/Test/data.daf.txt",header=TRUE)
 #' div<-read.table("/home/jmurga/MKT/Test/data.divergence.txt",header=TRUE)
 #' #Run the function!
-#' iMK(daf,div)
+#' iMK(daf,div,0,1)
+#'
 #' @import knitr 
 #' @import utils
 #' @import stats
@@ -29,8 +30,8 @@
 #' @import ggplot2
 #' @importFrom ggthemes theme_foundation
 #' @importFrom cowplot plot_grid
+#'
 #' @export
-#' 
 
 iMK <- function(daf, divergence, xlow, xhigh, seed) {
   
@@ -46,15 +47,15 @@ iMK <- function(daf, divergence, xlow, xhigh, seed) {
   }
   
   # Create MKT table standard
-  mkt_table_standard <- data.frame(Polymorphism = c(sum(daf$pS), sum(daf$pN)), 
-                                   Divergence=c(divergence$D4f,divergence$D0f),
+  mkt_table_standard <- data.frame(Polymorphism = c(sum(daf$P0), sum(daf$Pi)), 
+                                   Divergence=c(divergence$D0,divergence$Di),
                                    row.names = c("Neutral class","Selected class"))
   
   # Total number of sites analyzed 
-  mi <- as.numeric(divergence$m0f)
-  m0 <- as.numeric(divergence$m4f)
+  mi <- as.numeric(divergence$mi)
+  m0 <- as.numeric(divergence$m0)
   
-  # names(daf) <- c("daf","pN","pS") Borrar? Se supone que se chequea que asi sea el header no?
+  # names(daf) <- c("daf","Pi","P0") Borrar? Se supone que se chequea que asi sea el header no?
   
   # Run asymptotic MK and retrieve alphas 
   asymptoticMK_table <- asymptoticMK(daf, divergence, xlow, xhigh)
@@ -63,13 +64,13 @@ iMK <- function(daf, divergence, xlow, xhigh, seed) {
   alpha_CI_low <- asymptoticMK_table$CI_low 
   
   # Estimate the relative proportion of non-synonymous and synonymous substitutions
-  daf$pN <- as.numeric(daf$pN) # Esto va aqui? En principio si el whatchdog (check data) lo comprueba ya ni hace falta
-  daf$pS <- as.numeric(daf$pS)
-  daf$N <- daf$pN/sum(daf$pN)   
-  daf$S <- daf$pS/sum(daf$pS)
+  daf$Pi <- as.numeric(daf$Pi) # Esto va aqui? En principio si el whatchdog (check data) lo comprueba ya ni hace falta
+  daf$P0 <- as.numeric(daf$P0)
+  daf$N <- daf$Pi/sum(daf$Pi)   
+  daf$S <- daf$P0/sum(daf$P0)
    
   ## Estimate alpha for each DAF category
-  daf$alpha <- 1-((mkt_table_standard[1,2]*daf$pN)/(mkt_table_standard[2,2]*daf$pS))
+  daf$alpha <- 1-((mkt_table_standard[1,2]*daf$Pi)/(mkt_table_standard[2,2]*daf$P0))
   
   ## Estimate the synonymous and non-synonymous ratio
   synonymous_ratio <- mkt_table_standard[1,1]/m0    
@@ -108,12 +109,12 @@ iMK <- function(daf, divergence, xlow, xhigh, seed) {
   plotfraction
   
   # DAF graph
-  daf_graph <- daf[c("daf","pN","pS")]
+  daf_graph <- daf[c("daf","Pi","P0")]
   daf_graph<-melt(daf_graph,id.vars = "daf")
   
   plotdaf <-  ggplot(daf_graph) +
     geom_point(aes_string(x="daf", y="value", color="variable"), size=3) +
-    theme_Publication() + scale_color_manual(values =  c("#386cb0","#fdb462"), name ="Type", breaks=c("pN", "pS"), labels=c("Non-synonymous", "Synonymous")) +
+    theme_Publication() + scale_color_manual(values =  c("#386cb0","#fdb462"), name ="Type", breaks=c("Pi", "P0"), labels=c("Non-synonymous", "Synonymous")) +
     xlab("Derived Allele Frequency") + ylab("Number of Sites")
   plotdaf
  
@@ -163,6 +164,8 @@ iMK <- function(daf, divergence, xlow, xhigh, seed) {
   output <- list(asymptoticMK_table, fraction, plots_iMKT)
   names(output) <- c("Asymptotic MK table", "Fractions of sites", "Graphs")
 
-  invisible(output) # return(output) 
+  invisible(output)
+  # return(output)
   
 }
+

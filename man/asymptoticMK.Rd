@@ -22,7 +22,7 @@ None
 }
 \description{
 \code{asymptoticMK} developed in Messer, P. W. & Petrov, D. A. Frequent adaptation and the McDonald-Kreitman test. Proceedings of the National Academy of Sciences 110, 8615–8620 (2013).
-Directly retrieved from: https://github.com/MesserLab/asymptoticMK
+Directly retrieved from: httP0://github.com/MesserLab/asymptoticMK
 Load your Derived Allele Frequency file (remember you can use 10 or 20 categories) and Divergence file (it contains de divergents and analysed sites in the synonimous and non synonimous categories)
 }
 \details{

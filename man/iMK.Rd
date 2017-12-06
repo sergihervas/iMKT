@@ -30,5 +30,6 @@ EXPLANATION
 daf<-read.table("/home/jmurga/MKT/Test/data.daf.txt",header=TRUE)
 div<-read.table("/home/jmurga/MKT/Test/data.divergence.txt",header=TRUE)
 #Run the function!
-iMK(daf,div)
+iMK(daf,div,0,1)
+
 }

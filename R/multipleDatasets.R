@@ -7,6 +7,7 @@
 #' @param test divergence file
 #' @param fullanalyis TRUE indicates execute the analysis for all the files in a folder 
 #' @param idlist List of genes or datasets to analyze
+#'
 #' @return None
 #'
 #' @examples
@@ -20,8 +21,8 @@
 #' @import ggplot2
 #' @importFrom ggthemes theme_foundation
 #' @importFrom cowplot plot_grid
+#'
 #' @export
-#' 
 
 multipleDatasets<-function(directory="Directory",test=c("DGRP","FWW","ALL"),fullanalyis=TRUE/FALSE,idlist="listfile"){
   

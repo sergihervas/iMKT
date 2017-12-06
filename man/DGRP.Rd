@@ -5,12 +5,15 @@
 \title{mkt_DGRP}
 \usage{
 DGRP(daf = "Data frame containing the DAF, Pn and Ps",
-  divergence = "Data frame that contains sites analyzed and divergencen 0fold and 4fold")
+  divergence = "Data frame that contains sites analyzed and divergencen 0fold and 4fold",
+  list_cutoffs = c(0, 0.05, 0.2))
 }
 \arguments{
 \item{daf}{Derived Alelle Frequency File}
 
 \item{divergence}{Divergence and analyzed sites}
+
+\item{list_cutoffs}{Default cutoff c(0, 0.05, 0.2)}
 }
 \value{
 MKT corrected by the DGRP method

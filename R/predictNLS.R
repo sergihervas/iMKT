@@ -16,8 +16,8 @@
 #' @import stats
 #' @import knitr 
 #' @import MASS
+#'
 #' @export
-#' 
 
 
 # Get a CI using Monte Carlo simulation based upon a fitted model.  This is necessary because

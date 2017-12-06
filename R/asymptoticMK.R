@@ -1,11 +1,11 @@
 #' @title asymptoticMK
 #' 
 #' @description \code{asymptoticMK} developed in Messer, P. W. & Petrov, D. A. Frequent adaptation and the McDonald-Kreitman test. Proceedings of the National Academy of Sciences 110, 8615–8620 (2013).
-#' Directly retrieved from: https://github.com/MesserLab/asymptoticMK
+#' Directly retrieved from: httP0://github.com/MesserLab/asymptoticMK
 #'Load your Derived Allele Frequency file (remember you can use 10 or 20 categories) and Divergence file (it contains de divergents and analysed sites in the synonimous and non synonimous categories)
 #'
 #' @details The standard McDonald and Kreitman test (MKT) is used to detect the signature of selection at the molecular level. The MKT compares the amount of variation within a species (polymorphism, P) to the divergence (D) between species at two types of sites, one of which is putatively netral and used as the reference to detect selection at the other type of site. In the standard MKT, these sites are synonymous (putatively neutral, 0) and non-synonymous sites (selected sites, i) in a coding region. Under strict neutrality, the ratio of the number of selected and neutral polymorphic sites (Pi/P0) is equal to the ratio of the number of selected and neutral divergence sites (Di/D0).
-# The null hypothesis of neutrality is rejected in a MKT when Di/D0 > Pi/P0. The excess of divergence relative to polymorphism for class i, is interpreted as adaptive selection for a subset of sites i. The fraction of adaptive fixations, α, is estimated from 1-(PN/PS)(Ds/Dn). The significance of the test can be assesed with a Fisher exact test.
+# The null hypothesis of neutrality is rejected in a MKT when Di/D0 > Pi/P0. The excess of divergence relative to polymorphism for class i, is interpreted as adaptive selection for a subset of sites i. The fraction of adaptive fixations, α, is estimated from 1-(Pi/P0)(Ds/Dn). The significance of the test can be assesed with a Fisher exact test.
 #'
 #' @param daf daf file
 #' @param divergence div file
@@ -24,6 +24,7 @@
 #' @import stats
 #' @import MASS
 #' @import nls2
+#'
 #' @export
 
 ## only fits exponential model, depends on fitMKmodel and predictNLS
@@ -31,7 +32,7 @@
 
 asymptoticMK <- function(daf, divergence, xlow, xhigh, seed) {
   
-  ## check data: if there is an error, watchdog stops computation
+  ## check data: if there is an error, watchdog stoP0 computation
   check <- check_input(daf, divergence, xlow, xhigh)
   if(check$data == FALSE) {
     stop(check$print_errors) }
@@ -44,14 +45,14 @@ asymptoticMK <- function(daf, divergence, xlow, xhigh, seed) {
   
   ## parse the data from argument x
   f <- daf$daf #derived alelle frequencies
-  p <- daf$pN #non-synonymous polymorphism 
-  p0 <- daf$pS #synonymous polymorphism
+  p <- daf$Pi #non-synonymous polymorphism 
+  p0 <- daf$P0 #synonymous polymorphism
   
   ## parse the data from argument y
-  m <- divergence$m0f #number of non-synonymous analyzed positions   
-  m0 <- divergence$m4f ##number of synonymous analyzed positions
-  d <- divergence$D0f #non-synonymous divergence
-  d0 <- divergence$D4f #synonymous divergence
+  m <- divergence$mi #number of non-synonymous analyzed positions   
+  m0 <- divergence$m0 ##number of synonymous analyzed positions
+  d <- divergence$Di #non-synonymous divergence
+  d0 <- divergence$D0 #synonymous divergence
   
   ## compute alpha values and trim
   alpha <- 1 - (d0/d) * (p/p0)
@@ -91,4 +92,3 @@ asymptoticMK <- function(daf, divergence, xlow, xhigh, seed) {
   result_df <- data.frame(model="exponential", a=const_a, b=const_b, c=const_c, alpha_asymptotic=alpha_1_est, CI_low=ci_pred[6], CI_high=ci_pred[7], alpha_original=alpha_nonasymp, row.names=NULL)
   return(result_df)
 }
-

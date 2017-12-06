@@ -65,7 +65,7 @@
 		- ~~Add a variable to check file list (Jesus)~~
 		- Check Pre-allocate and fill’ (Jesus: Marta check the function pohfavó)
 	- ~~Assymptotic: done (check variable and tables names)~~
-	- iMK (Marta **in progress**)
+	- ~~iMK (Marta)~~
 	- ~~Retrieve information by gene or genelist from PopFly and PopHuman (Jesus)~~
 		- ~~Just need a folder to check the URLs and the format output (Jesus)~~
 			- http://popfly.uab.cat/files/genes/GenesData_ALL.tab
@@ -79,7 +79,7 @@
 
 
 - Update sample data (Marta, Jesus)
-- Your input files x has the following(s) errors: x$P0 has one o more 0 values, cannot compute asymptotic. Returning results with NaN
+- ~~Your input files x has the following(s) errors: x$P0 has one o more 0 values, cannot compute asymptotic. Returning results with NaN~~
 - Example tutorial with sample data (Marta, Jesus)
 
 - Implement GUI through web-server (with Django) (Ask Esteve for help?)  
@@ -87,4 +87,4 @@
 ### Beta Tests
 - Check inputs works with check_input(...) (Marta, Jesus)
 - Check functions independently. ~~Error in DGRP (Marta, Jesus)~~
-- Review tryCatch({...}) as proper error (Jesus)
+- ~~Review tryCatch({...}) as proper error (Jesus)~~

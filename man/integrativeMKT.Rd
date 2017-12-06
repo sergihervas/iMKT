@@ -32,5 +32,5 @@ Load your Derived Allele Frequency file (remember you can use 10 or 20 categorie
 daf<-read.table("/home/jmurga/MKT/Test/data.daf.txt",header=TRUE)
 div<-read.table("/home/jmurga/MKT/Test/data.divergence.txt",header=TRUE)
 #Run the function!
-integrativeMKT(daf,div)
+integrativeMKT(daf,div,0,1)
 }

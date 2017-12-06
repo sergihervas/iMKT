@@ -28,3 +28,6 @@ Extract a list of genes from PopFly
 Date = 30/11/2016
 Author = Sergi Hervas, Jesús Murga, Marta Coronado
 }
+\examples{
+
+}

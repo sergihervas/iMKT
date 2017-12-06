@@ -15,9 +15,9 @@
 #' @import gridExtra
 #' @import ggplot2
 #' @importFrom ggthemes theme_foundation
-
+#'
 #' @export
-#' 
+
 theme_Publication <- function(base_size=14, base_family="sans") {
   # library('grid')
   # library('ggthemes')

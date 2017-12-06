@@ -19,7 +19,7 @@
 #' daf<-read.table("/home/jmurga/MKT/Test/data.daf.txt",header=TRUE)
 #' div<-read.table("/home/jmurga/MKT/Test/data.divergence.txt",header=TRUE)
 #' #Run the function!
-#' integrativeMKT(daf,div)
+#' integrativeMKT(daf,div,0,1)
 #' @import knitr 
 #' @import utils
 #' @import stats
@@ -30,8 +30,8 @@
 #' @import ggplot2
 #' @importFrom ggthemes theme_foundation
 #' @importFrom cowplot plot_grid
+#'
 #' @export
-#' 
 
 
 integrativeMKT <-  function(daf, divergence, xlow, xhigh, seed) {

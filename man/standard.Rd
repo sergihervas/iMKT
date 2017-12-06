@@ -4,7 +4,7 @@
 \alias{standard}
 \title{mkt_standard}
 \usage{
-standard(daf = "Data frame containing the DAF, Pn and Ps",
+standard(daf = "Data frame containing the DAF, Pi and P0",
   divergence = "Data frame that contains sites analyzed and divergencen 0fold and 4fold")
 }
 \arguments{

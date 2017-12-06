@@ -10,6 +10,7 @@
 #'
 #' @param daf Derived Alelle Frequency File
 #' @param divergence Divergence and analyzed sites
+#' @param list_cutoffs Default cutoff c(0, 0.05, 0.2)
 #' @return MKT corrected by the DGRP method
 #'
 #' @examples
@@ -38,7 +39,7 @@
 ####################################################
 
 DGRP <- function(daf = "Data frame containing the DAF, Pn and Ps", 
-                 divergence = "Data frame that contains sites analyzed and divergencen 0fold and 4fold") {
+                 divergence = "Data frame that contains sites analyzed and divergencen 0fold and 4fold",list_cutoffs=c(0, 0.05, 0.2)) {
   
   # Shows a message when using the function
   packageStartupMessage("MKT corrected by the DGRP method")
@@ -48,22 +49,21 @@ DGRP <- function(daf = "Data frame containing the DAF, Pn and Ps",
   
   mkt_tables <-  list()
   fractions <- data.frame(row.names = c("d","f","b"))
-  list_cutoffs <- c(0, 0.05, 0.2)
+  # list_cutoffs <- c(0, 0.05, 0.2)
   
   for (cutoff in list_cutoffs) {
     
     daf_below_cutoff <- daf[daf$daf <= cutoff, ] #below DAF
     daf_above_cutoff <- daf[daf$daf > cutoff, ] #over DAF
     
-    P0 <- sum(daf$pS) 
-    Pi <- sum(daf$pN) 
-    
+    P0 <- sum(daf$Pi) 
+    Pi <- sum(daf$P0) 
     #Create MKT table 
-    mkt_table_standard <- data.frame(Polymorphism = c(sum(daf$pS), sum(daf$pN)), Divergence=c(divergence$D4f,divergence$D0f),row.names = c("Neutral class","Selected class"))
+    mkt_table_standard <- data.frame(Polymorphism = c(sum(daf$P0), sum(daf$Pi)), Divergence=c(divergence$D0,divergence$Di),row.names = c("Neutral class","Selected class"))
+
+    mkt_table <- data.frame(`DAF below cutoff` = c(sum(daf_below_cutoff$P0), sum(daf_below_cutoff$Pi)), `DAF above cutoff`=c(sum(daf_above_cutoff$P0), sum(daf_above_cutoff$Pi)),row.names = c("Neutral class","Selected class"))
     
-    mkt_table <- data.frame(`DAF below cutoff` = c(sum(daf_below_cutoff$pS), sum(daf_below_cutoff$pN)), `DAF above cutoff`=c(sum(daf_above_cutoff$pS), sum(daf_above_cutoff$pN)),row.names = c("Neutral class","Selected class"))
-    
-    f_neutral <- mkt_table[1,1]/sum(daf$pS)
+    f_neutral <- mkt_table[1,1]/sum(daf$P0)
     Pi_neutral_below_cutoff <- Pi * f_neutral
     
     Pi_wd <- mkt_table[2,1] - Pi_neutral_below_cutoff
@@ -74,21 +74,21 @@ DGRP <- function(daf = "Data frame containing the DAF, Pn and Ps",
     alpha <- 1-((Pi_neutral/P0)*(mkt_table_standard[1,2]/mkt_table_standard[2,2]))
     
     # Estimation of b: weakly deleterious
-    b <- (Pi_wd/P0)*(divergence$m4f/divergence$m0f)
+    b <- (Pi_wd/P0)*(divergence$m0/divergence$mi)
     
     # ??????? Estimation of y: recently neutral sites
-    y <- ((Pi_neutral/P0)-(mkt_table_standard[2,2]/mkt_table_standard[1,2]))*(divergence$m4f/divergence$m0f)
+    y <- ((Pi_neutral/P0)-(mkt_table_standard[2,2]/mkt_table_standard[1,2]))*(divergence$m0/divergence$mi)
     
     # Estimation of f: neutral sites
-    f <- (divergence$m4f*Pi_neutral)/(as.numeric(divergence$m0f)*as.numeric(P0))
+    f <- (divergence$m0*Pi_neutral)/(as.numeric(divergence$mi)*as.numeric(P0))
     
     # d, strongly deleterious sites
     d <- 1-(f+b)
     
     # Fishers exact test p-value from the MKT
-    m <- matrix(c(P0,Pi_neutral,divergence$D4f,divergence$D0f), ncol=2)
+    m <- matrix(c(P0,Pi_neutral,divergence$D0,divergence$Di), ncol=2)
     pvalue <- fisher.test(m)$p.value
-
+    
     # Fractions graph
     fraction <-data.frame(c(d,f,b))
     names(fraction) <- cutoff
@@ -127,8 +127,8 @@ DGRP <- function(daf = "Data frame containing the DAF, Pn and Ps",
   list_output <-list(output,plot,mkt_tables, fractions)
   names(list_output) <- c("Results","Graph", "MKT tables","Fractions")
   
-
- 
+  
+  
   return(list_output)
 }
 

@@ -4,7 +4,7 @@
 \alias{check_input}
 \title{Error handling to compute correctly each MKT type. ¿mix between Messer & Haller? Preguntar Sergi
 Date = 30/11/2016
-' Author = Sergi Hervas, Jesús Murga}
+Author = Sergi Hervas, Jesús Murga}
 \usage{
 check_input(daf, divergence, xlow, xhigh)
 }
@@ -23,5 +23,8 @@ None
 \description{
 Error handling to compute correctly each MKT type. ¿mix between Messer & Haller? Preguntar Sergi
 Date = 30/11/2016
-' Author = Sergi Hervas, Jesús Murga
+Author = Sergi Hervas, Jesús Murga
+}
+\examples{
+
 }
