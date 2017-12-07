@@ -14,10 +14,10 @@
 #'
 #' @examples 
 #' #Load your Derived Allele Frequency file and Divergence file
-#' daf<-read.table("/home/jmurga/MKT/Test/data.daf.txt",header=TRUE)
-#' div<-read.table("/home/jmurga/MKT/Test/data.divergence.txt",header=TRUE)
+#' #daf<-read.table("/home/jmurga/MKT/Test/data.daf.txt",header=TRUE)
+#' #div<-read.table("/home/jmurga/MKT/Test/data.divergence.txt",header=TRUE)
 #' #Run the function!
-#' integrativeMKT(daf,div,0,1)
+#' #integrativeMKT(daf,div,0,1)
 #'
 #' @import knitr 
 #' @import utils
@@ -33,25 +33,30 @@
 #' @export
 
 
-integrativeMKT <-  function(daf, divergence, xlow, xhigh, seed) {
-  # Print errors if data not correct
-  check<-check_input(daf, divergence, 0, 1)
-  if(check$data==FALSE)
-     stop(check$print_errors)
+integrativeMKT <- function(daf, divergence, xlow, xhigh, seed) {
+  
+  ## Print errors if data is not correct
+  check <- check_input(daf, divergence, 0, 1)
+  if(check$data == FALSE){
+     stop(check$print_errors) }
 
   fullResutls<-list()
+  
   ## standard MKT
   fullResutls[["standardMKT"]] <- standard(daf,divergence)
+  
   # FWW MKT
   fullResutls[["FWW"]] <- FWW(daf,divergence)
+  
   ## DGRP MKT
   fullResutls[["DGRP"]] <- DGRP(daf,divergence)
+  
   ## Asymptotic MKT
   fullResutls[["Asymptotic"]] <- asymptoticMK(daf,divergence,xlow,xhigh)
+  
   ## iMK
   fullResutls[["iMK"]] <- iMK(daf,divergence,xlow,xhigh)
   
   return(fullResutls)
-  
 }
 

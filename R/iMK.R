@@ -6,7 +6,7 @@
 #'
 #' @details put some details here
 #'
-#' @param daf dad file
+#' @param daf daf file
 #' @param divergence div file
 #' @param xlow fit curve
 #' @param xhigh curv
@@ -16,10 +16,10 @@
 #'
 #' @examples
 #' #Load your Derived Allele Frequency file and Divergence file
-#' daf<-read.table("/home/jmurga/MKT/Test/data.daf.txt",header=TRUE)
-#' div<-read.table("/home/jmurga/MKT/Test/data.divergence.txt",header=TRUE)
+#' #daf<-read.table("/home/jmurga/MKT/Test/data.daf.txt",header=TRUE)
+#' #div<-read.table("/home/jmurga/MKT/Test/data.divergence.txt",header=TRUE)
 #' #Run the function!
-#' iMK(daf,div,0,1)
+#' #iMK(daf,div,0,1)
 #'
 #' @import knitr 
 #' @import utils

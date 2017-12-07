@@ -14,11 +14,11 @@
 #' @return MKT corrected by the DGRP method
 #'
 #' @examples
-#' #Load your Derived Allele Frequency file and Divergence file
-#' daf<-read.table("/home/jmurga/MKT/Test/data.daf.txt",header=TRUE)
-#' div<-read.table("/home/jmurga/MKT/Test/data.divergence.txt",header=TRUE)
-#' #Run the function!
-#' DGRP(daf,div)
+#' ## Load Derived Allele Frequency and Divergence files
+#' #daf
+#' #div <- get("mydivergencedata.Rdata")
+#' ## Run the function
+#' #DGRP(daf, div)
 #'
 #' @import knitr 
 #' @import utils

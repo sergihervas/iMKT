@@ -28,9 +28,9 @@ put description here
 }
 \examples{
 #Load your Derived Allele Frequency file and Divergence file
-daf<-read.table("/home/jmurga/MKT/Test/data.daf.txt",header=TRUE)
-div<-read.table("/home/jmurga/MKT/Test/data.divergence.txt",header=TRUE)
+#daf<-read.table("/home/jmurga/MKT/Test/data.daf.txt",header=TRUE)
+#div<-read.table("/home/jmurga/MKT/Test/data.divergence.txt",header=TRUE)
 #Run the function!
-integrativeMKT(daf,div,0,1)
+#integrativeMKT(daf,div,0,1)
 
 }

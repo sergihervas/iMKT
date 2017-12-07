@@ -9,7 +9,7 @@ Author = Sergi Hervas, Marta Coronado}
 iMK(daf, divergence, xlow, xhigh, seed)
 }
 \arguments{
-\item{daf}{dad file}
+\item{daf}{daf file}
 
 \item{divergence}{div file}
 
@@ -30,9 +30,9 @@ put some details here
 }
 \examples{
 #Load your Derived Allele Frequency file and Divergence file
-daf<-read.table("/home/jmurga/MKT/Test/data.daf.txt",header=TRUE)
-div<-read.table("/home/jmurga/MKT/Test/data.divergence.txt",header=TRUE)
+#daf<-read.table("/home/jmurga/MKT/Test/data.daf.txt",header=TRUE)
+#div<-read.table("/home/jmurga/MKT/Test/data.divergence.txt",header=TRUE)
 #Run the function!
-iMK(daf,div,0,1)
+#iMK(daf,div,0,1)
 
 }

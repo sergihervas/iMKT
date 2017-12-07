@@ -18,5 +18,4 @@
 #' @format A data frame with x rows and y variables
 
 #### UPDATE DESCRIPTION
-
 "popfly"
