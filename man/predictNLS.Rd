@@ -22,3 +22,9 @@ None
 getting confidence intervals for non-linear models is a complicated business, apparently. Authors thanks to Andrej-Nikolai Spiess (http://www.dr-spiess.de) for this code.
 Directly retrieved from: https://github.com/MesserLab/asymptoticMK
 }
+\details{
+Put details here
+}
+\examples{
+Examples here
+}

@@ -21,3 +21,6 @@ Author = Koundinya Desiraju
 \details{
 Default theme used for plot images. From http://rpubs.com/Koundy/71792
 }
+\examples{
+theme_Publication(14, "sans")
+}

@@ -31,6 +31,6 @@ put some details here
 daf <- mydafdata
 div <- mydivergencedata
 ## Run the function
-#iMK(daf, div, 0, 0.9)
+iMK(daf, div, 0, 0.9)
 
 }

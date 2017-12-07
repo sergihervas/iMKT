@@ -13,7 +13,7 @@ None
 Load PopFly dataset
 }
 \details{
-This function loads PopFly data into the current workspace. Data is stored in a dataframe named PopFlyData.
+This function loads PopFly data (http://popfly.uab.cat/) into the current workspace. Data is stored in a dataframe named PopFlyData.
 }
 \examples{
 loadPopFly()

@@ -25,3 +25,7 @@ None
 \details{
 put a description here
 }
+\examples{
+example here
+
+}

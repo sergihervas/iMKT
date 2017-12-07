@@ -2,7 +2,7 @@
 #'
 #' @description Load PopFly dataset
 #'
-#' @details This function loads PopFly data into the current workspace. Data is stored in a dataframe named PopFlyData.
+#' @details This function loads PopFly data (http://popfly.uab.cat/) into the current workspace. Data is stored in a dataframe named PopFlyData.
 #'
 #' @return None
 #'
@@ -14,7 +14,6 @@
 #' @export
 #' 
 
-## load popfly data
 loadPopFly <- function() {
   PopFlyData <- ""
   cat("Loading PopFly data into your workspace.\nThis process may take some seconds to complete, please be patient.")

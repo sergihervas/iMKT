@@ -1,6 +1,6 @@
-#' @title subsetPopfly
+#' @title subsetPopData
 #'
-#' @description Extract a list of genes from PopFly
+#' @description Perform iMK using a subset of PopFly or PopHuman data defined by custom genes and populations lists 
 #'
 #' @details put details here
 #'
@@ -13,6 +13,10 @@
 #' @return None
 #'
 #' @examples
+#' ## Load PopFly data
+#' loadPopFly()
+#' ## Perform analysis
+#' subsetPopData("PopFly", c("FBgn0053196", "FBgn0000008"),c("RAL","ZI"), F)
 #'
 #' @import utils
 #'
@@ -26,7 +30,7 @@
 
 ### DO NOT REMOVE: ###
   ## test data 
-  ## subsetPopFly("popfly", c("FBgn0053196", "FBgn0000008"),c("RAL","ZI"), F, 3)
+  ## subsetPopData("PopFly", c("FBgn0053196", "FBgn0000008"),c("RAL","ZI"), F, 3)
   ## To DO:
     ## if predictNLS fails, error handling
     ## if no data for that population / gene, notify
@@ -34,16 +38,21 @@
     ## recomb = T
 ### END OF DO NOT REMOVE ###
 
-subsetPopFly <- function(data=c("popfly","pophuman"), genes=c("gene1","gene2","..."), pops=c("pop1","pop2","..."), recomb=TRUE/FALSE, bins){ 
+subsetPopData <- function(data=c("PopFly","PopHuman"), genes=c("gene1","gene2","..."), pops=c("pop1","pop2","..."), recomb=TRUE/FALSE, bins){ 
   
-  if (data == "popfly"){
+  if (data == "PopFly"){
     if (exists("PopFlyData") == TRUE) {
       data <- PopFlyData
     } else {
-      stop("Load PopFly data, with the command loadPopFly(), before using this function.")
-    }
-  }
-
+      stop("Load PopFly data, with the command loadPopFly(), before using this function.") }}
+  
+  if (data == "PopHuman"){
+    if (exists("PopHumanData") == TRUE) {
+      data <- PopHumanData
+    } else {
+      stop("Load PopHuman data, with the command loadPopHuman(), before using this function.") }}
+  
+  
   ## CHECK INPUT VARIABLES, ERROR HANDLING ##
   ## numer of arguments
   if (nargs() != 4 && nargs() != 5) {
