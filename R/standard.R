@@ -16,7 +16,7 @@
 #' daf <- mydafdata
 #' div <- mydivergencedata
 #' ## Run the function
-#' standard(daf, div)
+#' # standard(daf, div)
 #' 
 #' @import knitr 
 #' @import utils

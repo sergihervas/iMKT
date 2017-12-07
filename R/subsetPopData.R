@@ -14,9 +14,9 @@
 #'
 #' @examples
 #' ## Load PopFly data
-#' loadPopFly()
+#' # loadPopFly()
 #' ## Perform analysis
-#' subsetPopData("PopFly", c("FBgn0053196", "FBgn0000008"),c("RAL","ZI"), F)
+#' # subsetPopData("PopFly", c("FBgn0053196", "FBgn0000008"),c("RAL","ZI"), F)
 #'
 #' @import utils
 #'
@@ -30,7 +30,7 @@
 
 ### DO NOT REMOVE: ###
   ## test data 
-  ## subsetPopData("PopFly", c("FBgn0053196", "FBgn0000008"),c("RAL","ZI"), F, 3)
+  ## subsetPopData("PopFly", c("FBgn0053196", "FBgn0000008"),c("RAL","ZI"), F)
   ## To DO:
     ## if predictNLS fails, error handling
     ## if no data for that population / gene, notify
@@ -38,17 +38,17 @@
     ## recomb = T
 ### END OF DO NOT REMOVE ###
 
-subsetPopData <- function(data=c("PopFly","PopHuman"), genes=c("gene1","gene2","..."), pops=c("pop1","pop2","..."), recomb=TRUE/FALSE, bins){ 
+subsetPopData <- function(data=c("PopFly","PopHuman"), genes=c("gene1","gene2","..."), pops=c("pop1","pop2","..."), recomb=TRUE/FALSE, bins=0){ 
   
   if (data == "PopFly"){
     if (exists("PopFlyData") == TRUE) {
-      data <- PopFlyData
+      data <- get("PopFlyData")
     } else {
       stop("Load PopFly data, with the command loadPopFly(), before using this function.") }}
   
-  if (data == "PopHuman"){
+  else if (data == "PopHuman"){
     if (exists("PopHumanData") == TRUE) {
-      data <- PopHumanData
+      data <- get("PopHumanData")
     } else {
       stop("Load PopHuman data, with the command loadPopHuman(), before using this function.") }}
   
@@ -56,7 +56,7 @@ subsetPopData <- function(data=c("PopFly","PopHuman"), genes=c("gene1","gene2","
   ## CHECK INPUT VARIABLES, ERROR HANDLING ##
   ## numer of arguments
   if (nargs() != 4 && nargs() != 5) {
-    stop("You must specify 3 arguments at least: genes, pops, and recomb (T/F)") }
+    stop("You must specify 4 arguments at least: data, genes, pops, and recomb (T/F)") }
 
   ## argument genes
   if (length(genes) == 0 || genes == "" || !is.character(genes)) {

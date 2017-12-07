@@ -17,7 +17,7 @@
 #' daf <- mydafdata
 #' div <- mydivergencedata
 #' ## Run the function
-#' iMK(daf, div, 0, 0.9)
+#' # iMK(daf, div, 0, 0.9)
 #'
 #' @import knitr 
 #' @import utils
@@ -35,8 +35,8 @@
 iMK <- function(daf, divergence, xlow, xhigh, seed) {
   
   check <- check_input(daf, divergence, xlow, xhigh)
-  if (check$data==FALSE)
-    stop (check$print_errors)
+  if (check$data == FALSE) {
+    stop (check$print_errors) }
   
   
   if(missing(seed)) {
@@ -53,8 +53,6 @@ iMK <- function(daf, divergence, xlow, xhigh, seed) {
   # Total number of sites analyzed 
   mi <- as.numeric(divergence$mi)
   m0 <- as.numeric(divergence$m0)
-  
-  # names(daf) <- c("daf","Pi","P0") Borrar? Se supone que se chequea que asi sea el header no?
   
   # Run asymptotic MK and retrieve alphas 
   asymptoticMK_table <- asymptoticMK(daf, divergence, xlow, xhigh)
@@ -81,7 +79,7 @@ iMK <- function(daf, divergence, xlow, xhigh, seed) {
   ## Estimate the fraction of strongly deleleterious sites (d)
   d <- 1-f   
   
-  daf <- na.omit(daf); daf <- droplevels(daf) # UY ??? esto para que es? es necesario?
+  daf <- na.omit(daf); daf <- droplevels(daf)
   
   ## Estimate the fraction of weakly deleterious sites (b)
   wd <- 0
@@ -89,13 +87,10 @@ iMK <- function(daf, divergence, xlow, xhigh, seed) {
     row <- daf[i,]
     if (row$alpha < alpha_CI_low) {
       wd <- wd+((alpha_asymptotic-row$alpha)*row$N)
-      } 
-    else { 
-      break
-      }
+    } else { break }
     }
   
-  wd <- wd/(alpha_asymptotic-min(daf$alpha,na.rm=T)) # na.rm por que?
+  wd <- wd/(alpha_asymptotic-min(daf$alpha,na.rm=T))
   b <- wd*f
   
   # Re-estimate the truly number of neutral sites, removing the slightly deleterious 
@@ -109,16 +104,15 @@ iMK <- function(daf, divergence, xlow, xhigh, seed) {
   
   # DAF graph
   daf_graph <- daf[c("daf","Pi","P0")]
-  daf_graph<-melt(daf_graph,id.vars = "daf")
+  daf_graph <- melt(daf_graph,id.vars = "daf")
   
-  plotdaf <-  ggplot(daf_graph) +
+  plotdaf <- ggplot(daf_graph) +
     geom_point(aes_string(x="daf", y="value", color="variable"), size=3) +
     theme_Publication() + scale_color_manual(values =  c("#386cb0","#fdb462"), name ="Type", breaks=c("Pi", "P0"), labels=c("Non-synonymous", "Synonymous")) +
     xlab("Derived Allele Frequency") + ylab("Number of Sites")
   plotdaf
  
   # Alpha graph
- 
   y1 <- function(daf) {
     asymptoticMK_table$a+asymptoticMK_table$b*exp(-asymptoticMK_table$c*daf)
   }
@@ -151,20 +145,17 @@ iMK <- function(daf, divergence, xlow, xhigh, seed) {
     annotate("text",x=xhigh-0.2, y=asymptoticMK_table$alpha_original-0.1, label=paste0('alpha [standard] == ', round(asymptoticMK_table$alpha_original,digits = 3)), parse=T, color="#386cb0", size=4) 
   plot_alpha
   
+  # Fraction Graph
   plots_iMKT <- plot_grid(plot_alpha,plotdaf, plotfraction, nrow = 3,  labels = c("A", "B", "C"), rel_heights = c(2, 2, 1))
   
   ## iMKT output
   fraction <- fraction[c("Type","Fraction")]
   asymptoticMK_table[2:8] <- round(asymptoticMK_table[2:8],4)
-    
-  #cat("Results:\n") # delete
-  #print(asymptoticMK_table, control=NULL) # delete
   
   output <- list(asymptoticMK_table, fraction, plots_iMKT)
   names(output) <- c("Asymptotic MK table", "Fractions of sites", "Graphs")
 
   invisible(output)
   # return(output)
-  
 }
 

@@ -11,7 +11,6 @@
 #' @param nsim nsim montecarlo
 #' @return None
 #'
-#' @examples Examples here
 #' @import utils
 #' @import stats
 #' @import knitr 

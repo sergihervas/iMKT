@@ -11,7 +11,7 @@
 #' @return plot theme
 #'
 #' @examples
-#' theme_Publication(14, "sans")
+#' # theme_Publication(14, "sans")
 #' @import grid 
 #' @import gridExtra
 #' @import ggplot2

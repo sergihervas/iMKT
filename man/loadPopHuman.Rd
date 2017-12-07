@@ -16,6 +16,6 @@ Load PopHuman dataset
 This function loads PopHuman data (http://pophuman.uab.cat/) into the current workspace. Data is stored in a dataframe named PopFlyData.
 }
 \examples{
-loadPopFly()
+# loadPopHuman()
 
 }

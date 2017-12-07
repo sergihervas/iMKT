@@ -33,6 +33,6 @@ The standard McDonald and Kreitman test (MKT) is used to detect the signature of
 daf <- mydafdata
 div <- mydivergencedata
 ## Run the function
-asymptoticMK(daf, div, xlow=0, xhigh=0.9)
+# asymptoticMK(daf, div, xlow=0, xhigh=0.9)
 
 }

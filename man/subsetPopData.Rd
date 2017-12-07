@@ -5,7 +5,7 @@
 \title{subsetPopData}
 \usage{
 subsetPopData(data = c("PopFly", "PopHuman"), genes = c("gene1", "gene2",
-  "..."), pops = c("pop1", "pop2", "..."), recomb = TRUE/FALSE, bins)
+  "..."), pops = c("pop1", "pop2", "..."), recomb = TRUE/FALSE, bins = 0)
 }
 \arguments{
 \item{data}{input PopFly or PopHuman data}
@@ -29,8 +29,8 @@ put details here
 }
 \examples{
 ## Load PopFly data
-loadPopFly()
+# loadPopFly()
 ## Perform analysis
-subsetPopData("PopFly", c("FBgn0053196", "FBgn0000008"),c("RAL","ZI"), F)
+# subsetPopData("PopFly", c("FBgn0053196", "FBgn0000008"),c("RAL","ZI"), F)
 
 }

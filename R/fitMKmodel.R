@@ -11,8 +11,6 @@
 #'
 #' @return None
 #'
-#' @examples
-#'
 #' @export
  
 fitMKmodel <- function(alpha_trimmed, f_trimmed, res) {

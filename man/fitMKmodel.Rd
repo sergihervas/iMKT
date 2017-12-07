@@ -23,6 +23,3 @@ Directly retrieved from: https://github.com/MesserLab/asymptoticMK
 \details{
 Put details here
 }
-\examples{
-
-}

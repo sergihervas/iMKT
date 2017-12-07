@@ -17,7 +17,7 @@
 #' daf <- mydafdata
 #' div <- mydivergencedata
 #' ## Run the function
-#' integrativeMKT(daf, div, 0, 0.9)
+#' # integrativeMKT(daf, div, 0, 0.9)
 #'
 #' @import knitr 
 #' @import utils

@@ -17,7 +17,7 @@
 #' daf <- mydafdata
 #' div <- mydivergencedata
 #' ## Run the function
-#' FWW(daf, div)
+#' # FWW(daf, div)
 #'
 #' @import knitr 
 #' @import utils

@@ -20,7 +20,7 @@
 #' daf <- mydafdata
 #' div <- mydivergencedata
 #' ## Run the function
-#' asymptoticMK(daf, div, xlow=0, xhigh=0.9)
+#' # asymptoticMK(daf, div, xlow=0, xhigh=0.9)
 #'
 #' @import utils
 #' @import stats

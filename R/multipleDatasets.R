@@ -11,7 +11,8 @@
 #'
 #' @return None
 #'
-#' @examples example here
+#' @examples 
+#' ##example here
 #' 
 #' @import knitr 
 #' @import utils

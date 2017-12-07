@@ -7,7 +7,7 @@
 #' @return None
 #'
 #' @examples
-#' loadPopFly()
+#' # loadPopFly()
 #' 
 #' @import utils
 #'
@@ -18,5 +18,5 @@ loadPopFly <- function() {
   PopFlyData <- ""
   cat("Loading PopFly data into your workspace.\nThis process may take some seconds to complete, please be patient.")
   x <- read.table("http://popfly.uab.cat/files/genes/GenesData_recomb.tab", header=T)
-  assign("PopFlyData", x, envir = .GlobalEnv)
+  PopFlyData <<- x
 }
