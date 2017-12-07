@@ -59,7 +59,7 @@ else{
       z<-read.table(daf,header = T)
       c<-read.table(divergence,header = T)
       # result<-append(result,)
-      temp<-list("ID"=names[i],"integrativeMKT"=integrativeMKT(z,c))
+      temp<-list("ID"=names[i],"completeMKT"=completeMKT(z,c))
       result[[names[i]]]<-temp
     }
   }

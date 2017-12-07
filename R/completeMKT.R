@@ -1,6 +1,6 @@
-#' @title integrativeMKT
+#' @title completeMKT
 #'
-#' @description \code{itnegrativeMKT()} put details here
+#' @description \code{completeMKT()} put details here
 #'
 #' @details put description here
 #'
@@ -17,7 +17,7 @@
 #' daf <- mydafdata
 #' div <- mydivergencedata
 #' ## Run the function
-#' # integrativeMKT(daf, div, 0, 0.9)
+#' # completeMKT(daf, div, 0, 0.9)
 #'
 #' @import knitr 
 #' @import utils
@@ -33,7 +33,7 @@
 #' @export
 
 
-integrativeMKT <- function(daf, divergence, xlow, xhigh, seed) {
+completeMKT <- function(daf, divergence, xlow, xhigh, seed) {
   
   ## Print errors if data is not correct
   check <- check_input(daf, divergence, 0, 1)
