@@ -13,11 +13,11 @@
 #' @return MKT corrected by the FWW method
 #'
 #' @examples
-#' #Load your Derived Allele Frequency file and Divergence file
-#' #daf<-read.table("/home/jmurga/MKT/Test/data.daf.txt",header=TRUE)
-#' #div<-read.table("/home/jmurga/MKT/Test/data.divergence.txt",header=TRUE)
-#' #Run the function!
-#' #FWW(daf,div)
+#' ## Load your Derived Allele Frequency and Divergence files
+#' daf <- mydafdata
+#' div <- mydivergencedata
+#' ## Run the function
+#' FWW(daf, div)
 #'
 #' @import knitr 
 #' @import utils

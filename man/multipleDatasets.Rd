@@ -5,7 +5,7 @@
 \title{multipleDatasets}
 \usage{
 multipleDatasets(directory = "Directory", test = c("DGRP", "FWW", "ALL"),
-  fullanalyis = TRUE/FALSE, idlist = "listfile")
+  fullanalyis = TRUE/FALSE, idlist = "NA")
 }
 \arguments{
 \item{directory}{dad file}

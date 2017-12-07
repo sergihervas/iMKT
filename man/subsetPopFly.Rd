@@ -4,7 +4,7 @@
 \alias{subsetPopFly}
 \title{subsetPopfly}
 \usage{
-subsetPopFly(data = "popfly or pophuman", genes = c("gene1", "gene2",
+subsetPopFly(data = c("popfly", "pophuman"), genes = c("gene1", "gene2",
   "..."), pops = c("pop1", "pop2", "..."), recomb = TRUE/FALSE, bins)
 }
 \arguments{

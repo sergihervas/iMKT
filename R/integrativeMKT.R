@@ -13,11 +13,11 @@
 #' @return Execute all the MKT extensions
 #'
 #' @examples 
-#' #Load your Derived Allele Frequency file and Divergence file
-#' #daf<-read.table("/home/jmurga/MKT/Test/data.daf.txt",header=TRUE)
-#' #div<-read.table("/home/jmurga/MKT/Test/data.divergence.txt",header=TRUE)
-#' #Run the function!
-#' #integrativeMKT(daf,div,0,1)
+#' ## Load your Derived Allele Frequency and Divergence files
+#' daf <- mydafdata
+#' div <- mydivergencedata
+#' ## Run the function
+#' integrativeMKT(daf, div, 0, 0.9)
 #'
 #' @import knitr 
 #' @import utils

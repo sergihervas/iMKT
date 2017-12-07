@@ -15,10 +15,10 @@
 #'
 #' @examples
 #' ## Load Derived Allele Frequency and Divergence files
-#' #daf
-#' #div <- get("mydivergencedata.Rdata")
+#' daf <- mydafdata
+#' div <- mydivergencedata
 #' ## Run the function
-#' #DGRP(daf, div)
+#' DGRP(daf, div)
 #'
 #' @import knitr 
 #' @import utils

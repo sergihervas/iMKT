@@ -23,9 +23,10 @@ Load your Derived Allele Frequency file (remember you can use 10 or 20 categorie
 The standard McDonald and Kreitman test (MKT) is used to detect the signature of selection at the molecular level. The MKT compares the amount of variation within a species (polymorphism, P) to the divergence (D) between species at two types of sites, one of which is putatively netral and used as the reference to detect selection at the other type of site. In the standard MKT, these sites are synonymous (putatively neutral, 0) and non-synonymous sites (selected sites, i) in a coding region. Under strict neutrality, the ratio of the number of selected and neutral polymorphic sites (Pi/P0) is equal to the ratio of the number of selected and neutral divergence sites (Di/D0).
 }
 \examples{
-#Load your Derived Allele Frequency file and Divergence file
-#daf<-read.table("/home/jmurga/MKT/Test/data.daf.txt",header=TRUE)
-#div<-read.table("/home/jmurga/MKT/Test/data.divergence.txt",header=TRUE)
-#Run the function!
-#standard(daf,div)
+## Load your Derived Allele Frequency and Divergence files
+daf <- mydafdata
+div <- mydivergencedata
+## Run the function
+standard(daf, div)
+
 }

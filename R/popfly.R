@@ -35,9 +35,13 @@
 ### END OF DO NOT REMOVE ###
 
 subsetPopFly <- function(data=c("popfly","pophuman"), genes=c("gene1","gene2","..."), pops=c("pop1","pop2","..."), recomb=TRUE/FALSE, bins){ 
-
+  
   if (data == "popfly"){
-    data <- popfly
+    if (exists("PopFlyData") == TRUE) {
+      data <- PopFlyData
+    } else {
+      stop("Load PopFly data, with the command loadPopFly(), before using this function.")
+    }
   }
 
   ## CHECK INPUT VARIABLES, ERROR HANDLING ##
@@ -127,7 +131,7 @@ subsetPopFly <- function(data=c("popfly","pophuman"), genes=c("gene1","gene2",".
       
       ## PERFORM iMK ##
       out <- iMK(daf, div, 0, 0.9)
-      #print(out)[[1]]
+      print(out)[[1]]
       
     }
   }

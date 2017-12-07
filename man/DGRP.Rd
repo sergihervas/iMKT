@@ -30,9 +30,9 @@ The standard McDonald and Kreitman test (MKT) is used to detect the signature of
 }
 \examples{
 ## Load Derived Allele Frequency and Divergence files
-#daf
-#div <- get("mydivergencedata.Rdata")
+daf <- mydafdata
+div <- mydivergencedata
 ## Run the function
-#DGRP(daf, div)
+DGRP(daf, div)
 
 }

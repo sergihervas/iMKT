@@ -16,9 +16,11 @@
 #' @return None
 #'
 #' @examples
-#' #daf<-read.table("/home/jmurga/MKT/Test/data.daf.txt",header=TRUE)
-#' #div<-read.table("/home/jmurga/MKT/Test/data.divergence.txt",header=TRUE)
-#' #asymptoticMK(daf=daf,divergence=div,xlow=0,xhigh=1)
+#' ## Load Derived Allele Frequemcy and Divergence files
+#' daf <- mydafdata
+#' div <- mydivergencedata
+#' ## Run the function
+#' asymptoticMK(daf, div, xlow=0, xhigh=0.9)
 #'
 #' @import utils
 #' @import stats

@@ -2,9 +2,7 @@
 % Please edit documentation in R/iMK.R
 \name{iMK}
 \alias{iMK}
-\title{iMK
-Date = 30/11/2016
-Author = Sergi Hervas, Marta Coronado}
+\title{iMK}
 \usage{
 iMK(daf, divergence, xlow, xhigh, seed)
 }
@@ -29,10 +27,10 @@ None
 put some details here
 }
 \examples{
-#Load your Derived Allele Frequency file and Divergence file
-#daf<-read.table("/home/jmurga/MKT/Test/data.daf.txt",header=TRUE)
-#div<-read.table("/home/jmurga/MKT/Test/data.divergence.txt",header=TRUE)
-#Run the function!
-#iMK(daf,div,0,1)
+## Load your Derived Allele Frequency and Divergence files
+daf <- mydafdata
+div <- mydivergencedata
+## Run the function
+#iMK(daf, div, 0, 0.9)
 
 }
