@@ -17,6 +17,6 @@
 loadPopHuman <- function() {
   PopHumanData <- ""
   cat("Loading PopHuman data into your workspace.\nThis process may take some seconds to complete, please be patient.")
-  x <- read.table("http://pophuman.uab.cat/files/genes/GenesData_recomb.tab", header=T)
+  x <- read.table("http://pophuman.uab.cat/files/genes/GenesData_ALL.tab", header=T)
   assign("PopHumanData", x, envir = .GlobalEnv)
 }
