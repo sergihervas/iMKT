@@ -7,7 +7,7 @@
 #' @return None
 #'
 #' @examples
-#' loadPopFly()
+#' loadPopHuman()
 #' 
 #' @import utils
 #'
