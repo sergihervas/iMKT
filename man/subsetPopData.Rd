@@ -10,9 +10,9 @@ subsetPopData(data = c("PopFly", "PopHuman"), genes = c("gene1", "gene2",
 \arguments{
 \item{data}{input PopFly or PopHuman data}
 
-\item{genes}{Drosophila gene list}
+\item{genes}{list of genes}
 
-\item{pops}{Drosophila populations}
+\item{pops}{populations to use}
 
 \item{recomb}{group genes according to recombination values (must specify number of bins)}
 

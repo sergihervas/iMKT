@@ -5,8 +5,8 @@
 #' @details put details here
 #'
 #' @param data input PopFly or PopHuman data
-#' @param genes Drosophila gene list
-#' @param pops Drosophila populations
+#' @param genes list of genes
+#' @param pops populations to use
 #' @param recomb group genes according to recombination values (must specify number of bins)
 #' @param bins number of recombination bins to compute (mandatory if recomb = TRUE)
 #'
@@ -30,9 +30,8 @@
 ## test data 
 ## gen <- c("FBgn0000008","FBgn0000014","FBgn0000015","FBgn0000017","FBgn0000018","FBgn0000022","FBgn0000024","FBgn0000028","FBgn0000032","FBgn0000036","FBgn0000037","FBgn0000038","FBgn0000039","FBgn0000042","FBgn0000043","FBgn0000044","FBgn0000045","FBgn0000046","FBgn0000047","FBgn0000052","FBgn0000053","FBgn0000054","FBgn0000055","FBgn0000056","FBgn0000057","FBgn0000061","FBgn0000063","FBgn0000064","FBgn0000071","FBgn0000075","FBgn0000077","FBgn0000078","FBgn0000079","FBgn0000083","FBgn0000084","FBgn0000092","FBgn0000094","FBgn0000097","FBgn0000099","FBgn0000100","FBgn0000108","FBgn0000109","FBgn0000114","FBgn0000115","FBgn0000116","FBgn0000117","FBgn0000119","FBgn0000120","FBgn0000121","FBgn0000137","FBgn0000139","FBgn0000140","FBgn0000146","FBgn0000147","FBgn0000150","FBgn0000152","FBgn0000153","FBgn0000157","FBgn0000158","FBgn0000163","FBgn0000166","FBgn0000173","FBgn0000179","FBgn0000180","FBgn0000181","FBgn0000182","FBgn0000183","FBgn0000206","FBgn0000210","FBgn0000212","FBgn0000216","FBgn0000221","FBgn0000227","FBgn0000228","FBgn0000229","FBgn0000233","FBgn0000239","FBgn0000241","FBgn0000244","FBgn0000246","FBgn0000247","FBgn0000250","FBgn0000251","FBgn0000253","FBgn0000256","FBgn0000257","FBgn0000259","FBgn0000261","FBgn0000273","FBgn0000274","FBgn0000276","FBgn0000277","FBgn0000278","FBgn0000279","FBgn0000283","FBgn0000286","FBgn0000287","FBgn0000289","FBgn0000299","FBgn0000303")
 ## subsetPopData("PopFly", gen ,c("RAL","ZI"), T, 3)
-## To DO:
+## To Do:
   ## if predictNLS fails, error handling
-  ## if no data for single population / gene, notify (Ex: AM, ATS; pop ATS doesn't exist)
   ## think how to report / return --> list by pop?
 
 subsetPopData <- function(data=c("PopFly","PopHuman"), genes=c("gene1","gene2","..."), pops=c("pop1","pop2","..."), recomb=TRUE/FALSE, bins=0){ 
@@ -59,14 +58,21 @@ subsetPopData <- function(data=c("PopFly","PopHuman"), genes=c("gene1","gene2","
   ## argument genes
   if (length(genes) == 0 || genes == "" || !is.character(genes)) {
     stop("You must specify at least one gene.") }
-  if (!all(genes %in% data$Name) == TRUE) { ## --> report which genes cause problem <-- ##
-    stop("MKT data is not available for the requested gene(s).\nRemember to use FlyBase IDs (FBgn...).") }
+  if (!all(genes %in% data$Name) == TRUE) {
+    difGenes <- setdiff(genes, data$Name)
+    difGenes <- paste(difGenes, collapse=", ")
+    stopMssg <- paste0("MKT data is not available for the requested gene(s).\nRemember to use FlyBase IDs (FBgn...)\nThe genes that caused the error are: ", difGenes, ".")
+    stop(stopMssg) }
 
   ## argument pops
   if (length(pops) == 0 || pops == "" || !is.character(pops)) {
     stop("You must specify at least one population.") }
   if (!all(pops %in% data$Pop) == TRUE) {
-    stop("Select at least one of the following populations:\nAM, AUS, CHB, EA, EF, EG, ENA, EQA, FR, RAL, SA, SD, SP, USI, USW, ZI") }
+    correctPops <- c("AM","AUS","CHB","EA","EF","EG","ENA","EQA","FR","RAL","SA","SD","SP","USI","USW","ZI")
+    difPops <- setdiff(pops, correctPops)
+    difPops <- paste(difPops, collapse=", ")
+    stopMssg <- paste0("MKT data is not available for the sequested populations(s).\nSelect among the following populations:\nAM, AUS, CHB, EA, EF, EG, ENA, EQA, FR, RAL, SA, SD, SP, USI, USW, ZI.\nThe populations that caused the error are: ", difPops, ".")
+    stop(stopMssg) }
 
   ## argument recomb
   if (recomb != TRUE && recomb != FALSE) {
@@ -80,7 +86,7 @@ subsetPopData <- function(data=c("PopFly","PopHuman"), genes=c("gene1","gene2","
     if (bins > round(length(genes)/2)) {
       stop("Parameter bins > (genes/2). At least 2 genes for each bin are required.") }
   }
-  if (recomb == FALSE && !is.null(bins)) {
+  if (recomb == FALSE && bins != 0) {
     warning("Parameter bins not used! (recomb=F selected)")
   }
 
@@ -187,7 +193,6 @@ subsetPopData <- function(data=c("PopFly","PopHuman"), genes=c("gene1","gene2","
       
       ## group genes
       for (j in levels(x$Name)) {
-        print(j)
         x1 <- x[x$Name == j, ]
 
         ## DAF
