@@ -76,7 +76,7 @@
 		- ~~Best of three times to load http://pophuman.uab.cat/files/genes/GenesData_ALL.tab in a data.frame using read.table(URL) = 94.418 seconds~~
 		- ~~**S** check times using directories structure with andromeda IP.~~
 		- Discuss output function
-		- ~~Add recomb else if to extract genes by recombination bin and population (Sergi)~~
+		- ~~Add recomb else if to extract genes by recombination bin and population (Sergi)~~  
 -Reference Messer & Haller code (Question: Shall we write to them to let them know we're implementing their code into another package?)
 		
 
@@ -84,7 +84,8 @@
 - ~~Your input files x has the following(s) errors: x$P0 has one o more 0 values, cannot compute asymptotic. Returning results with NaN~~
 - Example tutorial with sample data (Marta, Jesus)
 
-- Implement GUI through web-server (with Django) (Ask Esteve for help? **M** the web looks awesome Jesus!!!)  
+- Implement GUI through web-server (with Django) (Ask Esteve for help? **M** the web looks awesome Jesus!!!)(Jesús **in progress**)  
+	- Rewrite funcionts to run from termninal (receiving input/inptus) and generate html (Jesús **in progress**)
 
 - Manuscript: **M** suggests: 
 	-- first, start writing the Methods (Sergi/Jesús: explain the data pipeline and such; Marta: I'm defining the different statistical test performed)
