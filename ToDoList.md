@@ -66,17 +66,19 @@
 		- Check Pre-allocate and fill’ (Jesus: Marta check the function pohfavó)
 	- ~~Assymptotic: done (check variable and tables names)~~
 	- ~~iMK (Marta)~~
+	- subsetPopData() **Sergi**
 	- ~~Retrieve information by gene or genelist from PopFly and PopHuman (Jesus)~~
 		- ~~Just need a folder to check the URLs and the format output (Jesus)~~
 			- http://popfly.uab.cat/files/genes/GenesData_ALL.tab
 			- http://pophuman.uab.cat/files/genes/GenesData_ALL.tab
-		- Need talk about methods: ~~(1)download and process whole dataset in R~~, (2)preload files in package (function to process them), ~~(3)daf+div files in folder, call each one from R function.~~
+		- ~~Need talk about methods:(1)download and process whole dataset in R~~, ~~(2)preload files in package (function to process them), (3)daf+div files in folder, call each one from R function.~~
 		- ~~Best of three times to load http://popfly.uab.cat/files/genes/GenesData_ALL.tab in a data.frame using read.table(URL) = 3.391 seconds~~
 		- ~~Best of three times to load http://pophuman.uab.cat/files/genes/GenesData_ALL.tab in a data.frame using read.table(URL) = 94.418 seconds~~
 		- ~~**S** check times using directories structure with andromeda IP.~~
-		- Add recomb else if to extract genes by recombination bin and population (Sergi)
-- ~~Reference Messer & Haller code (Question: Shall we write to them to let them know we're implementing their code into another package?)~~
-
+		- Discuss output function
+		- ~~Add recomb else if to extract genes by recombination bin and population (Sergi)~~
+-Reference Messer & Haller code (Question: Shall we write to them to let them know we're implementing their code into another package?)
+		
 
 - Update sample data (Marta, Jesus)
 - ~~Your input files x has the following(s) errors: x$P0 has one o more 0 values, cannot compute asymptotic. Returning results with NaN~~
