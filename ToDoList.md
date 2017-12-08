@@ -7,7 +7,7 @@
     - Discuss invisible(output)
 - ~~Plot functions (plotalpha, plotdaf, plotimkr) are not necessary, the plots are done inside the iMK function: remove them (Marta)~~
 - ~~Plot c: y axis text should be bold (Sergi, Marta -- in reality the "Asymptotic MKT" text shouldn't appear xD)~~
-- Do you think it's useful to compute ω, Ka and Ks (internally, then the user can acces it)? It would be easier to compute ωα and ωd. [**S** yes we should include them. maybe inside the standard mkt function? **J** I agree with **S**]
+- Do you think it's useful to compute ω, Ka and Ks (internally, then the user can acces it)? It would be easier to compute ωα and ωd. [**S** yes we should include them. maybe inside the standard mkt function? **J** I agree with **S**. **M** Yes, but those values should be available for all tests performed: how about: function "divergence_parameters.R" which run inside all tests and the output is invisible? ]
 - ~~When yo run multiple times asymptotic_MK, the CI are different. We should add a set.seed parameter in case the user wants to make it reproducible. If the argument is empty, then set.seed is NULL. (Marta)~~
 - ~~Update watchdog: adapt to diverse functions~~
 - ~~Delete watchdog and add stops and messages inside the functions (Jesus) (selected: i, neutral: 0)~~
@@ -63,7 +63,7 @@
 	- Put in functions comparision scripts (Jesus)
 	- ~~Multiple_datasets(...): (Jesus)~~
 		- ~~Add a variable to check file list (Jesus)~~
-		- Check Pre-allocate and fill’ (Jesus: Marta check the function pohfavó)
+		- Check Pre-allocate and fill’ (Jesus: Marta check the function pohfavó. **M**: checking in progress)
 	- ~~Assymptotic: done (check variable and tables names)~~
 	- ~~iMK (Marta)~~
 	- subsetPopData() **Sergi**
@@ -84,8 +84,18 @@
 - ~~Your input files x has the following(s) errors: x$P0 has one o more 0 values, cannot compute asymptotic. Returning results with NaN~~
 - Example tutorial with sample data (Marta, Jesus)
 
-- Implement GUI through web-server (with Django) (Ask Esteve for help?)  
+- Implement GUI through web-server (with Django) (Ask Esteve for help? **M** the web looks awesome Jesus!!!)  
 
+- Manuscript: **M** suggests: 
+	-- first, start writing the Methods (Sergi/Jesús: explain the data pipeline and such; Marta: I'm defining the different statistical test performed)
+	-- Results: **M** I was thinking in organizing the following parts:
+		1. Comprison of methodologies: using Drosophila data, apply the different MKT tests (standard, DGRP, FWW, integrative)
+		2. DFE-Based Extensions of the MK: add a part devoted to DFE-alpha
+		3. Simulations: comparison of the different methodologies against simulated data
+		3. Adaptation in the human and D. melanogaster genome: genes that have alfa positive and significative, and study of them (eg: GO, networks...)
+		4. The package and the webpage. The pipeline for obtaining the DAF?
+		5. Something else?
+		
 ### Beta Tests
 - Check inputs works with check_input(...) (Marta, Jesus)
 - Check functions independently. ~~Error in DGRP (Marta, Jesus)~~
