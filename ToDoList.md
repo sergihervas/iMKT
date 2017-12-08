@@ -25,7 +25,7 @@
 		- DGRP (with plot) = 0.373 seconds (best of three)
 		- asymptotic = 0.228 seconds (best of three)
 		- iMK = 0.457 seconds (best of three)
-		- integrativeMKT = 1.408 seconds(best of three)
+		- integrativeMKT = 1.408 seconds(best of three) **M**: why it takes so long if it should be like iMK + DGRP???
 	- Functions timing in genes dataset (daf10): 
 		- standard =  0.003 seconds (best of three)
 		- FWW (with plot) =   0.013 seconds (best of three)
