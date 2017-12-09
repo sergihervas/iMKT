@@ -84,12 +84,13 @@
 	- Rewrite funcionts to run from termninal (receiving input/inptus) and generate html (Jesús **in progress**) **S** U mean using curl? Like the asymptoticMK webpage? For the server we can use FastR which allows running R online and generating reports in markdown-like style. That's what we use in PopFly / PopHuman for MKT gene report. **J** 1. We do not need curl because we will offer the package to run the pipeline locally; 2. From the server we will receive an input, to proccess it we should execute an Rscript in Darwin/muscul with arguments (args[1] = daffile, args[2] = divfile). We need to create functions that recieve X parameters in order to execute the scripts with any input. In addition the results will be a html. I don't know how fastrweb works, I created Rmarkdown scritps to execute the funcionts from terminal passing 2 or 4 arguments (files or files+xlow+xhigh) and generate a html report. **S** GREAT! :D 
 
 - Manuscript: **M** suggests: 
-	-- first, start writing the **Methods** (Sergi/Jesús: explain the data pipeline and such; Marta: I'm defining the different statistical test performed)
+
+	- first, start writing the **Methods** (Sergi/Jesús: explain the data pipeline and such; Marta: I'm defining the different statistical test performed)
 		- 1. Drosophila genome data: input seqs (DGN), reference annotations and outgroup species (refer PopFly).
 		- 2. Human genome data: same as before (refer PopHuman). Maybe join 1 and 2 in Data description or sth like this.
 		- 3. Main pipeline / workflow
 			- Fasta/VCF > Recodification > DAF / div 
-		- 4. Statistical tests (iMK negative selection is completely new and unpublished before, although it is based on DGRP idea. In fact what is new is the way to estimate b -weakly deleterious fraction.)
+			- 4. Statistical tests (iMK negative selection is completely new and unpublished before, although it is based on DGRP idea. In fact what is new is the way to estimate b -weakly deleterious fraction.)
 		- 5. Simulations
 		- 6. R package
 		- 7. Web server
