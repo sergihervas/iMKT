@@ -96,7 +96,7 @@
 		- 7. Web server
 		- 8. Things about Results 4. Statistical tests used
 	
-	-- **Results**: **M** I was thinking in organizing the following parts:
+	- **Results**: **M** I was thinking in organizing the following parts:
 		- 1. Comprison of methodologies: using Drosophila data, apply the different MKT tests (standard, DGRP, FWW, integrative). **S** And human data? I say so because of point 4. Or here we just assess the best method and apply this one in point 4?
 		- 2. DFE-Based Extensions of the MK: add a part devoted to DFE-alpha (**S** all methods are in here, right? DGRP, FWW and asymptotic are based on DFE assumptions which allow spliting mutations according to their fitness)
 		- 3. Simulations: comparison of the different methodologies against simulated data
