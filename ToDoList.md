@@ -21,7 +21,7 @@
 	- ~~Check times between genes and concatenate.genes dataset. Same expected time~~
 	- **S** I do not understand this comparison. Differences in time depend on the values of Pi, P0, Di and D0, but not on the type of data used (1 gene or multiple genes) if the input is the same (daf and div files). Of course the multiple genes test takes more time, but because P and D values are higher. Maybe it would make more sense to use "simulated" (I mean inventados xd) datasets controlling Pi, P0, Di, D0 or different number of daf categories to perform the speed tests. 
 	- **J** The comparision was only an approach to check the expected time between one type of calcution and the other one. Of course the times will depend on the values of Pi, P0, Di and D0, but the differences between one gene dataset and one (large) concatenate dataset are not significant (I really think) to rewrite the functions in order to compute the two types of dataset with differents functions.
-	- **S** It would also be great to know the minimum number of sites required to run the different tests. This makes sense for asymptotic alpha basically (and the iMK function). Should be done with simulated data, but is a tough work.
+	- **S** It would also be great to know the minimum number of sites required to run the different tests. This makes sense for asymptotic alpha basically (and the iMK function). Should be done with simulated data, but is a tough work. **M** This was also commented on one of the meetengs and that I should definitely take a look on this, also is super important and nobody tested it yet. And not only the minimum number, but also the minimum number of concatenated genes for the asymptotic and DFE-alpha.
 	- Functions timing in concatenate dataset (daf10): 
 		- standard =  0.082 seconds (best of three)
 		- FWW (with plot) =   0.191 seconds (best of three)
@@ -67,7 +67,7 @@
 	- Put in functions comparision scripts (Jesus) **S** What is this?
 	- ~~Multiple_datasets(...): (Jesus)~~
 		- ~~Add a variable to check file list (Jesus)~~
-		- Check Pre-allocate and fill’ (Jesus: Marta check the function pohfavó. **M**: checking in progress) **S** If this has something to do with for loops let me know cause I use lots of them. As far as I understood it is about emtpy lists which are then filled and returned in the function, rigth?
+		- Check Pre-allocate and fill’ (Jesus: Marta check the function pohfavó. **M**: checking in progress) **S** If this has something to do with for loops let me know cause I use lots of them. As far as I understood it is about emtpy lists which are then filled and returned in the function, rigth? **M** The idea is that when you are doing a loop, avoid doing that: result_gene <- rbind(output_final,result_gene), because your working everytime with a bigger dataframe (output_final). You have to create a list and fill it (output_final[[i]]<-result_gene). I already fixed it for the DGRP and FWW functions that you wrote.
 	- ~~Assymptotic: done (check variable and tables names)~~
 	- ~~iMK (Marta)~~
 	- subsetPopData() **Sergi**
@@ -81,7 +81,7 @@
 - Example tutorial with sample data (Marta, Jesus)
 
 - Implement GUI through web-server (with Django) (Ask Esteve for help? **M** the web looks awesome Jesus!!!)(Jesús **in progress**)  
-	- Rewrite funcionts to run from termninal (receiving input/inptus) and generate html (Jesús **in progress**) **S** U mean using curl? Like the asymptoticMK webpage? For the server we can use FastR which allows running R online and generating reports in markdown-like style. That's what we use in PopFly / PopHuman for MKT gene report. **J** 1. We do not need curl because we will offer the package to run the pipeline locally; 2. From the server we will receive an input, to proccess it we should execute an Rscript in Darwin/muscul with arguments (args[1] = daffile, args[2] = divfile). We need to create functions that recieve X parameters in order to execute the scripts with any input. In addition the results will be a html. I don't know how fastrweb works, I created Rmarkdown scritps to execute the funcionts from terminal passing 2 or 4 arguments (files or files+xlow+xhigh) and generate a html report. **S** GREAT! :D 
+	- Rewrite funcionts to run from terminal (receiving input/inputs) and generate html (Jesús **in progress**) **S** U mean using curl? Like the asymptoticMK webpage? For the server we can use FastR which allows running R online and generating reports in markdown-like style. That's what we use in PopFly / PopHuman for MKT gene report. **J** 1. We do not need curl because we will offer the package to run the pipeline locally; 2. From the server we will receive an input, to proccess it we should execute an Rscript in Darwin/muscul with arguments (args[1] = daffile, args[2] = divfile). We need to create functions that recieve X parameters in order to execute the scripts with any input. In addition the results will be a html. I don't know how fastrweb works, I created Rmarkdown scritps to execute the funcionts from terminal passing 2 or 4 arguments (files or files+xlow+xhigh) and generate a html report. **S** GREAT! :D 
 
 - Manuscript: **M** suggests: 
 
@@ -90,18 +90,18 @@
 		- 2. Human genome data: same as before (refer PopHuman). Maybe join 1 and 2 in Data description or sth like this.
 		- 3. Main pipeline / workflow
 			- Fasta/VCF > Recodification > DAF / div 
-			- 4. Statistical tests (iMK negative selection is completely new and unpublished before, although it is based on DGRP idea. In fact what is new is the way to estimate b -weakly deleterious fraction.)
+			- 4. Statistical tests (iMK negative selection is completely new and unpublished before, although it is based on DGRP idea. In fact what is new is the way to estimate b -weakly deleterious fraction. Also the DGRP method was never mentioned, only in the suplementary material where has been forgotten. So this time we should really promote them!)
 		- 5. Simulations
 		- 6. R package
 		- 7. Web server
 		- 8. Things about Results 4. Statistical tests used
 	
 	- **Results**: **M** I was thinking in organizing the following parts:
-		- 1. Comprison of methodologies: using Drosophila data, apply the different MKT tests (standard, DGRP, FWW, integrative). **S** And human data? I say so because of point 4. Or here we just assess the best method and apply this one in point 4?
-		- 2. DFE-Based Extensions of the MK: add a part devoted to DFE-alpha (**S** all methods are in here, right? DGRP, FWW and asymptotic are based on DFE assumptions which allow spliting mutations according to their fitness)
+		- 1. Comprison of methodologies: using Drosophila data, apply the different MKT tests (standard, DGRP, FWW, integrative). **S** And human data? I say so because of point 4. Or here we just assess the best method and apply this one in point 4? **M** Okay, at the moment is done with Drosophila because we still don't have the human data
+		- 2. DFE-Based Extensions of the MK: add a part devoted to DFE-alpha (**S** all methods are in here, right? DGRP, FWW and asymptotic are based on DFE assumptions which allow spliting mutations according to their fitness. **M** No, DFE-Based extensions is only DFE-alpha (and some more which I don't know), the rest no, they are extensions of MK test. The difference is that DFE-alpha try to estimate how many non-adaptive substitutions will become fix given an inferred DFE. The others, assume that the non-adaptive substitutions can be removed removing low-frequency variants (FWW) or a more sophisticated solution (DGRP) or extrapolating alpha using a function that fits data at different frequencyes (asymptotic), but nothing to do with inferring the DFE of mutations. Hope its clear :) )
 		- 3. Simulations: comparison of the different methodologies against simulated data
 		- 4. Adaptation in the human and D. melanogaster genome: genes that have alfa positive and significative, and study of them (eg: GO, networks...)
-		- 5. The package and the webpage. The pipeline for obtaining the DAF? **S** This pipeline is a result or a method? I always doubt on this kind of things. However, it is something referees can criticize a lot because it is not perfect and I think the work is very complete and long enough, so I would not talk about it in the Results section, just in the Methods.
+		- 5. The package and the webpage. The pipeline for obtaining the DAF? **S** This pipeline is a result or a method? I always doubt on this kind of things. However, it is something referees can criticize a lot because it is not perfect and I think the work is very complete and long enough, so I would not talk about it in the Results section, just in the Methods. **M** Okay, then we only comment it on the methods!
 		- 6. Something else?
 		- **S** I would suggest permuting points 4 and 5. Hence, we first present the package and server and then the adaptation results which we obtained using the previously described software. This way we demonstrate it is useful.
 		
