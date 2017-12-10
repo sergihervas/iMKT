@@ -72,7 +72,9 @@
 	- ~~iMK (Marta)~~
 	- subsetPopData() **Sergi**
 		- ~~Need talk about methods:(1)download and process whole dataset in R, (2)preload files in package (function to process them), (3)daf+div files in folder, call each one from R function.~~
-		- **S** Check times of download functions: loadPopFly() & loadPopHuman. Around 20 seconds the first one. 
+		- **S** Check times of download functions: loadPopFly() & loadPopHuman. Around 20 seconds the first one.
+			- **J** loadPopFly(): 13.937 (best of 10 iterations), 27.194 (worst of 10 iterations)
+			- **J** loadPopHuman()(user system elapsed): 320.534 (best of 10 iterations), 738.009 (worst of 10 iterations)
 		- Discuss output of the function. **S** I would suggest (and I will implement it soon if you agree) to allow deciding which test to perform with the subseted data from PopFly or PopHuman, so the function would call compareMK function and give its output in lists for populations.
 
 - Reference Messer & Haller code (Question: Shall we write to them to let them know we're implementing their code into another package?)		
@@ -111,4 +113,14 @@
 - ~~Review tryCatch({...}) as proper error (Jesus)~~
 - Error handling predictNLS (Sergi)
 - check()
-	- NOTE: import / export. too many packages...
+	- NOTE: import / export. too many packages. Mantain only stats, utils, knitr and ggplot2 as full preload packages.
+	- nls2: the package has only one function (nls2())
+	- MASS: mvrnorm() (used in predictNLS.R)
+	- ggplot2
+	- ggthemes
+	- cowplot
+	- grid
+	- gridExtra
+	- scales
+	- reshape2: melt()
+	- scales:
