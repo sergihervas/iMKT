@@ -28,7 +28,7 @@
 		- DGRP (with plot) = 0.373 seconds (best of three)
 		- asymptotic = 0.228 seconds (best of three)
 		- iMK = 0.457 seconds (best of three)
-		- completeMKT = 1.408 seconds(best of three) **M**: why it takes so long if it should be like iMK + DGRP??? **S** I think this function computes all the above tests calling each function one by one (0.1+0.2+0.4+0.2+0.5=1.4). **J** This function execute all the MKT test, not only iMK + DGRP.
+		- completeMKT = 1.408 seconds(best of three) ~~**M**: why it takes so long if it should be like iMK + DGRP??? **S** I think this function computes all the above tests calling each function one by one (0.1+0.2+0.4+0.2+0.5=1.4). **J** This function execute all the MKT test, not only iMK + DGRP.~~
 	- Functions timing in genes dataset (daf10): 
 		- standard =  0.003 seconds (best of three)
 		- FWW (with plot) =   0.013 seconds (best of three)
@@ -63,7 +63,7 @@
 		- Asked Sònia about b, y - when they are negative is because you haven't completely removed the slightly deleterious variants. She sets the values to 0 then. Ask Antonio for a better estimation?
 		- **S** Test DGRP estimates of f,b,d with real and simulated data. I do not like them, in fact I think the formulae are wrong, and that's why I did not include them in the original DGRP function, just the alpha value.
 		- ~~graph cutoffs simple (Marta)~~
-	- Modify perl functions to extract the correct files. Review the categories. (Sergi **in progress**) **S** What do u mean with: Review the categories?
+	- daf.pl: Modify perl functions to extract the correct files. Review the categories. **S** What do u mean with: Review the categories?
 	- Put in functions comparision scripts (Jesus) **S** What is this?
 	- ~~Multiple_datasets(...): (Jesus)~~
 		- ~~Add a variable to check file list (Jesus)~~
@@ -75,8 +75,10 @@
 		- **S** Check times of download functions: loadPopFly() & loadPopHuman. Around 20 seconds the first one.
 			- **J** loadPopFly(): 13.937 (best of 10 iterations), 27.194 (worst of 10 iterations)
 			- **J** loadPopHuman()(user system elapsed): 320.534 (best of 10 iterations), 738.009 (worst of 10 iterations)
+			- **S** Update pophuman data file!
 		- Discuss output of the function. **S** I would suggest (and I will implement it soon if you agree) to allow deciding which test to perform with the subseted data from PopFly or PopHuman, so the function would call compareMK function and give its output in lists for populations.
 		- check_input() inside function! **S**
+		- check pre-allocate and fill (rbind) **S**
 
 - Reference Messer & Haller code (Question: Shall we write to them to let them know we're implementing their code into another package?)		
 
@@ -89,22 +91,22 @@
 - Manuscript: **M** suggests: 
 
 	- first, start writing the **Methods** (Sergi/Jesús: explain the data pipeline and such; Marta: I'm defining the different statistical test performed)
-		- 1. Drosophila genome data: input seqs (DGN), reference annotations and outgroup species (refer PopFly).
-		- 2. Human genome data: same as before (refer PopHuman). Maybe join 1 and 2 in Data description or sth like this.
-		- 3. Main pipeline / workflow: Fasta/VCF > Recodification > DAF / div 
-		- 4. Statistical tests (iMK negative selection is completely new and unpublished before, although it is based on DGRP idea. In fact what is new is the way to estimate b -weakly deleterious fraction. Also the DGRP method was never mentioned, only in the suplementary material where has been forgotten. So this time we should really promote them!)
-		- 5. Simulations
-		- 6. R package
-		- 7. Web server
-		- 8. Things about Results 4. Statistical tests used
+		- Drosophila genome data: input seqs (DGN), reference annotations and outgroup species (refer PopFly).
+		- Human genome data: same as before (refer PopHuman). Maybe join 1 and 2 in Data description or sth like this.
+		- Main pipeline / workflow: Fasta/VCF > Recodification > DAF / div 
+		- Statistical tests (iMK negative selection is completely new and unpublished before, although it is based on DGRP idea. In fact what is new is the way to estimate b -weakly deleterious fraction. Also the DGRP method was never mentioned, only in the suplementary material where has been forgotten. So this time we should really promote them!)
+		- Simulations.
+		- R package
+		- Web server
+		- Things about candidate genes. Statistical tests used, GO...
 	
 	- **Results**: **M** I was thinking in organizing the following parts:
-		- 1. Comprison of methodologies: using Drosophila data, apply the different MKT tests (standard, DGRP, FWW, integrative). **S** And human data? I say so because of point 4. Or here we just assess the best method and apply this one in point 4? **M** Okay, at the moment is done with Drosophila because we still don't have the human data
-		- 2. DFE-Based Extensions of the MK: add a part devoted to DFE-alpha (**S** all methods are in here, right? DGRP, FWW and asymptotic are based on DFE assumptions which allow spliting mutations according to their fitness. **M** No, DFE-Based extensions is only DFE-alpha (and some more which I don't know), the rest no, they are extensions of MK test. The difference is that DFE-alpha try to estimate how many non-adaptive substitutions will become fix given an inferred DFE. The others, assume that the non-adaptive substitutions can be removed removing low-frequency variants (FWW) or a more sophisticated solution (DGRP) or extrapolating alpha using a function that fits data at different frequencyes (asymptotic), but nothing to do with inferring the DFE of mutations. Hope its clear :) )
-		- 3. Simulations: comparison of the different methodologies against simulated data
-		- 4. Adaptation in the human and D. melanogaster genome: genes that have alfa positive and significative, and study of them (eg: GO, networks...)
-		- 5. The package and the webpage. The pipeline for obtaining the DAF? **S** This pipeline is a result or a method? I always doubt on this kind of things. However, it is something referees can criticize a lot because it is not perfect and I think the work is very complete and long enough, so I would not talk about it in the Results section, just in the Methods. **M** Okay, then we only comment it on the methods!
-		- 6. Something else?
+		- Comprison of methodologies: using Drosophila data, apply the different MKT tests (standard, DGRP, FWW, integrative). **S** And human data? I say so because of point 4. Or here we just assess the best method and apply this one in point 4? **M** Okay, at the moment is done with Drosophila because we still don't have the human data
+		- DFE-Based Extensions of the MK: add a part devoted to DFE-alpha (**S** all methods are in here, right? DGRP, FWW and asymptotic are based on DFE assumptions which allow spliting mutations according to their fitness. **M** No, DFE-Based extensions is only DFE-alpha (and some more which I don't know), the rest no, they are extensions of MK test. The difference is that DFE-alpha try to estimate how many non-adaptive substitutions will become fix given an inferred DFE. The others, assume that the non-adaptive substitutions can be removed removing low-frequency variants (FWW) or a more sophisticated solution (DGRP) or extrapolating alpha using a function that fits data at different frequencyes (asymptotic), but nothing to do with inferring the DFE of mutations. Hope its clear :) **S** Okay! I thought they also assumed an specific DFE to remove non-adaptive substitutions, my bad.)
+		- Simulations: comparison of the different methodologies against simulated data
+		- Adaptation in the human and D. melanogaster genome: genes that have alfa positive and significative, and study of them (eg: GO, networks...)
+		- The package and the webpage. The pipeline for obtaining the DAF? **S** This pipeline is a result or a method? I always doubt on this kind of things. However, it is something referees can criticize a lot because it is not perfect and I think the work is very complete and long enough, so I would not talk about it in the Results section, just in the Methods. **M** Okay, then we only comment it on the methods!
+		- Something else?
 		- **S** I would suggest permuting points 4 and 5. Hence, we first present the package and server and then the adaptation results which we obtained using the previously described software. This way we demonstrate it is useful.
 		
 ### Beta Tests
