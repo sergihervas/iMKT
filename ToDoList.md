@@ -118,13 +118,13 @@
 - Error handling predictNLS (Sergi)
 - check()
 	- NOTE: import / export. too many packages. Mantain only stats, utils, knitr and ggplot2 as full preload packages.
-	- nls2: the package has only one function (nls2())
-	- MASS: mvrnorm() (used in predictNLS.R)
-	- ggplot2
-	- ggthemes
-	- cowplot
-	- grid
-	- gridExtra
-	- scales
-	- reshape2: melt()
-	- scales:
+	- **S** which functions do we use from... ?
+	- import(grid)
+	- import(gridExtra)
+	- import(scales)
+	- **S** those must be full preloaded
+	- import(ggplot2)
+	- import(knitr)
+	- import(stats)
+	- import(utils)
+	
