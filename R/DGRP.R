@@ -26,10 +26,10 @@
 #' @import grid 
 #' @import gridExtra
 #' @import scales
-#' @importFrom reshape2 melt 
 #' @import ggplot2
 #' @importFrom ggthemes theme_foundation
 #' @importFrom cowplot plot_grid
+#' @importFrom reshape2 melt 
 #'
 #' @export
 
