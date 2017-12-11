@@ -76,6 +76,7 @@
 			- **J** loadPopFly(): 13.937 (best of 10 iterations), 27.194 (worst of 10 iterations)
 			- **J** loadPopHuman()(user system elapsed): 320.534 (best of 10 iterations), 738.009 (worst of 10 iterations)
 		- Discuss output of the function. **S** I would suggest (and I will implement it soon if you agree) to allow deciding which test to perform with the subseted data from PopFly or PopHuman, so the function would call compareMK function and give its output in lists for populations.
+		- check_input() inside function! **S**
 
 - Reference Messer & Haller code (Question: Shall we write to them to let them know we're implementing their code into another package?)		
 
@@ -90,9 +91,8 @@
 	- first, start writing the **Methods** (Sergi/Jesús: explain the data pipeline and such; Marta: I'm defining the different statistical test performed)
 		- 1. Drosophila genome data: input seqs (DGN), reference annotations and outgroup species (refer PopFly).
 		- 2. Human genome data: same as before (refer PopHuman). Maybe join 1 and 2 in Data description or sth like this.
-		- 3. Main pipeline / workflow
-			- Fasta/VCF > Recodification > DAF / div 
-			- 4. Statistical tests (iMK negative selection is completely new and unpublished before, although it is based on DGRP idea. In fact what is new is the way to estimate b -weakly deleterious fraction. Also the DGRP method was never mentioned, only in the suplementary material where has been forgotten. So this time we should really promote them!)
+		- 3. Main pipeline / workflow: Fasta/VCF > Recodification > DAF / div 
+		- 4. Statistical tests (iMK negative selection is completely new and unpublished before, although it is based on DGRP idea. In fact what is new is the way to estimate b -weakly deleterious fraction. Also the DGRP method was never mentioned, only in the suplementary material where has been forgotten. So this time we should really promote them!)
 		- 5. Simulations
 		- 6. R package
 		- 7. Web server
