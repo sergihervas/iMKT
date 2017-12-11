@@ -1,12 +1,12 @@
 #' @title check_input
 #' 
-#' @description Error handling. Checks input data for asymptoticMKAuthor = Sergi Hervas, Jesús Murga
-#'
+#' @description Error handling. Checks input data and returns errors whan it is malformed.
+#' Author = Sergi Hervas, Jesús Murga
 #'
 #' @param daf daf file
 #' @param divergence divergence file
-#' @param xlow fit curve
-#' @param xhigh fit curv
+#' @param xlow trimming values below this daf threshold
+#' @param xhigh trimming values above this daf threshold
 #'
 #' @return None
 #'
@@ -23,7 +23,7 @@ check_input <- function(daf, divergence, xlow, xhigh){
     dataIsGood <- TRUE
     mainErrors <- 'Your input files has the following(s) errors: '
 
-    ## error handling: check data formatting
+    ## Check data formatting
     if (NCOL(daf) != 3){
         dataIsGood <- FALSE
         error <- "Argument daf does not contain three tab-separated columns (daf, Pi, P0)."
@@ -47,12 +47,12 @@ check_input <- function(daf, divergence, xlow, xhigh){
     if (!("mi" %in% colnames(divergence) & "Di" %in% colnames(divergence) & "m0" %in% colnames(divergence) & "D0" %in% colnames(divergence))){
         stop("Divergence file doesn't have the correcto column names: mi, Di, m0, D0.") }
 
-    ## parse the data from argument daf
-    f <- daf$daf #derived alelle frequencies
-    Pi <- daf$Pi #non-synonymous polymorphism 
-    P0 <- daf$P0 #synonymous polymorphism
+    ## Parse the data from argument daf
+    f <- daf$daf ## Derived alelle frequencies
+    Pi <- daf$Pi ## Non-synonymous polymorphism 
+    P0 <- daf$P0 ## Synonymous polymorphism
 
-    ## error handling: check if variables are good
+    ## Check NAs and numeric
     if (any(is.na(f))){
         dataIsGood <- FALSE
         error <- "Daf contains NA values (not allowed)."
@@ -65,8 +65,6 @@ check_input <- function(daf, divergence, xlow, xhigh){
         dataIsGood <- FALSE
         error <- "P0 contains NA values (not allowed)."
         mainErrors <- append(mainErrors,error) }
-
-    ## error handling: check if variables are numeric
     if (!is.numeric(f)){
         dataIsGood <- FALSE
         error <- "Daf is not numeric"
@@ -80,7 +78,7 @@ check_input <- function(daf, divergence, xlow, xhigh){
         error <- "P0 is not numeric"
         mainErrors<-append(mainErrors,error) }
 
-    ## error handling: check if variables are not out of bounds.
+    ## Check if variables are not out of bounds.
     if (any(f < 0.0) || any(f > 1.0)){
         dataIsGood <- FALSE
         error <- "Daf contains values out of the required range [0,1]."
@@ -101,19 +99,19 @@ check_input <- function(daf, divergence, xlow, xhigh){
         cat("[Warning] Input daf file contains P0 values = 0. 
         This can bias the function fitting and the estimation of alpha.")}
 
-    ## error handling: check if argument daf has enough data points
+    ## Check if argument daf has enough data points
     if (NROW(daf) < 3){
         dataIsGood <- FALSE
         error <- "Argument daf: at least three data rows are required to constrain the fit."
         mainErrors <- append(mainErrors,error) }
 
-    ## parse the data from argument divergence
-    mi <- divergence$mi #number of non-synonymous sites
-    m0 <- divergence$m0 ##number of synonymous sites
-    Di <- divergence$Di #non-synonymous divergence
-    D0 <- divergence$D0 #synonymous divergence
+    ## Parse the data from argument divergence
+    mi <- divergence$mi ## Number of non-synonymous sites
+    m0 <- divergence$m0 ## Number of synonymous sites
+    Di <- divergence$Di ## Non-synonymous divergence
+    D0 <- divergence$D0 ## Synonymous divergence
 
-    ## error handling: check if variables are good
+    ## Check NAs and numeric
     if (is.na(mi) || !is.numeric(mi)){
         dataIsGood <- FALSE
         error <- "Malformed mi (must be numeric)."
@@ -139,17 +137,7 @@ check_input <- function(daf, divergence, xlow, xhigh){
         error <- "Malformed xhigh (must be numeric)."
         mainErrors <- append(mainErrors,error) }
 
-    ## Check if number of sites (m, m0) is not higher than divergenge (d, D0), the sum of the polimorphisms (p|p0) or the divergenge + the sum of the polimorphsms
-    if (Di > mi || sum(Pi) > mi || sum(Pi) + Di > mi){
-        dataIsGood <- FALSE
-        error <- "mi must be higher than Pi, Di and sum(Pi+Di)."
-        mainErrors <- append(mainErrors,error) }
-    if (D0 > m0 || sum(P0) > m0 || sum(P0) + D0 > m0){
-        dataIsGood <- FALSE
-        error <- "m0 must be higher than P0, D0 and sum(P0+D0)."
-        mainErrors <- append(mainErrors,error) }
-
-    ## error handling: check if variables are not out of bounds
+    ## Check if variables are not out of bounds
     if (mi <= 0){
         dataIsGood <- FALSE
         error <- "mi must be greater than zero."
@@ -167,7 +155,17 @@ check_input <- function(daf, divergence, xlow, xhigh){
         error <- "Di must be greater than zero."
         mainErrors <- append(mainErrors,error) }
 
-    ## error handling: check if cutoff values not null and numeric
+    ## Check if number of sites (m, m0) is not higher than divergenge (d, D0) + polimorphisms (p|p0)
+    if (Di > mi || sum(Pi) > mi || sum(Pi) + Di > mi){
+        dataIsGood <- FALSE
+        error <- "mi must be higher than Pi, Di and sum(Pi+Di)."
+        mainErrors <- append(mainErrors,error) }
+    if (D0 > m0 || sum(P0) > m0 || sum(P0) + D0 > m0){
+        dataIsGood <- FALSE
+        error <- "m0 must be higher than P0, D0 and sum(P0+D0)."
+        mainErrors <- append(mainErrors,error) }
+
+    ## Check if cutoff values not null and numeric
     if (is.na(xlow) || is.null(xlow) || !is.numeric(xlow)){
         dataIsGood <- FALSE
         error <- "Malformed xlow (must be numeric)."
@@ -177,7 +175,7 @@ check_input <- function(daf, divergence, xlow, xhigh){
         error <- "Malformed xhigh (must be numeric)."
         mainErrors <- append(mainErrors,error) }
 
-    ## error handling: check if cutoff values are not out of bounds
+    ## Check if cutoff values are not out of bounds
     if ((xlow < 0.0) || (xlow > 1.0)){
         dataIsGood <- FALSE
         error <- "xlow must be in the interval [0,1]."
@@ -195,7 +193,7 @@ check_input <- function(daf, divergence, xlow, xhigh){
     cutoff_f2 <- xhigh
     trim <- ((f >= cutoff_f1) & (f <= cutoff_f2))
 
-    ## error handling: check if trimmed f has enough data points
+    ## Check if trimmed f has enough data points
     if (sum(trim) < 3){
         dataIsGood <- FALSE
         error <- "Argument x: at least 3 data rows are required to constrain the fit;
@@ -204,6 +202,6 @@ check_input <- function(daf, divergence, xlow, xhigh){
         mainErrors <- append(mainErrors,error) }
     
     ## Return T/F + errors
-    return(list(data=dataIsGood,print_errors=mainErrors))
+    return(list(data=dataIsGood, print_errors=mainErrors))
 }
 

@@ -6,8 +6,8 @@
 #'
 #' @param daf daf file
 #' @param divergence div file
-#' @param xlow fit curve
-#' @param xhigh curv
+#' @param xlow trimming values below this daf threshold
+#' @param xhigh trimming values above this daf threshold
 #' @param seed seed value (optional). No seed by default
 #'
 #' @return None
@@ -45,22 +45,22 @@ iMK <- function(daf, divergence, xlow, xhigh, seed) {
     set.seed(seed)
   }
   
-  # Create MKT table standard
+  ## Create MKT table standard
   mkt_table_standard <- data.frame(Polymorphism = c(sum(daf$P0), sum(daf$Pi)), 
                                    Divergence=c(divergence$D0,divergence$Di),
                                    row.names = c("Neutral class","Selected class"))
   
-  # Total number of sites analyzed 
+  ## Total number of sites analyzed 
   mi <- as.numeric(divergence$mi)
   m0 <- as.numeric(divergence$m0)
   
-  # Run asymptotic MK and retrieve alphas 
+  ## Run asymptotic MK and retrieve alphas 
   asymptoticMK_table <- asymptoticMK(daf, divergence, xlow, xhigh)
   alpha_asymptotic <- as.numeric(asymptoticMK_table$alpha_asymptotic)
   alpha_standard <- as.numeric(asymptoticMK_table$alpha_original)
   alpha_CI_low <- asymptoticMK_table$CI_low 
   
-  # Estimate the relative proportion of non-synonymous and synonymous substitutions
+  ## Estimate the relative proportion of non-synonymous and synonymous substitutions
   daf$Pi <- as.numeric(daf$Pi) # Esto va aqui? En principio si el whatchdog (check data) lo comprueba ya ni hace falta
   daf$P0 <- as.numeric(daf$P0)
   daf$N <- daf$Pi/sum(daf$Pi)   
@@ -93,16 +93,16 @@ iMK <- function(daf, divergence, xlow, xhigh, seed) {
   wd <- wd/(alpha_asymptotic-min(daf$alpha,na.rm=T))
   b <- wd*f
   
-  # Re-estimate the truly number of neutral sites, removing the slightly deleterious 
+  ## Re-estimate the truly number of neutral sites, removing the slightly deleterious 
   f <- f-b
   
-  # Fraction of f, b and d sites
+  ## Fraction of f, b and d sites
   fraction <-data.frame(Fraction=c(d,f,b), Type = c("d","f","b"), MKT = rep("Asymptotic MK", 3))
   
   plotfraction <- ggplot(fraction) + geom_bar(stat = "identity",aes_string(x = "MKT", y = "Fraction", fill = "Type")) + coord_flip() + theme_Publication() + ylab(label = "Fraction") + scale_fill_manual(values = c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33"), breaks=c("d","f","b"), labels=c(expression(italic("d")), expression(italic("f")),expression(italic("b")))) + theme(axis.title.y=element_blank(), axis.ticks.y=element_blank(), axis.text.y=element_blank(),   axis.line = element_blank(), panel.border = element_rect(colour = "black", fill=NA, size=1))  +  scale_y_discrete(limit=seq(0,1,0.25), expand = c(0, 0))
   plotfraction
   
-  # DAF graph
+  ## DAF graph
   daf_graph <- daf[c("daf","Pi","P0")]
   daf_graph <- melt(daf_graph,id.vars = "daf")
   
@@ -112,7 +112,7 @@ iMK <- function(daf, divergence, xlow, xhigh, seed) {
     xlab("Derived Allele Frequency") + ylab("Number of Sites")
   plotdaf
  
-  # Alpha graph
+  ## Alpha graph
   y1 <- function(daf) {
     asymptoticMK_table$a+asymptoticMK_table$b*exp(-asymptoticMK_table$c*daf)
   }
@@ -123,29 +123,28 @@ iMK <- function(daf, divergence, xlow, xhigh, seed) {
   shader_df <- data.frame(xs, ysmin, ysmax)
  
   plot_alpha <- ggplot(daf, aes_string(x="daf", y="alpha"))  +
-    #confidence intervals
+    ## Confidence intervals
     geom_rect(data=data.frame(xmin=-Inf, xmax=Inf, ymin=asymptoticMK_table$CI_low ,ymax=asymptoticMK_table$CI_high), aes_string(xmin="xmin", xmax="xmax", ymin="ymin", ymax="ymax"), fill="gray30", alpha=0.4, inherit.aes=F) +
-    #function curve
+    ## Function curve
     stat_function(fun=y1, color="#ef3b2c", size = 2) +
-    #asymptotic alpha
+    ## Asymptotic alpha
     geom_hline(yintercept=asymptoticMK_table$alpha_asymptotic, color="#662506", linetype="dashed") +  
-    #alpha derived via classic MKT
+    ## Alpha derived via classic MKT
     geom_hline(yintercept=asymptoticMK_table$alpha_original, color="#386cb0", linetype="dashed") +
-    #cut-offs
+    ## Cut-offs
     geom_vline(xintercept=c(xlow, xhigh), color="gray10", linetype="dotted") +    
-    # points
+    ## Points
     geom_point(size=3, color = "gray15") +
-    #shade the fraction of WDMs
+    ## Shade the fraction of WDMs
     geom_ribbon(data=shader_df, aes_string(x="xs", ymin="ysmin", ymax="ysmax"), fill="gray30", alpha=0.2,inherit.aes=F) + 
-    #customization
-    theme_Publication() + #theme(panel.grid = element_blank()) +
-    xlab("Derived allele frequency") + ylab(expression(bold(paste("Adaptation (",alpha,")")))) +
-    #alphas labels
+    ## Customization
+    theme_Publication() + xlab("Derived allele frequency") + ylab(expression(bold(paste("Adaptation (",alpha,")")))) +
+    ## Alphas labels
     annotate("text", x=xhigh-0.2, y=asymptoticMK_table$alpha_asymptotic-0.2, label=paste0('alpha [asymptotic] == ', round(asymptoticMK_table$alpha_asymptotic, digits = 3)), parse=T, color="#662506", size=4) +
     annotate("text",x=xhigh-0.2, y=asymptoticMK_table$alpha_original-0.1, label=paste0('alpha [standard] == ', round(asymptoticMK_table$alpha_original,digits = 3)), parse=T, color="#386cb0", size=4) 
   plot_alpha
   
-  # Fraction Graph
+  ## Fraction Graph
   plots_iMKT <- plot_grid(plot_alpha,plotdaf, plotfraction, nrow = 3,  labels = c("A", "B", "C"), rel_heights = c(2, 2, 1))
   
   ## iMKT output

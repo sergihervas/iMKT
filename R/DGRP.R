@@ -26,7 +26,7 @@
 #' @import grid 
 #' @import gridExtra
 #' @import scales
-#' @import reshape2 
+#' @importFrom reshape2 melt 
 #' @import ggplot2
 #' @importFrom ggthemes theme_foundation
 #' @importFrom cowplot plot_grid
@@ -38,29 +38,28 @@
 ################# MKT-FWW function #################
 ####################################################
 
-DGRP <- function(daf = "Data frame containing the DAF, Pn and Ps", 
-                 divergence = "Data frame that contains sites analyzed and divergencen 0fold and 4fold",list_cutoffs=c(0, 0.05, 0.2)) {
+DGRP <- function(daf="Data frame containing the DAF, Pn and Ps", divergence="Data frame that contains sites analyzed and divergencen 0fold and 4fold", list_cutoffs=c(0, 0.05, 0.2)) {
   
-  # Shows a message when using the function
-  packageStartupMessage("MKT corrected by the DGRP method")
-  
-  # Declare output data frame
+  ## Check data
+  check <- check_input(daf, divergence, 0, 1)
+  if(check$data == FALSE) {
+     stop(check$print_errors) }
+
+  ## Declare output data frame
   output <- list()
   
   mkt_tables <-  list()
   fractions <- data.frame(row.names = c("d","f","b"))
-  # list_cutoffs <- c(0, 0.05, 0.2)
   
   for (cutoff in list_cutoffs) {
     
-    daf_below_cutoff <- daf[daf$daf <= cutoff, ] #below DAF
-    daf_above_cutoff <- daf[daf$daf > cutoff, ] #over DAF
-    
+    daf_below_cutoff <- daf[daf$daf <= cutoff, ] ## below DAF
+    daf_above_cutoff <- daf[daf$daf > cutoff, ] ## over DAF 
     P0 <- sum(daf$Pi) 
     Pi <- sum(daf$P0) 
-    #Create MKT table 
-    mkt_table_standard <- data.frame(Polymorphism = c(sum(daf$P0), sum(daf$Pi)), Divergence=c(divergence$D0,divergence$Di),row.names = c("Neutral class","Selected class"))
 
+    ## Create MKT table 
+    mkt_table_standard <- data.frame(Polymorphism = c(sum(daf$P0), sum(daf$Pi)), Divergence=c(divergence$D0,divergence$Di),row.names = c("Neutral class","Selected class"))
     mkt_table <- data.frame(`DAF below cutoff` = c(sum(daf_below_cutoff$P0), sum(daf_below_cutoff$Pi)), `DAF above cutoff`=c(sum(daf_above_cutoff$P0), sum(daf_above_cutoff$Pi)),row.names = c("Neutral class","Selected class"))
     
     f_neutral <- mkt_table[1,1]/sum(daf$P0)
@@ -70,39 +69,36 @@ DGRP <- function(daf = "Data frame containing the DAF, Pn and Ps",
     
     Pi_neutral <- round(Pi_neutral_below_cutoff + mkt_table[2,2])
     
-    # Estimation of alpha
+    ## Estimation of alpha
     alpha <- 1-((Pi_neutral/P0)*(mkt_table_standard[1,2]/mkt_table_standard[2,2]))
     
-    # Estimation of b: weakly deleterious
+    ## Estimation of b: weakly deleterious
     b <- (Pi_wd/P0)*(divergence$m0/divergence$mi)
     
-    # ??????? Estimation of y: recently neutral sites
+    ## ??????? Estimation of y: recently neutral sites
     y <- ((Pi_neutral/P0)-(mkt_table_standard[2,2]/mkt_table_standard[1,2]))*(divergence$m0/divergence$mi)
     
-    # Estimation of f: neutral sites
+    ## Estimation of f: neutral sites
     f <- (divergence$m0*Pi_neutral)/(as.numeric(divergence$mi)*as.numeric(P0))
     
-    # d, strongly deleterious sites
+    ## Estimation of d, strongly deleterious sites
     d <- 1-(f+b)
     
-    # Fishers exact test p-value from the MKT
+    ## Fisher exact test p-value from the MKT
     m <- matrix(c(P0,Pi_neutral,divergence$D0,divergence$Di), ncol=2)
     pvalue <- fisher.test(m)$p.value
     
-    # Fractions graph
+    ## Fractions graph
     fraction <-data.frame(c(d,f,b))
     names(fraction) <- cutoff
     fractions <- cbind(fractions,fraction)
     
-    # Store output  
+    ## Store output  
     output[[paste("Cutoff = ",cutoff)]] <- c(cutoff, alpha, pvalue)
-    
-    
     mkt_table <- knitr::kable(mkt_table,caption = "cutoff")
-    
     mkt_tables[[paste("Number of segregating sites by MAF category - Cutoff = ",cutoff)]]  <- mkt_table
-    
   } 
+
   mkt_tables[[paste("MKT standard table")]]  <- mkt_table_standard
   output <- as.data.frame(do.call("rbind",output))
   
@@ -119,16 +115,16 @@ DGRP <- function(daf = "Data frame containing the DAF, Pn and Ps",
   fractions_melt <- melt(fractions, id.vars=NULL) 
   fractions_melt$Fraction <-  rep(c("d", "f", "b"),3)
   
-  plotfraction <- ggplot(fractions_melt) + geom_bar(stat = "identity",aes_string(x="variable", y = "value", fill = "Fraction"),color="black") + coord_flip() + theme_Publication() + ylab(label = "Fraction") + xlab(label = "Cut-off") + scale_fill_manual(values = c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33"), breaks=c("d","f","b"), labels=c(expression(italic("d")), expression(italic("f")),expression(italic("b"))))  + theme(axis.line = element_blank())  + scale_y_discrete(limit=seq(0,1,0.25), expand = c(0, 0))
+  plotfraction <- ggplot(fractions_melt) + geom_bar(stat="identity", aes_string(x="variable", y="value", fill="Fraction"), color="black") +
+    coord_flip() + theme_Publication() + ylab(label="Fraction") + xlab(label="Cut-off") +
+    scale_fill_manual(values=c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33"), breaks=c("d","f","b"), labels=c(expression(italic("d")),expression(italic("f")),expression(italic("b")))) +
+    theme(axis.line=element_blank())  + scale_y_discrete(limit=seq(0,1,0.25), expand=c(0,0))
   plotfraction
   
-  plot<-plot_grid(plot,plotfraction, nrow = 2,  labels = c("A", "B"), rel_heights = c(2, 1))
+  plot <- plot_grid(plot, plotfraction, nrow=2, labels=c("A","B"), rel_heights=c(2,1))
   
-  list_output <-list(output,plot,mkt_tables, fractions)
-  names(list_output) <- c("Results","Graph", "MKT tables","Fractions")
-  
-  
-  
+  list_output <- list(output, plot,mkt_tables, fractions)
+  names(list_output) <- c("Results","Graph","MKT tables","Fractions")
   return(list_output)
 }
 

@@ -11,7 +11,7 @@ fitMKmodel(alpha_trimmed, f_trimmed, res)
 
 \item{f_trimmed}{correspond to the vectors with alpha and frequency (DAF) values}
 
-\item{res}{ASK SERGI}
+\item{res}{refers to the level of precision, resudiues to use}
 }
 \value{
 None

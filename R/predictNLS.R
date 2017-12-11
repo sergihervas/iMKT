@@ -1,9 +1,11 @@
-#' @title predictNLSGet a CI using Monte Carlo simulation based upon a fitted model.  This is necessary because
+#' @title predictNLSGet a CI using Monte Carlo simulation based upon a fitted model.
 #'
 #' @description getting confidence intervals for non-linear models is a complicated business, apparently. Authors thanks to Andrej-Nikolai Spiess (http://www.dr-spiess.de) for this code.
 #' Directly retrieved from: https://github.com/MesserLab/asymptoticMK
 #' 
-#' @details Put details here
+#' @details Get a CI using Monte Carlo simulation based upon a fitted model.  This is necessary because getting confidence intervals for non-linear models is a complicated business, apparently.
+#' Thanks to Andrej-Nikolai Spiess (http://www.dr-spiess.de) for this code.
+#' See: https://www.r-bloggers.com/predictnls-part-1-monte-carlo-simulation-confidence-intervals-for-nls-models/ . Or, if that link goes stale: http://stats.stackexchange.com/a/251501/141766
 #'
 #' @param object input object
 #' @param newdata newdata object
@@ -14,26 +16,15 @@
 #' @import utils
 #' @import stats
 #' @import knitr 
-#' @import MASS
+#' @importFrom MASS mvrnorm
 #'
 #' @export
-
-
-# Get a CI using Monte Carlo simulation based upon a fitted model.  This is necessary because
-# getting confidence intervals for non-linear models is a complicated business, apparently.
-# Thanks to Andrej-Nikolai Spiess (http://www.dr-spiess.de) for this code.
-# See: https://www.r-bloggers.com/predictnls-part-1-monte-carlo-simulation-confidence-intervals-for-nls-models/
-# Or, if that link goes stale: http://stats.stackexchange.com/a/251501/141766
-
 
 #param alpha_trimmed correspond to the vectors with alpha and frequency (DAF) values
 #param f_trimmed  correspond to the vectors with alpha and frequency (DAF) values
 #param res ASK SERGI
 
 predictNLS <- function(object, newdata, level = 0.95, nsim = 10000) {
-  
-  ## define required packages
-  # require(MASS, quietly = TRUE)
    
   ## get right-hand side of formula
   RHS <- as.list(object$call$formula)[[3]]
@@ -93,7 +84,6 @@ predictNLS <- function(object, newdata, level = 0.95, nsim = 10000) {
   outMAT <- NULL 
    
   for (i in 1:NR) {
-    #counter(i)   # show a counter for lengthy fits; commented out to reduce noise here...
      
     ## get predictor values and optional errors
     predVAL <- newdata[i, 1]
@@ -130,9 +120,6 @@ predictNLS <- function(object, newdata, level = 0.95, nsim = 10000) {
   }
    
   colnames(outMAT) <- c("fit", "mean", "sd", "median", "mad", names(QUANT[1]), names(QUANT[2]))
-  rownames(outMAT) <- NULL
-   
-  #cat("\n")  # commented out along with the call to counter() above
-   
+  rownames(outMAT) <- NULL   
   return(outMAT)  
 }

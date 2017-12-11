@@ -11,13 +11,14 @@ check_input(daf, divergence, xlow, xhigh)
 
 \item{divergence}{divergence file}
 
-\item{xlow}{fit curve}
+\item{xlow}{trimming values below this daf threshold}
 
-\item{xhigh}{fit curv}
+\item{xhigh}{trimming values above this daf threshold}
 }
 \value{
 None
 }
 \description{
-Error handling. Checks input data for asymptoticMKAuthor = Sergi Hervas, Jesús Murga
+Error handling. Checks input data and returns errors whan it is malformed.
+Author = Sergi Hervas, Jesús Murga
 }

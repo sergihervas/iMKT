@@ -11,9 +11,9 @@ iMK(daf, divergence, xlow, xhigh, seed)
 
 \item{divergence}{div file}
 
-\item{xlow}{fit curve}
+\item{xlow}{trimming values below this daf threshold}
 
-\item{xhigh}{curv}
+\item{xhigh}{trimming values above this daf threshold}
 
 \item{seed}{seed value (optional). No seed by default}
 }

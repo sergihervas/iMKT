@@ -25,7 +25,6 @@
 #' @import grid 
 #' @import gridExtra
 #' @import scales
-#' @import reshape2
 #' @import ggplot2
 #' @importFrom ggthemes theme_foundation
 #' @importFrom cowplot plot_grid
@@ -38,34 +37,26 @@
 ################# MKT-FWW function #################
 ####################################################
 
-FWW<- function(daf = "Data frame containing the DAF, Pi and P0", 
-                     divergence = "Data frame that contains sites analyzed and divergencen 0fold and 4fold",list_cutoffs=c(0, 0.05, 0.1)) {
-  # Shows a message when using the function
-  packageStartupMessage("MKT corrected by the FWW method")
+FWW <- function(daf="Data frame containing the DAF, Pi and P0", divergence="Data frame that contains sites analyzed and divergencen 0fold and 4fold", list_cutoffs=c(0, 0.05, 0.1)) {
   
-  # Declare output data frame
+  ## Declare output data frame
   output <- list()
-  
   mkt_tables <-  list()
-  # list_cutoffs <- c(0, 0.05, 0.1)
   
   for (cutoff in list_cutoffs) {
-  
     daf_remove <-daf[daf$daf > cutoff,] 
   
-    #Create MKT table 
+    ## Create MKT table 
     mkt_table <- data.frame(Polymorphism = c(sum(daf_remove$P0), sum(daf_remove$Pi)), Divergence=c(divergence$D0,divergence$Di),row.names = c("Neutral class","Selected class"))
   
-    # Estimation of alpha
+    ## Estimation of alpha
     alpha <- 1-(mkt_table[2,1]/mkt_table[1,1])*(mkt_table[1,2]/mkt_table[2,2])
     
-    # Fisher's exact test p-value from the MKT
+    ## Fisher exact test p-value from the MKT
     pvalue <- fisher.test(mkt_table)$p.value
     
-    # Store output  
-    output[[paste("Cutoff = ",cutoff)]] <- c(cutoff, alpha,pvalue)
-    
-    
+    ## Store output  
+    output[[paste("Cutoff = ",cutoff)]] <- c(cutoff, alpha,pvalue)    
     mkt_tables[[paste("Cutoff = ",cutoff)]]  <- knitr::kable(mkt_table,caption = "cutoff")
   }
   
@@ -81,8 +72,7 @@ FWW<- function(daf = "Data frame containing the DAF, Pi and P0",
   names(output) <- c("alpha.symbol","Fisher's exact test P-value")
   
   list_output <-list(output,plot,mkt_tables)
-  names(list_output) <- c("Results","Graph", "MKT tables")
-
-    return(list_output)
+  names(list_output) <- c("Results", "Graph", "MKT tables")
+  return(list_output)
 }
 

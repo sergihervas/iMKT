@@ -2,6 +2,7 @@
 ### List of things to do:
 
 - Update Readme.md
+- **S** IDEA: Functions fitMKmodel and predictNLS inside other functions, but without documentation... as they are never called by their own.
 - ~~Discuss input, maybe create parser~~
 - Discuss output, update plots and include table -> html/pdf for non expert R users?  (Marta **in progress**)
     - Discuss invisible(output)
@@ -79,6 +80,7 @@
 		- Discuss output of the function. **S** I would suggest (and I will implement it soon if you agree) to allow deciding which test to perform with the subseted data from PopFly or PopHuman, so the function would call compareMK function and give its output in lists for populations.
 		- check_input() inside function! **S**
 		- check pre-allocate and fill (rbind) **S**
+	- KaKs **S** check formula... add wa, wd, etc.
 
 - Reference Messer & Haller code (Question: Shall we write to them to let them know we're implementing their code into another package?)		
 

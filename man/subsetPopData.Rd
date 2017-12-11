@@ -5,7 +5,8 @@
 \title{subsetPopData}
 \usage{
 subsetPopData(data = c("PopFly", "PopHuman"), genes = c("gene1", "gene2",
-  "..."), pops = c("pop1", "pop2", "..."), recomb = TRUE/FALSE, bins = 0)
+  "..."), pops = c("pop1", "pop2", "..."), recomb = TRUE/FALSE, bins = 0,
+  xlow, xhigh)
 }
 \arguments{
 \item{data}{input PopFly or PopHuman data}
@@ -17,6 +18,10 @@ subsetPopData(data = c("PopFly", "PopHuman"), genes = c("gene1", "gene2",
 \item{recomb}{group genes according to recombination values (must specify number of bins)}
 
 \item{bins}{number of recombination bins to compute (mandatory if recomb = TRUE)}
+
+\item{xlow}{trimming values below this daf threshold}
+
+\item{xhigh}{trimming values above this daf threshold}
 }
 \value{
 None
@@ -31,6 +36,7 @@ put details here
 ## Load PopFly data
 # loadPopFly()
 ## Perform analysis
-# subsetPopData("PopFly", c("FBgn0053196", "FBgn0000008"),c("RAL","ZI"), F)
+# mygenes <- c("FBgn0053196", "FBgn0000008")
+# subsetPopData("PopFly", mygenes , c("RAL","ZI"), recomb=F, bins=0, xlow=0, xhigh=0.9)
 
 }

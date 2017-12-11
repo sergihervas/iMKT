@@ -25,34 +25,27 @@
 #' @export 
 
 
-standard <- function(daf = "Data frame containing the DAF, Pi and P0", 
-                     divergence = "Data frame that contains sites analyzed and divergencen 0fold and 4fold") {
-  # Print errors if data not correct
- # check<-check_input(daf, divergence, 0, 1)
-  #  if(check$data==FALSE)
-  # stop(check$print_errors)
-  # Shows a message when using the function
-  # packageStartupMessage("MKT standard function")
+standard <- function(daf="Data frame containing the DAF, Pi and P0", divergence="Data frame that contains sites analyzed and divergencen 0fold and 4fold") {
+  
+  ## Check data
   check<-check_input(daf, divergence, 0, 1)
-  
-  # Declare output data frame
+    if(check$data == FALSE) {
+     stop(check$print_errors) }
+
+  ## Declare output data frame
   output <- data.frame(alpha = numeric(0), pvalue = integer(0))
-  #out <- NULL
   
-  #Create MKT table 
+  ## Create MKT table 
   mkt_table <- data.frame(Polymorphism = c(sum(daf$P0), sum(daf$Pi)), Divergence=c(divergence$D0,divergence$Di),row.names = c("Neutral class","Selected class"))
   
-  # Estimation of alpha
+  ## Estimation of alpha and fisher exact test p-value
   alpha <- 1-(mkt_table[2,1]/mkt_table[1,1])*(mkt_table[1,2]/mkt_table[2,2])
-    
-  # Fisher's exact test p-value from the MKT
   pvalue <- fisher.test(mkt_table)$p.value
   
-  # Store output  
+  ## Output  
   output <- list(`alpha.symbol`=alpha, 
                  `Fishers exact test P-value`= pvalue, 
                  `MKT table` = knitr::kable(mkt_table))
-  # Return output in list format
   return(output)
 }
 

@@ -9,8 +9,8 @@
 #'
 #' @param daf daf file
 #' @param divergence div file
-#' @param xlow fit curve
-#' @param xhigh fit curv
+#' @param xlow trimming values below this daf threshold
+#' @param xhigh trimming values above this daf threshold
 #' @param seed seed value (optional). No seed by default
 #'
 #' @return None
@@ -24,8 +24,8 @@
 #'
 #' @import utils
 #' @import stats
-#' @import MASS
-#' @import nls2
+#' @importFrom MASS mvrnorm
+#' @importFrom nls2 nls2
 #'
 #' @export
 
@@ -36,29 +36,30 @@
 
 asymptoticMK <- function(daf, divergence, xlow, xhigh, seed) {
   
-  ## check data: if there is an error, watchdog stoP0 computation
+  ## Check data
   check <- check_input(daf, divergence, xlow, xhigh)
   if(check$data == FALSE) {
     stop(check$print_errors) }
 
- if(missing(seed)) {
+  ## Check seed
+  if(missing(seed)) {
     seed <- NULL
   } else {
    set.seed(seed)
   }
   
-  ## parse the data from argument x
+  ## Parse the data from argument x
   f <- daf$daf #derived alelle frequencies
   p <- daf$Pi #non-synonymous polymorphism 
   p0 <- daf$P0 #synonymous polymorphism
   
-  ## parse the data from argument y
+  ## Parse the data from argument y
   m <- divergence$mi #number of non-synonymous analyzed positions   
   m0 <- divergence$m0 ##number of synonymous analyzed positions
   d <- divergence$Di #non-synonymous divergence
   d0 <- divergence$D0 #synonymous divergence
   
-  ## compute alpha values and trim
+  ## Compute alpha values and trim
   alpha <- 1 - (d0/d) * (p/p0)
   cutoff_f1 <- xlow
   cutoff_f2 <- xhigh
@@ -66,13 +67,13 @@ asymptoticMK <- function(daf, divergence, xlow, xhigh, seed) {
   f_trimmed <- f[trim]
   alpha_trimmed <- alpha[trim]
   
-  ## compute the original MK alpha
+  ## Compute the original MK alpha
   alpha_nonasymp <- 1 - (d0/d) * (sum(p[trim])/sum(p0[trim])) #using trimmed values
       
-  ## two-step nls2() model fit at a given level of precision (res)
+  ## Two-step nls2() model fit at a given level of precision (res)
   mod1 <- fitMKmodel(alpha_trimmed, f_trimmed, 10)
   
-  ## if mod1 did not work, try a deeper scan for a decent fit (res=20)
+  ## If mod1 did not work, try a deeper scan for a decent fit (res=20)
   if (length(mod1) == 0) {
     mod1 <- fitMKmodel(alpha_trimmed, f_trimmed, 20)
   } 
@@ -81,18 +82,18 @@ asymptoticMK <- function(daf, divergence, xlow, xhigh, seed) {
     mod2 <- lm(alpha_trimmed ~ f_trimmed)
   }, error=function(cond) {})
   
-  ## compute confidence intervals of alpha using predictNLS 
+  ## Compute confidence intervals of alpha using predictNLS 
   ci_pred <- predictNLS(mod1, newdata=data.frame(f_trimmed=1.0))
   alpha_1_low <- ci_pred[6]
   alpha_1_high <- ci_pred[7]
   
-  ## preparation of ouput (alpha asym, a, b, c)
+  ## Preparation of ouput (alpha asym, a, b, c)
   alpha_1_est <- predict(mod1, newdata=data.frame(f_trimmed=1.0))
   const_a <- coef(mod1)["const_a"]
   const_b <- coef(mod1)["const_b"]
   const_c <- coef(mod1)["const_c"]
   
-  ## output table
+  ## Output table
   result_df <- data.frame(model="exponential", a=const_a, b=const_b, c=const_c, alpha_asymptotic=alpha_1_est, CI_low=ci_pred[6], CI_high=ci_pred[7], alpha_original=alpha_nonasymp, row.names=NULL)
   return(result_df)
 }
