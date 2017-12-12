@@ -1,12 +1,12 @@
 #' @title check_input
 #' 
-#' @description Error handling. Checks input data and returns errors whan it is malformed.
-#' Author = Sergi Hervas, Jesús Murga
+#' @description Check input data and return detailed errors when it is malformed.
+#' @details This function checks input data used in most package's functions (arguments daf, divergence, xlow and xhigh) and returns a brief description of the error(s) found. If data does not pass check_input() the requested analysis is not performed.
 #'
-#' @param daf daf file
-#' @param divergence divergence file
-#' @param xlow trimming values below this daf threshold
-#' @param xhigh trimming values above this daf threshold
+#' @param daf data frame containing DAF, Pi and P0 values
+#' @param divergence data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes
+#' @param xlow lower limit for asymptotic alpha fit
+#' @param xhigh higher limit for asymptotic alpha fit
 #'
 #' @return None
 #'
@@ -15,13 +15,10 @@
 #'
 #' @export
 
-## Checking data and Error handling
-    ## NEED TO DISSCUSS predictNLS.R: Error in as.list(object$call$formula)[[3]] : subscript out of bounds 
-    ## Sergi: todavia pasa esto de error en predictNLS??
-
 check_input <- function(daf, divergence, xlow, xhigh){
+    
     dataIsGood <- TRUE
-    mainErrors <- 'Your input files has the following(s) errors: '
+    mainErrors <- "Your input files have the following errors: "
 
     ## Check data formatting
     if (NCOL(daf) != 3){
@@ -52,7 +49,7 @@ check_input <- function(daf, divergence, xlow, xhigh){
     Pi <- daf$Pi ## Non-synonymous polymorphism 
     P0 <- daf$P0 ## Synonymous polymorphism
 
-    ## Check NAs and numeric
+    ## Check NAs and numeric for daf
     if (any(is.na(f))){
         dataIsGood <- FALSE
         error <- "Daf contains NA values (not allowed)."
@@ -78,7 +75,7 @@ check_input <- function(daf, divergence, xlow, xhigh){
         error <- "P0 is not numeric"
         mainErrors<-append(mainErrors,error) }
 
-    ## Check if variables are not out of bounds.
+    ## Check if daf variables are not out of bounds.
     if (any(f < 0.0) || any(f > 1.0)){
         dataIsGood <- FALSE
         error <- "Daf contains values out of the required range [0,1]."
@@ -99,7 +96,7 @@ check_input <- function(daf, divergence, xlow, xhigh){
         cat("[Warning] Input daf file contains P0 values = 0. 
         This can bias the function fitting and the estimation of alpha.")}
 
-    ## Check if argument daf has enough data points
+    ## Check if daf argument has enough data points
     if (NROW(daf) < 3){
         dataIsGood <- FALSE
         error <- "Argument daf: at least three data rows are required to constrain the fit."
@@ -111,7 +108,7 @@ check_input <- function(daf, divergence, xlow, xhigh){
     Di <- divergence$Di ## Non-synonymous divergence
     D0 <- divergence$D0 ## Synonymous divergence
 
-    ## Check NAs and numeric
+    ## Check NAs and numeric for divergence
     if (is.na(mi) || !is.numeric(mi)){
         dataIsGood <- FALSE
         error <- "Malformed mi (must be numeric)."
@@ -137,7 +134,7 @@ check_input <- function(daf, divergence, xlow, xhigh){
         error <- "Malformed xhigh (must be numeric)."
         mainErrors <- append(mainErrors,error) }
 
-    ## Check if variables are not out of bounds
+    ## Check if divergence variables are not out of bounds
     if (mi <= 0){
         dataIsGood <- FALSE
         error <- "mi must be greater than zero."

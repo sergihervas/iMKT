@@ -12,7 +12,6 @@
 #' @import utils
 #'
 #' @export
-#' 
 
 loadPopFly <- function() {
   PopFlyData <- ""

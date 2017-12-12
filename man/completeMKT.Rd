@@ -7,13 +7,13 @@
 completeMKT(daf, divergence, xlow, xhigh, seed)
 }
 \arguments{
-\item{daf}{daf file}
+\item{daf}{data frame containing DAF, Pi and P0 values}
 
-\item{divergence}{div file}
+\item{divergence}{data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes}
 
-\item{xlow}{trimming values below this daf threshold}
+\item{xlow}{lower limit for asymptotic alpha fit}
 
-\item{xhigh}{trimming values above this daf threshold}
+\item{xhigh}{higher limit for asymptotic alpha fit}
 
 \item{seed}{seed value (optional). No seed by default}
 }
@@ -27,10 +27,6 @@ Execute all the MKT extensions
 put description here
 }
 \examples{
-## Load your Derived Allele Frequency and Divergence files
-daf <- mydafdata
-div <- mydivergencedata
-## Run the function
-# completeMKT(daf, div, 0, 0.9)
+# completeMKT(mydafdata, mydivergencedata, 0, 0.9)
 
 }

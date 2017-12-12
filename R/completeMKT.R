@@ -4,30 +4,19 @@
 #'
 #' @details put description here
 #'
-#' @param daf daf file
-#' @param divergence div file
-#' @param xlow trimming values below this daf threshold
-#' @param xhigh trimming values above this daf threshold
+#' @param daf data frame containing DAF, Pi and P0 values
+#' @param divergence data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes
+#' @param xlow lower limit for asymptotic alpha fit
+#' @param xhigh higher limit for asymptotic alpha fit
 #' @param seed seed value (optional). No seed by default
 #'
 #' @return Execute all the MKT extensions
 #'
 #' @examples 
-#' ## Load your Derived Allele Frequency and Divergence files
-#' daf <- mydafdata
-#' div <- mydivergencedata
-#' ## Run the function
-#' # completeMKT(daf, div, 0, 0.9)
-#'
-#' @import knitr 
+#' # completeMKT(mydafdata, mydivergencedata, 0, 0.9)
+#' 
 #' @import utils
 #' @import stats
-#' @import grid 
-#' @import gridExtra
-#' @import scales
-#' @import ggplot2
-#' @importFrom ggthemes theme_foundation
-#' @importFrom cowplot plot_grid
 #'
 #' @export
 
@@ -37,25 +26,33 @@ completeMKT <- function(daf, divergence, xlow, xhigh, seed) {
   check <- check_input(daf, divergence, xlow, xhigh)
   if(check$data == FALSE) {
      stop(check$print_errors) }
+  
+  ## Check seed
+  if(missing(seed)) {
+    seed <- NULL
+  } else {
+    set.seed(seed)
+  }
 
-  fullResutls<-list()
+  ## Create output list
+  fullResults<-list()
   
   ## Standard MKT
-  fullResutls[["standardMKT"]] <- standard(daf,divergence)
+  fullResults[["StandardMK"]] <- standard(daf,divergence)
   
   ## FWW MKT
-  fullResutls[["FWW"]] <- FWW(daf,divergence)
+  fullResults[["FWW"]] <- FWW(daf,divergence)
   
   ## DGRP MKT
-  fullResutls[["DGRP"]] <- DGRP(daf,divergence)
+  fullResults[["DGRP"]] <- DGRP(daf,divergence)
   
   ## Asymptotic MKT
-  fullResutls[["Asymptotic"]] <- asymptoticMK(daf,divergence,xlow,xhigh)
+  fullResults[["Asymptotic"]] <- asymptoticMK(daf,divergence,xlow,xhigh)
   
   ## iMK
-  fullResutls[["iMK"]] <- iMK(daf,divergence,xlow,xhigh)
+  fullResults[["iMK"]] <- iMK(daf,divergence,xlow,xhigh)
   
   ## Output
-  return(fullResutls)
+  return(fullResults)
 }
 

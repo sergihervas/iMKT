@@ -19,7 +19,6 @@
 #' ## Run the function
 #' # iMK(daf, div, 0, 0.9)
 #'
-#' @import knitr 
 #' @import utils
 #' @import stats
 #' @import grid 

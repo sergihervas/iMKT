@@ -1,26 +1,21 @@
 #' @title asymptoticMK
 #' 
-#' @description \code{asymptoticMK} developed in Messer, P. W. & Petrov, D. A. Frequent adaptation and the McDonald-Kreitman test. Proceedings of the National Academy of Sciences 110, 8615–8620 (2013).
-#' Directly retrieved from: httP0://github.com/MesserLab/asymptoticMK
-#'Load your Derived Allele Frequency file (remember you can use 10 or 20 categories) and Divergence file (it contains de divergents and analysed sites in the synonimous and non synonimous categories)
+#' @description \code{asymptoticMK} developed in "Haller BC, Messer PW. asymptoticMK: A Web-Based Tool for the Asymptotic McDonald-Kreitman Test. G3 (Bethesda). 2017 May 5;7(5):1569-1575".
+#' Adapted from: http://github.com/MesserLab/asymptoticMK
 #'
 #' @details The standard McDonald and Kreitman test (MKT) is used to detect the signature of selection at the molecular level. The MKT compares the amount of variation within a species (polymorphism, P) to the divergence (D) between species at two types of sites, one of which is putatively netral and used as the reference to detect selection at the other type of site. In the standard MKT, these sites are synonymous (putatively neutral, 0) and non-synonymous sites (selected sites, i) in a coding region. Under strict neutrality, the ratio of the number of selected and neutral polymorphic sites (Pi/P0) is equal to the ratio of the number of selected and neutral divergence sites (Di/D0).
 # The null hypothesis of neutrality is rejected in a MKT when Di/D0 > Pi/P0. The excess of divergence relative to polymorphism for class i, is interpreted as adaptive selection for a subset of sites i. The fraction of adaptive fixations, α, is estimated from 1-(Pi/P0)(Ds/Dn). The significance of the test can be assesed with a Fisher exact test.
 #'
-#' @param daf daf file
-#' @param divergence div file
+#' @param daf data frame containing DAF, Pi and P0 values
+#' @param divergence data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes
 #' @param xlow trimming values below this daf threshold
 #' @param xhigh trimming values above this daf threshold
 #' @param seed seed value (optional). No seed by default
 #'
-#' @return None
+#' @return Estimation of alpha asymptotic value and details of the model fit
 #'
 #' @examples
-#' ## Load Derived Allele Frequemcy and Divergence files
-#' daf <- mydafdata
-#' div <- mydivergencedata
-#' ## Run the function
-#' # asymptoticMK(daf, div, xlow=0, xhigh=0.9)
+#' # asymptoticMK(mydafdata, mydivergencedata, 0, 0.9)
 #'
 #' @import utils
 #' @import stats
@@ -28,11 +23,6 @@
 #' @importFrom nls2 nls2
 #'
 #' @export
-
-## only fits exponential model, depends on fitMKmodel and predictNLS
-## returns only a table with results, no plot
-
-### Change description. Code adapted from Haller & Messer. asymptoticMK. G3, not Messer and Petrov.
 
 asymptoticMK <- function(daf, divergence, xlow, xhigh, seed) {
   

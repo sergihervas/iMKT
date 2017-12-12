@@ -1,9 +1,9 @@
 #' @title fitMKmodel
 #' 
-#' @description Core code for two-step nls2() model fit at a given level of precision (res, usually set at 10)
-#' Directly retrieved from: https://github.com/MesserLab/asymptoticMK
+#' @description \code{fitMKmodel} Core code for two-step nls2() model fit at a given level of precision (res, usually set at 10)
+#' Adapted from: https://github.com/MesserLab/asymptoticMK
 #'
-#' @details Put details here
+#' @details nls2() model fit used to estimate asymptotic alpha value. This function is adapted from the code developed in "Haller BC, Messer PW. asymptoticMK: A Web-Based Tool for the Asymptotic McDonald-Kreitman Test. G3 (Bethesda). 2017 May 5;7(5):1569-1575".
 #' 
 #' @param alpha_trimmed correspond to the vectors with alpha and frequency (DAF) values
 #' @param f_trimmed  correspond to the vectors with alpha and frequency (DAF) values

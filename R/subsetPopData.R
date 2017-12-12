@@ -9,9 +9,8 @@
 #' @param pops populations to use
 #' @param recomb group genes according to recombination values (must specify number of bins)
 #' @param bins number of recombination bins to compute (mandatory if recomb = TRUE)
-#' @param xlow trimming values below this daf threshold
-#' @param xhigh trimming values above this daf threshold
-
+#' @param xlow lower limit for asymptotic alpha fit
+#' @param xhigh higher limit for asymptotic alpha fit
 #' @return None
 #'
 #' @examples
@@ -22,9 +21,9 @@
 #' # subsetPopData("PopFly", mygenes , c("RAL","ZI"), recomb=F, bins=0, xlow=0, xhigh=0.9)
 #'
 #' @import utils
+#' @import stats
 #'
 #' @export
-#' 
 
 #######################
 ### IN CONSTRUCTION ###

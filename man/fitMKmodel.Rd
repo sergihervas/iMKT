@@ -11,15 +11,15 @@ fitMKmodel(alpha_trimmed, f_trimmed, res)
 
 \item{f_trimmed}{correspond to the vectors with alpha and frequency (DAF) values}
 
-\item{res}{refers to the level of precision, resudiues to use}
+\item{res}{refers to the level of precision, residues to use (10 or 20)}
 }
 \value{
 None
 }
 \description{
-Core code for two-step nls2() model fit at a given level of precision (res, usually set at 10)
-Directly retrieved from: https://github.com/MesserLab/asymptoticMK
+\code{fitMKmodel} Core code for two-step nls2() model fit at a given level of precision (res, usually set at 10)
+Adapted from: https://github.com/MesserLab/asymptoticMK
 }
 \details{
-Put details here
+nls2() model fit used to estimate asymptotic alpha value. This function is adapted from the code developed in "Haller BC, Messer PW. asymptoticMK: A Web-Based Tool for the Asymptotic McDonald-Kreitman Test. G3 (Bethesda). 2017 May 5;7(5):1569-1575".
 }

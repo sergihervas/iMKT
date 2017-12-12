@@ -19,9 +19,9 @@ subsetPopData(data = c("PopFly", "PopHuman"), genes = c("gene1", "gene2",
 
 \item{bins}{number of recombination bins to compute (mandatory if recomb = TRUE)}
 
-\item{xlow}{trimming values below this daf threshold}
+\item{xlow}{lower limit for asymptotic alpha fit}
 
-\item{xhigh}{trimming values above this daf threshold}
+\item{xhigh}{higher limit for asymptotic alpha fit}
 }
 \value{
 None

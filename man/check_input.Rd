@@ -7,18 +7,20 @@
 check_input(daf, divergence, xlow, xhigh)
 }
 \arguments{
-\item{daf}{daf file}
+\item{daf}{data frame containing DAF, Pi and P0 values}
 
-\item{divergence}{divergence file}
+\item{divergence}{data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes}
 
-\item{xlow}{trimming values below this daf threshold}
+\item{xlow}{lower limit for asymptotic alpha fit}
 
-\item{xhigh}{trimming values above this daf threshold}
+\item{xhigh}{higher limit for asymptotic alpha fit}
 }
 \value{
 None
 }
 \description{
-Error handling. Checks input data and returns errors whan it is malformed.
-Author = Sergi Hervas, Jesús Murga
+Check input data and return detailed errors when it is malformed.
+}
+\details{
+This function checks input data used in most package's functions (arguments daf, divergence, xlow and xhigh) and returns a brief description of the error(s) found. If data does not pass check_input() the requested analysis is not performed.
 }

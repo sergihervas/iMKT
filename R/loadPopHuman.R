@@ -12,7 +12,6 @@
 #' @import utils
 #'
 #' @export
-#' 
 
 loadPopHuman <- function() {
   PopHumanData <- ""

@@ -4,35 +4,28 @@
 \alias{DGRP}
 \title{DGRP}
 \usage{
-DGRP(daf = "Data frame containing the DAF, Pn and Ps",
-  divergence = "Data frame that contains sites analyzed and divergencen 0fold and 4fold",
-  list_cutoffs = c(0, 0.05, 0.2))
+DGRP(daf, divergence, list_cutoffs = c(0, 0.05, 0.2))
 }
 \arguments{
-\item{daf}{Derived Alelle Frequency File}
+\item{daf}{data frame containing DAF, Pi and P0 values}
 
-\item{divergence}{Divergence and analyzed sites}
+\item{divergence}{data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes}
 
-\item{list_cutoffs}{Default cutoff c(0, 0.05, 0.2)}
+\item{list_cutoffs}{list of cutoffs to use (optional). Default cutoffs are: 0, 0.05, 0.2}
 }
 \value{
-MKT corrected by the DGRP method
+MKT corrected by the DGRP method. List with alpha results, graph, divergence metrics, MKT tables and negative selection fractions
 }
 \description{
-\code{DGRP()} Perform MKT corrected with DGRP method 
-
-Load your Derived Allele Frequency file (remember you can use 10 or 20 categories) and Divergence file (it contains de divergents and analysed sites in the synonimous and non synonimous categories)
-
-Date = 30/11/2016 Author = Sergi Hervas, Marta Coronado
+\code{DGRP()} Perform MKT corrected with DGRP method
 }
 \details{
 The standard McDonald and Kreitman test (MKT) is used to detect the signature of selection at the molecular level. The MKT compares the amount of variation within a species (polymorphism, P) to the divergence (D) between species at two types of sites, one of which is putatively netral and used as the reference to detect selection at the other type of site. In the standard MKT, these sites are synonymous (putatively neutral, 0) and non-synonymous sites (selected sites, i) in a coding region. Under strict neutrality, the ratio of the number of selected and neutral polymorphic sites (Pi/P0) is equal to the ratio of the number of selected and neutral divergence sites (Di/D0).The null hypothesis of neutrality is rejected in a MKT when Di/D0 > Pi/P0. The excess of divergence relative to polymorphism for class i, is interpreted as adaptive selection for a subset of sites i. The fraction of adaptive fixations, alpha.symbol, is estimated from 1-(Pi/P0)(D0/Di). The significance of the test can be assesed with a Fisher exact test. The estimate of alpha.symbol can be easily biased by the segregation of slightly deleterious non-synonymous substitutions. Specifically, slightly deleterious mutations tend to contribute more to polymorphism than to divergence, and thus, lead to an underestimation of alpha. Because adaptive mutations and weakly deleterious selection sct in opposite directions on the MKT, alpha and the fraction of substitutions that are sligholty deleterious, b, will be both underestimated when the two selection regimes occur. To take adaptive and slighlty deleterious mutations mutually into account, Pi, the count off segregatning sites in class i, should be seaprated into the number of neutral variants and the number of weakly deleterious variants, Pi = Pineutral + Pi weak del. Alpha is then estimated as 1-(Pineutral/P0)(D0/Di)
 }
 \examples{
-## Load Derived Allele Frequency and Divergence files
-daf <- mydafdata
-div <- mydivergencedata
-## Run the function
-# DGRP(daf, div)
+## Using default cutoffs
+# DGRP(mydafdata, mydivergencedata)
+## Using custom cutoffs
+# DGRP(mydafdata, mydivergencedata, c(0.05, 0.1, 0.15))
 
 }

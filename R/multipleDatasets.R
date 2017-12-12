@@ -14,7 +14,6 @@
 #' @examples 
 #' ##example here
 #' 
-#' @import knitr 
 #' @import utils
 #' @import stats
 #' @import grid 

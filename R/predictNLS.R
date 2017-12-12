@@ -19,10 +19,6 @@
 #'
 #' @export
 
-#param alpha_trimmed correspond to the vectors with alpha and frequency (DAF) values
-#param f_trimmed  correspond to the vectors with alpha and frequency (DAF) values
-#param res ASK SERGI
-
 predictNLS <- function(object, newdata, level = 0.95, nsim = 10000) {
    
   ## get right-hand side of formula
