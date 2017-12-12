@@ -7,8 +7,7 @@
 #' 
 #' @param alpha_trimmed correspond to the vectors with alpha and frequency (DAF) values
 #' @param f_trimmed  correspond to the vectors with alpha and frequency (DAF) values
-#' @param res refers to the level of precision, resudiues to use
-#'
+#' @param res refers to the level of precision, residues to use (10 or 20)
 #' @return None
 #'
 #' @importFrom nls2 nls2
