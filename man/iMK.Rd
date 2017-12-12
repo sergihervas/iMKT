@@ -4,33 +4,33 @@
 \alias{iMK}
 \title{iMK}
 \usage{
-iMK(daf, divergence, xlow, xhigh, seed)
+iMK(daf, divergence, xlow, xhigh, seed, plot = FALSE)
 }
 \arguments{
-\item{daf}{daf file}
+\item{daf}{data frame containing DAF, Pi and P0 values}
 
-\item{divergence}{div file}
+\item{divergence}{data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes}
 
 \item{xlow}{trimming values below this daf threshold}
 
 \item{xhigh}{trimming values above this daf threshold}
 
 \item{seed}{seed value (optional). No seed by default}
+
+\item{plot}{report plots of daf, alpha and negative selection fractions (optional). Default is FALSE}
 }
 \value{
-None
+iMK
 }
 \description{
-\code{iMK()} iMK method
-}
-\details{
-put some details here
+iMK: alpha asymptotic + negative selection (d,b,f)
+
+#details details here
 }
 \examples{
-## Load your Derived Allele Frequency and Divergence files
-daf <- mydafdata
-div <- mydivergencedata
-## Run the function
-# iMK(daf, div, 0, 0.9)
+## Without plot
+# iMK(mydafdata, mydivergencedata, 0, 0.9)
+## With plot
+# iMK(mydafdata, mydivergencedata, 0, 0.9, plot=TRUE)
 
 }

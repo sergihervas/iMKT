@@ -13,8 +13,6 @@
 #' @examples
 #' # theme_Publication(14, "sans")
 #'
-#' @import grid 
-#' @import gridExtra
 #' @import ggplot2
 #' @importFrom ggthemes theme_foundation
 #'

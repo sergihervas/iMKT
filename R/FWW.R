@@ -18,8 +18,6 @@
 #' 
 #' @import utils
 #' @import stats
-#' @import grid 
-#' @import gridExtra
 #' @import scales
 #' @import ggplot2
 #' @importFrom ggthemes theme_foundation
