@@ -15,7 +15,6 @@
 #'
 #' @import utils
 #' @import stats
-#' @import knitr 
 #' @importFrom MASS mvrnorm
 #'
 #' @export
