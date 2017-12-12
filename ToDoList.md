@@ -5,9 +5,9 @@
 - **S** IDEA: Functions fitMKmodel and predictNLS inside other functions, but without documentation... as they are never called by their own.
 - ~~Discuss input, maybe create parser~~
 - Discuss output, update plots and include table -> html/pdf for non expert R users?  (Marta **in progress**)
-    - Discuss invisible(output)
-    - plot=FALSE (Marta)
-    - Change order plots (iMK)
+    - ~~Discuss invisible(output)~~
+    - plot=FALSE (Marta): DGRP-FWW-~~iMKT~~
+    - ~~Change order plots (iMK)~~
     - Rename variables (wordWord2)
 - ~~Plot functions (plotalpha, plotdaf, plotimkr) are not necessary, the plots are done inside the iMK function: remove them (Marta)~~
 - ~~Plot c: y axis text should be bold (Sergi, Marta -- in reality the "Asymptotic MKT" text shouldn't appear xD)~~
