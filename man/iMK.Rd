@@ -11,9 +11,9 @@ iMK(daf, divergence, xlow, xhigh, seed, plot = FALSE)
 
 \item{divergence}{data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes}
 
-\item{xlow}{trimming values below this daf threshold}
+\item{xlow}{lower limit for asymptotic alpha fit}
 
-\item{xhigh}{trimming values above this daf threshold}
+\item{xhigh}{higher limit for asymptotic alpha fit}
 
 \item{seed}{seed value (optional). No seed by default}
 
