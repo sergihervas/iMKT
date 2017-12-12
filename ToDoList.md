@@ -119,14 +119,14 @@
 - ~~Review tryCatch({...}) as proper error (Jesus)~~
 - Error handling predictNLS (Sergi)
 - check()
-	- NOTE: import / export. too many packages. Mantain only stats, utils, knitr and ggplot2 as full preload packages.
+	- NOTE: import / export. too many packages.
 	- **S** which functions do we use from... ?
 	- import(grid)
 	- import(gridExtra)
 	- import(scales)
+	- import(knitr) --> kable --> importFrom(knitr,kable)
 	- **S** those must be full preloaded
 	- import(ggplot2)
-	- import(knitr)
 	- import(stats)
 	- import(utils)
 	
