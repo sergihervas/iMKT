@@ -11,6 +11,8 @@
 #'
 #' @return None
 #'
+#' @importFrom nls2 nls2
+#'
 #' @export
  
 fitMKmodel <- function(alpha_trimmed, f_trimmed, res) {
