@@ -15,7 +15,7 @@ subsetPopData(data = c("PopFly", "PopHuman"), genes = c("gene1", "gene2",
 
 \item{pops}{populations to use}
 
-\item{recomb}{group genes according to recombination values (must specify number of bins)}
+\item{recomb}{group genes according to recombination values (must specify number of bins). TRUE/FALSE}
 
 \item{bins}{number of recombination bins to compute (mandatory if recomb = TRUE)}
 

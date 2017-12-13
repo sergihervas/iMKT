@@ -7,14 +7,15 @@
 #' @param daf data frame containing DAF, Pi and P0 values
 #' @param divergence data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes
 #' @param list_cutoffs list of cutoffs to use (optional). Default cutoffs are: 0, 0.05, 0.2
+#' @param plot report plot (optional). Default is FALSE
 #' 
 #' @return MKT corrected by the FWW method
 #'
 #' @examples
 #' ## Using default cutoffs
 #' # FWW(mydafdata, mydivergencedata)
-#' ## Using custom cutoffs
-#' # FWW(mydafdata, mydivergencedata, c(0.05, 0.1, 0.15))
+#' ## Using custom cutoffs and rendering plot
+#' # FWW(mydafdata, mydivergencedata, c(0.05, 0.1, 0.15), plot=TRUE)
 #' 
 #' @import utils
 #' @import stats
@@ -77,27 +78,29 @@ FWW <- function(daf, divergence, list_cutoffs=c(0, 0.05, 0.1), plot=FALSE) {
   div_cutoff <- as.data.frame(do.call("rbind",div_cutoff))
   names(div_cutoff) <- c("cutoff", "omegaA", "omegaD")
   
+  ## Perform plot
   if(plot == TRUE) {
-  ## Cut-offs graphs
-  plot <- ggplot(output, aes(x=as.factor(cutoff), y=alpha, group=1)) +
-    geom_line(color="#386cb0") + 
-    geom_point(size=2.5, color="#386cb0")+
-    theme_Publication() +
-    xlab("Cut-off") + ylab(expression(bold(paste("Adaptation (",alpha,")"))))
+    ## Cut-offs graphs
+    plot <- ggplot(output, aes(x=as.factor(cutoff), y=alpha, group=1)) +
+      geom_line(color="#386cb0") + 
+      geom_point(size=2.5, color="#386cb0")+
+      theme_Publication() +
+      xlab("Cut-off") + ylab(expression(bold(paste("Adaptation (",alpha,")"))))
   
-  ## Re-format outputs
-  output <- output[,c(2,3)]
-  names(output) <- c("alpha.symbol","Fishers exact test P-value")
-  div_cutoff <- div_cutoff[,c(2,3)]
-  colnames(div_cutoff) <- c("omegaA.symbol", "omegaD.symbol")
-  div_metrics <- list(div_table, div_cutoff)
-  names(div_metrics) <- c("Global metrics", "Estimates by cutoff")
+    ## Re-format outputs
+    output <- output[,c(2,3)]
+    names(output) <- c("alpha.symbol","Fishers exact test P-value")
+    div_cutoff <- div_cutoff[,c(2,3)]
+    colnames(div_cutoff) <- c("omegaA.symbol", "omegaD.symbol")
+    div_metrics <- list(div_table, div_cutoff)
+    names(div_metrics) <- c("Global metrics", "Estimates by cutoff")
   
-  ## Return list
-  list_output <-list(output, plot, div_metrics, mkt_tables)
-  names(list_output) <- c("Results", "Graph", "Divergence metrics", "MKT tables")
-  } else if (plot==FALSE)
-  {
+    ## Return list
+    list_output <-list(output, plot, div_metrics, mkt_tables)
+    names(list_output) <- c("Results", "Graph", "Divergence metrics", "MKT tables")
+  
+  ## If no plot to perform  
+  } else if (plot == FALSE) {
     ## Re-format outputs
     output <- output[,c(2,3)]
     names(output) <- c("alpha.symbol","Fishers exact test P-value")
@@ -110,5 +113,7 @@ FWW <- function(daf, divergence, list_cutoffs=c(0, 0.05, 0.1), plot=FALSE) {
     list_output <-list(output, div_metrics, mkt_tables)
     names(list_output) <- c("Results", "Divergence metrics", "MKT tables")
   }
+  
+  ## Return output
   return(list_output)
 }

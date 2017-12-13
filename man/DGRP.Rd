@@ -4,7 +4,7 @@
 \alias{DGRP}
 \title{DGRP}
 \usage{
-DGRP(daf, divergence, list_cutoffs = c(0, 0.05, 0.2))
+DGRP(daf, divergence, list_cutoffs = c(0, 0.05, 0.2), plot = FALSE)
 }
 \arguments{
 \item{daf}{data frame containing DAF, Pi and P0 values}
@@ -12,6 +12,8 @@ DGRP(daf, divergence, list_cutoffs = c(0, 0.05, 0.2))
 \item{divergence}{data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes}
 
 \item{list_cutoffs}{list of cutoffs to use (optional). Default cutoffs are: 0, 0.05, 0.2}
+
+\item{plot}{report plot (optional). Default is FALSE}
 }
 \value{
 MKT corrected by the DGRP method. List with alpha results, graph, divergence metrics, MKT tables and negative selection fractions

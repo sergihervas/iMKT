@@ -7,7 +7,7 @@
 #' @param data input PopFly or PopHuman data
 #' @param genes list of genes
 #' @param pops populations to use
-#' @param recomb group genes according to recombination values (must specify number of bins)
+#' @param recomb group genes according to recombination values (must specify number of bins). TRUE/FALSE
 #' @param bins number of recombination bins to compute (mandatory if recomb = TRUE)
 #' @param xlow lower limit for asymptotic alpha fit
 #' @param xhigh higher limit for asymptotic alpha fit

@@ -4,7 +4,7 @@
 \alias{FWW}
 \title{FWW}
 \usage{
-FWW(daf, divergence, list_cutoffs = c(0, 0.05, 0.1))
+FWW(daf, divergence, list_cutoffs = c(0, 0.05, 0.1), plot = FALSE)
 }
 \arguments{
 \item{daf}{data frame containing DAF, Pi and P0 values}
@@ -12,6 +12,8 @@ FWW(daf, divergence, list_cutoffs = c(0, 0.05, 0.1))
 \item{divergence}{data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes}
 
 \item{list_cutoffs}{list of cutoffs to use (optional). Default cutoffs are: 0, 0.05, 0.2}
+
+\item{plot}{report plot (optional). Default is FALSE}
 }
 \value{
 MKT corrected by the FWW method
@@ -25,7 +27,7 @@ The standard McDonald and Kreitman test (MKT) is used to detect the signature of
 \examples{
 ## Using default cutoffs
 # FWW(mydafdata, mydivergencedata)
-## Using custom cutoffs
-# FWW(mydafdata, mydivergencedata, c(0.05, 0.1, 0.15))
+## Using custom cutoffs and rendering plot
+# FWW(mydafdata, mydivergencedata, c(0.05, 0.1, 0.15), plot=TRUE)
 
 }

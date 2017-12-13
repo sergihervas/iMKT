@@ -7,6 +7,8 @@
 #' @param daf data frame containing DAF, Pi and P0 values
 #' @param divergence data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes
 #' @param list_cutoffs list of cutoffs to use (optional). Default cutoffs are: 0, 0.05, 0.2
+#' @param plot report plot (optional). Default is FALSE
+#' 
 #' @return MKT corrected by the DGRP method. List with alpha results, graph, divergence metrics, MKT tables and negative selection fractions
 #'
 #' @examples
@@ -113,40 +115,16 @@ DGRP <- function(daf, divergence, list_cutoffs=c(0, 0.05, 0.2), plot=FALSE) {
   div_cutoff <- as.data.frame(do.call("rbind",div_cutoff))
   names(div_cutoff) <- c("cutoff", "omegaA", "omegaD")
   
-  if (plot==TRUE) {
-  ## Cut-offs graph
-  plot <- ggplot(output, aes(x=as.factor(cutoff), y=alpha, group=1)) +
-    geom_line(color="#386cb0") + 
-    geom_point(size=2.5, color="#386cb0")+
-    theme_Publication() +
-    xlab("Cut-off") + ylab(expression(bold(paste("Adaptation (",alpha,")")))) 
+  ## Render plot
+  if (plot == TRUE) {
+    
+    ## Cut-offs graph
+    plot <- ggplot(output, aes(x=as.factor(cutoff), y=alpha, group=1)) +
+      geom_line(color="#386cb0") + 
+      geom_point(size=2.5, color="#386cb0")+
+      theme_Publication() +
+      xlab("Cut-off") + ylab(expression(bold(paste("Adaptation (",alpha,")")))) 
   
-  ## Re-format outputs
-  output <- output[,c(2,3)]
-  names(output) <- c("alpha.symbol","Fishers exact test P-value")
-  div_cutoff <- div_cutoff[,c(2,3)]
-  colnames(div_cutoff) <- c("omegaA.symbol", "omegaD.symbol")
-  div_metrics <- list(div_table, div_cutoff)
-  names(div_metrics) <- c("Global metrics", "Estimates by cutoff")
-  
-  ## Melt fractions data
-  fractions_melt <- melt(fractions, id.vars=NULL) 
-  fractions_melt$Fraction <-  rep(c("d", "f", "b"),3)
-  
-  ## Fractions graph
-  plotfraction <- ggplot(fractions_melt) + geom_bar(stat="identity", aes_string(x="variable", y="value", fill="Fraction"), color="black") +
-    coord_flip() + theme_Publication() + ylab(label="Fraction") + xlab(label="Cut-off") +
-    scale_fill_manual(values=c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33"), breaks=c("d","f","b"), labels=c(expression(italic("d")),expression(italic("f")),expression(italic("b")))) +
-    theme(axis.line=element_blank())  + scale_y_discrete(limit=seq(0,1,0.25), expand=c(0,0))
-  
-  plot <- plot_grid(plot, plotfraction, nrow=2, labels=c("A","B"), rel_heights=c(2,1))
-  
-  ## Return list output  
-  list_output <- list(output, plot, div_metrics, mkt_tables, fractions)
-  names(list_output) <- c("Results","Graph", "Divergence metrics", "MKT tables","Fractions")
-  }
-  else if (plot==FALSE)
-  {
     ## Re-format outputs
     output <- output[,c(2,3)]
     names(output) <- c("alpha.symbol","Fishers exact test P-value")
@@ -154,15 +132,43 @@ DGRP <- function(daf, divergence, list_cutoffs=c(0, 0.05, 0.2), plot=FALSE) {
     colnames(div_cutoff) <- c("omegaA.symbol", "omegaD.symbol")
     div_metrics <- list(div_table, div_cutoff)
     names(div_metrics) <- c("Global metrics", "Estimates by cutoff")
-    
+  
     ## Melt fractions data
     fractions_melt <- melt(fractions, id.vars=NULL) 
     fractions_melt$Fraction <-  rep(c("d", "f", "b"),3)
-    
+  
+    ## Fractions graph
+    plotfraction <- ggplot(fractions_melt) + geom_bar(stat="identity", aes_string(x="variable", y="value", fill="Fraction"), color="black") +
+      coord_flip() + theme_Publication() + ylab(label="Fraction") + xlab(label="Cut-off") +
+      scale_fill_manual(values=c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33"), breaks=c("d","f","b"), labels=c(expression(italic("d")),expression(italic("f")),expression(italic("b")))) +
+      theme(axis.line=element_blank())  + scale_y_discrete(limit=seq(0,1,0.25), expand=c(0,0))
+  
+    plot <- plot_grid(plot, plotfraction, nrow=2, labels=c("A","B"), rel_heights=c(2,1))
+  
     ## Return list output  
-    list_output <- list(output, div_metrics, mkt_tables, fractions)
-    names(list_output) <- c("Results", "Divergence metrics", "MKT tables","Fractions")
+    list_output <- list(output, plot, div_metrics, mkt_tables, fractions)
+    names(list_output) <- c("Results","Graph", "Divergence metrics", "MKT tables","Fractions")
+  
+  ## If no plot to render
+  } else if (plot==FALSE) {
+      ## Re-format outputs
+      output <- output[,c(2,3)]
+      names(output) <- c("alpha.symbol","Fishers exact test P-value")
+      div_cutoff <- div_cutoff[,c(2,3)]
+      colnames(div_cutoff) <- c("omegaA.symbol", "omegaD.symbol")
+      div_metrics <- list(div_table, div_cutoff)
+      names(div_metrics) <- c("Global metrics", "Estimates by cutoff")
+    
+      ## Melt fractions data
+      fractions_melt <- melt(fractions, id.vars=NULL) 
+      fractions_melt$Fraction <-  rep(c("d", "f", "b"),3)
+      
+      ## Return list output  
+      list_output <- list(output, div_metrics, mkt_tables, fractions)
+      names(list_output) <- c("Results", "Divergence metrics", "MKT tables","Fractions")
   }
+  
+  ## Return output
   return(list_output)
 }
 
