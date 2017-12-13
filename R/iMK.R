@@ -21,7 +21,6 @@
 #' 
 #' @import utils
 #' @import stats
-#' @import scales
 #' @import ggplot2
 #' @importFrom reshape2 melt
 #' @importFrom ggthemes theme_foundation

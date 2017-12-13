@@ -19,7 +19,6 @@
 #' 
 #' @import utils
 #' @import stats
-#' @import scales
 #' @import ggplot2
 #' @importFrom ggthemes theme_foundation
 #' @importFrom cowplot plot_grid
