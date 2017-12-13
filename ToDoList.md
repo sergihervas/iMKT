@@ -2,16 +2,16 @@
 ### List of things to do:
 
 - Update Readme.md
-- **S** IDEA: Functions fitMKmodel and predictNLS inside other functions, but without documentation... as they are never called by their own.
+- ~~**S** IDEA: Functions fitMKmodel and predictNLS inside other functions, but without documentation... as they are never called by their own.~~
 - ~~Discuss input, maybe create parser~~
 - Discuss output, update plots and include table -> html/pdf for non expert R users?  (Marta **in progress**)
     - ~~Discuss invisible(output)~~
-    - plot=FALSE (Marta): DGRP-FWW-~~iMKT~~
+    - plot=FALSE (Marta): DGRP-FWW- ~~iMKT~~
     - ~~Change order plots (iMK)~~
     - Rename variables (wordWord2)
 - ~~Plot functions (plotalpha, plotdaf, plotimkr) are not necessary, the plots are done inside the iMK function: remove them (Marta)~~
 - ~~Plot c: y axis text should be bold (Sergi, Marta -- in reality the "Asymptotic MKT" text shouldn't appear xD)~~
-- Do you think it's useful to compute ω, Ka and Ks (internally, then the user can acces it)? It would be easier to compute ωα and ωd. **S** yes we should include them. maybe inside the standard mkt function? **J** I agree with **S**. **M** Yes, but those values should be available for all tests performed: how about: function "divergence_parameters.R" which run inside all tests and the output is invisible? **S** I do not understand why these parameters should be in all funcions. Aren't they like other statistics to estimate the fraction of adaptive evolution, such as alpha? We can discuss this on Tuesday, I guess I am missing something here. I would suggest one single independent function to compute w, kaks, wa and wd. (Sergi; Ka=(div0f/m0f), Ks=(div4f/m4f), omega=Ka/Ks, omegaAlpha=alpha x omega, omegaD= omega - omegaAlpha.
+- ~~Do you think it's useful to compute ω, Ka and Ks (internally, then the user can acces it)? It would be easier to compute ωα and ωd. **S** yes we should include them. maybe inside the standard mkt function? **J** I agree with **S**. **M** Yes, but those values should be available for all tests performed: how about: function "divergence_parameters.R" which run inside all tests and the output is invisible? **S** I do not understand why these parameters should be in all funcions. Aren't they like other statistics to estimate the fraction of adaptive evolution, such as alpha? We can discuss this on Tuesday, I guess I am missing something here. I would suggest one single independent function to compute w, kaks, wa and wd. (Sergi; Ka=(div0f/m0f), Ks=(div4f/m4f), omega=Ka/Ks, omegaAlpha=alpha x omega, omegaD= omega - omegaAlpha.~~
 - ~~When yo run multiple times asymptotic_MK, the CI are different. We should add a set.seed parameter in case the user wants to make it reproducible. If the argument is empty, then set.seed is NULL. (Marta)~~
 - ~~Update watchdog: adapt to diverse functions~~
 - ~~Delete watchdog and add stops and messages inside the functions (Jesus) (selected: i, neutral: 0)~~
@@ -23,8 +23,8 @@
 - System.time(Re-run iMKT):  
 	- ~~First approach, three datasets from concatenate.genes in 1000 iteration loop 100seconds aprox (Jesus)~~ 
 	- ~~Check times between genes and concatenate.genes dataset. Same expected time~~
-	- **S** I do not understand this comparison. Differences in time depend on the values of Pi, P0, Di and D0, but not on the type of data used (1 gene or multiple genes) if the input is the same (daf and div files). Of course the multiple genes test takes more time, but because P and D values are higher. Maybe it would make more sense to use "simulated" (I mean inventados xd) datasets controlling Pi, P0, Di, D0 or different number of daf categories to perform the speed tests. 
-	- **J** The comparision was only an approach to check the expected time between one type of calcution and the other one. Of course the times will depend on the values of Pi, P0, Di and D0, but the differences between one gene dataset and one (large) concatenate dataset are not significant (I really think) to rewrite the functions in order to compute the two types of dataset with differents functions.
+	- ~~**S** I do not understand this comparison. Differences in time depend on the values of Pi, P0, Di and D0, but not on the type of data used (1 gene or multiple genes) if the input is the same (daf and div files). Of course the multiple genes test takes more time, but because P and D values are higher. Maybe it would make more sense to use "simulated" (I mean inventados xd) datasets controlling Pi, P0, Di, D0 or different number of daf categories to perform the speed tests. 
+	- **J** The comparision was only an approach to check the expected time between one type of calcution and the other one. Of course the times will depend on the values of Pi, P0, Di and D0, but the differences between one gene dataset and one (large) concatenate dataset are not significant (I really think) to rewrite the functions in order to compute the two types of dataset with differents functions.~~
 	- **S** It would also be great to know the minimum number of sites required to run the different tests. This makes sense for asymptotic alpha basically (and the iMK function). Should be done with simulated data, but is a tough work. **M** This was also commented on one of the meetengs and that I should definitely take a look on this, also is super important and nobody tested it yet. And not only the minimum number, but also the minimum number of concatenated genes for the asymptotic and DFE-alpha. **ANTONIO**.
 	- Functions timing in concatenate dataset (daf10): 
 		- standard =  0.082 seconds (best of three)
@@ -82,7 +82,7 @@
 			- **J** loadPopHuman()(user system elapsed): 320.534 (best of 10 iterations), 738.009 (worst of 10 iterations)
 			- **S** Update pophuman data file!
 		- Discuss output of the function. **S** I would suggest (and I will implement it soon if you agree) to allow deciding which test to perform with the subseted data from PopFly or PopHuman, so the function would call compareMK function and give its output in lists for populations.
-		- check_input() inside function! **S**
+		- ~~check_input() inside function! **S**~~
 		- check pre-allocate and fill (rbind) **S**
 		
 - Reference Messer & Haller code (Question: Shall we write to them to let them know we're implementing their code into another package?)		
