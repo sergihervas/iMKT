@@ -92,6 +92,8 @@ iMK <- function(daf, divergence, xlow, xhigh, seed, plot=FALSE) {
   ## Fraction of f, b and d sites
   fraction <- data.frame(Fraction=c(d,f,b), Type=c("d","f","b"), MKT=rep("Asymptotic MK", 3))
   
+
+  
   ## Perform plots 
   if(plot == TRUE) {
     
@@ -143,17 +145,17 @@ iMK <- function(daf, divergence, xlow, xhigh, seed, plot=FALSE) {
   
     ## Render plots with labels
     plots_iMKT <- plot_grid(plotdaf, plot_alpha, plotfraction, nrow=3,  labels=c("A","B","C"), rel_heights=c(2,2,1))
-  }
-  
-  ## iMKT output
-  fraction <- fraction[c("Type","Fraction")]
-  asymptoticMK_table[2:8] <- round(asymptoticMK_table[2:8],4)
-  
-  ## Output with or without plot
-  if(plot == TRUE) {
+    
+    ## Store output
+    ## iMKT output
+    fraction <- fraction[c("Type","Fraction")]
+    asymptoticMK_table[2:8] <- round(asymptoticMK_table[2:8],4)
     output <- list(asymptoticMK_table, fraction, plots_iMKT)
     names(output) <- c("Asymptotic MK table", "Fractions of sites", "Graphs")
   } else if (plot == FALSE) {
+    ## iMKT output
+    fraction <- fraction[c("Type","Fraction")]
+    asymptoticMK_table[2:8] <- round(asymptoticMK_table[2:8],4)
     output <- list(asymptoticMK_table, fraction)
     names(output) <- c("Asymptotic MK table", "Fractions of sites")
   }

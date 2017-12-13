@@ -31,7 +31,7 @@
 ################# MKT-FWW function #################
 ####################################################
 
-DGRP <- function(daf, divergence, list_cutoffs=c(0, 0.05, 0.2)) {
+DGRP <- function(daf, divergence, list_cutoffs=c(0, 0.05, 0.2), plot=FALSE) {
   
   ## Check data
   check <- check_input(daf, divergence, 0, 1)
@@ -113,6 +113,7 @@ DGRP <- function(daf, divergence, list_cutoffs=c(0, 0.05, 0.2)) {
   div_cutoff <- as.data.frame(do.call("rbind",div_cutoff))
   names(div_cutoff) <- c("cutoff", "omegaA", "omegaD")
   
+  if (plot==TRUE) {
   ## Cut-offs graph
   plot <- ggplot(output, aes(x=as.factor(cutoff), y=alpha, group=1)) +
     geom_line(color="#386cb0") + 
@@ -143,6 +144,25 @@ DGRP <- function(daf, divergence, list_cutoffs=c(0, 0.05, 0.2)) {
   ## Return list output  
   list_output <- list(output, plot, div_metrics, mkt_tables, fractions)
   names(list_output) <- c("Results","Graph", "Divergence metrics", "MKT tables","Fractions")
+  }
+  else if (plot==FALSE)
+  {
+    ## Re-format outputs
+    output <- output[,c(2,3)]
+    names(output) <- c("alpha.symbol","Fishers exact test P-value")
+    div_cutoff <- div_cutoff[,c(2,3)]
+    colnames(div_cutoff) <- c("omegaA.symbol", "omegaD.symbol")
+    div_metrics <- list(div_table, div_cutoff)
+    names(div_metrics) <- c("Global metrics", "Estimates by cutoff")
+    
+    ## Melt fractions data
+    fractions_melt <- melt(fractions, id.vars=NULL) 
+    fractions_melt$Fraction <-  rep(c("d", "f", "b"),3)
+    
+    ## Return list output  
+    list_output <- list(output, div_metrics, mkt_tables, fractions)
+    names(list_output) <- c("Results", "Divergence metrics", "MKT tables","Fractions")
+  }
   return(list_output)
 }
 
