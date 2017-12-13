@@ -6,7 +6,7 @@
 - ~~Discuss input, maybe create parser~~
 - Discuss output, update plots and include table -> html/pdf for non expert R users?  (Marta **in progress**)
     - ~~Discuss invisible(output)~~
-    - plot=FALSE (Marta): DGRP-FWW- ~~iMKT~~
+    - ~~plot=FALSE (Marta): DGRP-FWW- iMKT~~
     - ~~Change order plots (iMK)~~
     - Rename variables (wordWord2)
 - ~~Plot functions (plotalpha, plotdaf, plotimkr) are not necessary, the plots are done inside the iMK function: remove them (Marta)~~
