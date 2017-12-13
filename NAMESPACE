@@ -2,6 +2,7 @@
 
 export(DGRP)
 export(FWW)
+export(PopFlyAnalysis)
 export(asymptoticMK)
 export(check_input)
 export(completeMKT)
