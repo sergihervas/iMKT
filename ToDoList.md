@@ -26,20 +26,20 @@
 	- ~~**S** I do not understand this comparison. Differences in time depend on the values of Pi, P0, Di and D0, but not on the type of data used (1 gene or multiple genes) if the input is the same (daf and div files). Of course the multiple genes test takes more time, but because P and D values are higher. Maybe it would make more sense to use "simulated" (I mean inventados xd) datasets controlling Pi, P0, Di, D0 or different number of daf categories to perform the speed tests. 
 	- **J** The comparision was only an approach to check the expected time between one type of calcution and the other one. Of course the times will depend on the values of Pi, P0, Di and D0, but the differences between one gene dataset and one (large) concatenate dataset are not significant (I really think) to rewrite the functions in order to compute the two types of dataset with differents functions.~~
 	- **S** It would also be great to know the minimum number of sites required to run the different tests. This makes sense for asymptotic alpha basically (and the iMK function). Should be done with simulated data, but is a tough work. **M** This was also commented on one of the meetengs and that I should definitely take a look on this, also is super important and nobody tested it yet. And not only the minimum number, but also the minimum number of concatenated genes for the asymptotic and DFE-alpha. **ANTONIO**.
-	- Functions timing in concatenate dataset (daf10): 
+	~~- Functions timing in concatenate dataset (daf10): 
 		- standard =  0.082 seconds (best of three)
 		- FWW (with plot) =   0.191 seconds (best of three)
 		- DGRP (with plot) = 0.373 seconds (best of three)
 		- asymptotic = 0.228 seconds (best of three)
 		- iMK = 0.457 seconds (best of three)
-		- completeMKT = 1.408 seconds(best of three) ~~**M**: why it takes so long if it should be like iMK + DGRP??? **S** I think this function computes all the above tests calling each function one by one (0.1+0.2+0.4+0.2+0.5=1.4). **J** This function execute all the MKT test, not only iMK + DGRP.~~
-	- Functions timing in genes dataset (daf10): 
+		- completeMKT = 1.408 seconds(best of three)~~ ~~**M**: why it takes so long if it should be like iMK + DGRP??? **S** I think this function computes all the above tests calling each function one by one (0.1+0.2+0.4+0.2+0.5=1.4). **J** This function execute all the MKT test, not only iMK + DGRP.~~
+	~~- Functions timing in genes dataset (daf10): 
 		- standard =  0.003 seconds (best of three)
 		- FWW (with plot) =   0.013 seconds (best of three)
 		- DGRP (with plot) = 0.139 seconds (best of three)
 		- asymptotic = 0.228 seconds (best of three)
 		- iMK = 0.481  seconds (best of three)
-		- completeMKT = 0.885 seconds (best of three)
+		- completeMKT = 0.885 seconds (best of three) ~~
 - Build package:
 	- ~~Main structure (Jesus)~~
 	- ~~Review license (Need to talk, probably GPL-3)~~
@@ -50,7 +50,7 @@
 	- ~~Hidden datasets (Jesus)~~
 	- Tests (Jesus, Sergi)
 	- ~~Document correctly functions (Marta, Jesus)~~
-		- Just need to rewrite correctly the documentation.
+	- Just need to rewrite correctly the documentation.
 		- ~~Change RD files to S4 class (bioconductor) (Jesús). FINALLY NOT BIOCONDUCTOR~~
 	- User manual (Marta, Jesus)
 	- Vignettes (Marta, Jesus)
@@ -69,7 +69,7 @@
 		- ~~**S** Test DGRP estimates of f,b,d with real and simulated data. I do not like them, in fact I think the formulae are wrong, and that's why I did not include them in the original DGRP function, just the alpha value.~~
 		- ~~graph cutoffs simple (Marta)~~
 	- daf.pl: Modify perl functions to extract the correct files. Review the categories. **S** What do u mean with: Review the categories?
-	- Put in functions comparision scripts (Jesus) **S** What is this?
+	- Put in functions comparision scripts (Jesus)
 	- ~~Multiple_datasets(...): (Jesus)~~
 		- ~~Add a variable to check file list (Jesus)~~
 		- Check Pre-allocate and fill’ (Jesus: Marta check the function pohfavó. **M**: checking in progress) **S** If this has something to do with for loops let me know cause I use lots of them. As far as I understood it is about emtpy lists which are then filled and returned in the function, rigth? **M** The idea is that when you are doing a loop, avoid doing that: result_gene <- rbind(output_final,result_gene), because your working everytime with a bigger dataframe (output_final). You have to create a list and fill it (output_final[[i]]<-result_gene). I already fixed it for the DGRP and FWW functions that you wrote.
@@ -79,19 +79,21 @@
 		- ~~Need talk about methods:(1)download and process whole dataset in R, (2)preload files in package (function to process them), (3)daf+div files in folder, call each one from R function.~~
 		- **S** Check times of download functions: loadPopFly() & loadPopHuman. Around 20 seconds the first one.
 			- **J** loadPopFly(): 13.937 (best of 10 iterations), 27.194 (worst of 10 iterations)
-			- **J** loadPopHuman()(user system elapsed): 320.534 (best of 10 iterations), 738.009 (worst of 10 iterations)
+			~~- **J** loadPopHuman()(user system elapsed): 320.534 (best of 10 iterations), 738.009 (worst of 10 iterations)~~
 			- **S** Update pophuman data file!
-		- Discuss output of the function. **S** I would suggest (and I will implement it soon if you agree) to allow deciding which test to perform with the subseted data from PopFly or PopHuman, so the function would call compareMK function and give its output in lists for populations.
+		~~- Discuss output of the function. **S** I would suggest (and I will implement it soon if you agree) to allow deciding which test to perform with the subseted data from PopFly or PopHuman, so the function would call compareMK function and give its output in lists for populations. ~~
 		- ~~check_input() inside function! **S**~~
-		- check pre-allocate and fill (rbind) **S**
+		- check pre-allocate and fill (rbind) for recomb=T **S**
+		- update PopHuman part! 
+		- **rename function? split in 2? PopFlyAnalysis and PopHumanAnalysis.** As we perform the subset + the analysis. It would be easier to handle cause only the PopFly part is around 300 lines of code. **S**
 		
-- Reference Messer & Haller code (Question: Shall we write to them to let them know we're implementing their code into another package?)		
+- Reference Messer & Haller code (Question: Shall we write to them to let them know we're implementing their code into another package?). **S** We reference their code in the asymptoticMK function. We can write them later, as Antonio suggested.
 
 ~~- Update sample data (Marta, Jesus)~~
 ~~- Example tutorial with sample data (Marta, Jesus)~~
 
 - Implement GUI through web-server (with Django) (Ask Esteve for help? **M** the web looks awesome Jesus!!!)(Jesús **in progress**)  
-	- Rewrite funcionts to run from terminal (receiving input/inputs) and generate html (Jesús **in progress**) **S** U mean using curl? Like the asymptoticMK webpage? For the server we can use FastR which allows running R online and generating reports in markdown-like style. That's what we use in PopFly / PopHuman for MKT gene report. **J** 1. We do not need curl because we will offer the package to run the pipeline locally; 2. From the server we will receive an input, to proccess it we should execute an Rscript in Darwin/muscul with arguments (args[1] = daffile, args[2] = divfile). We need to create functions that recieve X parameters in order to execute the scripts with any input. In addition the results will be a html. I don't know how fastrweb works, I created Rmarkdown scritps to execute the funcionts from terminal passing 2 or 4 arguments (files or files+xlow+xhigh) and generate a html report. **S** GREAT! :D 
+	- Rewrite funcionts to run from terminal (receiving input/inputs) and generate html (Jesús **in progress**) ~~**S** U mean using curl? Like the asymptoticMK webpage? For the server we can use FastR which allows running R online and generating reports in markdown-like style. That's what we use in PopFly / PopHuman for MKT gene report. **J** 1. We do not need curl because we will offer the package to run the pipeline locally; ~~2. From the server we will receive an input, to proccess it we should execute an Rscript in Darwin/muscul with arguments (args[1] = daffile, args[2] = divfile). We need to create functions that recieve X parameters in order to execute the scripts with any input. In addition the results will be a html. I don't know how fastrweb works, I created Rmarkdown scritps to execute the funcionts from terminal passing 2 or 4 arguments (files or files+xlow+xhigh) and generate a html report. **S** GREAT! :D 
 
 - Manuscript: **M** suggests: 
 
