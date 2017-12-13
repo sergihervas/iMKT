@@ -6,22 +6,25 @@
 \usage{
 subsetPopData(data = c("PopFly", "PopHuman"), genes = c("gene1", "gene2",
   "..."), pops = c("pop1", "pop2", "..."), recomb = TRUE/FALSE, bins = 0,
-  xlow, xhigh)
+  test = c("standard", "DGRP", "FWW", "asymptotic", "iMK"), xlow = 0,
+  xhigh = 1)
 }
 \arguments{
 \item{data}{input PopFly or PopHuman data}
 
 \item{genes}{list of genes}
 
-\item{pops}{populations to use}
+\item{pops}{list of populations}
 
 \item{recomb}{group genes according to recombination values (must specify number of bins). TRUE/FALSE}
 
 \item{bins}{number of recombination bins to compute (mandatory if recomb = TRUE)}
 
-\item{xlow}{lower limit for asymptotic alpha fit}
+\item{test}{which test to perform. Options include: standard (default), DGRP, FWW, iMK, asymptotic, none.}
 
-\item{xhigh}{higher limit for asymptotic alpha fit}
+\item{xlow}{lower limit for asymptotic alpha fit (default=0)}
+
+\item{xhigh}{higher limit for asymptotic alpha fit (default=1)}
 }
 \value{
 None
@@ -37,6 +40,6 @@ put details here
 # loadPopFly()
 ## Perform analysis
 # mygenes <- c("FBgn0053196", "FBgn0000008")
-# subsetPopData("PopFly", mygenes , c("RAL","ZI"), recomb=F, bins=0, xlow=0, xhigh=0.9)
+# subsetPopData("PopFly", mygenes , c("RAL","ZI"), recomb=F)
 
 }
