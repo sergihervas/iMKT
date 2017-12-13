@@ -23,17 +23,17 @@
 - System.time(Re-run iMKT):  
 	- ~~First approach, three datasets from concatenate.genes in 1000 iteration loop 100seconds aprox (Jesus)~~ 
 	- ~~Check times between genes and concatenate.genes dataset. Same expected time~~
-	~~-**S** I do not understand this comparison. Differences in time depend on the values of Pi, P0, Di and D0, but not on the type of data used (1 gene or multiple genes) if the input is the same (daf and div files). Of course the multiple genes test takes more time, but because P and D values are higher. Maybe it would make more sense to use "simulated" (I mean inventados xd) datasets controlling Pi, P0, Di, D0 or different number of daf categories to perform the speed tests.~~
-	~~- **J** The comparision was only an approach to check the expected time between one type of calcution and the other one. Of course the times will depend on the values of Pi, P0, Di and D0, but the differences between one gene dataset and one (large) concatenate dataset are not significant (I really think) to rewrite the functions in order to compute the two types of dataset with differents functions.~~
+	- ~~**S** I do not understand this comparison. Differences in time depend on the values of Pi, P0, Di and D0, but not on the type of data used (1 gene or multiple genes) if the input is the same (daf and div files). Of course the multiple genes test takes more time, but because P and D values are higher. Maybe it would make more sense to use "simulated" (I mean inventados xd) datasets controlling Pi, P0, Di, D0 or different number of daf categories to perform the speed tests.~~
+	- ~~**J** The comparision was only an approach to check the expected time between one type of calcution and the other one. Of course the times will depend on the values of Pi, P0, Di and D0, but the differences between one gene dataset and one (large) concatenate dataset are not significant (I really think) to rewrite the functions in order to compute the two types of dataset with differents functions.~~
 	- **S** It would also be great to know the minimum number of sites required to run the different tests. This makes sense for asymptotic alpha basically (and the iMK function). Should be done with simulated data, but is a tough work. **M** This was also commented on one of the meetengs and that I should definitely take a look on this, also is super important and nobody tested it yet. And not only the minimum number, but also the minimum number of concatenated genes for the asymptotic and DFE-alpha. **ANTONIO**.
-	~~- Functions timing in concatenate dataset (daf10): 
+	- ~~Functions timing in concatenate dataset (daf10): 
 		- standard =  0.082 seconds (best of three)
 		- FWW (with plot) =   0.191 seconds (best of three)
 		- DGRP (with plot) = 0.373 seconds (best of three)
 		- asymptotic = 0.228 seconds (best of three)
 		- iMK = 0.457 seconds (best of three)
 		- completeMKT = 1.408 seconds(best of three)~~ ~~**M**: why it takes so long if it should be like iMK + DGRP??? **S** I think this function computes all the above tests calling each function one by one (0.1+0.2+0.4+0.2+0.5=1.4). **J** This function execute all the MKT test, not only iMK + DGRP.~~
-	~~- Functions timing in genes dataset (daf10): 
+	- ~~Functions timing in genes dataset (daf10): 
 		- standard =  0.003 seconds (best of three)
 		- FWW (with plot) =   0.013 seconds (best of three)
 		- DGRP (with plot) = 0.139 seconds (best of three)
@@ -92,8 +92,18 @@
 ~~- Update sample data (Marta, Jesus)~~
 ~~- Example tutorial with sample data (Marta, Jesus)~~
 
+### Beta Tests
+- Check inputs works with check_input(...) (Marta, Jesus)
+- Check functions independently. ~~Error in DGRP (Marta, Jesus)~~
+- ~~Review tryCatch({...}) as proper error (Jesus)~~
+- Error handling predictNLS (Sergi)
+
+### Server
 - Implement GUI through web-server (with Django) (Ask Esteve for help? **M** the web looks awesome Jesus!!!)(Jesús **in progress**)  
-	- Rewrite funcionts to run from terminal (receiving input/inputs) and generate html (Jesús **in progress**) ~~**S** U mean using curl? Like the asymptoticMK webpage? For the server we can use FastR which allows running R online and generating reports in markdown-like style. That's what we use in PopFly / PopHuman for MKT gene report. **J** 1. We do not need curl because we will offer the package to run the pipeline locally; ~~2. From the server we will receive an input, to proccess it we should execute an Rscript in Darwin/muscul with arguments (args[1] = daffile, args[2] = divfile). We need to create functions that recieve X parameters in order to execute the scripts with any input. In addition the results will be a html. I don't know how fastrweb works, I created Rmarkdown scritps to execute the funcionts from terminal passing 2 or 4 arguments (files or files+xlow+xhigh) and generate a html report. **S** GREAT! :D 
+	- Rewrite funcionts to run from terminal (receiving input/inputs) and generate html (Jesús **in progress**) ~~**S** U mean using curl? Like the asymptoticMK webpage? For the server we can use FastR which allows running R online and generating reports in markdown-like style. That's what we use in PopFly / PopHuman for MKT gene report. **J** 1. We do not need curl because we will offer the package to run the pipeline locally; ~~2. From the server we will receive an input, to proccess it we should execute an Rscript in Darwin/muscul with arguments (args[1] = daffile, args[2] = divfile). We need to create functions that recieve X parameters in order to execute the scripts with any input. In addition the results will be a html. I don't know how fastrweb works, I created Rmarkdown scritps to execute the funcionts from terminal passing 2 or 4 arguments (files or files+xlow+xhigh) and generate a html report. **S** GREAT! :D 	
+
+
+### MANUSCRIPT
 
 - Manuscript: **M** suggests: 
 
@@ -115,10 +125,3 @@
 		- The package and the webpage. The pipeline for obtaining the DAF? **S** This pipeline is a result or a method? I always doubt on this kind of things. However, it is something referees can criticize a lot because it is not perfect and I think the work is very complete and long enough, so I would not talk about it in the Results section, just in the Methods. **M** Okay, then we only comment it on the methods!
 		- Something else?
 		- **S** I would suggest permuting points 4 and 5. Hence, we first present the package and server and then the adaptation results which we obtained using the previously described software. This way we demonstrate it is useful.
-		
-### Beta Tests
-- Check inputs works with check_input(...) (Marta, Jesus)
-- Check functions independently. ~~Error in DGRP (Marta, Jesus)~~
-- ~~Review tryCatch({...}) as proper error (Jesus)~~
-- Error handling predictNLS (Sergi)
-	
