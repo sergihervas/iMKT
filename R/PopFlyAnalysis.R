@@ -42,7 +42,7 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
   ## Check input variables
   ## Numer of arguments
   if (nargs() < 3 && nargs()) {
-    stop("You must specify 4 arguments at least: genes, pops, recomb (T/F).\nIf test = asymptotic or test = iMK, you must specify xlow and xhigh values.") }
+    stop("You must specify 3 arguments at least: genes, pops, recomb (T/F).\nIf test = asymptotic or test = iMK, you must specify xlow and xhigh values.") }
   
   ## Argument genes
   if (length(genes) == 0 || genes == "" || !is.character(genes)) {
