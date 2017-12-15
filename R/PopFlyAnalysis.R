@@ -15,16 +15,14 @@
 #' @return None
 #'
 #' @examples
-#' ## Load PopFly data into your workspace
-#' # loadPopFly()
-#' ## Perform analysis
-#' # mygenes <- c("FBgn0053196", "FBgn0000008")
-#' # PopFlyAnalysis(mygenes , c("RAL","ZI"), recomb=F)
-#' # mygenes <- c("FBgn0000008","FBgn0000014","FBgn0000015","FBgn0000017","FBgn0000018","FBgn0000022",
-#' #              "FBgn0000024","FBgn0000028","FBgn0000032","FBgn0000036","FBgn0000037","FBgn0000038",
-#' #              "FBgn0000039","FBgn0000042","FBgn0000043","FBgn0000044","FBgn0000045","FBgn0000046")
-#' # PopFlyAnalysis(mygenes , c("RAL","ZI"), recomb=T, bins=3, test="DGRP", xlow=0, xhigh=0.9)
-#'
+#' ## List of genes
+#' # mygenes <- c("FBgn0053196", "FBgn0086906", "FBgn0261836", "FBgn0031617", 
+#' #              "FBgn0260965", "FBgn0028899", "FBgn0052580", "FBgn0036181",
+#' #              "FBgn0263077", "FBgn0013733", "FBgn0031857", "FBgn0037836")
+#' ## Perform analyses
+#' # PopFlyAnalysis(genes=mygenes , pops=c("RAL","ZI"), recomb=F, test="iMK", xlow=0, xhigh=0.9)
+#' # PopFlyAnalysis(genes=mygenes , pops=c("RAL","ZI"), recomb=T, bins=3, test="DGRP")
+#' 
 #' @import utils
 #' @import stats
 #'
@@ -104,8 +102,8 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
     outputList <- list()
     
     for (k in levels(subsetGenes$Pop)) {
-      
       print(paste0("Population = ", k))
+      
       ## Declare bins output list (each element 1 bin)
       outputListBins <- list()
       
@@ -114,31 +112,32 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
       
       ## create bins
       binsize <- round(nrow(x)/bins) ## Number of genes for each bin
-      count <- 1; dat <- NULL
+      count <- 1
+      x$Group <- ""
+      dat <- x[FALSE, ] ## Create df with colnames
       
       for (i in 0:nrow(x)) {
         if (i%%binsize == 0) { ## Only if reminder of division = 0 (equally sized bins)
-          i1 <- i + binsize - 1
+          i1 <- i + binsize
           if (i == 0) {
             g1 <- x[i:binsize,]
             group <- count
             g1$Group <- group
-            dat <- rbind(dat,g1)
+            dat[i:binsize,] <- g1
             count <- count+1 }
-          else if (i1 < nrow(x)) {
-            g1 <- x[i:i1,]
+          else if (i1 <= nrow(x)) {
+            ii <- i+1
+            g1 <- x[ii:i1,]
             group <- count
             g1$Group <- group
-            dat <- rbind(dat,g1)
+            dat[ii:i1,] <- g1
             count <- count+1 }
         }
       }
       dat$Group <- as.factor(dat$Group)
-      dat <- unique(dat)
-      
+
       ## Iterate through each recomb bin
       for (j in levels(dat$Group)) {
-        
         print(paste0("Recombination bin = ", j))
         x1 <- dat[dat$Group == j, ]
         
@@ -213,7 +212,6 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
     outputList <- list()
     
     for (i in levels(subsetGenes$Pop)) {
-      
       print(paste0("Population = ", i))
       x <- subsetGenes[subsetGenes$Pop == i, ]
       

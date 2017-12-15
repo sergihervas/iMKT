@@ -33,14 +33,12 @@ Perform any MK test using a subset of PopFly data defined by custom genes and po
 put details here
 }
 \examples{
-## Load PopFly data into your workspace
-# loadPopFly()
-## Perform analysis
-# mygenes <- c("FBgn0053196", "FBgn0000008")
-# PopFlyAnalysis(mygenes , c("RAL","ZI"), recomb=F)
-# mygenes <- c("FBgn0000008","FBgn0000014","FBgn0000015","FBgn0000017","FBgn0000018","FBgn0000022",
-#              "FBgn0000024","FBgn0000028","FBgn0000032","FBgn0000036","FBgn0000037","FBgn0000038",
-#              "FBgn0000039","FBgn0000042","FBgn0000043","FBgn0000044","FBgn0000045","FBgn0000046")
-# PopFlyAnalysis(mygenes , c("RAL","ZI"), recomb=T, bins=3, test="DGRP", xlow=0, xhigh=0.9)
+## List of genes
+# mygenes <- c("FBgn0053196", "FBgn0086906", "FBgn0261836", "FBgn0031617", 
+#              "FBgn0260965", "FBgn0028899", "FBgn0052580", "FBgn0036181",
+#              "FBgn0263077", "FBgn0013733", "FBgn0031857", "FBgn0037836")
+## Perform analyses
+# PopFlyAnalysis(genes=mygenes , pops=c("RAL","ZI"), recomb=F, test="iMK", xlow=0, xhigh=0.9)
+# PopFlyAnalysis(genes=mygenes , pops=c("RAL","ZI"), recomb=T, bins=3, test="DGRP")
 
 }
