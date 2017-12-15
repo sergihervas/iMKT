@@ -124,14 +124,13 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
             group <- count
             g1$Group <- group
             dat <- rbind(dat,g1)
-            count <- count+1
-          } else if (i1 < nrow(x)) {
+            count <- count+1 }
+          else if (i1 < nrow(x)) {
             g1 <- x[i:i1,]
             group <- count
             g1$Group <- group
             dat <- rbind(dat,g1)
-            count <- count+1
-          }
+            count <- count+1 }
         }
       }
       dat$Group <- as.factor(dat$Group)
@@ -176,20 +175,15 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
         ## Check data inside each test!
         ## Perform test
         if(test == "standard") {
-          output <- standard(daf, div)
-        }
+          output <- standard(daf, div) }
         else if(test == "DGRP") {
-          output <- DGRP(daf, div)
-        }
+          output <- DGRP(daf, div) }
         else if(test == "FWW") {
-          output <- FWW(daf, div)
-        }
+          output <- FWW(daf, div) }
         else if(test == "asymptotic") {
-          output <- asymptoticMK(daf, div, xlow, xhigh)
-        }
+          output <- asymptoticMK(daf, div, xlow, xhigh) }
         else if(test == "iMK") {
-          output <- iMK(daf, div, xlow, xhigh)
-        }
+          output <- iMK(daf, div, xlow, xhigh) }
         
         ## Fill list with each bin
         outputListBins[[paste("Recombination bin = ",j)]] <- output
@@ -205,8 +199,7 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
       genesNames <- as.vector(tail(x, missingGenes)$Name)
       genesNames <- paste(genesNames, collapse=", ")
       warningMssg <- paste0("The ",missingGenes," gene(s) with highest recombination rate estimates (", genesNames, ") was/were excluded from the analysis in order to get equally sized bins.\n")
-      warning(warningMssg)
-    }
+      warning(warningMssg) }
     
     ## Return output
     cat("\n")
@@ -256,20 +249,15 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
       ## Check data inside each test!
       ## Perform test
       if(test == "standard") {
-        output <- standard(daf, div)
-      }
+        output <- standard(daf, div) }
       else if(test == "DGRP") {
-        output <- DGRP(daf, div)
-      }
+        output <- DGRP(daf, div) }
       else if(test == "FWW") {
-        output <- FWW(daf, div)
-      }
+        output <- FWW(daf, div) }
       else if(test == "asymptotic") {
-        output <- asymptoticMK(daf, div, xlow, xhigh)
-      }
+        output <- asymptoticMK(daf, div, xlow, xhigh) }
       else if(test == "iMK") {
-        output <- iMK(daf, div, xlow, xhigh)
-      }
+        output <- iMK(daf, div, xlow, xhigh) }
       
       ## Fill list with each pop
       outputList[[paste("Population = ",i)]] <- output
