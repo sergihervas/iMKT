@@ -1,13 +1,15 @@
 #' @title multipleDatasets
-
-#' @description \code{multipleDatsets()} Execute any test  with all the files in a directory. The files need to be called id.daf.txt and id.divergence.txt
+#' 
+#' @description  Perform any MK test using all files (or a subset of them) in a given directory.
 #'
-#' @details put a description here
+#' @details Files in directory must be named: file1*daf*, file1*divergence*, file2*daf*, file2*divergence*, ...
 #'
-#' @param directory dad file
-#' @param test divergence file
-#' @param fullanalyis TRUE indicates execute the analysis for all the files in a folder 
-#' @param idlist List of genes or datasets to analyze
+#' @param directory directory (path/to/files/) where daf and divergence files are stored in your local machine
+#' @param test which test to perform. Options include: standard (default), DGRP, FWW, asymptotic, iMK
+#' @param fullAnalysis decide whether to analyze all files in directory or not (default=TRUE) 
+#' @param idList used when fullAnalysis = F, list of IDs to analyze
+#' @param xlow lower limit for asymptotic alpha fit (default=0)
+#' @param xhigh higher limit for asymptotic alpha fit (default=1)
 #'
 #' @return None
 #'
@@ -19,92 +21,96 @@
 #'
 #' @export
 
-multipleDatasets<-function(directory="Directory",test=c("DGRP","FWW","ALL"),fullanalyis=TRUE/FALSE,idlist='NA'){
+#multipleDatasets(directory="/home/sergi/testiMK/", test="standard", fullAnalysis=F, idList=c("id1","id2"))
+
+
+multipleDatasets <- function(directory=directory, test=c("standard","DGRP","FWW","asymptotic","iMK"), xlow=0, xhigh=1, fullAnalysis=TRUE/FALSE, idList='NA') {
   
-  wd<-directory;setwd(wd) #SET AND CREATE A WORKING DIRECTORY
-  files<-list.files(wd) #LIST ALL FILES IN DIRECTORY
-  subset_daf<-list.files(wd,pattern = "daf.*$")  #SEPARATE FILES IN DAF AND DIVERGENCE
-  subset_divergence<-list.files(wd,pattern = "divergence.*$")  #SEPARATE FILES IN DAF AND DIVERGENCE
+  ## Set working directory and list files (daf and divergence)
+  wd <- directory; setwd(wd) 
+  files <- list.files(wd) 
+  subset_daf <- list.files(wd, pattern = "daf.*$")
+  subset_divergence<-list.files(wd,pattern = "divergence.*$")
+  
+  ## Create output empty list
+  result <- list()
 
-  result<-list() #EMPTY RESULT
+  ## If fullAnalysis == F, check there is idList!
+  if (fullAnalysis == FALSE && idList == 'NA') {
+  	stop("You must specify a list of IDs to analyze (fullAnalysis = F selected).")
+  }
 
-if (fullanalyis==FALSE & idlist!='NA'){
-    list<-as.matrix(read.table(idlist))
-    if(test=="standard"){
-        for (i in list){
-          daf<-(grep(paste0(i,".daf"),subset_daf,value=T))
-          divergence<-(grep(paste0(i,".divergence"),subset_divergence,value = T))
-          z<-read.table(daf,header = T)
-          c<-read.table(divergence,header = T)
-          # result<-append(result,)
-          temp<-list("ID"=i,"StandarMKT"=standard(z,c))
-          result[[i]]<-temp}
-          }
+  ## If idList, keep only matching names from subset_daf and subset_divergence
+  if (fullAnalysis == FALSE && idList != 'NA') {
+  	
+    ## Analyze each ID
+  	for (i in idList) {
+      daf <- (grep(paste0(i,".daf"), subset_daf, value=T))
+      divergence <- (grep(paste0(i,".divergence"), subset_divergence, value=T))
+      daf <- read.table(daf, header=T)
+      divergence <- read.table(divergence, header=T)
+      
+      ## Perform test
+      if(test == "standard") {
+        temp <- list("ID"=i, "StandardMK"=standard(daf, divergence))
+        result[[i]] <- temp
+      }
+      else if(test == "DGRP") {
+        temp <- list("ID"=i, "DGRP"=DGRP(daf, divergence))
+        result[[i]] <- temp
+      }
+      else if(test == "FWW") {
+        temp <- list("ID"=i, "FWW"=FWW(daf, divergence))
+        result[[i]] <- temp
+      }
+      else if(test == "asymptotic") {
+        temp <- list("ID"=i, "asymptotic"=asymptoticMK(daf, divergence, xlow, xhigh))
+        result[[i]] <- temp
+      }
+      else if(test == "iMK") {
+        temp <- list("ID"=i, "iMK"=iMK(daf, divergence, xlow, xhigh))
+        result[[i]] <- temp
+      }
+  	}
+    
+    ## Return output
+    return(result)
   }
-# 
-else{
-  names<-sub("*.daf.*", "", subset_daf)
-  if (test=="ALL"){
+  
+  else if (fullAnalysis == TRUE) {
+    names <- sub("*.daf.*", "", subset_daf)
+    
+    ## Analyze each ID
     for (i in 1:length(names)){
-      daf<-(grep(paste0(names[i],".daf"),subset_daf,value=T))
-      divergence<-(grep(paste0(names[i],".divergence"),subset_divergence,value = T))
-      z<-read.table(daf,header = T)
-      c<-read.table(divergence,header = T)
-      # result<-append(result,)
-      temp<-list("ID"=names[i],"completeMKT"=completeMKT(z,c))
-      result[[names[i]]]<-temp
+      daf <- (grep(paste0(names[i],".daf"), subset_daf, value=T))
+      divergence<-(grep(paste0(names[i],".divergence"), subset_divergence, value=T))
+      daf <- read.table(daf, header=T)
+      divergence <- read.table(divergence, header=T)
+      
+      ## Perform test
+      if(test == "standard") {
+        temp <- list("ID"=i, "StandardMK"=standard(daf, divergence))
+        result[[i]] <- temp
+      }
+      else if(test == "DGRP") {
+        temp <- list("ID"=i, "DGRP"=DGRP(daf, divergence))
+        result[[i]] <- temp
+      }
+      else if(test == "FWW") {
+        temp <- list("ID"=i, "FWW"=FWW(daf, divergence))
+        result[[i]] <- temp
+      }
+      else if(test == "asymptotic") {
+        temp <- list("ID"=i, "asymptotic"=asymptoticMK(daf, divergence, xlow, xhigh))
+        result[[i]] <- temp
+      }
+      else if(test == "iMK") {
+        temp <- list("ID"=i, "iMK"=iMK(daf, divergence, xlow, xhigh))
+        result[[i]] <- temp
+      }
     }
-  }
-  else if(test=="standard"){
-    for (i in 1:length(names)){
-      daf<-(grep(paste0(names[i],".daf"),subset_daf,value=T))
-      divergence<-(grep(paste0(names[i],".divergence"),subset_divergence,value = T))
-      z<-read.table(daf,header = T)
-      c<-read.table(divergence,header = T)
-      # result<-append(result,)
-      temp<-list("ID"=names[i],"StandarMKT"=standard(z,c))
-      result[[names[i]]]<-temp
-    }
-  }
-  else if(test=="FWW"){
-    for (i in 1:length(names)){
-      daf<-(grep(paste0(names[i],".daf"),subset_daf,value=T))
-      divergence<-(grep(paste0(names[i],".divergence"),subset_divergence,value = T))
-      z<-read.table(daf,header = T)
-      c<-read.table(divergence,header = T)
-      # result<-append(result,)
-      temp<-list("ID"=i,"FWW"=FWW(z,c))
-      result[[names[i]]]<-temp
-    }
-  }
-  else if(test=="DGRP"){
-    for (i in 1:length(names)){
-      daf<-(grep(paste0(names[i],".daf"),subset_daf,value=T))
-      divergence<-(grep(paste0(names[i],".divergence"),subset_divergence,value = T))
-      z<-read.table(daf,header = T)
-      c<-read.table(divergence,header = T)
-      # result<-append(result,)
-      temp<-list("ID"=names[i],"DGRP"=DGRP(z,c))
-      result[[names[i]]]<-temp
-    }
-  }
-  else if(test=="iMK"){
-    for (i in 1:length(names)){
-      daf<-(grep(paste0(names[i],".daf"),subset_daf,value=T))
-      divergence<-(grep(paste0(names[i],".divergence"),subset_divergence,value = T))
-      z<-read.table(daf,header = T)
-      c<-read.table(divergence,header = T)
-      # result<-append(result,)
-      temp<-list("ID"=names[i],"iMKT"=iMK(z,c))
-      result[[names[i]]]<-temp
-    }
+    
+    ## Return output
+    return(result)
   }
 }
-  return(result)
-}
-
-  
-# multipleDatasets(directory = "~/MKT/Test",test = c("standard","DGRP"),fullanalyis = TRUE, idlist = "NA")
-# multipleDatasets(directory = "~/MKT/Test",test = "standard",fullanalyis = FALSE,idlist = "id")
-# multipleDatasets(directory = "~/MKT/Test",test = "standard",fullanalyis = TRUE)
-

@@ -17,7 +17,7 @@ PopFlyAnalysis(genes = c("gene1", "gene2", "..."), pops = c("pop1", "pop2",
 
 \item{bins}{number of recombination bins to compute (mandatory if recomb = TRUE)}
 
-\item{test}{which test to perform. Options include: standard (default), DGRP, FWW, iMK, asymptotic, none.}
+\item{test}{which test to perform. Options include: standard (default), DGRP, FWW, asymptotic, iMK}
 
 \item{xlow}{lower limit for asymptotic alpha fit (default=0)}
 

@@ -4,26 +4,31 @@
 \alias{multipleDatasets}
 \title{multipleDatasets}
 \usage{
-multipleDatasets(directory = "Directory", test = c("DGRP", "FWW", "ALL"),
-  fullanalyis = TRUE/FALSE, idlist = "NA")
+multipleDatasets(directory = directory, test = c("standard", "DGRP", "FWW",
+  "asymptotic", "iMK"), xlow = 0, xhigh = 1, fullAnalysis = TRUE/FALSE,
+  idList = "NA")
 }
 \arguments{
-\item{directory}{dad file}
+\item{directory}{directory (path/to/files/) where daf and divergence files are stored in your local machine}
 
-\item{test}{divergence file}
+\item{test}{which test to perform. Options include: standard (default), DGRP, FWW, asymptotic, iMK}
 
-\item{fullanalyis}{TRUE indicates execute the analysis for all the files in a folder}
+\item{xlow}{lower limit for asymptotic alpha fit (default=0)}
 
-\item{idlist}{List of genes or datasets to analyze}
+\item{xhigh}{higher limit for asymptotic alpha fit (default=1)}
+
+\item{fullAnalysis}{decide whether to analyze all files in directory or not (default=TRUE)}
+
+\item{idList}{used when fullAnalysis = F, list of IDs to analyze}
 }
 \value{
 None
 }
 \description{
-\code{multipleDatsets()} Execute any test  with all the files in a directory. The files need to be called id.daf.txt and id.divergence.txt
+Perform any MK test using all files (or a subset of them) in a given directory.
 }
 \details{
-put a description here
+Files in directory must be named: file1*daf*, file1*divergence*, file2*daf*, file2*divergence*, ...
 }
 \examples{
 ##example here

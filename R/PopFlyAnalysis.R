@@ -8,7 +8,7 @@
 #' @param pops list of populations
 #' @param recomb group genes according to recombination values (must specify number of bins). TRUE/FALSE
 #' @param bins number of recombination bins to compute (mandatory if recomb = TRUE)
-#' @param test which test to perform. Options include: standard (default), DGRP, FWW, iMK, asymptotic, none.
+#' @param test which test to perform. Options include: standard (default), DGRP, FWW, asymptotic, iMK
 #' @param xlow lower limit for asymptotic alpha fit (default=0)
 #' @param xhigh higher limit for asymptotic alpha fit (default=1)
 #' 
