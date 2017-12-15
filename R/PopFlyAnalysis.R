@@ -20,11 +20,10 @@
 #' ## Perform analysis
 #' # mygenes <- c("FBgn0053196", "FBgn0000008")
 #' # PopFlyAnalysis(mygenes , c("RAL","ZI"), recomb=F)
-#' # mygenes <- 
 #' # mygenes <- c("FBgn0000008","FBgn0000014","FBgn0000015","FBgn0000017","FBgn0000018","FBgn0000022",
 #' #              "FBgn0000024","FBgn0000028","FBgn0000032","FBgn0000036","FBgn0000037","FBgn0000038",
 #' #              "FBgn0000039","FBgn0000042","FBgn0000043","FBgn0000044","FBgn0000045","FBgn0000046")
-#' # PopFlyAnalysis(mygenes , c("RAL","ZI"), recomb=T, bins=3, test="asymptotic", xlow=0, xhigh=0.9)
+#' # PopFlyAnalysis(mygenes , c("RAL","ZI"), recomb=T, bins=3, test="DGRP", xlow=0, xhigh=0.9)
 #'
 #' @import utils
 #' @import stats
@@ -37,12 +36,13 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
   if (exists("PopFlyData") == TRUE) {
     data <- get("PopFlyData")
   } else {
-    stop("Load PopFly data, with the command loadPopFly(), before using this function.") }
+    loadPopFly()
+    data <- get("PopFlyData") }
 
   ## Check input variables
   ## Numer of arguments
-  if (nargs() < 4 && nargs()) {
-    stop("You must specify 4 arguments at least: data, genes, pops, recomb (T/F).\nIf test = asymptotic or test = iMK, you must specify xlow and xhigh values.") }
+  if (nargs() < 3 && nargs()) {
+    stop("You must specify 4 arguments at least: genes, pops, recomb (T/F).\nIf test = asymptotic or test = iMK, you must specify xlow and xhigh values.") }
   
   ## Argument genes
   if (length(genes) == 0 || genes == "" || !is.character(genes)) {
@@ -69,7 +69,7 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
   
   ## Argument bins
   if (recomb == TRUE) {
-    if (nargs() != 5 && nargs()!= 6 && nargs() != 8 || !is.numeric(bins) || bins == 0  || bins == 1) {
+    if (!is.numeric(bins) || bins == 0  || bins == 1) {
       stop("If recomb = TRUE, you must specify the number of bins to use (> 1).") }
     if (bins > round(length(genes)/2)) {
       stop("Parameter bins > (genes/2). At least 2 genes for each bin are required.") }
@@ -105,6 +105,7 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
     
     for (k in levels(subsetGenes$Pop)) {
       
+      print(paste0("Population = ", k))
       ## Declare bins output list (each element 1 bin)
       outputListBins <- list()
       
@@ -138,6 +139,8 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
       
       ## Iterate through each recomb bin
       for (j in levels(dat$Group)) {
+        
+        print(paste0("Recombination bin = ", j))
         x1 <- dat[dat$Group == j, ]
         
         ## Set counters to 0
@@ -170,11 +173,7 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
         div <- cbind(mi, Di, m0, D0); div <- as.data.frame(div)
         names(div) <- c("mi","Di","m0","D0")
         
-        ## Check data
-        check <- check_input(daf, div, xlow, xhigh)
-        if(check$data == FALSE) {
-          stop(check$print_errors) }
-        
+        ## Check data inside each test!
         ## Perform test
         if(test == "standard") {
           output <- standard(daf, div)
@@ -183,7 +182,7 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
           output <- DGRP(daf, div)
         }
         else if(test == "FWW") {
-          output <- FWW(daf,div)
+          output <- FWW(daf, div)
         }
         else if(test == "asymptotic") {
           output <- asymptoticMK(daf, div, xlow, xhigh)
@@ -210,6 +209,7 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
     }
     
     ## Return output
+    cat("\n")
     return(outputList)
   }
   
@@ -220,6 +220,8 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
     outputList <- list()
     
     for (i in levels(subsetGenes$Pop)) {
+      
+      print(paste0("Population = ", i))
       x <- subsetGenes[subsetGenes$Pop == i, ]
       
       ## Set counters to 0
@@ -251,11 +253,7 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
       div <- cbind(mi, Di, m0, D0); div <- as.data.frame(div)
       names(div) <- c("mi","Di","m0","D0")
       
-      ## Check data
-      check <- check_input(daf, div, xlow, xhigh)
-      if(check$data == FALSE) {
-        stop(check$print_errors) }
-      
+      ## Check data inside each test!
       ## Perform test
       if(test == "standard") {
         output <- standard(daf, div)
@@ -264,7 +262,7 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
         output <- DGRP(daf, div)
       }
       else if(test == "FWW") {
-        output <- FWW(daf,div)
+        output <- FWW(daf, div)
       }
       else if(test == "asymptotic") {
         output <- asymptoticMK(daf, div, xlow, xhigh)
@@ -278,6 +276,7 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
     }
     
     ## Return output
+    cat("\n")
     return(outputList)
   }
 }

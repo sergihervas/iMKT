@@ -201,20 +201,23 @@ asymptoticMK <- function(daf, divergence, xlow, xhigh, seed) {
     
     colnames(outMAT) <- c("fit", "mean", "sd", "median", "mad", names(QUANT[1]), names(QUANT[2]))
     rownames(outMAT) <- NULL   
-    return(outMAT)  
+    return(outMAT)      
   }
   
-  ci_pred <- predictNLS(mod1, newdata=data.frame(f_trimmed=1.0))
-  alpha_1_low <- ci_pred[6]
-  alpha_1_high <- ci_pred[7]
+  tryCatch({
+    ci_pred <- predictNLS(mod1, newdata=data.frame(f_trimmed=1.0))
+    alpha_1_low <- ci_pred[6]
+    alpha_1_high <- ci_pred[7]
   
-  ## Preparation of ouput (alpha asym, a, b, c)
-  alpha_1_est <- predict(mod1, newdata=data.frame(f_trimmed=1.0))
-  const_a <- coef(mod1)["const_a"]
-  const_b <- coef(mod1)["const_b"]
-  const_c <- coef(mod1)["const_c"]
+    ## Preparation of ouput (alpha asym, a, b, c)
+    alpha_1_est <- predict(mod1, newdata=data.frame(f_trimmed=1.0))
+    const_a <- coef(mod1)["const_a"]
+    const_b <- coef(mod1)["const_b"]
+    const_c <- coef(mod1)["const_c"]
   
-  ## Output table
-  result_df <- data.frame(model="exponential", a=const_a, b=const_b, c=const_c, alpha_asymptotic=alpha_1_est, CI_low=ci_pred[6], CI_high=ci_pred[7], alpha_original=alpha_nonasymp, row.names=NULL)
-  return(result_df)
+    ## Output table
+    result_df <- data.frame(model="exponential", a=const_a, b=const_b, c=const_c, alpha_asymptotic=alpha_1_est, CI_low=ci_pred[6], CI_high=ci_pred[7], alpha_original=alpha_nonasymp, row.names=NULL)
+    return(result_df)
+  }, error=function(cond) {cat("Could not fit exponential model for the computation of asymptotic alpha.\n")})
+  
 }

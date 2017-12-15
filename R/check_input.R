@@ -93,8 +93,7 @@ check_input <- function(daf, divergence, xlow, xhigh){
         error <- "P0 contains values < 0 (not allowed) or P0 contains all values == 0 (not allowed)."
         mainErrors <- append(mainErrors,error) } 
     if (any(P0 == 0)){
-        cat("[Warning] Input daf file contains P0 values = 0. 
-        This can bias the function fitting and the estimation of alpha.")}
+        warning("Input daf file contains P0 values = 0.\nThis can bias the function fitting and the estimation of alpha.")}
 
     ## Check if daf argument has enough data points
     if (NROW(daf) < 3){
