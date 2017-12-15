@@ -4,7 +4,7 @@
 - Update Readme.md
 - ~~**S** IDEA: Functions fitMKmodel and predictNLS inside other functions, but without documentation... as they are never called by their own.~~
 - ~~Discuss input, maybe create parser~~
-- Discuss output, update plots and include table -> html/pdf for non expert R users?  (Marta **in progress**)
+- ~~Discuss output, update plots and include table -> html/pdf for non expert R users?  (Marta **in progress**)~~
     - ~~Discuss invisible(output)~~
     - ~~plot=FALSE (Marta): DGRP-FWW- iMKT~~
     - ~~Change order plots (iMK)~~
@@ -85,7 +85,7 @@
 		- ~~check_input() inside function! **S**~~
 		- check pre-allocate and fill (rbind) **S**
 		- update PopHuman part! 
-		- **rename function? split in 2? PopFlyAnalysis and PopHumanAnalysis.** As we perform the subset + the analysis. It would be easier to handle cause only the PopFly part is around 300 lines of code. **S**
+		- ~~**rename function? split in 2? PopFlyAnalysis and PopHumanAnalysis.** As we perform the subset + the analysis. It would be easier to handle cause only the PopFly part is around 300 lines of code. **S**~~
 		
 - Reference Messer & Haller code (Question: Shall we write to them to let them know we're implementing their code into another package?). **S** We reference their code in the asymptoticMK function. We can write them later, as Antonio suggested.
 
@@ -93,10 +93,10 @@
 ~~- Example tutorial with sample data (Marta, Jesus)~~
 
 ### Beta Tests
-- Check inputs works with check_input(...) (Marta, Jesus)
+- ~~Check inputs works with check_input(...) (Marta, Jesus)~~
 - Check functions independently. ~~Error in DGRP (Marta, Jesus)~~
 - ~~Review tryCatch({...}) as proper error (Jesus)~~
-- Error handling predictNLS (Sergi)
+- ~~Error handling predictNLS (Sergi)~~
 
 ### Server
 - Implement GUI through web-server (with Django) (Ask Esteve for help? **M** the web looks awesome Jesus!!!)(Jesús **in progress**)  
