@@ -13,7 +13,7 @@ PopFlyAnalysis(genes = c("gene1", "gene2", "..."), pops = c("pop1", "pop2",
 
 \item{pops}{list of populations}
 
-\item{recomb}{group genes according to recombination values (must specify number of bins). TRUE/FALSE}
+\item{recomb}{group genes according to recombination values (must specify number of bins). TRUE/FALSE. Recomb values (cM/Mb) from Comeron et al. 2012.}
 
 \item{bins}{number of recombination bins to compute (mandatory if recomb = TRUE)}
 
@@ -30,7 +30,7 @@ None
 Perform any MK test using a subset of PopFly data defined by custom genes and populations lists
 }
 \details{
-put details here
+Recombination values (recomb=T) from Comeron et al. 2012 (reference!)
 }
 \examples{
 ## List of genes

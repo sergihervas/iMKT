@@ -1,12 +1,12 @@
 #' @title PopFlyAnalysis
 #'
-#' @description Perform any MK test using a subset of PopFly data defined by custom genes and populations lists 
+#' @description Perform any MK test using a subset of PopFly data defined by custom genes and populations lists
 #'
-#' @details put details here
+#' @details Recombination values (recomb=T) from Comeron et al. 2012 (reference!)
 #'
 #' @param genes list of genes
 #' @param pops list of populations
-#' @param recomb group genes according to recombination values (must specify number of bins). TRUE/FALSE
+#' @param recomb group genes according to recombination values (must specify number of bins). TRUE/FALSE. Recomb values (cM/Mb) from Comeron et al. 2012.
 #' @param bins number of recombination bins to compute (mandatory if recomb = TRUE)
 #' @param test which test to perform. Options include: standard (default), DGRP, FWW, asymptotic, iMK
 #' @param xlow lower limit for asymptotic alpha fit (default=0)
@@ -108,7 +108,7 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
       outputListBins <- list()
       
       x <- subsetGenes[subsetGenes$Pop == k, ]
-      x <- x[order(x$p_bp), ]
+      x <- x[order(x$cM_Mb), ]
       
       ## create bins
       binsize <- round(nrow(x)/bins) ## Number of genes for each bin
@@ -140,6 +140,16 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
       for (j in levels(dat$Group)) {
         print(paste0("Recombination bin = ", j))
         x1 <- dat[dat$Group == j, ]
+        
+        ## Recomb stats from bin j
+        numGenes <- nrow(x1)
+        minRecomb <- min(x1$cM_Mb, na.rm=T)
+        medianRecomb <- median(x1$cM_Mb, na.rm=T)
+        meanRecomb <- mean(x1$cM_Mb, na.rm=T)
+        maxRecomb <- max(x1$cM_Mb, na.rm=T)
+        recStats <- cbind(numGenes,minRecomb,medianRecomb,meanRecomb,maxRecomb)
+        recStats <- as.data.frame(recStats)
+        recStats <- list("Recombination bin Summary"=recStats)
         
         ## Set counters to 0
         Pi <- c(0,0,0,0,0,0,0,0,0,0)
@@ -174,15 +184,20 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
         ## Check data inside each test!
         ## Perform test
         if(test == "standard") {
-          output <- standard(daf, div) }
+          output <- standard(daf, div) 
+          output <- c(output, recStats) } ## Add recomb summary for bin j
         else if(test == "DGRP") {
-          output <- DGRP(daf, div) }
+          output <- DGRP(daf, div) 
+          output <- c(output, recStats) }
         else if(test == "FWW") {
-          output <- FWW(daf, div) }
+          output <- FWW(daf, div)           
+          output <- c(output, recStats) }
         else if(test == "asymptotic") {
-          output <- asymptoticMK(daf, div, xlow, xhigh) }
+          output <- asymptoticMK(daf, div, xlow, xhigh) 
+          output <- c(output, recStats) }
         else if(test == "iMK") {
-          output <- iMK(daf, div, xlow, xhigh) }
+          output <- iMK(daf, div, xlow, xhigh)
+          output <- c(output, recStats) }
         
         ## Fill list with each bin
         outputListBins[[paste("Recombination bin = ",j)]] <- output
