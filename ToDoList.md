@@ -19,6 +19,7 @@
 	- ~~Currently checked: data.frame size(NCOL(x)==3;NROW(x)==9,19[daf10/20 categories] & NROW(x)!=0;NCOL(y)==6; NROW(y)==3 & NCOL(y)!=0), global columns names (daf,Pi,P0/Chr,pop,mi,Di,m0,D0), columns values (boundaries,types,NaN,0 [need to check possible values in Pi and P0];done)~~
 	- ~~Watchdog only in assymtoticMKT(It is Needed in all functions? If just in assymptotic, include it inside the function)~~
 	- ~~Check if some dataset not execute the asymototic (p0<=0). Include inside asysmtotic( check_input(...)) parameter to stop this functions but continue on loop (require for multiple_dataset(...) and iMK (...) (Jesus)~~
+- Prepare list of genes analyzable with the iMKT (not the same as asymptotic because the exponential model is forced)
 
 - System.time(Re-run iMKT):  
 	- ~~First approach, three datasets from concatenate.genes in 1000 iteration loop 100seconds aprox (Jesus)~~ 
@@ -104,6 +105,7 @@
 
 
 ### MANUSCRIPT
+**- Follow the manuscript progress at: https://github.com/marta-coronado/statistics_mkt/tree/master/Report **
 
 - Manuscript: **M** suggests: 
 
