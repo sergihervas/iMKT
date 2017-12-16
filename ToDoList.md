@@ -72,18 +72,18 @@
 	- Put in functions comparision scripts (Jesus)
 	- ~~Multiple_datasets(...): (Jesus)~~
 		- ~~Add a variable to check file list (Jesus)~~
-		- Check Pre-allocate and fill’ (Jesus: Marta check the function pohfavó. **M**: checking in progress) **S** If this has something to do with for loops let me know cause I use lots of them. As far as I understood it is about emtpy lists which are then filled and returned in the function, rigth? **M** The idea is that when you are doing a loop, avoid doing that: result_gene <- rbind(output_final,result_gene), because your working everytime with a bigger dataframe (output_final). You have to create a list and fill it (output_final[[i]]<-result_gene). I already fixed it for the DGRP and FWW functions that you wrote.
+		- Check Pre-allocate and fill’ ~~(Jesus: Marta check the function pohfavó. **M**: checking in progress) **S** If this has something to do with for loops let me know cause I use lots of them. As far as I understood it is about emtpy lists which are then filled and returned in the function, rigth? **M** The idea is that when you are doing a loop, avoid doing that: result_gene <- rbind(output_final,result_gene), because your working everytime with a bigger dataframe (output_final). You have to create a list and fill it (output_final[[i]]<-result_gene). I already fixed it for the DGRP and FWW functions that you wrote.~~
 	- ~~Assymptotic: done (check variable and tables names)~~
 	- ~~iMK (Marta)~~
 	- subsetPopData() **Sergi**
 		- ~~Need talk about methods:(1)download and process whole dataset in R, (2)preload files in package (function to process them), (3)daf+div files in folder, call each one from R function.~~
 		- **S** Check times of download functions: loadPopFly() & loadPopHuman. Around 20 seconds the first one.
-			- **J** loadPopFly(): 13.937 (best of 10 iterations), 27.194 (worst of 10 iterations)
+			- ~~**J** loadPopFly(): 13.937 (best of 10 iterations), 27.194 (worst of 10 iterations)~~
 			~~- **J** loadPopHuman()(user system elapsed): 320.534 (best of 10 iterations), 738.009 (worst of 10 iterations)~~
 			- **S** Update pophuman data file!
 		~~- Discuss output of the function. **S** I would suggest (and I will implement it soon if you agree) to allow deciding which test to perform with the subseted data from PopFly or PopHuman, so the function would call compareMK function and give its output in lists for populations. ~~
 		- ~~check_input() inside function! **S**~~
-		- check pre-allocate and fill (rbind) **S**
+		- ~~check pre-allocate and fill (rbind) **S**~~
 		- update PopHuman part! 
 		- ~~**rename function? split in 2? PopFlyAnalysis and PopHumanAnalysis.** As we perform the subset + the analysis. It would be easier to handle cause only the PopFly part is around 300 lines of code. **S**~~
 		
