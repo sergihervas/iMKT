@@ -18,9 +18,10 @@ Imports:
 	knitr,
 	utils,
 	stats,
+	tools,
 	cowplot,
 	reshape2,
 	nls2,
 	MASS,
-  ggthemes
+  	ggthemes
 VignetteBuilder: knitr
