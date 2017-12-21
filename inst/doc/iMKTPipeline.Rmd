@@ -1,9 +1,9 @@
 ---
-title: "Vignette Title"
+title: "iMKT Pipeline"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{iMKT Pipeline}
   %\VignetteEncoding{UTF-8}
 ---
 ```{r setup, include=FALSE}
@@ -46,13 +46,22 @@ The package present the following functions
 - PopFlyAnalisys()  
 - theme_Publication()  
 - check_input()  
+
+
 Each one execute a test, perform the calculation or load presets to obtain the pipeline resutls. Rembember you always can access to the help, to check more examples or the passing arguments writting ```{r}??``` and the function in your console!
 
 #### Standard MKT
 The MK test (McDonald and Kreitman, 1991) was developed to be applied to protein coding sequences, combining both divergence (D) and polymorphism (P) sites, and categorizing mutations as synonymous (P s , D S ) and non-synonymous (P n , D N ). If all mutations are either strongly deleterious or neutral, then D N /D S is expected to roughly equal P s /P n . In contrast, if positive selection is operating in the region, adaptive mutations rapidly reach fixation and thus contribute relative more to divergence than to polymorphism when compared to neutral mutations, and then D N /D S >P n /P s . Assuming that adap- tive mutations contribute little to polymorphism but substantially to divergence, the proportion of non-synonymous substitutions than have been fixed by posi- tive selection can be inferred as α = 1 - (P n /P s )(D S /D N ) (??). The significance of effect can be easily quantified using a simple 2×2 contingency table (see Table 5), using a Fischer’s exact test.
 ```{r Standard MKT, echo=TRUE}
-standard(daf = mydafdata,divergence = mydivergencedata)
+standard<-standard(daf = mydafdata,divergence = mydivergencedata)
 ```
+
+```{r Result , echo=FALSE}
+standard$alpha.symbol
+standard$`Fishers exact test P-value`
+standard$`MKT table`
+```
+
 
 #### FWW correction
 α estimates can be biased by the segregation of slighlty deleterious substitutions. One method to partially controlled its effects is to remove low frequency polymorphisms from the analysis, as proposed by Fay et al. (2001).
@@ -61,16 +70,17 @@ standard(daf = mydafdata,divergence = mydivergencedata)
 FWW(daf = mydafdata,divergence = mydivergencedata)
 ```
 You could save it in a variable and the access to different data saved inside. Check it!
-```{r, echo=TRUE}
+
+```{r Result FWW, include=FALSE}
 methodFWW<-FWW(daf = mydafdata,divergence = mydivergencedata)
 methodFWW$Results
-methodFWW$`Divergence metrics`
 methodFWW$`MKT tables`
-
+methodFWW$`Divergence metrics`
 ```
+
 By default the arguments ***list_cutoffs***, pass a list of cutoffs with the following values: c(0, 0.05, 0.1). And moreover th argument  ***plot*** is setting in ***FALSE***. You can change the cutting values and switch on the plot to visulize your results!
 
-```{r, echo=TRUE}
+```{r FWW plot, echo=TRUE}
 methodFWW<-FWW(daf = mydafdata, divergence = mydivergencedata,list_cutoff=c(0, 0.05, 0.1,0.15,0.2),plot=TRUE)
 savePlotInVariable<-methodFWW$Graph
 savePlotInVariable
@@ -83,13 +93,13 @@ The null hypothesis of neutrality is rejected in a MKT when DN/DS > Pn/Ps , infe
 DGRP(daf = mydafdata, divergence = mydivergencedata)
 ```
 You could save it in a variable and the access to different data saved inside. Check it!
-```{r, echo=TRUE}
+```{r Result, echo=TRUE}
 methodDGRP<-DGRP(daf = mydafdata, divergence = mydivergencedata)
 methodDGRP$Results
-methodDGRP$`Divergence metrics`
+methodDGRP$Fractions
 methodDGRP$`MKT tables`
-
 ```
+
 By default the arguments ***list_cutoffs***, pass a list of cutoffs with the following values: c(0, 0.05, 0.1). And moreover th argument  ***plot*** is setting in ***FALSE***. You can change the cutting values and switch on the plot to visulize your results!
 
 ```{r, echo=TRUE}

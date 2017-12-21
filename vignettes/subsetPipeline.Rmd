@@ -1,0 +1,109 @@
+---
+title: "iMKT loading data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{iMKT Pipeline}
+  %\VignetteEncoding{UTF-8}
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.width = 7, fig.height = 7, fig.align = "center")
+```
+
+###iMKT PopFly and PopHuman data
+PopFly and PopHuman are. The package include functions to download all genes statics of all populations located in these genome browsers. Here we will explain how to load this information in your working enviroment and how to access it in order to use it efficiently!
+
+####Loading the row data
+Remember you are downloading gene information of 20ypico ***Droshopila melanogaster*** populations and 26 Human populations. This procces could take a while!
+```{r PopFly data, echo=TRUE}
+dataPopfly<-loadPopFly()
+head(dataPopfly)
+```
+
+The data is presented at the most compress form in a simple dataframe. Each gene were analyzed by populations and contains information about segrating, divergent and analyzed sites, in addition to the Standard MKT calculation, Direction of Selection, Ka/Ks, and the Derived Allele Frequency (P0). The same information is provided by selected sites (Pi). If you have some basics R knowledge, you can access manually to the diverse gene information manually, in order to perform the test individually, by recombination information or concatenating them.
+
+As we compress the Derived Allele Frequency in a column field, you will need to create the correct variables forms to pass them properly at the functions. It can be done in a few R basics lines!
+
+```{r PopFly data manual retrieve, echo=TRUE}
+## Preparing RAL Adh
+adhRAL<-dataPopfly[dataPopfly$Name=='FBgn0000055' & dataPopfly$Pop=='RAL',]
+
+adhRAL$DAF0f <- as.character(adhRAL$DAF0f); adhRAL$DAF4f <- as.character(adhRAL$DAF4f)
+adhRAL0f<-unlist(strsplit(adhRAL$DAF0f, split=";"))
+adhRAL4f <- unlist(strsplit(adhRAL$DAF4f, split=":"))
+adhRAL0f <- as.numeric(adhRAL0f); adhRAL4f <- as.numeric(adhRAL0f)
+
+f <- seq(0.05,0.95,0.1)
+mi <- adhRAL$mi; m0 <- adhRAL$m0
+Di <- adhRAL$di; D0 <- adhRAL$d0
+
+dafAdhRAL <- cbind(f, adhRAL0f, adhRAL4f); dafAdhRAL <- as.data.frame(dafAdhRAL)
+names(dafAdhRAL) <- c("daf","Pi","P0")
+divAdhRAL <- cbind(mi, Di, m0, D0); divAdhRAL <- as.data.frame(divAdhRAL)
+names(divAdhRAL) <- c("mi","Di","m0","D0")
+
+## Preparing ZI Adh
+adhZI<-dataPopfly[dataPopfly$Name=='FBgn0000055' & dataPopfly$Pop=='ZI',]
+
+adhZI$DAF0f <- as.character(adhZI$DAF0f); adhZI$DAF4f <- as.character(adhZI$DAF4f)
+adhZI0f<-unlist(strsplit(adhZI$DAF0f, split=";"))
+adhZI4f <- unlist(strsplit(adhZI$DAF4f, split=":"))
+adhZI0f <- as.numeric(adhZI0f); adhZI4f <- as.numeric(adhZI0f)
+
+f <- seq(0.05,0.95,0.1)
+mi <- adhZI$mi; m0 <- adhZI$m0
+Di <- adhZI$di; D0 <- adhZI$d0
+
+dafAdhZI <- cbind(f, adhZI0f, adhZI4f); dafAdhZI <- as.data.frame(dafAdhZI)
+names(dafAdhZI) <- c("daf","Pi","P0")
+divAdhZI <- cbind(mi, Di, m0, D0); divAdhZI <- as.data.frame(divAdhZI)
+names(divAdhZI) <- c("mi","Di","m0","D0")
+```
+Once the data is in the proper form you can perform the test without problems
+
+
+```{r PopFly data retrieve Adh RAL}
+standard(daf = dafAdhRAL, divergence = divAdhRAL)
+DGRP(daf = dafAdhRAL, divergence = divAdhRAL,plot = TRUE)
+```
+
+```{r PopFly data retrieve Adh ZI}
+standard(daf = dafAdhZI, divergence = divAdhZI)
+DGRP(daf = dafAdhZI, divergence = divAdhZI,plot = TRUE)
+```
+
+This proccess could be tedious depending on the number of genes you want to analyze. To solve this, we just add the ***PopFlyAnalisys()*** function to the package. It allows you select a huge amount of genes and/or populations and retrieve the information easly! Remember to save the information in the most appropiate way to yours analysis or results!
+
+```{r PopFly data retrieve automated no recomb}
+PopFlyAnalysis(genes = c("FBgn0000055","FBgn0003016"),pops = c("RAL","ZI","FR"),recomb = F)
+```
+
+Moreover ***PopFlyAnalisys()*** allows you to analyze a subset of genes by recombination bins, grouping them by the recombination values described by Comeron et al (ref). Remember you also can select the test to execute (for more information about the function check the manual or write ??PopFlyAnalysis() in your console)!
+
+```{r PopFly data retrieve automated}
+geneList <- c("FBgn0053196", "FBgn0086906", "FBgn0261836", "FBgn0031617","FBgn0260965", "FBgn0028899", "FBgn0052580", "FBgn0036181","FBgn0263077", "FBgn0013733", "FBgn0031857", "FBgn0037836")
+
+PopFlyAnalysis(genes=geneList , pops=c("RAL","ZI"), recomb=T, bins=3, test="DGRP")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

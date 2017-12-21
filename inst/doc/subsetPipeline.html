@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title></title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<p>###iMKT PopFly and PopHuman data
+PopFly and PopHuman are. The package include functions to download all genes statics of all populations located in these genome browsers. Here we will explain how to load this information in your working enviroment and how to access it in order to use it efficiently!</p>
+
+<p>####Loading the row data
+Remember you are downloading gene information of 20ypico <strong><em>Droshopila melanogaster</em></strong> populations and 26 Human populations. This procces could take a while!</p>
+
+<pre><code class="r">dataPopfly&lt;-loadPopFly()
+#&gt; Loading PopFly data into your workspace.
+#&gt; This process may take some seconds to complete, please be patient.
+head(dataPopfly)
+#&gt;   Pop        Name    Start      End Chr p0 pi d0  di  m0   mi   alpha
+#&gt; 1  EA FBgn0000008 18024473 18060339  2R 28 17 36  19 647 2449 -0.1504
+#&gt; 2  EA FBgn0000014 12632936 12655771  3R  5  0 19   0 155  643      NA
+#&gt; 3  EA FBgn0000015 12752932 12797958  3R  6  1  4   0 150  630    -Inf
+#&gt; 4  EA FBgn0000017 16608966 16640982  3L 10  5 83 134 867 3263  0.6903
+#&gt; 5  EA FBgn0000018 10973443 10975293  2L 12  8 18  18 233 1019  0.3333
+#&gt; 6  EA FBgn0000022   264064   264980   X  1  0 17  73  63  345  1.0000
+#&gt;   fisher_pval     DoS   KaKs                DAF0f                DAF4f
+#&gt; 1      0.8348 -0.0323 0.5278 11;1;2;1;1;0;0;1;0;0 10;9;4;0;1;2;0;1;1;0
+#&gt; 2      1.0000  0.0000 0.0000  0;0;0;0;0;0;0;0;0;0  0;1;2;0;0;0;0;0;2;0
+#&gt; 3      1.0000 -0.1429 0.0000  0;1;0;0;0;0;0;0;0;0  0;2;1;0;2;0;0;0;1;0
+#&gt; 4      0.0530  0.2842 1.6145  0;3;1;1;0;0;0;0;0;0  0;6;1;1;0;0;0;0;2;0
+#&gt; 5      0.5796  0.1000 1.0000  0;4;2;1;0;0;1;0;0;0  0;7;3;0;0;0;0;2;0;0
+#&gt; 6      0.1978  0.8111 4.2941  0;0;0;0;0;0;0;0;0;0  1;0;0;0;0;0;0;0;0;0
+#&gt;       cM_Mb
+#&gt; 1 2.1692837
+#&gt; 2 0.7616990
+#&gt; 3 0.4352566
+#&gt; 4 0.8999361
+#&gt; 5 2.9318767
+#&gt; 6 0.0000000
+</code></pre>
+
+<p>The data is presented at the most compress form in a simple dataframe. Each gene were analyzed by populations and contains information about segrating, divergent and analyzed sites, in addition to the Standard MKT calculation, Direction of Selection, Ka/Ks, and the Derived Allele Frequency (P0). The same information is provided by selected sites (Pi). If you have some basics R knowledge, you can access manually to the diverse gene information manually, in order to perform the test individually, by recombination information or concatenating them.</p>
+
+<p>As we compress the Derived Allele Frequency in a column field, you will need to create the correct variables forms to pass them properly at the functions. It can be done in a few R basics lines!</p>
+
+<pre><code class="r">## Preparing RAL Adh
+adhRAL&lt;-dataPopfly[dataPopfly$Name==&#39;FBgn0000055&#39; &amp; dataPopfly$Pop==&#39;RAL&#39;,]
+
+adhRAL$DAF0f &lt;- as.character(adhRAL$DAF0f); adhRAL$DAF4f &lt;- as.character(adhRAL$DAF4f)
+adhRAL0f&lt;-unlist(strsplit(adhRAL$DAF0f, split=&quot;;&quot;))
+adhRAL4f &lt;- unlist(strsplit(adhRAL$DAF4f, split=&quot;:&quot;))
+adhRAL0f &lt;- as.numeric(adhRAL0f); adhRAL4f &lt;- as.numeric(adhRAL0f)
+
+f &lt;- seq(0.05,0.95,0.1)
+mi &lt;- adhRAL$mi; m0 &lt;- adhRAL$m0
+Di &lt;- adhRAL$di; D0 &lt;- adhRAL$d0
+
+dafAdhRAL &lt;- cbind(f, adhRAL0f, adhRAL4f); dafAdhRAL &lt;- as.data.frame(dafAdhRAL)
+names(dafAdhRAL) &lt;- c(&quot;daf&quot;,&quot;Pi&quot;,&quot;P0&quot;)
+divAdhRAL &lt;- cbind(mi, Di, m0, D0); divAdhRAL &lt;- as.data.frame(divAdhRAL)
+names(divAdhRAL) &lt;- c(&quot;mi&quot;,&quot;Di&quot;,&quot;m0&quot;,&quot;D0&quot;)
+
+## Preparing ZI Adh
+adhZI&lt;-dataPopfly[dataPopfly$Name==&#39;FBgn0000055&#39; &amp; dataPopfly$Pop==&#39;ZI&#39;,]
+
+adhZI$DAF0f &lt;- as.character(adhZI$DAF0f); adhZI$DAF4f &lt;- as.character(adhZI$DAF4f)
+adhZI0f&lt;-unlist(strsplit(adhZI$DAF0f, split=&quot;;&quot;))
+adhZI4f &lt;- unlist(strsplit(adhZI$DAF4f, split=&quot;:&quot;))
+adhZI0f &lt;- as.numeric(adhZI0f); adhZI4f &lt;- as.numeric(adhZI0f)
+
+f &lt;- seq(0.05,0.95,0.1)
+mi &lt;- adhZI$mi; m0 &lt;- adhZI$m0
+Di &lt;- adhZI$di; D0 &lt;- adhZI$d0
+
+dafAdhZI &lt;- cbind(f, adhZI0f, adhZI4f); dafAdhZI &lt;- as.data.frame(dafAdhZI)
+names(dafAdhZI) &lt;- c(&quot;daf&quot;,&quot;Pi&quot;,&quot;P0&quot;)
+divAdhZI &lt;- cbind(mi, Di, m0, D0); divAdhZI &lt;- as.data.frame(divAdhZI)
+names(divAdhZI) &lt;- c(&quot;mi&quot;,&quot;Di&quot;,&quot;m0&quot;,&quot;D0&quot;)
+</code></pre>
+
+<p>Once the data is in the proper form you can perform the test without problems</p>
+
+<pre><code class="r">standard(daf = dafAdhRAL, divergence = divAdhRAL)
+#&gt; Warning in check_input(daf, divergence, 0, 1): Input daf file contains P0 values = 0.
+#&gt; This can bias the function fitting and the estimation of alpha.
+#&gt; $alpha.symbol
+#&gt; [1] -1.5
+#&gt; 
+#&gt; $`Fishers exact test P-value`
+#&gt; [1] 0.6083916
+#&gt; 
+#&gt; $`MKT table`
+#&gt; 
+#&gt; 
+#&gt; |               | Polymorphism| Divergence|
+#&gt; |:--------------|------------:|----------:|
+#&gt; |Neutral class  |            4|          5|
+#&gt; |Selected class |            4|          2|
+#&gt; 
+#&gt; $`Divergence metrics`
+#&gt; 
+#&gt; 
+#&gt; |      Ka|        Ks|     omega|     omegaA|    omegaD|
+#&gt; |-------:|---------:|---------:|----------:|---------:|
+#&gt; | 0.00409| 0.0364964| 0.1120654| -0.1680982| 0.2801636|
+DGRP(daf = dafAdhRAL, divergence = divAdhRAL,plot = TRUE)
+#&gt; Warning in check_input(daf, divergence, 0, 1): Input daf file contains P0 values = 0.
+#&gt; This can bias the function fitting and the estimation of alpha.
+#&gt; $Results
+#&gt;                alpha.symbol Fishers exact test P-value
+#&gt; Cutoff =  0            -1.5                  0.6083916
+#&gt; Cutoff =  0.05         -1.5                  0.6083916
+#&gt; Cutoff =  0.2          -1.5                  0.6083916
+#&gt; 
+#&gt; $Graph
+</code></pre>
+
+<p><img src="data:image/png;base64,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" title="plot of chunk PopFly data retrieve Adh RAL" alt="plot of chunk PopFly data retrieve Adh RAL" style="display: block; margin: auto;" /></p>
+
+<pre><code>#&gt; 
+#&gt; $`Divergence metrics`
+#&gt; $`Divergence metrics`$`Global metrics`
+#&gt;           Ka         Ks     omega
+#&gt; 1 0.00408998 0.03649635 0.1120654
+#&gt; 
+#&gt; $`Divergence metrics`$`Estimates by cutoff`
+#&gt;                omegaA.symbol omegaD.symbol
+#&gt; Cutoff =  0       -0.1680982     0.2801636
+#&gt; Cutoff =  0.05    -0.1680982     0.2801636
+#&gt; Cutoff =  0.2     -0.1680982     0.2801636
+#&gt; 
+#&gt; 
+#&gt; $`MKT tables`
+#&gt; $`MKT tables`$`Number of segregating sites by DAF category - Cutoff =  0`
+#&gt; 
+#&gt; 
+#&gt; |               | DAF.below.cutoff| DAF.above.cutoff|
+#&gt; |:--------------|----------------:|----------------:|
+#&gt; |Neutral class  |                0|                4|
+#&gt; |Selected class |                0|                4|
+#&gt; 
+#&gt; $`MKT tables`$`Number of segregating sites by DAF category - Cutoff =  0.05`
+#&gt; 
+#&gt; 
+#&gt; |               | DAF.below.cutoff| DAF.above.cutoff|
+#&gt; |:--------------|----------------:|----------------:|
+#&gt; |Neutral class  |                3|                1|
+#&gt; |Selected class |                3|                1|
+#&gt; 
+#&gt; $`MKT tables`$`Number of segregating sites by DAF category - Cutoff =  0.2`
+#&gt; 
+#&gt; 
+#&gt; |               | DAF.below.cutoff| DAF.above.cutoff|
+#&gt; |:--------------|----------------:|----------------:|
+#&gt; |Neutral class  |                3|                1|
+#&gt; |Selected class |                3|                1|
+#&gt; 
+#&gt; $`MKT tables`$`MKT standard table`
+#&gt; 
+#&gt; 
+#&gt; |               | Polymorphism| Divergence|
+#&gt; |:--------------|------------:|----------:|
+#&gt; |Neutral class  |            4|          5|
+#&gt; |Selected class |            4|          2|
+#&gt; 
+#&gt; 
+#&gt; $Fractions
+#&gt;           0      0.05       0.2
+#&gt; d 0.7198364 0.7198364 0.7198364
+#&gt; f 0.2801636 0.2801636 0.2801636
+#&gt; b 0.0000000 0.0000000 0.0000000
+</code></pre>
+
+<pre><code class="r">standard(daf = dafAdhZI, divergence = divAdhZI)
+#&gt; Warning in check_input(daf, divergence, 0, 1): Input daf file contains P0 values = 0.
+#&gt; This can bias the function fitting and the estimation of alpha.
+#&gt; $alpha.symbol
+#&gt; [1] -2
+#&gt; 
+#&gt; $`Fishers exact test P-value`
+#&gt; [1] 0.3665158
+#&gt; 
+#&gt; $`MKT table`
+#&gt; 
+#&gt; 
+#&gt; |               | Polymorphism| Divergence|
+#&gt; |:--------------|------------:|----------:|
+#&gt; |Neutral class  |            5|          6|
+#&gt; |Selected class |            5|          2|
+#&gt; 
+#&gt; $`Divergence metrics`
+#&gt; 
+#&gt; 
+#&gt; |      Ka|        Ks|     omega|     omegaA|    omegaD|
+#&gt; |-------:|---------:|---------:|----------:|---------:|
+#&gt; | 0.00409| 0.0434783| 0.0940695| -0.1881391| 0.2822086|
+DGRP(daf = dafAdhZI, divergence = divAdhZI,plot = TRUE)
+#&gt; Warning in check_input(daf, divergence, 0, 1): Input daf file contains P0 values = 0.
+#&gt; This can bias the function fitting and the estimation of alpha.
+#&gt; $Results
+#&gt;                alpha.symbol Fishers exact test P-value
+#&gt; Cutoff =  0              -2                  0.3665158
+#&gt; Cutoff =  0.05           -2                  0.3665158
+#&gt; Cutoff =  0.2            -2                  0.3665158
+#&gt; 
+#&gt; $Graph
+</code></pre>
+
+<p><img src="data:image/png;base64,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" title="plot of chunk PopFly data retrieve Adh ZI" alt="plot of chunk PopFly data retrieve Adh ZI" style="display: block; margin: auto;" /></p>
+
+<pre><code>#&gt; 
+#&gt; $`Divergence metrics`
+#&gt; $`Divergence metrics`$`Global metrics`
+#&gt;           Ka         Ks      omega
+#&gt; 1 0.00408998 0.04347826 0.09406953
+#&gt; 
+#&gt; $`Divergence metrics`$`Estimates by cutoff`
+#&gt;                omegaA.symbol omegaD.symbol
+#&gt; Cutoff =  0       -0.1881391     0.2822086
+#&gt; Cutoff =  0.05    -0.1881391     0.2822086
+#&gt; Cutoff =  0.2     -0.1881391     0.2822086
+#&gt; 
+#&gt; 
+#&gt; $`MKT tables`
+#&gt; $`MKT tables`$`Number of segregating sites by DAF category - Cutoff =  0`
+#&gt; 
+#&gt; 
+#&gt; |               | DAF.below.cutoff| DAF.above.cutoff|
+#&gt; |:--------------|----------------:|----------------:|
+#&gt; |Neutral class  |                0|                5|
+#&gt; |Selected class |                0|                5|
+#&gt; 
+#&gt; $`MKT tables`$`Number of segregating sites by DAF category - Cutoff =  0.05`
+#&gt; 
+#&gt; 
+#&gt; |               | DAF.below.cutoff| DAF.above.cutoff|
+#&gt; |:--------------|----------------:|----------------:|
+#&gt; |Neutral class  |                5|                0|
+#&gt; |Selected class |                5|                0|
+#&gt; 
+#&gt; $`MKT tables`$`Number of segregating sites by DAF category - Cutoff =  0.2`
+#&gt; 
+#&gt; 
+#&gt; |               | DAF.below.cutoff| DAF.above.cutoff|
+#&gt; |:--------------|----------------:|----------------:|
+#&gt; |Neutral class  |                5|                0|
+#&gt; |Selected class |                5|                0|
+#&gt; 
+#&gt; $`MKT tables`$`MKT standard table`
+#&gt; 
+#&gt; 
+#&gt; |               | Polymorphism| Divergence|
+#&gt; |:--------------|------------:|----------:|
+#&gt; |Neutral class  |            5|          6|
+#&gt; |Selected class |            5|          2|
+#&gt; 
+#&gt; 
+#&gt; $Fractions
+#&gt;           0      0.05       0.2
+#&gt; d 0.7177914 0.7177914 0.7177914
+#&gt; f 0.2822086 0.2822086 0.2822086
+#&gt; b 0.0000000 0.0000000 0.0000000
+</code></pre>
+
+<p>This proccess could be tedious depending on the number of genes you want to analyze. To solve this, we just add the <strong><em>PopFlyAnalisys()</em></strong> function to the package. It allows you select a huge amount of genes and/or populations and retrieve the information easly! Remember to save the information in the most appropiate way to yours analysis or results!</p>
+
+<pre><code class="r">PopFlyAnalysis(genes = c(&quot;FBgn0000055&quot;,&quot;FBgn0003016&quot;),pops = c(&quot;RAL&quot;,&quot;ZI&quot;,&quot;FR&quot;),recomb = F)
+#&gt; [1] &quot;Population = FR&quot;
+#&gt; Warning in check_input(daf, divergence, 0, 1): Input daf file contains P0 values = 0.
+#&gt; This can bias the function fitting and the estimation of alpha.
+#&gt; [1] &quot;Population = RAL&quot;
+#&gt; Warning in check_input(daf, divergence, 0, 1): Input daf file contains P0 values = 0.
+#&gt; This can bias the function fitting and the estimation of alpha.
+#&gt; [1] &quot;Population = ZI&quot;
+#&gt; $`Population =  FR`
+#&gt; $`Population =  FR`$alpha.symbol
+#&gt; [1] -0.3675214
+#&gt; 
+#&gt; $`Population =  FR`$`Fishers exact test P-value`
+#&gt; [1] 0.5274392
+#&gt; 
+#&gt; $`Population =  FR`$`MKT table`
+#&gt; 
+#&gt; 
+#&gt; |               | Polymorphism| Divergence|
+#&gt; |:--------------|------------:|----------:|
+#&gt; |Neutral class  |           45|         50|
+#&gt; |Selected class |           16|         13|
+#&gt; 
+#&gt; $`Population =  FR`$`Divergence metrics`
+#&gt; 
+#&gt; 
+#&gt; |       Ka|       Ks|     omega|     omegaA|    omegaD|
+#&gt; |--------:|--------:|---------:|----------:|---------:|
+#&gt; | 0.003767| 0.058072| 0.0648682| -0.0238404| 0.0887086|
+#&gt; 
+#&gt; 
+#&gt; $`Population =  RAL`
+#&gt; $`Population =  RAL`$alpha.symbol
+#&gt; [1] -1.197802
+#&gt; 
+#&gt; $`Population =  RAL`$`Fishers exact test P-value`
+#&gt; [1] 0.03712979
+#&gt; 
+#&gt; $`Population =  RAL`$`MKT table`
+#&gt; 
+#&gt; 
+#&gt; |               | Polymorphism| Divergence|
+#&gt; |:--------------|------------:|----------:|
+#&gt; |Neutral class  |           63|         45|
+#&gt; |Selected class |           40|         13|
+#&gt; 
+#&gt; $`Population =  RAL`$`Divergence metrics`
+#&gt; 
+#&gt; 
+#&gt; |       Ka|        Ks|     omega|     omegaA|    omegaD|
+#&gt; |--------:|---------:|---------:|----------:|---------:|
+#&gt; | 0.003767| 0.0522648| 0.0720757| -0.0863325| 0.1584082|
+#&gt; 
+#&gt; 
+#&gt; $`Population =  ZI`
+#&gt; $`Population =  ZI`$alpha.symbol
+#&gt; [1] -0.5279503
+#&gt; 
+#&gt; $`Population =  ZI`$`Fishers exact test P-value`
+#&gt; [1] 0.2545795
+#&gt; 
+#&gt; $`Population =  ZI`$`MKT table`
+#&gt; 
+#&gt; 
+#&gt; |               | Polymorphism| Divergence|
+#&gt; |:--------------|------------:|----------:|
+#&gt; |Neutral class  |          161|         39|
+#&gt; |Selected class |           82|         13|
+#&gt; 
+#&gt; $`Population =  ZI`$`Divergence metrics`
+#&gt; 
+#&gt; 
+#&gt; |        Ka|        Ks|     omega|     omegaA|    omegaD|
+#&gt; |---------:|---------:|---------:|----------:|---------:|
+#&gt; | 0.0037659| 0.0452436| 0.0832368| -0.0439449| 0.1271817|
+</code></pre>
+
+<p>Moreover <strong><em>PopFlyAnalisys()</em></strong> allows you to analyze a subset of genes by recombination bins, grouping them by the recombination values described by Comeron et al (ref). Remember you also can select the test to execute (for more information about the function check the manual or write ??PopFlyAnalysis() in your console)!</p>
+
+<pre><code class="r">geneList &lt;- c(&quot;FBgn0053196&quot;, &quot;FBgn0086906&quot;, &quot;FBgn0261836&quot;, &quot;FBgn0031617&quot;,&quot;FBgn0260965&quot;, &quot;FBgn0028899&quot;, &quot;FBgn0052580&quot;, &quot;FBgn0036181&quot;,&quot;FBgn0263077&quot;, &quot;FBgn0013733&quot;, &quot;FBgn0031857&quot;, &quot;FBgn0037836&quot;)
+
+PopFlyAnalysis(genes=geneList , pops=c(&quot;RAL&quot;,&quot;ZI&quot;), recomb=T, bins=3, test=&quot;DGRP&quot;)
+#&gt; [1] &quot;Population = RAL&quot;
+#&gt; [1] &quot;Recombination bin = 1&quot;
+#&gt; [1] &quot;Recombination bin = 2&quot;
+#&gt; [1] &quot;Recombination bin = 3&quot;
+#&gt; [1] &quot;Population = ZI&quot;
+#&gt; [1] &quot;Recombination bin = 1&quot;
+#&gt; [1] &quot;Recombination bin = 2&quot;
+#&gt; [1] &quot;Recombination bin = 3&quot;
+#&gt; $`Population =  RAL`
+#&gt; $`Population =  RAL`$`Recombination bin =  1`
+#&gt; $`Population =  RAL`$`Recombination bin =  1`$Results
+#&gt;                alpha.symbol Fishers exact test P-value
+#&gt; Cutoff =  0       0.3156666               6.789846e-11
+#&gt; Cutoff =  0.05    0.4073286               1.169402e-18
+#&gt; Cutoff =  0.2     0.3953727               1.578535e-17
+#&gt; 
+#&gt; $`Population =  RAL`$`Recombination bin =  1`$`Divergence metrics`
+#&gt; $`Population =  RAL`$`Recombination bin =  1`$`Divergence metrics`$`Global metrics`
+#&gt;          Ka         Ks     omega
+#&gt; 1 0.0417312 0.08882339 0.4698222
+#&gt; 
+#&gt; $`Population =  RAL`$`Recombination bin =  1`$`Divergence metrics`$`Estimates by cutoff`
+#&gt;                omegaA.symbol omegaD.symbol
+#&gt; Cutoff =  0        0.1483072     0.3215150
+#&gt; Cutoff =  0.05     0.1913720     0.2784502
+#&gt; Cutoff =  0.2      0.1857549     0.2840674
+#&gt; 
+#&gt; 
+#&gt; $`Population =  RAL`$`Recombination bin =  1`$`MKT tables`
+#&gt; $`Population =  RAL`$`Recombination bin =  1`$`MKT tables`$`Number of segregating sites by DAF category - Cutoff =  0`
+#&gt; 
+#&gt; 
+#&gt; |               | DAF.below.cutoff| DAF.above.cutoff|
+#&gt; |:--------------|----------------:|----------------:|
+#&gt; |Neutral class  |                0|              826|
+#&gt; |Selected class |                0|             1202|
+#&gt; 
+#&gt; $`Population =  RAL`$`Recombination bin =  1`$`MKT tables`$`Number of segregating sites by DAF category - Cutoff =  0.05`
+#&gt; 
+#&gt; 
+#&gt; |               | DAF.below.cutoff| DAF.above.cutoff|
+#&gt; |:--------------|----------------:|----------------:|
+#&gt; |Neutral class  |              375|              451|
+#&gt; |Selected class |              707|              495|
+#&gt; 
+#&gt; $`Population =  RAL`$`Recombination bin =  1`$`MKT tables`$`Number of segregating sites by DAF category - Cutoff =  0.2`
+#&gt; 
+#&gt; 
+#&gt; |               | DAF.below.cutoff| DAF.above.cutoff|
+#&gt; |:--------------|----------------:|----------------:|
+#&gt; |Neutral class  |              464|              362|
+#&gt; |Selected class |              815|              387|
+#&gt; 
+#&gt; $`Population =  RAL`$`Recombination bin =  1`$`MKT tables`$`MKT standard table`
+#&gt; 
+#&gt; 
+#&gt; |               | Polymorphism| Divergence|
+#&gt; |:--------------|------------:|----------:|
+#&gt; |Neutral class  |          826|       1115|
+#&gt; |Selected class |         1202|       2371|
+#&gt; 
+#&gt; 
+#&gt; $`Population =  RAL`$`Recombination bin =  1`$Fractions
+#&gt;          0       0.05        0.2
+#&gt; d 0.678485 0.67840530 0.67854260
+#&gt; f 0.321515 0.27845021 0.28406737
+#&gt; b 0.000000 0.04314449 0.03739003
+#&gt; 
+#&gt; $`Population =  RAL`$`Recombination bin =  1`$`Recombination bin Summary`
+#&gt;   numGenes minRecomb medianRecomb meanRecomb maxRecomb
+#&gt; 1        4 0.6230327    0.9417518  0.9900698  1.453743
+#&gt; 
+#&gt; 
+#&gt; $`Population =  RAL`$`Recombination bin =  2`
+#&gt; $`Population =  RAL`$`Recombination bin =  2`$Results
+#&gt;                alpha.symbol Fishers exact test P-value
+#&gt; Cutoff =  0      0.02881113                 0.76379938
+#&gt; Cutoff =  0.05   0.14129004                 0.08157691
+#&gt; Cutoff =  0.2    0.13282389                 0.10747337
+#&gt; 
+#&gt; $`Population =  RAL`$`Recombination bin =  2`$`Divergence metrics`
+#&gt; $`Population =  RAL`$`Recombination bin =  2`$`Divergence metrics`$`Global metrics`
+#&gt;           Ka         Ks    omega
+#&gt; 1 0.05678986 0.09626249 0.589948
+#&gt; 
+#&gt; $`Population =  RAL`$`Recombination bin =  2`$`Divergence metrics`$`Estimates by cutoff`
+#&gt;                omegaA.symbol omegaD.symbol
+#&gt; Cutoff =  0       0.01699707     0.5729509
+#&gt; Cutoff =  0.05    0.08335377     0.5065942
+#&gt; Cutoff =  0.2     0.07835918     0.5115888
+#&gt; 
+#&gt; 
+#&gt; $`Population =  RAL`$`Recombination bin =  2`$`MKT tables`
+#&gt; $`Population =  RAL`$`Recombination bin =  2`$`MKT tables`$`Number of segregating sites by DAF category - Cutoff =  0`
+#&gt; 
+#&gt; 
+#&gt; |               | DAF.below.cutoff| DAF.above.cutoff|
+#&gt; |:--------------|----------------:|----------------:|
+#&gt; |Neutral class  |                0|              342|
+#&gt; |Selected class |                0|              803|
+#&gt; 
+#&gt; $`Population =  RAL`$`Recombination bin =  2`$`MKT tables`$`Number of segregating sites by DAF category - Cutoff =  0.05`
+#&gt; 
+#&gt; 
+#&gt; |               | DAF.below.cutoff| DAF.above.cutoff|
+#&gt; |:--------------|----------------:|----------------:|
+#&gt; |Neutral class  |              160|              182|
+#&gt; |Selected class |              469|              334|
+#&gt; 
+#&gt; $`Population =  RAL`$`Recombination bin =  2`$`MKT tables`$`Number of segregating sites by DAF category - Cutoff =  0.2`
+#&gt; 
+#&gt; 
+#&gt; |               | DAF.below.cutoff| DAF.above.cutoff|
+#&gt; |:--------------|----------------:|----------------:|
+#&gt; |Neutral class  |              185|              157|
+#&gt; |Selected class |              520|              283|
+#&gt; 
+#&gt; $`Population =  RAL`$`Recombination bin =  2`$`MKT tables`$`MKT standard table`
+#&gt; 
+#&gt; 
+#&gt; |               | Polymorphism| Divergence|
+#&gt; |:--------------|------------:|----------:|
+#&gt; |Neutral class  |          342|        443|
+#&gt; |Selected class |          803|       1071|
+#&gt; 
+#&gt; 
+#&gt; $`Population =  RAL`$`Recombination bin =  2`$Fractions
+#&gt;           0       0.05        0.2
+#&gt; d 0.4270491 0.42681545 0.42731408
+#&gt; f 0.5729509 0.50659418 0.51158877
+#&gt; b 0.0000000 0.06659037 0.06109715
+#&gt; 
+#&gt; $`Population =  RAL`$`Recombination bin =  2`$`Recombination bin Summary`
+#&gt;   numGenes minRecomb medianRecomb meanRecomb maxRecomb
+#&gt; 1        4  1.524576     2.018437   2.238379  3.392067
+#&gt; 
+#&gt; 
+#&gt; $`Population =  RAL`$`Recombination bin =  3`
+#&gt; $`Population =  RAL`$`Recombination bin =  3`$Results
+#&gt;                alpha.symbol Fishers exact test P-value
+#&gt; Cutoff =  0       0.4812584               2.791715e-59
+#&gt; Cutoff =  0.05    0.5573293               2.578578e-86
+#&gt; Cutoff =  0.2     0.5472239               3.195443e-82
+#&gt; 
+#&gt; $`Population =  RAL`$`Recombination bin =  3`$`Divergence metrics`
+#&gt; $`Population =  RAL`$`Recombination bin =  3`$`Divergence metrics`$`Global metrics`
+#&gt;          Ka        Ks     omega
+#&gt; 1 0.0646586 0.1393272 0.4640773
+#&gt; 
+#&gt; $`Population =  RAL`$`Recombination bin =  3`$`Divergence metrics`$`Estimates by cutoff`
+#&gt;                omegaA.symbol omegaD.symbol
+#&gt; Cutoff =  0        0.2233411     0.2407362
+#&gt; Cutoff =  0.05     0.2586439     0.2054335
+#&gt; Cutoff =  0.2      0.2539542     0.2101231
+#&gt; 
+#&gt; 
+#&gt; $`Population =  RAL`$`Recombination bin =  3`$`MKT tables`
+#&gt; $`Population =  RAL`$`Recombination bin =  3`$`MKT tables`$`Number of segregating sites by DAF category - Cutoff =  0`
+#&gt; 
+#&gt; 
+#&gt; |               | DAF.below.cutoff| DAF.above.cutoff|
+#&gt; |:--------------|----------------:|----------------:|
+#&gt; |Neutral class  |                0|             1851|
+#&gt; |Selected class |                0|             1848|
+#&gt; 
+#&gt; $`Population =  RAL`$`Recombination bin =  3`$`MKT tables`$`Number of segregating sites by DAF category - Cutoff =  0.05`
+#&gt; 
+#&gt; 
+#&gt; |               | DAF.below.cutoff| DAF.above.cutoff|
+#&gt; |:--------------|----------------:|----------------:|
+#&gt; |Neutral class  |              904|              947|
+#&gt; |Selected class |             1174|              674|
+#&gt; 
+#&gt; $`Population =  RAL`$`Recombination bin =  3`$`MKT tables`$`Number of segregating sites by DAF category - Cutoff =  0.2`
+#&gt; 
+#&gt; 
+#&gt; |               | DAF.below.cutoff| DAF.above.cutoff|
+#&gt; |:--------------|----------------:|----------------:|
+#&gt; |Neutral class  |             1087|              764|
+#&gt; |Selected class |             1320|              528|
+#&gt; 
+#&gt; $`Population =  RAL`$`Recombination bin =  3`$`MKT tables`$`MKT standard table`
+#&gt; 
+#&gt; 
+#&gt; |               | Polymorphism| Divergence|
+#&gt; |:--------------|------------:|----------:|
+#&gt; |Neutral class  |         1851|       2746|
+#&gt; |Selected class |         1848|       5285|
+#&gt; 
+#&gt; 
+#&gt; $`Population =  RAL`$`Recombination bin =  3`$Fractions
+#&gt;           0       0.05        0.2
+#&gt; d 0.7592638 0.75920318 0.75929481
+#&gt; f 0.2407362 0.20543346 0.21012312
+#&gt; b 0.0000000 0.03536336 0.03058207
+#&gt; 
+#&gt; $`Population =  RAL`$`Recombination bin =  3`$`Recombination bin Summary`
+#&gt;   numGenes minRecomb medianRecomb meanRecomb maxRecomb
+#&gt; 1        4  3.518252     3.548785   3.680112  4.104627
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $`Population =  ZI`
+#&gt; $`Population =  ZI`$`Recombination bin =  1`
+#&gt; $`Population =  ZI`$`Recombination bin =  1`$Results
+#&gt;                alpha.symbol Fishers exact test P-value
+#&gt; Cutoff =  0     -0.05192913                  0.4064121
+#&gt; Cutoff =  0.05   0.07538958                  0.1998081
+#&gt; Cutoff =  0.2    0.03676480                  0.5321975
+#&gt; 
+#&gt; $`Population =  ZI`$`Recombination bin =  1`$`Divergence metrics`
+#&gt; $`Population =  ZI`$`Recombination bin =  1`$`Divergence metrics`$`Global metrics`
+#&gt;           Ka         Ks     omega
+#&gt; 1 0.02203177 0.07151324 0.3080796
+#&gt; 
+#&gt; $`Population =  ZI`$`Recombination bin =  1`$`Divergence metrics`$`Estimates by cutoff`
+#&gt;                omegaA.symbol omegaD.symbol
+#&gt; Cutoff =  0      -0.01599831     0.3240779
+#&gt; Cutoff =  0.05    0.02322599     0.2848536
+#&gt; Cutoff =  0.2     0.01132649     0.2967531
+#&gt; 
+#&gt; 
+#&gt; $`Population =  ZI`$`Recombination bin =  1`$`MKT tables`
+#&gt; $`Population =  ZI`$`Recombination bin =  1`$`MKT tables`$`Number of segregating sites by DAF category - Cutoff =  0`
+#&gt; 
+#&gt; 
+#&gt; |               | DAF.below.cutoff| DAF.above.cutoff|
+#&gt; |:--------------|----------------:|----------------:|
+#&gt; |Neutral class  |                0|             1575|
+#&gt; |Selected class |                0|             2206|
+#&gt; 
+#&gt; $`Population =  ZI`$`Recombination bin =  1`$`MKT tables`$`Number of segregating sites by DAF category - Cutoff =  0.05`
+#&gt; 
+#&gt; 
+#&gt; |               | DAF.below.cutoff| DAF.above.cutoff|
+#&gt; |:--------------|----------------:|----------------:|
+#&gt; |Neutral class  |             1053|              522|
+#&gt; |Selected class |             1742|              464|
+#&gt; 
+#&gt; $`Population =  ZI`$`Recombination bin =  1`$`MKT tables`$`Number of segregating sites by DAF category - Cutoff =  0.2`
+#&gt; 
+#&gt; 
+#&gt; |               | DAF.below.cutoff| DAF.above.cutoff|
+#&gt; |:--------------|----------------:|----------------:|
+#&gt; |Neutral class  |             1186|              389|
+#&gt; |Selected class |             1847|              359|
+#&gt; 
+#&gt; $`Population =  ZI`$`Recombination bin =  1`$`MKT tables`$`MKT standard table`
+#&gt; 
+#&gt; 
+#&gt; |               | Polymorphism| Divergence|
+#&gt; |:--------------|------------:|----------:|
+#&gt; |Neutral class  |         1575|        724|
+#&gt; |Selected class |         2206|        964|
+#&gt; 
+#&gt; 
+#&gt; $`Population =  ZI`$`Recombination bin =  1`$Fractions
+#&gt;           0      0.05        0.2
+#&gt; d 0.6759221 0.6759028 0.67594459
+#&gt; f 0.3240779 0.2848536 0.29675310
+#&gt; b 0.0000000 0.0392436 0.02730231
+#&gt; 
+#&gt; $`Population =  ZI`$`Recombination bin =  1`$`Recombination bin Summary`
+#&gt;   numGenes minRecomb medianRecomb meanRecomb maxRecomb
+#&gt; 1        4 0.6230327    0.9417518  0.9900698  1.453743
+#&gt; 
+#&gt; 
+#&gt; $`Population =  ZI`$`Recombination bin =  2`
+#&gt; $`Population =  ZI`$`Recombination bin =  2`$Results
+#&gt;                alpha.symbol Fishers exact test P-value
+#&gt; Cutoff =  0       0.1704018                0.014492246
+#&gt; Cutoff =  0.05    0.2219296                0.001046664
+#&gt; Cutoff =  0.2     0.2110515                0.002012941
+#&gt; 
+#&gt; $`Population =  ZI`$`Recombination bin =  2`$`Divergence metrics`
+#&gt; $`Population =  ZI`$`Recombination bin =  2`$`Divergence metrics`$`Global metrics`
+#&gt;           Ka         Ks    omega
+#&gt; 1 0.05226333 0.08340555 0.626617
+#&gt; 
+#&gt; $`Population =  ZI`$`Recombination bin =  2`$`Divergence metrics`$`Estimates by cutoff`
+#&gt;                omegaA.symbol omegaD.symbol
+#&gt; Cutoff =  0        0.1067766     0.5198403
+#&gt; Cutoff =  0.05     0.1390649     0.4875521
+#&gt; Cutoff =  0.2      0.1322484     0.4943685
+#&gt; 
+#&gt; 
+#&gt; $`Population =  ZI`$`Recombination bin =  2`$`MKT tables`
+#&gt; $`Population =  ZI`$`Recombination bin =  2`$`MKT tables`$`Number of segregating sites by DAF category - Cutoff =  0`
+#&gt; 
+#&gt; 
+#&gt; |               | DAF.below.cutoff| DAF.above.cutoff|
+#&gt; |:--------------|----------------:|----------------:|
+#&gt; |Neutral class  |                0|              682|
+#&gt; |Selected class |                0|             1449|
+#&gt; 
+#&gt; $`Population =  ZI`$`Recombination bin =  2`$`MKT tables`$`Number of segregating sites by DAF category - Cutoff =  0.05`
+#&gt; 
+#&gt; 
+#&gt; |               | DAF.below.cutoff| DAF.above.cutoff|
+#&gt; |:--------------|----------------:|----------------:|
+#&gt; |Neutral class  |              446|              236|
+#&gt; |Selected class |             1038|              411|
+#&gt; 
+#&gt; $`Population =  ZI`$`Recombination bin =  2`$`MKT tables`$`Number of segregating sites by DAF category - Cutoff =  0.2`
+#&gt; 
+#&gt; 
+#&gt; |               | DAF.below.cutoff| DAF.above.cutoff|
+#&gt; |:--------------|----------------:|----------------:|
+#&gt; |Neutral class  |              500|              182|
+#&gt; |Selected class |             1133|              316|
+#&gt; 
+#&gt; $`Population =  ZI`$`Recombination bin =  2`$`MKT tables`$`MKT standard table`
+#&gt; 
+#&gt; 
+#&gt; |               | Polymorphism| Divergence|
+#&gt; |:--------------|------------:|----------:|
+#&gt; |Neutral class  |          682|        385|
+#&gt; |Selected class |         1449|        986|
+#&gt; 
+#&gt; 
+#&gt; $`Population =  ZI`$`Recombination bin =  2`$Fractions
+#&gt;           0       0.05        0.2
+#&gt; d 0.4801597 0.48001131 0.48027328
+#&gt; f 0.5198403 0.48755212 0.49436853
+#&gt; b 0.0000000 0.03243656 0.02535819
+#&gt; 
+#&gt; $`Population =  ZI`$`Recombination bin =  2`$`Recombination bin Summary`
+#&gt;   numGenes minRecomb medianRecomb meanRecomb maxRecomb
+#&gt; 1        4  1.524576     2.018437   2.238379  3.392067
+#&gt; 
+#&gt; 
+#&gt; $`Population =  ZI`$`Recombination bin =  3`
+#&gt; $`Population =  ZI`$`Recombination bin =  3`$Results
+#&gt;                alpha.symbol Fishers exact test P-value
+#&gt; Cutoff =  0       0.4217070               3.382690e-61
+#&gt; Cutoff =  0.05    0.5070683               7.771059e-98
+#&gt; Cutoff =  0.2     0.4848931               5.523986e-87
+#&gt; 
+#&gt; $`Population =  ZI`$`Recombination bin =  3`$`Divergence metrics`
+#&gt; $`Population =  ZI`$`Recombination bin =  3`$`Divergence metrics`$`Global metrics`
+#&gt;           Ka        Ks    omega
+#&gt; 1 0.06157707 0.1228686 0.501162
+#&gt; 
+#&gt; $`Population =  ZI`$`Recombination bin =  3`$`Divergence metrics`$`Estimates by cutoff`
+#&gt;                omegaA.symbol omegaD.symbol
+#&gt; Cutoff =  0        0.2113435     0.2898185
+#&gt; Cutoff =  0.05     0.2541233     0.2470386
+#&gt; Cutoff =  0.2      0.2430100     0.2581520
+#&gt; 
+#&gt; 
+#&gt; $`Population =  ZI`$`Recombination bin =  3`$`MKT tables`
+#&gt; $`Population =  ZI`$`Recombination bin =  3`$`MKT tables`$`Number of segregating sites by DAF category - Cutoff =  0`
+#&gt; 
+#&gt; 
+#&gt; |               | DAF.below.cutoff| DAF.above.cutoff|
+#&gt; |:--------------|----------------:|----------------:|
+#&gt; |Neutral class  |                0|             3611|
+#&gt; |Selected class |                0|             4329|
+#&gt; 
+#&gt; $`Population =  ZI`$`Recombination bin =  3`$`MKT tables`$`Number of segregating sites by DAF category - Cutoff =  0.05`
+#&gt; 
+#&gt; 
+#&gt; |               | DAF.below.cutoff| DAF.above.cutoff|
+#&gt; |:--------------|----------------:|----------------:|
+#&gt; |Neutral class  |             2275|             1336|
+#&gt; |Selected class |             3366|              963|
+#&gt; 
+#&gt; $`Population =  ZI`$`Recombination bin =  3`$`MKT tables`$`Number of segregating sites by DAF category - Cutoff =  0.2`
+#&gt; 
+#&gt; 
+#&gt; |               | DAF.below.cutoff| DAF.above.cutoff|
+#&gt; |:--------------|----------------:|----------------:|
+#&gt; |Neutral class  |             2600|             1011|
+#&gt; |Selected class |             3590|              739|
+#&gt; 
+#&gt; $`Population =  ZI`$`Recombination bin =  3`$`MKT tables`$`MKT standard table`
+#&gt; 
+#&gt; 
+#&gt; |               | Polymorphism| Divergence|
+#&gt; |:--------------|------------:|----------:|
+#&gt; |Neutral class  |         3611|       2450|
+#&gt; |Selected class |         4329|       5079|
+#&gt; 
+#&gt; 
+#&gt; $`Population =  ZI`$`Recombination bin =  3`$Fractions
+#&gt;           0       0.05        0.2
+#&gt; d 0.7101815 0.71020522 0.71017991
+#&gt; f 0.2898185 0.24703862 0.25815201
+#&gt; b 0.0000000 0.04275616 0.03166808
+#&gt; 
+#&gt; $`Population =  ZI`$`Recombination bin =  3`$`Recombination bin Summary`
+#&gt;   numGenes minRecomb medianRecomb meanRecomb maxRecomb
+#&gt; 1        4  3.518252     3.548785   3.680112  4.104627
+</code></pre>
+
+</body>
+
+</html>

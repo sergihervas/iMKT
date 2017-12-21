@@ -16,19 +16,23 @@ exampleDaf<-mydafdata
 exampleDiverge<-mydivergencedata
 
 ## ----Standard MKT, echo=TRUE---------------------------------------------
-standard(daf = mydafdata,divergence = mydivergencedata)
+standard<-standard(daf = mydafdata,divergence = mydivergencedata)
+
+## ----Result , echo=FALSE-------------------------------------------------
+standard$alpha.symbol
+standard$`Fishers exact test P-value`
+standard$`MKT table`
 
 ## ----FWW, echo=TRUE------------------------------------------------------
 FWW(daf = mydafdata,divergence = mydivergencedata)
 
-## ---- echo=TRUE----------------------------------------------------------
+## ----Result FWW, include=FALSE-------------------------------------------
 methodFWW<-FWW(daf = mydafdata,divergence = mydivergencedata)
 methodFWW$Results
-methodFWW$`Divergence metrics`
 methodFWW$`MKT tables`
+methodFWW$`Divergence metrics`
 
-
-## ---- echo=TRUE----------------------------------------------------------
+## ----FWW plot, echo=TRUE-------------------------------------------------
 methodFWW<-FWW(daf = mydafdata, divergence = mydivergencedata,list_cutoff=c(0, 0.05, 0.1,0.15,0.2),plot=TRUE)
 savePlotInVariable<-methodFWW$Graph
 savePlotInVariable
@@ -36,12 +40,11 @@ savePlotInVariable
 ## ----DGRP, echo=TRUE-----------------------------------------------------
 DGRP(daf = mydafdata, divergence = mydivergencedata)
 
-## ---- echo=TRUE----------------------------------------------------------
+## ----Result, echo=TRUE---------------------------------------------------
 methodDGRP<-DGRP(daf = mydafdata, divergence = mydivergencedata)
 methodDGRP$Results
-methodDGRP$`Divergence metrics`
+methodDGRP$Fractions
 methodDGRP$`MKT tables`
-
 
 ## ---- echo=TRUE----------------------------------------------------------
 methodDGRP<-DGRP(daf = mydafdata, divergence = mydivergencedata,list_cutoff=c(0, 0.05,0.2),plot=TRUE)
