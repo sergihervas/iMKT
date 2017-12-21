@@ -1,6 +1,6 @@
 ---
 title: "iMKT loading data"
-output: rmarkdown::html_vignette
+output: pdf_document
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{iMKT Pipeline}
@@ -8,12 +8,12 @@ vignette: >
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
-	echo = TRUE,
 	fig.align = "center",
 	fig.height = 7,
 	fig.width = 7,
 	collapse = TRUE,
-	comment = "#>"
+	comment = "#>",
+	include = FALSE
 )
 ```
 
