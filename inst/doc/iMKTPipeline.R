@@ -1,14 +1,21 @@
 ## ----setup, include=FALSE------------------------------------------------
-knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.width = 7, fig.height = 7, fig.align = "center")
+knitr::opts_chunk$set(
+	fig.align = "center",
+	fig.height = 7,
+	fig.width = 7,
+	collapse = TRUE,
+	comment = "#>",
+	include = FALSE
+)
 
-## ----Loading the package-------------------------------------------------
+## ----Loading the package, echo=TRUE--------------------------------------
 # install.packages("iMKT") ##If CRAN  
 # library(devtools) ##If github
 # install_github("sergihervas/iMKT")  
   
 library(iMKT)
 
-## ----Checking the example data-------------------------------------------
+## ----Checking the example data, echo=TRUE--------------------------------
 mydafdata
 mydivergencedata
 
@@ -18,7 +25,7 @@ exampleDiverge<-mydivergencedata
 ## ----Standard MKT, echo=TRUE---------------------------------------------
 standard<-standard(daf = mydafdata,divergence = mydivergencedata)
 
-## ----Result , echo=FALSE-------------------------------------------------
+## ----Result, echo=TRUE---------------------------------------------------
 standard$alpha.symbol
 standard$`Fishers exact test P-value`
 standard$`MKT table`
@@ -26,7 +33,7 @@ standard$`MKT table`
 ## ----FWW, echo=TRUE------------------------------------------------------
 FWW(daf = mydafdata,divergence = mydivergencedata)
 
-## ----Result FWW, include=FALSE-------------------------------------------
+## ----Result FWW, echo=TRUE-----------------------------------------------
 methodFWW<-FWW(daf = mydafdata,divergence = mydivergencedata)
 methodFWW$Results
 methodFWW$`MKT tables`
@@ -40,7 +47,7 @@ savePlotInVariable
 ## ----DGRP, echo=TRUE-----------------------------------------------------
 DGRP(daf = mydafdata, divergence = mydivergencedata)
 
-## ----Result, echo=TRUE---------------------------------------------------
+## ----Result DGRP, echo=TRUE----------------------------------------------
 methodDGRP<-DGRP(daf = mydafdata, divergence = mydivergencedata)
 methodDGRP$Results
 methodDGRP$Fractions
@@ -63,7 +70,7 @@ methodiMK$Results
 methodiMK$`Divergence metrics`
 methodiMK$`MKT tables`
 
-## ---- echo=TRUE----------------------------------------------------------
+## ----fig.width=7,fig.height=9,echo=TRUE----------------------------------
 methodiMK<-iMK(daf = mydafdata, divergence = mydivergencedata, xlow = 0, xhigh = 0.9 ,plot=TRUE)
 savePlotInVariable<-methodiMK$Graph
 savePlotInVariable

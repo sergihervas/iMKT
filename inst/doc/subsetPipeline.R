@@ -1,9 +1,17 @@
 ## ----setup, include=FALSE------------------------------------------------
-knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.width = 7, fig.height = 7, fig.align = "center")
+knitr::opts_chunk$set(
+	fig.align = "center",
+	fig.height = 7,
+	fig.width = 7,
+	collapse = TRUE,
+	comment = "#>",
+	include = FALSE
+)
 
-## ----PopFly data, echo=TRUE----------------------------------------------
+## ----popfly data,fig.width=7,echo=TRUE-----------------------------------
+library(iMKT)
 dataPopfly<-loadPopFly()
-head(dataPopfly)
+knitr::kable(head(dataPopfly))
 
 ## ----PopFly data manual retrieve, echo=TRUE------------------------------
 ## Preparing RAL Adh
@@ -40,18 +48,18 @@ names(dafAdhZI) <- c("daf","Pi","P0")
 divAdhZI <- cbind(mi, Di, m0, D0); divAdhZI <- as.data.frame(divAdhZI)
 names(divAdhZI) <- c("mi","Di","m0","D0")
 
-## ----PopFly data retrieve Adh RAL----------------------------------------
+## ----PopFly data retrieve Adh RAL, echo=TRUE-----------------------------
 standard(daf = dafAdhRAL, divergence = divAdhRAL)
 DGRP(daf = dafAdhRAL, divergence = divAdhRAL,plot = TRUE)
 
-## ----PopFly data retrieve Adh ZI-----------------------------------------
+## ----PopFly data retrieve Adh ZI, echo=TRUE------------------------------
 standard(daf = dafAdhZI, divergence = divAdhZI)
 DGRP(daf = dafAdhZI, divergence = divAdhZI,plot = TRUE)
 
-## ----PopFly data retrieve automated no recomb----------------------------
+## ----PopFly data retrieve automated no recomb, echo=TRUE-----------------
 PopFlyAnalysis(genes = c("FBgn0000055","FBgn0003016"),pops = c("RAL","ZI","FR"),recomb = F)
 
-## ----PopFly data retrieve automated--------------------------------------
+## ----PopFly data retrieve automated, echo=TRUE---------------------------
 geneList <- c("FBgn0053196", "FBgn0086906", "FBgn0261836", "FBgn0031617","FBgn0260965", "FBgn0028899", "FBgn0052580", "FBgn0036181","FBgn0263077", "FBgn0013733", "FBgn0031857", "FBgn0037836")
 
 PopFlyAnalysis(genes=geneList , pops=c("RAL","ZI"), recomb=T, bins=3, test="DGRP")

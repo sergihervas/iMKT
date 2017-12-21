@@ -1,6 +1,6 @@
 ---
 title: "iMKT Pipeline"
-output: pdf_document
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{iMKT Pipeline}

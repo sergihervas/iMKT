@@ -1,6 +1,9 @@
 ---
 title: "iMKT loading data"
-output: pdf_document
+output: 
+  pdf_document:
+    highlight: monochrome
+    latex_engine: xelatex
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{iMKT Pipeline}
