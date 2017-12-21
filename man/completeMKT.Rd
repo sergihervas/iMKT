@@ -27,6 +27,6 @@ Execute all the MKT extensions
 put description here
 }
 \examples{
-# completeMKT(mydafdata, mydivergencedata, 0, 0.9)
+completeMKT(mydafdata, mydivergencedata, 0, 0.9)
 
 }

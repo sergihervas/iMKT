@@ -49,12 +49,12 @@
 	- ~~Packages: grid and gridextra **are not necessary** and from package scales, we just need the function **"manual_pal"**~~
 	- ~~Github, CRAN or bioconductor. Marta: I'd say the package should be kept in Github, at least privately, so we can still improve it, easy to handle etc. Between CRAN/Bioconductor I'd choose Bioconductor for the following reasons: (1) The package will be announced on Twitter by core Bioconductor members and listed on Bioconductor website --> a lot of impact in the community. (2) Professional suppport. (3) It's easy to publish it if it's already on Bioconductor. (4) Packages can be submitted in Bioconductor through Github. (5) We'll have a doi and it's citable. Disadvantatges: much tougher review process than CRAN, must have a vignette, the code should be 80 characters wide, we can't use S3 class (???), the package must be re-updated each 6 months. See: https://bioconductor.org/developers/how-to/efficient-code/, https://bioconductor.org/developers/how-to/coding-style/~~   
 	- ~~Hidden datasets (Jesus)~~
-	- Tests (Jesus, Sergi)
+	- Tests (Jesus, Sergi) (**in progress**)
 	- ~~Document correctly functions (Marta, Jesus)~~
 	- Just need to rewrite correctly the documentation.
 		- ~~Change RD files to S4 class (bioconductor) (Jesús). FINALLY NOT BIOCONDUCTOR~~
 	- User manual (Marta, Jesus)
-	- Vignettes (Marta, Jesus)
+	- Vignettes (Marta, Jesus) (**in progress**)
 
 - Check consistency of variables and style along functions (Marta, Sergi, Jesus) **Should be also done at the end of coding**
 - Functions:

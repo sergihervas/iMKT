@@ -15,7 +15,7 @@
 #' @return Estimation of alpha asymptotic value and details of the model fit
 #'
 #' @examples
-#' # asymptoticMK(mydafdata, mydivergencedata, 0, 0.9)
+#' asymptoticMK(mydafdata, mydivergencedata, 0, 0.9)
 #'
 #' @import utils
 #' @import stats

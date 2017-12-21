@@ -13,9 +13,9 @@
 #'
 #' @examples
 #' ## Using default cutoffs
-#' # DGRP(mydafdata, mydivergencedata)
+#'  DGRP(mydafdata, mydivergencedata)
 #' ## Using custom cutoffs
-#' # DGRP(mydafdata, mydivergencedata, c(0.05, 0.1, 0.15))
+#' DGRP(mydafdata, mydivergencedata, c(0.05, 0.1, 0.15))
 #'
 #' @import utils
 #' @import stats

@@ -29,8 +29,8 @@ iMK: alpha asymptotic + negative selection (d,b,f)
 }
 \examples{
 ## Without plot
-# iMK(mydafdata, mydivergencedata, 0, 0.9)
+iMK(mydafdata, mydivergencedata, 0, 0.9)
 ## With plot
-# iMK(mydafdata, mydivergencedata, 0, 0.9, plot=TRUE)
+iMK(mydafdata, mydivergencedata, 0, 0.9, plot=TRUE)
 
 }
