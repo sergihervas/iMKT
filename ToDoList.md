@@ -54,8 +54,9 @@
 	- Just need to rewrite correctly the documentation.
 		- ~~Change RD files to S4 class (bioconductor) (Jesús). FINALLY NOT BIOCONDUCTOR~~
 	- User manual (Marta, Jesus)
+	  - **S** Remove theme_publication() function and call it whenever it is needed?? To avoid including this function in the manual. Think about check_input()
 	- Vignettes (Marta, Jesus) (**in progress**)
-
+    - Update vignette PopFlyAnalysis() & PopHumanAnalysis()
 - Check consistency of variables and style along functions (Marta, Sergi, Jesus) **Should be also done at the end of coding**
 - Functions:
 	- ~~Standard: done~~
