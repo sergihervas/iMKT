@@ -1,11 +1,11 @@
 ## ----setup, include=FALSE------------------------------------------------
 knitr::opts_chunk$set(
+	echo = TRUE,
 	fig.align = "center",
 	fig.height = 7,
 	fig.width = 7,
 	collapse = TRUE,
-	comment = "#>",
-	include = FALSE
+	comment = "#>"
 )
 
 ## ----Loading the package, echo=TRUE--------------------------------------
@@ -40,7 +40,8 @@ methodFWW$`MKT tables`
 methodFWW$`Divergence metrics`
 
 ## ----FWW plot, echo=TRUE-------------------------------------------------
-methodFWW<-FWW(daf = mydafdata, divergence = mydivergencedata,list_cutoff=c(0, 0.05, 0.1,0.15,0.2),plot=TRUE)
+methodFWW<-FWW(daf = mydafdata, divergence = mydivergencedata,list_cutoff=c(0, 0.05, 0.1,0.15,0.2),
+               plot=TRUE)
 savePlotInVariable<-methodFWW$Graph
 savePlotInVariable
 

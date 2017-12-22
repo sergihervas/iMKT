@@ -1,6 +1,9 @@
 ---
 title: "iMKT Pipeline"
-output: rmarkdown::html_vignette
+output: 
+  pdf_document:
+    highlight: monochrome
+    latex_engine: xelatex
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{iMKT Pipeline}
@@ -8,12 +11,12 @@ vignette: >
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
+	echo = TRUE,
 	fig.align = "center",
 	fig.height = 7,
 	fig.width = 7,
 	collapse = TRUE,
-	comment = "#>",
-	include = FALSE
+	comment = "#>"
 )
 ```
 
@@ -88,7 +91,8 @@ methodFWW$`Divergence metrics`
 By default the arguments ***list_cutoffs***, pass a list of cutoffs with the following values: c(0, 0.05, 0.1). And moreover th argument  ***plot*** is setting in ***FALSE***. You can change the cutting values and switch on the plot to visulize your results!
 
 ```{r FWW plot, echo=TRUE}
-methodFWW<-FWW(daf = mydafdata, divergence = mydivergencedata,list_cutoff=c(0, 0.05, 0.1,0.15,0.2),plot=TRUE)
+methodFWW<-FWW(daf = mydafdata, divergence = mydivergencedata,list_cutoff=c(0, 0.05, 0.1,0.15,0.2),
+               plot=TRUE)
 savePlotInVariable<-methodFWW$Graph
 savePlotInVariable
 ```

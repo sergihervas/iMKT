@@ -1,14 +1,14 @@
 ## ----setup, include=FALSE------------------------------------------------
 knitr::opts_chunk$set(
+	echo = TRUE,
 	fig.align = "center",
 	fig.height = 7,
 	fig.width = 7,
 	collapse = TRUE,
-	comment = "#>",
-	include = FALSE
+	comment = "#>"
 )
 
-## ----popfly data,fig.width=7,echo=TRUE-----------------------------------
+## ----popfly data, echo=TRUE, fig.width=7---------------------------------
 library(iMKT)
 dataPopfly<-loadPopFly()
 knitr::kable(head(dataPopfly))
