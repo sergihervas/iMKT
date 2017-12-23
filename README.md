@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/sergihervas/iMKT.svg?branch=master)](https://travis-ci.com/sergihervas/iMKT)
+[![Build Status](https://travis-ci.org/sergihervas/iMKT.svg?branch=master)](https://travis-ci.com/sergihervas/iMKT)
 
 
 # iMKT
