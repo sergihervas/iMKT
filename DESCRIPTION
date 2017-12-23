@@ -16,4 +16,3 @@ Imports: knitr, utils, stats, cowplot, reshape2, nls2, MASS, ggthemes
 VignetteBuilder: knitr
 NeedsCompilation: no
 Packaged: 2017-12-21 12:19:43 UTC; jmurga
-Suggests: testthat
