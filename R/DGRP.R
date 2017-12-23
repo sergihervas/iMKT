@@ -134,7 +134,7 @@ DGRP <- function(daf, divergence, list_cutoffs=c(0, 0.05, 0.2), plot=FALSE) {
   
     ## Melt fractions data
     fractions_melt <- melt(fractions, id.vars=NULL) 
-    fractions_melt$Fraction <-  rep(c("d", "f", "b"),length(fractions_melt$variable)/3)
+    fractions_melt$Fraction <-  rep(c("d", "f", "b"),3)
   
     ## Fractions graph
     plotfraction <- ggplot(fractions_melt) + geom_bar(stat="identity", aes_string(x="variable", y="value", fill="Fraction"), color="black") +
@@ -160,7 +160,7 @@ DGRP <- function(daf, divergence, list_cutoffs=c(0, 0.05, 0.2), plot=FALSE) {
     
       ## Melt fractions data
       fractions_melt <- melt(fractions, id.vars=NULL) 
-      fractions_melt$Fraction <-  rep(c("d", "f", "b"),length(fractions_melt$variable)/3)
+      fractions_melt$Fraction <-  rep(c("d", "f", "b"),3)
       
       ## Return list output  
       list_output <- list(output, div_metrics, mkt_tables, fractions)
