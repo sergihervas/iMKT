@@ -5,6 +5,10 @@ R package to compute iMKT: to quantify the different selection regimes acting on
 
 Strongly deleterious sites (d); Weakly deleterious sites (b); Neutral sites (f); Adaptive fixations (α)
 
+
+[![Build Status](https://travis-ci.org/sergihervas/iMKT.svg?branch=master)](https://travis-ci.org/sergihervas/iMKT)
+Replace user with your GitHub user name and pkg with the name of your package repository.
+
 ---------------------------------------------------------------------
 ---------------------------------------------------------------------
 
