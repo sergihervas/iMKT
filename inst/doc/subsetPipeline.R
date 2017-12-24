@@ -11,10 +11,8 @@ knitr::opts_chunk$set(
 ## ----popfly data, echo=TRUE, fig.width=7---------------------------------
 library(iMKT)
 loadPopFly()
-#loadPopHuman()
-#knitr::kable(head(PopFlyData,4))
-head(PopFlyData, 4)
 ls() ## new object created
+names(PopFlyData)
 
 ## ----PopFly data manual retrieve, echo=FALSE, eval=FALSE-----------------
 #  ## Preparing RAL Adh
@@ -60,7 +58,7 @@ ls() ## new object created
 #  DGRP(daf = dafAdhZI, divergence = divAdhZI,plot = TRUE)
 
 ## ----PopFly data retrieve automated no recomb, echo=TRUE-----------------
-PopFlyAnalysis(genes=c("FBgn0000055","FBgn0003016"), pops=c("RAL","ZI","FR"), recomb=F, test="DGRP")
+PopFlyAnalysis(genes=c("FBgn0000055","FBgn0003016"), pops=c("RAL","ZI"), recomb=F, test="DGRP")
 
 ## ----PopFly data retrieve automated, echo=TRUE---------------------------
 geneList <- c("FBgn0053196","FBgn0086906","FBgn0261836","FBgn0031617","FBgn0260965",

@@ -22,29 +22,37 @@ knitr::opts_chunk$set(
 
 Brief intro about lots of data right now. Then, PopFly and PopHuman as great databases.
 
-Therefore, iMKT package includes some functions which allow an easy retrieval and analysis of population genetics information stored in these genome browsers. Specifically, the functions permit the download of population genetics parameters computed for every gene annotation in several populations for both model species Drosophila and Homo sapiens.
-  
+Therefore, iMKT package includes some functions which allow an easy retrieval and analysis of population genetics information stored in these genome browsers. Specifically, the functions permit the download of population genetics parameters computed for every gene annotation in several populations for both model species *Drosophila melanogaster* and *Homo sapiens*.
+
+The examples in this vignette focus only on PopFly data and analysis, but the same process could be performed using human data and funcions (**loadPopHumandata()**, **PopHumanAnalysis()**, and **PopHumanData**), following the same steps described here. Recombination rate values of human data are retrieved from Bheller et al. and correspond to the sex average estimates.
+
+&nbsp;
+&nbsp;
 
 ## Loading the row data
 
-First step is to load this information into your working enviroment and how to access it in order to use it efficiently. To do so, use the loadPopFly() and loadPopHuman() functions. 
+The first step is to load the information into your working enviroment. This would allow a manual examination of the data before starting any alayses. However, this step can be skipped, and the main data object is loaded into the workspace the first time that the analysis function is called. 
+To download PopFly data use the **loadPopFly()** function, without any argument. 
 
-Keep in mind that you are downloading the complete gene information of several populations (16 D. melanogaster and 26 Human), and this procces could take a while.
+Keep in mind that you are downloading the complete gene information of several populations (16 *D. melanogaster* in this case and 26 in the case of *H. sapiens*), and this procces could take a while.
 
-Once the functions finish, two new objects are loaded into the workspace: PopFlyData and PopHumanData. These objects can be manually examined or used only when performing the main iMKT analysis. 
+Once the function finishes,the **PopFlyData** object is loaded into the workspace. This object can be manually examined or used when performing the main iMKT analyses.
   
+&nbsp;
+&nbsp;
   
 ```{r popfly data, echo=TRUE, fig.width=7}
 library(iMKT)
 loadPopFly()
-#loadPopHuman()
-#knitr::kable(head(PopFlyData,4))
-head(PopFlyData, 4)
 ls() ## new object created
+names(PopFlyData)
 ```
+
+&nbsp;
+&nbsp;
   
   
-Each row of the PopFlyData dataframe contains information regarding one gene annotation in one single population. In total, 16 populations and X genes are included. Metrics for each gene contain information about segrating, divergent and analyzed sites and the Derived Allele Frequency (DAF) for neutral (4fold) and putatively selected (0fold) sites; together with some neutrality tests statistics (Standard MKT, Direction of Selection, Ka/Ks). 
+Each row of the **PopFlyData** dataframe contains information regarding one gene annotation in one single population. In total, 16 populations and 13745 genes are included. Metrics for each gene contain information about segrating, divergent and analyzed sites and the Derived Allele Frequency (DAF) for neutral (4fold) and putatively selected (0fold) sites; together with some neutrality tests statistics (Standard MKT, Direction of Selection, Ka/Ks) and gene-associated recombination rate estimates (from Comeron et al.).
 
 <!-- As we compress the Derived Allele Frequency in a column field, you will need to create the correct variables forms to pass them properly at the functions. It can be done in a few R basics lines! -->
 
@@ -97,35 +105,60 @@ DGRP(daf = dafAdhZI, divergence = divAdhZI,plot = TRUE)
 
 <!-- This proccess could be tedious depending on the number of genes you want to analyze. To solve this, we just add  -->
 
-  
-  
+Once the data is loaded into the workspace, analyses can be performed using the function **PopFlyAnalysis()**.
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
 ## Performing PopFly Analyses
   
-The ***PopFlyAnalisys()*** function allows performing any MK test using a subset of PopFly data defined by custom genes and populations lists. It uses the previously loaded dataframe (PopFlyData). In addition to the genes and populations lists, the function also has the following parameters:
+The **PopFlyAnalisys()** function allows performing any MK test using a subset of PopFly data defined by custom genes and populations lists. It uses the previously loaded dataframe (PopFlyData). In addition to the **genes** and **populations** lists, the function also has the following parameters:
 
-  - recomb group genes according to recombination values (must specify number of bins). TRUE/FALSE. Recomb values (cM/Mb) from Comeron et al. 2012.
-  - bins number of recombination bins to compute (mandatory if recomb = TRUE)
-  - test which test to perform. Options include: standard (default), DGRP, FWW, asymptotic, iMK
-  - xlow lower limit for asymptotic alpha fit (default=0)
-  - xhigh higher limit for asymptotic alpha fit (default=1)
+  - **recomb**: group genes according to recombination values (must specify number of bins). Options are: TRUE/FALSE. Recombination values (cM/Mb) from Comeron et al. 2012.
+  - **bins**: number of recombination bins to compute (mandatory if recomb = TRUE)
+  - **test**: which test to perform. Options include: standard (default), DGRP, FWW, asymptotic, iMK
+  - **xlow**: lower limit for asymptotic alpha fit (default=0)
+  - **xhigh**: higher limit for asymptotic alpha fit (default=1)
   
+&nbsp;
 
-Hence, it allows deciding which test to perform, and whether to analyze genes groupped by recombination bins or not. 
-  
+Custom genes must be listed using FlyBase IDs (FBgn...), and the available populations from PopFly are: AM, AUS, CHB, EA, EF, EG, ENA, EQA, FR, RAL, SA, SD, SP, USI, USW, ZI.
+
+Hence, using the parameters recomb and bins, the function allows deciding whether to analyze genes groupped by recombination bins or not.
+
+&nbsp;
+&nbsp;
   
 ### Example 1
   
-In this first example, the analysis is focused in two genes and 3 populations, without considering gene's recombination context, and using DGRP methodology.
+In this first example, the analysis is focused in two genes and 2 populations, without considering gene's recombination context, and using DGRP methodology. 
+
+The function groups polymorphism and divergence values of the custom genes, creating a new "concatenated gene" for each population of interest and performs the test defined. Then, it returns a list of lists with the default test output (DGRP in this case) for each population (RAL and ZI).
+
+Explain output of DGRP function.
+
+&nbsp;
+&nbsp;
 
 ```{r PopFly data retrieve automated no recomb, echo=TRUE}
-PopFlyAnalysis(genes=c("FBgn0000055","FBgn0003016"), pops=c("RAL","ZI","FR"), recomb=F, test="DGRP")
+PopFlyAnalysis(genes=c("FBgn0000055","FBgn0003016"), pops=c("RAL","ZI"), recomb=F, test="DGRP")
 ```
   
+&nbsp;
+&nbsp;
   
 ### Example 2  
  
 In this second example, genes from RAL population are groupped in 2 recombination bins, using recombination values from Comeron et al (ref). The test used is iMK, with xlow and xhigh values set to 0 and 0.9, respectively.
 
+In this case, the function creates two different "concatenated" genes containing the same number of genes each (6 in this case), grouping again polymorphism and divergence values. These aggrupations are made according to the gene associated recombination rate estimates. The function returns a list of lists with the default test output (iMKT in this case) for each population (RAL) and recombination bin (1 and 2).
+
+Explain iMK function output.
+
+&nbsp;
+&nbsp;
 
 ```{r PopFly data retrieve automated, echo=TRUE}
 geneList <- c("FBgn0053196","FBgn0086906","FBgn0261836","FBgn0031617","FBgn0260965",
@@ -135,3 +168,5 @@ geneList <- c("FBgn0053196","FBgn0086906","FBgn0261836","FBgn0031617","FBgn02609
 PopFlyAnalysis(genes=geneList , pops=c("RAL"), recomb=T, bins=2, test="iMK", xlow=0, xhigh=0.9)
 ```
   
+&nbsp;
+&nbsp;
