@@ -5,20 +5,20 @@
 #'
 #' Default theme used for plot images. From http://rpubs.com/Koundy/71792
 #'
-#' @param base_size base size required from theme_Publication
-#' @param base_family font to load in theme_Publication
+#' @param base_size base size required from themePublication
+#' @param base_family font to load in themePublication
 #' 
 #' @return plot theme
 #'
 #' @examples
-#' # theme_Publication(14, "sans")
+#' # themePublication(14, "sans")
 #'
 #' @import ggplot2
 #' @importFrom ggthemes theme_foundation
 #'
 #' @export
 
-theme_Publication <- function(base_size=14, base_family="sans") {
+themePublication <- function(base_size=14, base_family="sans") {
   (theme_foundation(base_size=base_size, base_family=base_family)
     + theme(plot.title = element_text(face = "bold",
                                       size = rel(1.2), hjust = 0.5),

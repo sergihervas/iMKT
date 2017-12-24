@@ -23,7 +23,7 @@
 completeMKT <- function(daf, divergence, xlow, xhigh, seed) {
   
   ## Check data
-  check <- check_input(daf, divergence, xlow, xhigh)
+  check <- checkInput(daf, divergence, xlow, xhigh)
   if(check$data == FALSE) {
      stop(check$print_errors) }
   

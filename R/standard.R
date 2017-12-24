@@ -22,7 +22,7 @@
 standard <- function(daf, divergence) {
   
   ## Check data
-  check <-check_input(daf, divergence, 0, 1)
+  check <-checkInput(daf, divergence, 0, 1)
     if(check$data == FALSE) {
      stop(check$print_errors) }
 

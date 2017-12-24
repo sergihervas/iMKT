@@ -28,7 +28,7 @@
 FWW <- function(daf, divergence, list_cutoffs=c(0, 0.05, 0.1), plot=FALSE) {
   
   ## Check data
-  check <- check_input(daf, divergence, 0, 1)
+  check <- checkInput(daf, divergence, 0, 1)
   if(check$data == FALSE) {
      stop(check$print_errors) }
 
@@ -83,7 +83,7 @@ FWW <- function(daf, divergence, list_cutoffs=c(0, 0.05, 0.1), plot=FALSE) {
     plot <- ggplot(output, aes(x=as.factor(cutoff), y=alpha, group=1)) +
       geom_line(color="#386cb0") + 
       geom_point(size=2.5, color="#386cb0")+
-      theme_Publication() +
+      themePublication() +
       xlab("Cut-off") + ylab(expression(bold(paste("Adaptation (",alpha,")"))))
   
     ## Re-format outputs

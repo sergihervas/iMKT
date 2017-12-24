@@ -1,4 +1,4 @@
-#' @title check_input
+#' @title checkInput
 #' 
 #' @description Check input data and return detailed errors when it is malformed.
 #' @details This function checks input data used in most package's functions (arguments daf, divergence, xlow and xhigh) and returns a brief description of the error(s) found. If data does not pass check_input() the requested analysis is not performed.
@@ -15,7 +15,7 @@
 #'
 #' @export
 
-check_input <- function(daf, divergence, xlow, xhigh){
+checkInput <- function(daf, divergence, xlow, xhigh){
     
     dataIsGood <- TRUE
     mainErrors <- "Your input files have the following errors: "

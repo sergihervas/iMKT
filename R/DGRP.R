@@ -35,7 +35,7 @@
 DGRP <- function(daf, divergence, list_cutoffs=c(0, 0.05, 0.2), plot=FALSE) {
   
   ## Check data
-  check <- check_input(daf, divergence, 0, 1)
+  check <- checkInput(daf, divergence, 0, 1)
   if(check$data == FALSE) {
      stop(check$print_errors) }
 
@@ -121,7 +121,7 @@ DGRP <- function(daf, divergence, list_cutoffs=c(0, 0.05, 0.2), plot=FALSE) {
     plot <- ggplot(output, aes(x=as.factor(cutoff), y=alpha, group=1)) +
       geom_line(color="#386cb0") + 
       geom_point(size=2.5, color="#386cb0")+
-      theme_Publication() +
+      themePublication() +
       xlab("Cut-off") + ylab(expression(bold(paste("Adaptation (",alpha,")")))) 
   
     ## Re-format outputs
@@ -138,7 +138,7 @@ DGRP <- function(daf, divergence, list_cutoffs=c(0, 0.05, 0.2), plot=FALSE) {
   
     ## Fractions graph
     plotfraction <- ggplot(fractions_melt) + geom_bar(stat="identity", aes_string(x="variable", y="value", fill="Fraction"), color="black") +
-      coord_flip() + theme_Publication() + ylab(label="Fraction") + xlab(label="Cut-off") +
+      coord_flip() + themePublication() + ylab(label="Fraction") + xlab(label="Cut-off") +
       scale_fill_manual(values=c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33"), breaks=c("d","f","b"), labels=c(expression(italic("d")),expression(italic("f")),expression(italic("b")))) +
       theme(axis.line=element_blank())  + scale_y_discrete(limit=seq(0,1,0.25), expand=c(0,0))
   

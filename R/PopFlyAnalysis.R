@@ -88,7 +88,7 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
     warningMssgTest <- paste0("Parameters xlow and xhigh not used! (test = ",test," selected)")
     warning(warningMssgTest) }
   
-  ## Arguments xlow, xhigh features (numeric, bounds...) checked in check_input()
+  ## Arguments xlow, xhigh features (numeric, bounds...) checked in checkInput()
   
   ## Perform subset
   subsetGenes <- data[(data$Name %in% genes & data$Pop %in% pops), ]

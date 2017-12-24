@@ -30,7 +30,7 @@
 iMK <- function(daf, divergence, xlow, xhigh, seed, plot=FALSE) {
   
   ## Check data
-  check <- check_input(daf, divergence, xlow, xhigh)
+  check <- checkInput(daf, divergence, xlow, xhigh)
   if (check$data == FALSE) {
     stop (check$print_errors) }
     
@@ -96,7 +96,7 @@ iMK <- function(daf, divergence, xlow, xhigh, seed, plot=FALSE) {
     
     ## plot fractions
     plotfraction <- ggplot(fraction) + geom_bar(stat="identity", aes_string(x="MKT", y="Fraction", fill="Type")) + 
-      coord_flip() + theme_Publication() + ylab(label="Fraction") + 
+      coord_flip() + themePublication() + ylab(label="Fraction") + 
       scale_fill_manual(values = c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33"), breaks=c("d","f","b"), labels=c(expression(italic("d")), expression(italic("f")),expression(italic("b")))) + 
       theme(axis.title.y=element_blank(), axis.ticks.y=element_blank(), axis.text.y=element_blank(), axis.line=element_blank(), panel.border=element_rect(colour="black", fill=NA, size=1))  +
       scale_y_discrete(limit=seq(0,1,0.25), expand=c(0, 0))
@@ -107,7 +107,7 @@ iMK <- function(daf, divergence, xlow, xhigh, seed, plot=FALSE) {
   
     plotdaf <-  ggplot(daf_graph) +
       geom_point(aes_string(x="daf", y="value", color="variable"), size=3) +
-      theme_Publication() + scale_color_manual(values=c("#386cb0","#fdb462"), name="Type", breaks=c("Pi","P0"), labels=c("Non-synonymous","Synonymous")) +
+      themePublication() + scale_color_manual(values=c("#386cb0","#fdb462"), name="Type", breaks=c("Pi","P0"), labels=c("Non-synonymous","Synonymous")) +
       xlab("Derived Allele Frequency") + ylab("Number of Sites")
   
     ## Alpha graph
@@ -134,7 +134,7 @@ iMK <- function(daf, divergence, xlow, xhigh, seed, plot=FALSE) {
       ## Shade the fraction of WDMs
       geom_ribbon(data=shader_df, aes_string(x="xs", ymin="ysmin", ymax="ysmax"), fill="gray30", alpha=0.2, inherit.aes=F) + 
       ## Customization
-      theme_Publication() + 
+      themePublication() + 
       xlab("Derived allele frequency") + ylab(expression(bold(paste("Adaptation (",alpha,")")))) +
       ## Alphas labels
       annotate("text", x=xhigh-0.2, y=asymptoticMK_table$alpha_asymptotic-0.2, label=paste0('alpha [asymptotic] == ', round(asymptoticMK_table$alpha_asymptotic, digits = 3)), parse=T, color="#662506", size=4) +
