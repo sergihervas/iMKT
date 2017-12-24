@@ -1,5 +1,9 @@
 [![Build Status](https://travis-ci.com/sergihervas/iMKT.svg?token=zpMDJ1ixtfzEon7BwxwR&branch=master)](https://travis-ci.com/sergihervas/iMKT)
 
+# iMKT: integrative McDonald and Kreitman Test
+
+&nbsp;
+
 Overview
 --------
 
