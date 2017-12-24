@@ -2,16 +2,11 @@
 
 # iMKT: integrative McDonald and Kreitman Test
 
-&nbsp;
-
 Overview
 --------
 
 iMKT is an R package to compute the integrative McDonald and Kreitman test. 
 It includes several MKT derived methodologies which allow inferring the rate of adaptive evolution and two new approximations to quantify the different selection regimes acting on any given region from polymorphism and divergence genomic data: Strongly deleterious sites (d); Weakly deleterious sites (b); Neutral sites (f); Adaptive fixations (α). 
-
-&nbsp;
-&nbsp;
 
 Installation
 ------------
@@ -21,9 +16,6 @@ The package is deposited in GitHub and must be installed using the devtools libr
 # install.packages("devtools")
 devtools::install_github("sergihervas/iMKT")
 ```
-
-&nbsp;
-&nbsp;
 
 Usage
 -----
