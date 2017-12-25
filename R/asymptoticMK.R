@@ -31,6 +31,9 @@ asymptoticMK <- function(daf, divergence, xlow, xhigh, seed) {
   if(check$data == FALSE) {
     stop(check$print_errors) }
 
+  if (any(daf$P0 == 0)){ ## Warning P0
+    warning("Input daf file contains P0 values = 0.\nThis can bias the function fitting and the estimation of alpha.")}
+
   ## Check seed
   if(missing(seed)) {
     seed <- NULL
