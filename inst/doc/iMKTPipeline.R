@@ -41,3 +41,7 @@ asymptoticMK(daf=mydafdata, divergence=mydivergencedata, xlow=0, xhigh=0.9)
 ## ----iMK, echo=TRUE, fig.width=6, fig.height=9---------------------------
 iMK(daf=mydafdata, divergence=mydivergencedata, xlow=0, xhigh=0.9, plot=TRUE)
 
+## ----summary, echo=FALSE-------------------------------------------------
+results <- data.frame("Standard"=0.2365, "FWW_0.05"=0.5409, "FWW_0.1"=0.5798, "DGRP_0.05"=0.4249, "DGRP_0.1"=0.4249, "asymptotic_iMK"=0.6259)
+knitr::kable(results, align="c")
+

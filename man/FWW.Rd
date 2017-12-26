@@ -11,7 +11,7 @@ FWW(daf, divergence, list_cutoffs = c(0, 0.05, 0.1), plot = FALSE)
 
 \item{divergence}{data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes}
 
-\item{list_cutoffs}{list of cutoffs to use (optional). Default cutoffs are: 0, 0.05, 0.2}
+\item{list_cutoffs}{list of cutoffs to use (optional). Default cutoffs are: 0, 0.05, 0.1}
 
 \item{plot}{report plot (optional). Default is FALSE}
 }
