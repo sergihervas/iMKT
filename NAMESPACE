@@ -3,6 +3,7 @@
 export(DGRP)
 export(FWW)
 export(PopFlyAnalysis)
+export(PopHumanAnalysis)
 export(asymptoticMK)
 export(checkInput)
 export(completeMKT)

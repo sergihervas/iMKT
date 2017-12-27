@@ -106,7 +106,7 @@ The iMKT package includes several funcions, classified as follows:
 
 Each function has an associated help page with its description, details about its parameters, usage, examples and so on. Rembember you can access it writting ?? and the function name (or ??library::function) in your console (*example*: ??iMKT::standard).
 
-This vignette focuses on the first category of functions: "MKT derived methodologies calculation". Specifically, it contains examples of each function using the sample data described above. For details about functions from "iMKT using PopFly and PopHuman data" category check the corresponding vignette. The functions from the third category are used within other functions and do not serve for analyses.
+This vignette focuses on the first category of functions: "MKT derived methodologies calculation". Specifically, it contains examples of each function using the sample data described above. For details about functions from "iMKT using PopFly and PopHuman data" category check the corresponding vignette. The functions from the third category are used within other functions and do not produce analyses output.
 
 &nbsp;
 
@@ -269,6 +269,7 @@ Summary of each alpha estimate:
 ```{r summary, echo=FALSE}
 results <- data.frame("Standard"=0.2365, "FWW_0.05"=0.5409, "FWW_0.1"=0.5798, "DGRP_0.05"=0.4249, "DGRP_0.1"=0.4249, "asymptotic_iMK"=0.6259)
 knitr::kable(results, align="c")
+rm(results)
 ```
 
 Comment results and strengths and weakness of each method.
