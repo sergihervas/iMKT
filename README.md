@@ -28,6 +28,7 @@ Usage
 ### List of things to do:
 
 - Update Readme.md
+- Update manual.pdf
 - ~~**S** IDEA: Functions fitMKmodel and predictNLS inside other functions, but without documentation... as they are never called by their own.~~
 - ~~Discuss input, maybe create parser~~
 - ~~Discuss output, update plots and include table -> html/pdf for non expert R users?  (Marta **in progress**)~~

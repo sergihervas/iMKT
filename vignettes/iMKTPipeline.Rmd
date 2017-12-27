@@ -22,22 +22,32 @@ knitr::opts_chunk$set(
 
 Brief intro about why we developed the package. The importance of detecting adaptation, and the many MKT derived methodologies. Take from paper.
 
-<!-- Theoretic explanation   -->
-<!-- Since adaptive mutations tend to be fixed quickly, they will rarely be detected as polymorphic variants but only as a divergent site (that is once fixed). Thus, the adaptive substitution rate in the genome can be inferred when there is an excess of non-synonymous divergence relative to its non-synonymous polymorphism. Accordingly, in the McDonald-Kreitman test (MKT) (McDonald 1and Kreitman, 1991) the divergence ratio (d N /d S ) is normalized by the poly- morphism ratio (π n /π s ), which allows taking into account the constraint on non- d N /d S synonymous sites and, thus, better detect adaptive substitutions (> 1). π n /π s From that one can also estimate the proportion of fixed variants that are adap- tive (α). However, the estimation of α can be biased due to the segregation of slightly deleterious non-synonymous mutations (Eyre-Walker, 2002). Given a stable population size, slightly deleterious mutations can produce an understimation of α because they tend to contribute more to polymorphism than to divergence. Because slightly deleterious substitutions tend to segregate at low frequency, its effect can be partially controlled by removing low- frequency polymorphisms from the analysis, known as Fay-Wycoff-Wu method (Fay et al., 2001). However, Charlesworth and Eyre-Walker (2008) showed that even removing low-frequency variants, the estimate of α is always down- wardly biased and only these estimates are reasonable accurate when the rate of adaptive evolution is high and the distribution of fitness effects of slightly deleterious mutations is leptokurtic (because leptokurtic distributions have a smaller proportion of polymorphisms that are slightly deleterious). The modification of the MKT introduced at the DGRP project (Mackay et al., 2012). was proposed as a better method for correcting the effect of slightly deleterious substitutions. Instead of simply removing low-frequency polymorphisms, the count of segregating sites in non-synonymous sites is separated into the num- ber of neutral variants and the number of weakly deleterious variants, allowing evaluating independently adaptive and weakly deleterious selection. -->
+Explain also that iMKT faces this variety of methodologies, and is able to compute several tests in order to detect adaptation in diverse situations. 
 
-&nbsp;
+In addition, it also provides a way to quantify negative selection, which may overlap with signals of positive selection in the target region, causing the failing of certain MK tests.
+
+This vignette contains three different sections:
+\begin{itemize}
+\item
+  Loading the package and checking test data
+\item
+  Performing MKT derived methodologies calculation
+\item
+  Conclusion: comparison of the different MK estimates
+\end{itemize}
+
 &nbsp;
 
 ## Loading the package and checking test data
 
-First of all, install (if this is not done yet) and load the package. Notice that iMKT package includes two sample dataframes named mydafdata and mydivergencedata which are the ones used in this tutorial. This makes easier to replicate the vignettes to understand better all the package functionalities. 
+First of all, install (if this is not done yet) and load the package. Notice that iMKT package includes two sample dataframes named mydafdata and mydivergencedata which are the ones used in this tutorial and correspond to XXXXXXXX (Chr2L RAL and simulans??). Therefore, it is possible to replicate the vignettes in order to better understand all the package functionalities. 
 
-&nbsp;
 &nbsp;
 
 ```{r load package and see sample data, echo=T}
 ## Load package
-#devtools::install_github("sergihervas/iMKT")
+# install.packages("devtools")
+# devtools::install_github("sergihervas/iMKT")
 library(iMKT)
 
 ## Sample daf data
@@ -48,9 +58,8 @@ mydivergencedata
 ```
 
 &nbsp;
-&nbsp;
 
-The package includes several funcions, classified as follows:
+The iMKT package includes several funcions, classified as follows:
 
 \begin{itemize}
 \item
@@ -87,8 +96,6 @@ The package includes several funcions, classified as follows:
   Miscelanious
   \begin{itemize}
   \item
-    multipleDatasets(): analyze all datasets in your working directory
-  \item
     checkInput(): check data before performing analyses
   \item
     themePublication(): output plots and tables styling
@@ -97,19 +104,44 @@ The package includes several funcions, classified as follows:
 
 &nbsp;
 
-Rembember you always can access to the help, to check more examples or the passing arguments writting ```{r}??``` and the function in your console.
+Each function has an associated help page with its description, details about its parameters, usage, examples and so on. Rembember you can access it writting ?? and the function name (or ??library::function) in your console (*example*: ??iMKT::standard).
 
-This vignette focuses on the first category of functions: MKT derived methodologies calculation. For details about how to use the functions from iMKT using PopFly and PopHuman data category, check the corresponding vignette.
+This vignette focuses on the first category of functions: "MKT derived methodologies calculation". Specifically, it contains examples of each function using the sample data described above. For details about functions from "iMKT using PopFly and PopHuman data" category check the corresponding vignette. The functions from the third category are used within other functions and do not serve for analyses.
 
-&nbsp;
 &nbsp;
 
 ## Performing MKT derived methodologies calculation
 
-### Standard MKT
-<!-- The MK test (McDonald and Kreitman, 1991) was developed to be applied to protein coding sequences, combining both divergence (D) and polymorphism (P) sites, and categorizing mutations as synonymous (P s , D S ) and non-synonymous (P n , D N ). If all mutations are either strongly deleterious or neutral, then D N /D S is expected to roughly equal P s /P n . In contrast, if positive selection is operating in the region, adaptive mutations rapidly reach fixation and thus contribute relative more to divergence than to polymorphism when compared to neutral mutations, and then D N /D S >P n /P s . Assuming that adap- tive mutations contribute little to polymorphism but substantially to divergence, the proportion of non-synonymous substitutions than have been fixed by posi- tive selection can be inferred as α = 1 - (P n /P s )(D S /D N ) (??). The significance of effect can be easily quantified using a simple 2×2 contingency table (see Table 5), using a Fischer’s exact test. -->
+The diverse functions from this category have two common input parameters which are required to perform the corresponding test:
+
+\begin{itemize}
+\item
+  daf: data frame containing DAF, Pi and P0 values (mydafdata)
+\item
+  divergence: data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes (mydivergencedata)
+\end{itemize}
+
+The output of each function always contains the corresponding alpha estimate, together with specific values and details of the selected methodology.
 
 &nbsp;
+
+### Standard MKT
+
+Brief theoretical description about MKT
+
+The **standard()** function uses daf and divergence input parameters and returns as output a list containing:
+
+\begin{itemize}
+\item
+  alpha symbol: estimate of alpha using the standard MKT
+\item
+  Fisher exact test P-value: p-value obtained using the Fisher exact test on a 2x2 contingency table (MKT table)
+\item
+  MKT table: table containing the number of polymorphic and divergent sites for neutral and selected classes.
+\item
+  Divergence metrics: table containing estimates of Ka, Ks, omega, omegaA, omegaD.
+\end{itemize}
+
 &nbsp;
 
 ```{r Standard MKT, echo=TRUE}
@@ -117,13 +149,22 @@ standard(daf=mydafdata, divergence=mydivergencedata)
 ```
 
 &nbsp;
-&nbsp;
 
 ### FWW correction
 
-Alpha estimates can be biased by the segregation of slighlty deleterious substitutions. One method to partially controlled its effects is to remove low frequency polymorphisms from the analysis, as proposed by Fay et al. (2001).
+Alpha estimates can be biased by the segregation of slighlty deleterious substitutions. One method to partially controll this effect is to remove low frequency polymorphisms from the analysis, as proposed by Fay et al. (2001). Using this correction, all polymorphic sites from both neutral and selected classes which have a derived allele frequency lower than the pre-defined cutoff are removed for the calculation of alpha.
 
-&nbsp;
+The **FWW()** function uses daf and divergence input parameters, along with a default list of cutoffs (0, 0.05, 0.1) and returns as output a list containing:
+
+\begin{itemize}
+\item
+  Results: alpha estimates (and their associated Fisher exact test P-value) for each cutoff.
+\item
+  Divergence metrics: global metrics (Ka, Ks, omega) and estimates by cutoff (omegaA, omegaD)
+\item
+  MKT tables: tables containing the number of polymorphic and divergent sites for neutral and selected classes for each cutoff.
+\end{itemize}
+
 &nbsp;
 
 ```{r FWW, echo=TRUE}
@@ -131,18 +172,11 @@ FWW(daf=mydafdata, divergence=mydivergencedata)
 ```
 
 &nbsp;
-&nbsp;
 
-```{r Result FWW, echo=F, eval=F}
-methodFWW<-FWW(daf = mydafdata,divergence = mydivergencedata)
-methodFWW$Results
-methodFWW$`MKT tables`
-methodFWW$`Divergence metrics`
-```
+By default the argument **list_cutoff** uses a list of cutoffs with the following values: 0, 0.05, 0.1. Moreover, the function has an optional argument, **plot**, which is set to **FALSE** by default. This parameters can be customized, like in the following example, where we use a list of 4 cutoffs (0.05, 0.15, 0.25, 0.35) and set the plot argument to **TRUE**.
 
-By default the argument **list_cutoff** uses a list of cutoffs with the following values: 0, 0.05, 0.1, and the argument **plot** is set to **FALSE**. This parameters can be customized, like in the following example:
+The output in this case contains a **Graph** which shows the adaptation value (alpha) obtained using each cutoff.
 
-&nbsp;
 &nbsp;
 
 ```{r FWW plot, echo=TRUE, fig.width=6, fig.height=4}
@@ -150,12 +184,22 @@ FWW(daf=mydafdata, divergence=mydivergencedata, list_cutoff=c(0.05, 0.15,0.25,0.
 ```
 
 &nbsp;
-&nbsp;
 
 ### DGRP correction
-<!-- The null hypothesis of neutrality is rejected in a MKT when DN/DS > Pn/Ps , inferring adaptation, but also when P n /P s >D N /D S . In this later case, there is an excess of polymorphism relative to divergence for the non-synonymous class n, due to (i) slightly deleterious variants segregating at low frequency in the population subject to weak negative selection, which contribute to polymorphism but not to divergence, or (ii) relaxation of selection where sites previ- ously under strong or weak purifying selection have become neutral, causing an increased level of polymorphism relative to divergence Adaptive mutations and weakly deleterious selection act in opposite direc- tions on the MKT, so α will be underestimated when the two selection regime occur. Because slightly deleterious mutations tend to segregate at lower fre- quencies than do neutral mutations, they can be partially controlled for by removing low frequency polymorphisms from the analysis, generally the 5% (Fay et al., 2001). However, this method is still expected to lead to biased estimates. To take adaptive and slightly deleterious mutation mutually into account, P n , the count of segregating sites in the non-synonymous class, should be sepa- rated into the number of neutral variants and the number of weakly deleterious variants, P n = P n-neutral +P n weakly del. . If both numbers are estimated, adaptive and weakly deleterious selection can be evaluated independently. Consider the following pair of 2×2 contingency tables (Table 5): The table on the left if the standard MKT table with the theoretical counts of segregating sites and divergent sites for each cell. The table on the right contains the count of P n and P s for two-frequency categories. The estimate of the fraction of sites segregating neutrally within the MAF (minor allele frequency) < 5% (f neutral MAF<5% ) is f neutral MAF<5% =P s MAF<5% /P s . The expected number of segregating sites in the non-synonymous class which are neutral within the MAF<5% is P neutral MAF<5% =P n ×f neutral MAF<5% . The ex- pected number of neutral segregating sites in the non-synonymous class is P n neutral =P neutral MAF<5% +P n MAF>5%. To estimate α from the standard MKT table correcting by the segregationof weakly deleterious variants, we have to substitute the P n by the expected number of neutral segregating sites, P neutral . The correct estimate of α is then α = 1 - (P n neutral/Ps)(DS/DN) -->
 
-&nbsp;
+To take adaptive and slightly deleterious mutation mutually into account, Pn , the count of segregating sites in the non-synonymous class, should be separated into the number of neutral variants and the number of weakly deleterious variants, Pn = Pn(neutral) + Pn(weakly del.). If both numbers are estimated, adaptive and weakly deleterious selection can be evaluated independently. 
+
+Consider a pair of 2×2 contingency tables. The first one corresponds to the standard MKT table with the theoretical counts of segregating sites and divergent sites for each cell. 
+
+The second table contains the count of Pn and Ps for two-frequency categories: below and over a threshold cutoff. 
+
+Add brief explanation about 2nd table!
+<!-- The estimate of the fraction of sites segregating neutrally within the DAF (derived allele frequency) < cutoff (f neutral DAF < cutoff) is f neutral(DAF<cutoff) = Ps(DAF<cutoff) / Ps . The expected number of segregating sites in the non-synonymous class which are neutral within the DAF < cutoff is P(neutral DAF<cutoff) = Pn × f neutral(DAF<cutoff). The expected number of neutral segregating sites in the non-synonymous class is Pn(neutral) = P(neutral DAF<cutoff) + Pn(DAF>cutoff).  -->
+
+To estimate alpha from the standard MKT table correcting by the segregation of weakly deleterious variants, we have to substitute the Pn by the expected number of neutral segregating sites, Pn(neutral). The correct estimate of alpha is then alpha = 1 - (Pn (neutral)/Ps)(Ds/Dn).
+
+The **DGRP()** function behaves similar to the **FWW()** function. It takes the same input argument and returns the same output but containing also estimates on the **fractions of negative selection** (d: strongly deleterious, f: neutral and b: weakly deleterious).
+
 &nbsp;
 
 ```{r DGRP, echo=TRUE}
@@ -163,21 +207,27 @@ DGRP(daf=mydafdata, divergence=mydivergencedata)
 ```
 
 &nbsp;
-&nbsp;
 
-Again, by default the argument **list_cutoff** uses a list of cutoffs with the following values: 0, 0.05, 0.1, and the argument **plot** is set to **FALSE**. This parameters can be customized, like in the following example:
+Again, by default the argument **list_cutoff** uses a list of cutoffs with the following values: 0, 0.05, 0.1, and the argument **plot** is set to **FALSE**. This parameters can be customized, like in the following example, where we use a list of 4 cutoffs (0.05, 0.15, 0.25, 0.35) and set the plot argument to **TRUE**.
 
-&nbsp;
+The output in this case contains two **Graphs** which show the adaptation value (alpha) and the negative selection fractions obtained using each cutoff.
+
 &nbsp;
 
 ```{r, echo=TRUE, fig.width=6, fig.height=6}
-DGRP(daf=mydafdata, divergence=mydivergencedata, list_cutoff=c(0.05,0.15,0.25), plot=TRUE)
+DGRP(daf=mydafdata, divergence=mydivergencedata, list_cutoff=c(0.05, 0.15,0.25,0.35), plot=TRUE)
 ```
 
 &nbsp;
 
 ### Asymptotic MKT
 Petrov reference + explanation
+
+This function is adapted from the code developed in "Haller BC, Messer PW. asymptoticMK: A Web-Based Tool for the Asymptotic McDonald-Kreitman Test. G3 (Bethesda). 2017 May 5;7(5):1569-1575", stored in: http://github.com/MesserLab/asymptoticMK. The main adaptation we did is that the function presented here only fits an exponential model, removing the linear fitting performed initially in the cases where it was not possible to fit an asymptotic curve.
+
+The **asymptoticMKT()** function uses the common daf and divergence parameters along with two arguments which define the lower and higher limit for the asymptotic alpha fit (xlow and xhigh). These two optional parameters are set to 0 and 1 by default, although it is recommended to use a higher limit of 0.9 in order to remove possible biases XXXXXXXXX (take from reference asymptotic). 
+
+The function's output is a table with: the model type (exponential) along with the fitted function values (a, b, c), the asymptotic alpha estimate with its corresponding lower and higher confidence interval values, and the original alpha estimate (using the standard MKT methodology and the polymorphic sites within the xlow and xhigh cutoffs).
 
 &nbsp;
 
@@ -188,9 +238,20 @@ asymptoticMK(daf=mydafdata, divergence=mydivergencedata, xlow=0, xhigh=0.9)
 &nbsp;
 
 ### iMK
+
 Asymptotic explanation + Sergi slightly deleterious approach
 
-&nbsp;
+The **iMK()** function takes the default input parameters (daf and divergence), the xlow and xhigh arguments (presented in the **asymptoticMK()** function) and it also has the optional argument **plot**, set as **FALSE** by default. However, in this example we use **plot=TRUE** to display the graphical results. 
+
+The output of the function contains:
+\begin{itemize}
+\item
+  Asymptotic MK table: table corresponding to the asymptoticMK() function output.
+\item
+  Fractions of sites: negative selection fractions (d: strongly deleterious, f: neutral and b: weakly deleterious).
+\item
+  Graphs: 3 plots showing: (A) the distribution of alleles frequencies for neutral and selected sites, (B) the asymptotic alpha estimate with xlow, xhigh, original alpha and asymptotic alpha marks, and (C) the negative selection fractions.
+\end{itemize}
 &nbsp;
 
 ```{r iMK, echo=TRUE, fig.width=6, fig.height=9}
@@ -198,24 +259,16 @@ iMK(daf=mydafdata, divergence=mydivergencedata, xlow=0, xhigh=0.9, plot=TRUE)
 ```
 
 &nbsp;
-&nbsp;
 
+## Conclusion: comparison of the different MK estimates
 
-### Miscelanious
-
-If you have a bunch of data like the following, or simply have several genes datasets:
-<!-- ![alt text](~/Pictures/test.png) -->
-Maybe you want to perform some test or compare the test results between your datasets. You could execute the funtion multipleDatasets, putting your datasets in a directory a name them with the extensions **ID.daf.txt**/**ID.divergence.txt**. Then execute the following commands to perform the tests:
+Summary of each alpha estimate:
 
 &nbsp;
-&nbsp;
 
-```{r multipleDatasets, eval=FALSE, include=FALSE}
-# multipleDatasets(directory = directory, test = c("standard", "DGRP", "FWW","asymptotic", "iMK"), xlow = 0, xhigh = 1, fullAnalysis = TRUE/FALSE,idList = "NA")
+```{r summary, echo=FALSE}
+results <- data.frame("Standard"=0.2365, "FWW_0.05"=0.5409, "FWW_0.1"=0.5798, "DGRP_0.05"=0.4249, "DGRP_0.1"=0.4249, "asymptotic_iMK"=0.6259)
+knitr::kable(results, align="c")
 ```
 
-&nbsp;
-&nbsp;
-
-The idList argument allow to the user pass a plain text file with the IDs, in the case you want to subset the analysis to just a few datasets. It is used when fullAnalysis = FALSE, list of IDs to analyze
-
+Comment results and strengths and weakness of each method.

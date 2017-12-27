@@ -6,7 +6,7 @@
 #'
 #' @param daf data frame containing DAF, Pi and P0 values
 #' @param divergence data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes
-#' @param list_cutoffs list of cutoffs to use (optional). Default cutoffs are: 0, 0.05, 0.2
+#' @param list_cutoffs list of cutoffs to use (optional). Default cutoffs are: 0, 0.05, 0.1
 #' @param plot report plot (optional). Default is FALSE
 #' 
 #' @return MKT corrected by the FWW method
