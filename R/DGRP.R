@@ -139,7 +139,7 @@ DGRP <- function(daf, divergence, list_cutoffs=c(0, 0.05, 0.2), plot=FALSE) {
     ## Fractions graph
     plotfraction <- ggplot(fractions_melt) + geom_bar(stat="identity", aes_string(x="variable", y="value", fill="Fraction"), color="black") +
       coord_flip() + themePublication() + ylab(label="Fraction") + xlab(label="Cut-off") +
-      scale_fill_manual(values=c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33"), breaks=c("d","f","b"), labels=c(expression(italic("d")),expression(italic("f")),expression(italic("b")))) +
+      scale_fill_manual(values=c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33"), breaks=c("f","d","b"), labels=c(expression(italic("f")),expression(italic("d")),expression(italic("b")))) +
       theme(axis.line=element_blank())  + scale_y_discrete(limit=seq(0,1,0.25), expand=c(0,0))
   
     plot <- plot_grid(plot, plotfraction, nrow=2, labels=c("A","B"), rel_heights=c(2,1))

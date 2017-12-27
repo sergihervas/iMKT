@@ -95,12 +95,12 @@ iMK <- function(daf, divergence, xlow, xhigh, seed, plot=FALSE) {
   if(plot == TRUE) {
     
     ## plot fractions
-    plotfraction <- ggplot(fraction) + geom_bar(stat="identity", aes_string(x="MKT", y="Fraction", fill="Type")) + 
-      coord_flip() + themePublication() + ylab(label="Fraction") + 
-      scale_fill_manual(values = c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33"), breaks=c("d","f","b"), labels=c(expression(italic("d")), expression(italic("f")),expression(italic("b")))) + 
-      theme(axis.title.y=element_blank(), axis.ticks.y=element_blank(), axis.text.y=element_blank(), axis.line=element_blank(), panel.border=element_rect(colour="black", fill=NA, size=1))  +
-      scale_y_discrete(limit=seq(0,1,0.25), expand=c(0, 0))
-  
+
+   plotfraction <- ggplot(fraction) + geom_bar(stat="identity", aes_string(x="MKT", y="Fraction", fill="Type"), color="black") +
+      coord_flip() + themePublication() + ylab(label="Fraction") + xlab(label="Cut-off") +
+      scale_fill_manual(values=c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33"), breaks=c("f","d","b"), labels=c(expression(italic("f")),expression(italic("d")),expression(italic("b")))) +
+      theme(axis.title.y=element_blank(), axis.ticks.y=element_blank(), axis.text.y=element_blank(), axis.line.x =element_blank())  + scale_y_discrete(limit=seq(0,1,0.25), expand=c(0,0))
+    
     ## DAF graph
     daf_graph <- daf[c("daf","Pi","P0")]
     daf_graph<-melt(daf_graph,id.vars = "daf")
