@@ -1,8 +1,8 @@
-#' @title iMK 
+#' @title integrative MKT method
 #' 
-#' @description iMK: alpha asymptotic + negative selection (d,b,f)
+#' @description iMK: MKT using asymptoticMK method and estimation of negative selection fractions (d, b, f)
 #'
-#' #details details here
+#' @details The integrative MKT (iMKT) allows the estimation of the rate of adaptive evolution (alpha) and the diverse negative selection regimens. iMKT uses asymptotic MK method (Messer and Petrov 2012 PNAS; Haller and Messer 2017 G3) to estimate alpha and the diverse negative selection fractions (d: strongly deleterious, b: weakly deleterious, f: neutral), based on the assumption that weakly deleterious mutations usually do not reach high allele frequencies and therefore, produce the underestimation of alpha at low DAF categories. The fraction of strongly deleterious mutations is estimated as the difference between neutral (0) and selected (i) polymorphic sites relative to the number of analyzed sites: d = 1 - (P0/m0 / Pi/mi). The fraction of weakly deleterious sites (b) corresponds to the relative proportion of selected polymorphic sites that cause the underestimation of alpha at low DAF categories. Finally, the fraction of neutral sites (f) is estimated as: f = 1 - d - b.
 #' 
 #' @param daf data frame containing DAF, Pi and P0 values
 #' @param divergence data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes
@@ -11,13 +11,13 @@
 #' @param seed seed value (optional). No seed by default
 #' @param plot report plots of daf, alpha and negative selection fractions (optional). Default is FALSE
 #'
-#' @return iMK
+#' @return iMKT method. List with asymptotic MK table and values, fractions of sites and graphs of DAF, asymptotic alpha model and negative selection fractions (optional).
 #'
 #' @examples
 #' ## Without plot
-#' iMK(myDafData, myDivergenceData, 0, 0.9)
+#' iMK(myDafData, myDivergenceData, xlow=0, xhigh=0.9)
 #' ## With plot
-#' iMK(myDafData, myDivergenceData, 0, 0.9, plot=TRUE)
+#' iMK(myDafData, myDivergenceData, xlow=0, xhigh=0.9, plot=TRUE)
 #' 
 #' @import utils
 #' @import stats

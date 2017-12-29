@@ -1,10 +1,8 @@
-#' @title asymptoticMK
+#' @title Asymptotic MKT method
 #' 
-#' @description \code{asymptoticMK} developed in "Haller BC, Messer PW. asymptoticMK: A Web-Based Tool for the Asymptotic McDonald-Kreitman Test. G3 (Bethesda). 2017 May 5;7(5):1569-1575".
-#' Adapted from: http://github.com/MesserLab/asymptoticMK
+#' @description MKT calculation using asymptoticMK method (Messer and Petrov 2012 PNAS; Haller and Messer 2017 G3)
 #'
-#' @details The standard McDonald and Kreitman test (MKT) is used to detect the signature of selection at the molecular level. The MKT compares the amount of variation within a species (polymorphism, P) to the divergence (D) between species at two types of sites, one of which is putatively netral and used as the reference to detect selection at the other type of site. In the standard MKT, these sites are synonymous (putatively neutral, 0) and non-synonymous sites (selected sites, i) in a coding region. Under strict neutrality, the ratio of the number of selected and neutral polymorphic sites (Pi/P0) is equal to the ratio of the number of selected and neutral divergence sites (Di/D0).
-# The null hypothesis of neutrality is rejected in a MKT when Di/D0 > Pi/P0. The excess of divergence relative to polymorphism for class i, is interpreted as adaptive selection for a subset of sites i. The fraction of adaptive fixations, α, is estimated from 1-(Pi/P0)(Ds/Dn). The significance of the test can be assesed with a Fisher exact test.
+#' @details In the standard McDonald and Kreitman test, the estimate of adaptive evolution (alpha) can be easily biased by the segregation of slightly deleterious non-synonymous substitutions. Specifically, slightly deleterious mutations contribute to polymorphism but not to divergence, and thus, lead to an underestimation of alpha. Messer and Petrov proposed a simple asymptotic extension of the MK test that yields accurate estimates of alpha. Briefly, this method first estimates alpha for each DAF category using its specific Pi and P0 values and then fits an exponential function to this values, of the form: alphaFit(x) = a + b exp(-cx). Finally, the asymptotic alpha estimate is obtained by extrapolating the value of this function to x = 1: alphaAsymptotic = alphaFit(x=1). The code of this function is adapted from Haller and Messer 2017 G3 (http://github.com/MesserLab/asymptoticMK).
 #'
 #' @param daf data frame containing DAF, Pi and P0 values
 #' @param divergence data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes
@@ -12,10 +10,10 @@
 #' @param xhigh higher limit for asymptotic alpha fit
 #' @param seed seed value (optional). No seed by default
 #'
-#' @return Estimation of alpha asymptotic value and details of the model fit
+#' @return Estimation of asymptotic alpha and details about the model fit (function parameters, confidence intervals, etc.)
 #'
 #' @examples
-#' asymptoticMK(myDafData, myDivergenceData, 0, 0.9)
+#' asymptoticMK(myDafData, myDivergenceData, xlow=0, xhigh=0.9)
 #'
 #' @import utils
 #' @import stats
