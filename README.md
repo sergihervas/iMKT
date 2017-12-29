@@ -35,7 +35,7 @@ standard(mydafdata, mydivergencedata)
 ### List of things to do:
 
 - Update Readme.md
-- Update manual.pdf
+- Update manual.pdf: "R CMD Rd2pdf /home/sergi/git/iMKT/"
     - Rename variables (wordWord2)
 
 - Build package:
