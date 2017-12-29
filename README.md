@@ -2,24 +2,32 @@
 
 # iMKT: integrative McDonald and Kreitman Test
 
+
 Overview
 --------
-iMKT is an R package to compute the integrative McDonald and Kreitman test. 
-It includes several MK derived methodologies which allow inferring the rate of adaptive evolution (α) and two new approximations to quantify the different negative selection regimes (d: strongly deleterious, b: weakly deleterious, f: neutral) from polymorphism and divergence genomic data.
+iMKT is an R package to compute the integrative McDonald and Kreitman test. It includes several MK derived methodologies which allow inferring the rate of adaptive evolution (α) and two new approximations to quantify the different negative selection regimes (d: strongly deleterious, b: weakly deleterious, f: neutral) from polymorphism and divergence genomic data.
+
 
 Installation
 ------------
 The package is deposited in GitHub and must be installed using the devtools library.
 ``` r
-# install.packages("devtools")
+## Install devtools package if necessary
+install.packages("devtools")
+
+## Install iMKT from GitHub
 devtools::install_github("sergihervas/iMKT")
+
+## Load iMKT library
+library(iMKT)
 ```
+
 
 Usage
 -----
-Shortly, iMKT allows performing diverse MK-derived tests using the number of polymorphic (P, classified in DAF categories), divergent (D) and analyzed (m) sites for neutral (0) and selected (i) classes. In brief, most functions require two input parameters: ```r daf``` (data frame containing daf, Pi and P0) and ```r divergence``` (data frame containing mi, Di, m0, D0) and return the estimation of α together with specific details of the methodology.
+Shortly, iMKT allows performing diverse MK-derived tests using the number of polymorphic (P, classified in DAF categories), divergent (D) and analyzed (m) sites for neutral (0) and selected (i) classes. In brief, most functions require two input parameters: ```daf``` (data frame containing daf, Pi and P0) and ```divergence``` (data frame containing mi, Di, m0, D0) and return the estimation of α together with specific details of the methodology.
 
-The package includes two sample data frames (```r myDafData```, ```r myDivergenceData```). The vignettes and manual documentation contains detailed descriptions and examples regarding each function, types of analyses, how to use PopFly and PopHuman genomic data, etc.
+The package includes two sample data frames (```myDafData```, ```myDivergenceData```). The vignettes and manual documentation contains detailed descriptions and examples regarding each function, types of analyses, how to use PopFly and PopHuman genomic data, etc.
 
 The following example shows how to perform standard MKT using sample data:
 ``` r
@@ -58,64 +66,58 @@ standard(myDafData, myDivergenceData)
 #> | 0.0210254| 0.0847345| 0.2481331| 0.058671| 0.189462|
 ```
 
+
 Citation
 --------
 Citation to paper
+
 
 Licence
 -------
 Licence of package
 
+
 Development & Contact
 ---------------------
-iMKT has been developed by Sergi Hervas, Marta Coronado and Jesús Murga from the Bioinformatics of Genome Diversity group from the Universitat Autònoma de Barcelona (UAB) and the Institut de Biotecnologia i Biomedicina (IBB).
+iMKT has been developed by Sergi Hervas (sergi.hervas@uab.cat), Marta Coronado (marta.coronado@uab.cat) and Jesús Murga (jesus.murga@uab.cat), from the Bioinformatics of Genome Diversity group (http://bioinformatica.uab.cat/bdg from the Universitat Autònoma de Barcelona (UAB) and the Institut de Biotecnologia i Biomedicina (IBB).
 
-If you have feedback or feature requests, please contact antonio.barbadilla@uab.cat or jesus.murga@uab.cat
+If you have feedback or feature requests, please contact antonio.barbadilla@uab.cat or jesus.murga@uab.cat.
 
 
 
 ---------------------------------------------------------------------
 ---------------------------------------------------------------------
 
-### List of things to do:
+## List of things to do:
 
+### R Package
 - Update Readme.md
 - Update manual.pdf: "R CMD Rd2pdf /home/sergi/git/iMKT/"
-    - Rename variables (wordWord2)
-
 - Build package:
 	- Extra stuff about Roxygen2 and the .Rd format
-	- Tests
 	- Document correctly functions
-	- User manual (Marta, Jesus)
-	  - **S** Remove theme_publication() function and call it whenever it is needed?? To avoid including this function in the manual. Think about check_input()
 	- Vignettes 
-	
-- Prepare list of genes analyzable with the iMKT (not the same as asymptotic because the exponential model is forced)
-
-- System.time(Re-run iMKT):  
-	- **S** It would also be great to know the minimum number of sites required to run the different tests. This makes sense for asymptotic alpha basically (and the iMK function). Should be done with simulated data, but is a tough work. **M** This was also commented on one of the meetengs and that I should definitely take a look on this, also is super important and nobody tested it yet. And not only the minimum number, but also the minimum number of concatenated genes for the asymptotic and DFE-alpha. **ANTONIO**.
-
-- Check consistency of variables and style along functions (Marta, Sergi, Jesus) **Should be also done at the end of coding**
-
+	- Check functions independently / Tests
+	- Rename variables (wordWord2). **Do it for all variables inside all functions or only for functionNames and dataFrames?**
+	- Check consistency of variables and style along functions
 - Functions:
-	- daf.pl: Modify perl functions to extract the correct files. Review the categories. **S** What do u mean with: Review the categories?
-	- Put in functions comparision scripts (Jesus)
-	- subsetPopData() **Sergi**
-		- **S** Check times of download functions: loadPopFly() & loadPopHuman. Around 20 seconds the first one.			
-		- **S** Update pophuman data file!		
-
+	- Put in functions comparision scripts (Jesus) **What is this?**
+	- PopHuman functions: **Sergi**
+		- **S** Check times of download functions: loadPopFly() & loadPopHuman. Around 20 seconds the first one	
+		- Update pophuman data file!		
 - Reference Messer & Haller code (Question: Shall we write to them to let them know we're implementing their code into another package?). **S** We reference their code in the asymptoticMK function. We can write them later, as Antonio suggested.
 
-### Beta Tests
-- Check functions independently.
 
 ### Server
 - Implement GUI through web-server (with Django) (Ask Esteve for help? **M** the web looks awesome Jesus!!!)(Jesús **in progress**)  
-	- Rewrite funcionts to run from terminal (receiving input/inputs) and generate html (Jesús **in progress**)
+- Rewrite funcionts to run from terminal (receiving input/inputs) and generate html (Jesús **in progress**)
+- daf.pl: Modify perl functions to extract the correct files.
 
-### MANUSCRIPT
-**- Follow the manuscript progress at: https://github.com/marta-coronado/statistics_mkt/tree/master/Report **
+
+### Manuscript
+- **Follow the manuscript progress at: https://github.com/marta-coronado/statistics_mkt/tree/master/Report**
+- Prepare list of genes analyzable with the iMKT (not the same as asymptotic because the exponential model is forced)
+- **S** It would also be great to know the minimum number of sites required to run the different tests. This makes sense for asymptotic alpha basically (and the iMK function). Should be done with simulated data, but is a tough work. **M** This was also commented on one of the meetengs and that I should definitely take a look on this, also is super important and nobody tested it yet. And not only the minimum number, but also the minimum number of concatenated genes for the asymptotic and DFE-alpha.
 
 - Manuscript: **M** suggests: 
 
