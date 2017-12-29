@@ -17,9 +17,9 @@ devtools::install_github("sergihervas/iMKT")
 
 Usage
 -----
-Shortly, iMKT allows performing diverse MK-derived tests using the number of polymorphic (P, classified in DAF categories), divergent (D) and analyzed (m) sites for neutral (0) and selected (i) classes. In brief, most functions require two input parameters: daf (data frame containing daf, Pi and P0) and divergence (data frame containing mi, Di, m0, D0) and return the estimation of α together with specific details of the methodology.
+Shortly, iMKT allows performing diverse MK-derived tests using the number of polymorphic (P, classified in DAF categories), divergent (D) and analyzed (m) sites for neutral (0) and selected (i) classes. In brief, most functions require two input parameters: ```r daf``` (data frame containing daf, Pi and P0) and ```r divergence``` (data frame containing mi, Di, m0, D0) and return the estimation of α together with specific details of the methodology.
 
-The package includes two sample data frames (myDafData, myDivergenceData). The vignettes and manual documentation contains detailed descriptions and examples regarding each function, types of analyses, how to use PopFly and PopHuman genomic data, etc.
+The package includes two sample data frames (```r myDafData```, ```r myDivergenceData```). The vignettes and manual documentation contains detailed descriptions and examples regarding each function, types of analyses, how to use PopFly and PopHuman genomic data, etc.
 
 The following example shows how to perform standard MKT using sample data:
 ``` r
@@ -68,9 +68,9 @@ Licence of package
 
 Development & Contact
 ---------------------
-iMKT has been developed by the Bioinformatics of Genome Diversity group from the Universitat Autònoma de Barcelona (UAB) and the Institut de Biotecnologia i Biomedicina (IBB).
+iMKT has been developed by Sergi Hervas, Marta Coronado and Jesús Murga from the Bioinformatics of Genome Diversity group from the Universitat Autònoma de Barcelona (UAB) and the Institut de Biotecnologia i Biomedicina (IBB).
 
-If you have feedback or feature requests, please contact antonio.barbadilla@uab.cat 
+If you have feedback or feature requests, please contact antonio.barbadilla@uab.cat or jesus.murga@uab.cat
 
 
 
