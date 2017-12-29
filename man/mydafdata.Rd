@@ -9,7 +9,7 @@
 mydafdata
 }
 \description{
-Containing basic information to execute the funcionts
+Data frame containing divergence sample data to execute the funcionts
 \itemize{
   \item daf. derived allele frequency (DAF) categories
   \item Pi. number of selected polymorphic sites for each daf category

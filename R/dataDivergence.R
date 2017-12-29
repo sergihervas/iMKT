@@ -1,6 +1,6 @@
 #' Example data frames
 #'
-#' Data frame containing divergence sample data to execute the funcionts
+#' Data frame containing divergence sample data to execute the functions
 #' \itemize{
 #'   \item mi. number of selected analyzed sites
 #'   \item Di. number of selected divergent sites (fixed differences)
