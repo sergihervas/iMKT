@@ -2,18 +2,12 @@
 #'
 #' Containing basic information to execute the funcionts
 #' \itemize{
-#'   \item price. price in US dollars (\$326--\$18,823)
-#'   \item carat. weight of the diamond (0.2--5.01)
-#'   \item cut. quality of the cut (Fair, Good, Very Good, Premium, Ideal)
-#'   \item colour. diamond colour, from J (worst) to D (best)
-#'   \item clarity. a measurement of how clear the diamond is (I1 (worst), SI1, SI2, VS1, VS2, VVS1, VVS2, IF (best))
-#'   \item x. length in mm (0--10.74)
-#'   \item y. width in mm (0--58.9)
-#'   \item z. depth in mm (0--31.8)
-#'   \item depth. total depth percentage = z / mean(x, y) = 2 * z / (x + y) (43--79)
-#'   \item table. width of top of diamond relative to widest point (43--95)
+#'   \item daf. derived allele frequency (DAF) categories
+#'   \item Pi. number of selected polymorphic sites for each daf category
+#'   \item P0. number of neutral polymorphic sites for each daf category
 #' }
 #' @docType data
 #' @keywords datasets
-#' @format A data frame with x rows and y variables
+#' @format A data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes
+
 "mydafdata"
