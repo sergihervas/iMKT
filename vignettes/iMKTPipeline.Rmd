@@ -40,7 +40,7 @@ This vignette contains three different sections:
 
 ## Loading the package and checking test data
 
-First of all, install (if this is not done yet) and load the package. Notice that iMKT package includes two sample dataframes named mydafdata and mydivergencedata which are the ones used in this tutorial and correspond to XXXXXXXX (Chr2L RAL and simulans??). Therefore, it is possible to replicate the vignettes in order to better understand all the package functionalities. 
+First of all, install (if this is not done yet) and load the package. Notice that iMKT package includes two sample dataframes named myDafData and myDivergenceData which are the ones used in this tutorial and correspond to XXXXXXXX (Chr2L RAL and simulans??). Therefore, it is possible to replicate the vignettes in order to better understand all the package functionalities. 
 
 &nbsp;
 
@@ -51,10 +51,10 @@ First of all, install (if this is not done yet) and load the package. Notice tha
 library(iMKT)
 
 ## Sample daf data
-head(mydafdata)
+head(myDafData)
 
 ## Sample divergence data
-mydivergencedata
+myDivergenceData
 ```
 
 &nbsp;
@@ -116,9 +116,9 @@ The diverse functions from this category have two common input parameters which 
 
 \begin{itemize}
 \item
-  daf: data frame containing DAF, Pi and P0 values (mydafdata)
+  daf: data frame containing DAF, Pi and P0 values (myDafData)
 \item
-  divergence: data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes (mydivergencedata)
+  divergence: data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes (myDivergenceData)
 \end{itemize}
 
 The output of each function always contains the corresponding alpha estimate, together with specific values and details of the selected methodology.
@@ -145,7 +145,7 @@ The **standard()** function uses daf and divergence input parameters and returns
 &nbsp;
 
 ```{r Standard MKT, echo=TRUE}
-standard(daf=mydafdata, divergence=mydivergencedata)
+standard(daf=myDafData, divergence=myDivergenceData)
 ```
 
 &nbsp;
@@ -168,7 +168,7 @@ The **FWW()** function uses daf and divergence input parameters, along with a de
 &nbsp;
 
 ```{r FWW, echo=TRUE}
-FWW(daf=mydafdata, divergence=mydivergencedata)
+FWW(daf=myDafData, divergence=myDivergenceData)
 ```
 
 &nbsp;
@@ -180,7 +180,7 @@ The output in this case contains a **Graph** which shows the adaptation value (a
 &nbsp;
 
 ```{r FWW plot, echo=TRUE, fig.width=6, fig.height=4}
-FWW(daf=mydafdata, divergence=mydivergencedata, list_cutoff=c(0.05, 0.15,0.25,0.35), plot=TRUE)
+FWW(daf=myDafData, divergence=myDivergenceData, list_cutoff=c(0.05, 0.15,0.25,0.35), plot=TRUE)
 ```
 
 &nbsp;
@@ -203,7 +203,7 @@ The **DGRP()** function behaves similar to the **FWW()** function. It takes the 
 &nbsp;
 
 ```{r DGRP, echo=TRUE}
-DGRP(daf=mydafdata, divergence=mydivergencedata)
+DGRP(daf=myDafData, divergence=myDivergenceData)
 ```
 
 &nbsp;
@@ -215,7 +215,7 @@ The output in this case contains two **Graphs** which show the adaptation value 
 &nbsp;
 
 ```{r, echo=TRUE, fig.width=6, fig.height=6}
-DGRP(daf=mydafdata, divergence=mydivergencedata, list_cutoff=c(0.05, 0.15,0.25,0.35), plot=TRUE)
+DGRP(daf=myDafData, divergence=myDivergenceData, list_cutoff=c(0.05, 0.15,0.25,0.35), plot=TRUE)
 ```
 
 &nbsp;
@@ -232,7 +232,7 @@ The function's output is a table with: the model type (exponential) along with t
 &nbsp;
 
 ```{r Asymptotic MKT, echo=TRUE}
-asymptoticMK(daf=mydafdata, divergence=mydivergencedata, xlow=0, xhigh=0.9)
+asymptoticMK(daf=myDafData, divergence=myDivergenceData, xlow=0, xhigh=0.9)
 ```
 
 &nbsp;
@@ -255,7 +255,7 @@ The output of the function contains:
 &nbsp;
 
 ```{r iMK, echo=TRUE, fig.width=6, fig.height=9}
-iMK(daf=mydafdata, divergence=mydivergencedata, xlow=0, xhigh=0.9, plot=TRUE)
+iMK(daf=myDafData, divergence=myDivergenceData, xlow=0, xhigh=0.9, plot=TRUE)
 ```
 
 &nbsp;

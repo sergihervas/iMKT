@@ -13,7 +13,7 @@
 #' @return Execute all the MKT extensions
 #'
 #' @examples 
-#' completeMKT(mydafdata, mydivergencedata, 0, 0.9)
+#' completeMKT(myDafData, myDivergenceData, 0, 0.9)
 #' 
 #' @import utils
 #' @import stats

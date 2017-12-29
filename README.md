@@ -4,14 +4,12 @@
 
 Overview
 --------
-
 iMKT is an R package to compute the integrative McDonald and Kreitman test. 
-It includes several MKT derived methodologies which allow inferring the rate of adaptive evolution and two new approximations to quantify the different selection regimes acting on any given region from polymorphism and divergence genomic data: Strongly deleterious sites (d); Weakly deleterious sites (b); Neutral sites (f); Adaptive fixations (α). 
+It includes several MK derived methodologies which allow inferring the rate of adaptive evolution (α) and two new approximations to quantify the different negative selection regimes (d: strongly deleterious, b: weakly deleterious, f: neutral) from polymorphism and divergence genomic data.
 
 Installation
 ------------
 The package is deposited in GitHub and must be installed using the devtools library.
-
 ``` r
 # install.packages("devtools")
 devtools::install_github("sergihervas/iMKT")
@@ -19,13 +17,60 @@ devtools::install_github("sergihervas/iMKT")
 
 Usage
 -----
-Brief explanation. daf and divergence data. Perform any test.
+Shortly, iMKT allows performing diverse MK-derived tests using the number of polymorphic (P, classified in DAF categories), divergent (D) and analyzed (m) sites for neutral (0) and selected (i) classes. In brief, most functions require two input parameters: daf (data frame containing daf, Pi and P0) and divergence (data frame containing mi, Di, m0, D0) and return the estimation of α together with specific details of the methodology.
 
+The package includes two sample data frames (myDafData, myDivergenceData). The vignettes and manual documentation contains detailed descriptions and examples regarding each function, types of analyses, how to use PopFly and PopHuman genomic data, etc.
+
+The following example shows how to perform standard MKT using sample data:
 ``` r
-head(mydafdata)
-mydivergencedata
-standard(mydafdata, mydivergencedata)
+## Sample daf data included in the package
+head(myDafData)
+#>     daf    Pi    P0
+#> 1 0.025 22490 17189
+#> 2 0.075  3217  4780
+#> 3 0.125  1616  2874
+#> 4 0.175   999  2088
+#> 5 0.225   754  1685
+#> 6 0.275   679  1443
+
+## Sample divergence data included in the package
+myDivergenceData
+#>        mi    Di     m0    D0
+#> 1 2598805 54641 620019 52537
+
+## Perform standard MKT
+standard(myDafData, myDivergenceData)
+#> $alpha.symbol
+#> [1] 0.2364499
+
+#> $`Fishers exact test P-value`
+#> [1] 1.480943e-183
+
+#> $`MKT table`
+#> |               | Polymorphism| Divergence|
+#> |:--------------|------------:|----------:|
+#> |Neutral class  |        45101|      52537|
+#> |Selected class |        35816|      54641|
+
+#> $`Divergence metrics`
+#> |        Ka|        Ks|     omega|   omegaA|   omegaD|
+#> |---------:|---------:|---------:|--------:|--------:|
+#> | 0.0210254| 0.0847345| 0.2481331| 0.058671| 0.189462|
 ```
+
+Citation
+--------
+Citation to paper
+
+Licence
+-------
+Licence of package
+
+Development & Contact
+---------------------
+iMKT has been developed by the Bioinformatics of Genome Diversity group from the Universitat Autònoma de Barcelona (UAB) and the Institut de Biotecnologia i Biomedicina (IBB).
+
+If you have feedback or feature requests, please contact antonio.barbadilla@uab.cat 
 
 
 
@@ -42,7 +87,6 @@ standard(mydafdata, mydivergencedata)
 	- Extra stuff about Roxygen2 and the .Rd format
 	- Tests
 	- Document correctly functions
-	- Just need to rewrite correctly the documentation.
 	- User manual (Marta, Jesus)
 	  - **S** Remove theme_publication() function and call it whenever it is needed?? To avoid including this function in the manual. Think about check_input()
 	- Vignettes 
@@ -58,7 +102,8 @@ standard(mydafdata, mydivergencedata)
 	- daf.pl: Modify perl functions to extract the correct files. Review the categories. **S** What do u mean with: Review the categories?
 	- Put in functions comparision scripts (Jesus)
 	- subsetPopData() **Sergi**
-		- **S** Check times of download functions: loadPopFly() & loadPopHuman. Around 20 seconds the first one.			- **S** Update pophuman data file!		
+		- **S** Check times of download functions: loadPopFly() & loadPopHuman. Around 20 seconds the first one.			
+		- **S** Update pophuman data file!		
 
 - Reference Messer & Haller code (Question: Shall we write to them to let them know we're implementing their code into another package?). **S** We reference their code in the asymptoticMK function. We can write them later, as Antonio suggested.
 

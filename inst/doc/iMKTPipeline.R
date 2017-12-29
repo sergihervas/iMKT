@@ -15,31 +15,31 @@ knitr::opts_chunk$set(
 library(iMKT)
 
 ## Sample daf data
-head(mydafdata)
+head(myDafData)
 
 ## Sample divergence data
-mydivergencedata
+myDivergenceData
 
 ## ----Standard MKT, echo=TRUE---------------------------------------------
-standard(daf=mydafdata, divergence=mydivergencedata)
+standard(daf=myDafData, divergence=myDivergenceData)
 
 ## ----FWW, echo=TRUE------------------------------------------------------
-FWW(daf=mydafdata, divergence=mydivergencedata)
+FWW(daf=myDafData, divergence=myDivergenceData)
 
 ## ----FWW plot, echo=TRUE, fig.width=6, fig.height=4----------------------
-FWW(daf=mydafdata, divergence=mydivergencedata, list_cutoff=c(0.05, 0.15,0.25,0.35), plot=TRUE)
+FWW(daf=myDafData, divergence=myDivergenceData, list_cutoff=c(0.05, 0.15,0.25,0.35), plot=TRUE)
 
 ## ----DGRP, echo=TRUE-----------------------------------------------------
-DGRP(daf=mydafdata, divergence=mydivergencedata)
+DGRP(daf=myDafData, divergence=myDivergenceData)
 
 ## ---- echo=TRUE, fig.width=6, fig.height=6-------------------------------
-DGRP(daf=mydafdata, divergence=mydivergencedata, list_cutoff=c(0.05, 0.15,0.25,0.35), plot=TRUE)
+DGRP(daf=myDafData, divergence=myDivergenceData, list_cutoff=c(0.05, 0.15,0.25,0.35), plot=TRUE)
 
 ## ----Asymptotic MKT, echo=TRUE-------------------------------------------
-asymptoticMK(daf=mydafdata, divergence=mydivergencedata, xlow=0, xhigh=0.9)
+asymptoticMK(daf=myDafData, divergence=myDivergenceData, xlow=0, xhigh=0.9)
 
 ## ----iMK, echo=TRUE, fig.width=6, fig.height=9---------------------------
-iMK(daf=mydafdata, divergence=mydivergencedata, xlow=0, xhigh=0.9, plot=TRUE)
+iMK(daf=myDafData, divergence=myDivergenceData, xlow=0, xhigh=0.9, plot=TRUE)
 
 ## ----summary, echo=FALSE-------------------------------------------------
 results <- data.frame("Standard"=0.2365, "FWW_0.05"=0.5409, "FWW_0.1"=0.5798, "DGRP_0.05"=0.4249, "DGRP_0.1"=0.4249, "asymptotic_iMK"=0.6259)

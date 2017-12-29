@@ -13,9 +13,9 @@
 #'
 #' @examples
 #' ## Using default cutoffs
-#' FWW(mydafdata, mydivergencedata)
+#' FWW(myDafData, myDivergenceData)
 #' ## Using custom cutoffs and rendering plot
-#' FWW(mydafdata, mydivergencedata, c(0.05, 0.1, 0.15), plot=TRUE)
+#' FWW(myDafData, myDivergenceData, c(0.05, 0.1, 0.15), plot=TRUE)
 #' 
 #' @import utils
 #' @import stats

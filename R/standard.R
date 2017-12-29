@@ -11,7 +11,7 @@
 #' @return Standard McDonald and Kreitman Test
 #'
 #' @examples 
-#' standard(mydafdata, mydivergencedata)
+#' standard(myDafData, myDivergenceData)
 #' 
 #' @import utils
 #' @import stats
