@@ -16,10 +16,11 @@
 #'
 #' @examples
 #' ## List of genes
-#' # mygenes <- c("")
+#' # mygenes <- c("AHNAK2","MUC5B","MUC4","TTN","MUC16","PLIN4", 
+#' #              "OBSCN","PLEC","MUC12","PKD1","LAMA5","HELZ2")
 #' ## Perform analyses
-#' # PopHumanAnalysis(genes=mygenes , pops=c(""), recomb=F, test="iMK", xlow=0, xhigh=0.9)
-#' # PopHumanAnalysis(genes=mygenes , pops=c(""), recomb=T, bins=3, test="DGRP")
+#' # PopHumanAnalysis(genes=mygenes , pops=c("CEU","YRI"), recomb=F, test="standard")
+#' # PopHumanAnalysis(genes=mygenes , pops=c("CEU"), recomb=T, bins=3, test="DGRP")
 #' 
 #' @import utils
 #' @import stats
@@ -43,16 +44,16 @@ PopHumanAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2
   ## Argument genes
   if (length(genes) == 0 || genes == "" || !is.character(genes)) {
     stop("You must specify at least one gene.") }
-  if (!all(genes %in% data$Name) == TRUE) {
-    difGenes <- setdiff(genes, data$Name)
+  if (!all(genes %in% data$ID) == TRUE) {
+    difGenes <- setdiff(genes, data$ID)
     difGenes <- paste(difGenes, collapse=", ")
-    stopMssg <- paste0("MKT data is not available for the requested gene(s).\nRemember to use FlyBase IDs (FBgn...)\nThe genes that caused the error are: ", difGenes, ".")
+    stopMssg <- paste0("MKT data is not available for the requested gene(s).\nRemember to use gene IDs from NCBI.\nThe genes that caused the error are: ", difGenes, ".")
     stop(stopMssg) }
   
   ## Argument pops
   if (length(pops) == 0 || pops == "" || !is.character(pops)) {
     stop("You must specify at least one population.") }
-  if (!all(pops %in% data$Pop) == TRUE) {
+  if (!all(pops %in% data$Population) == TRUE) {
     correctPops <- c("ACB","ASW","BEB","CDX","CEU","CHB","CHS","CLM","ESN","FIN","GBR","GIH","GWD","IBS","ITU","JPT","KHV","LWK","MSL","MXL","PEL","PJL","PUR","STU","TSI","YRI")
     difPops <- setdiff(pops, correctPops)
     difPops <- paste(difPops, collapse=", ")
@@ -89,8 +90,8 @@ PopHumanAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2
   ## Arguments xlow, xhigh features (numeric, bounds...) checked in checkInput()
   
   ## Perform subset
-  subsetGenes <- data[(data$Name %in% genes & data$Pop %in% pops), ]
-  subsetGenes$Name <- as.factor(subsetGenes$Name)
+  subsetGenes <- data[(data$ID %in% genes & data$Population %in% pops), ]
+  subsetGenes$ID <- as.factor(subsetGenes$ID)
   subsetGenes <- droplevels(subsetGenes)
   
   ## If recomb analysis is selected
@@ -99,14 +100,14 @@ PopHumanAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2
     ## Declare output list (each element 1 pop)
     outputList <- list()
     
-    for (k in levels(subsetGenes$Pop)) {
+    for (k in levels(subsetGenes$Population)) {
       print(paste0("Population = ", k))
       
       ## Declare bins output list (each element 1 bin)
       outputListBins <- list()
       
-      x <- subsetGenes[subsetGenes$Pop == k, ]
-      x <- x[order(x$cM_Mb), ]
+      x <- subsetGenes[subsetGenes$Population == k, ]
+      x <- x[order(x$recomb), ]
       
       ## create bins
       binsize <- round(nrow(x)/bins) ## Number of genes for each bin
@@ -141,10 +142,10 @@ PopHumanAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2
         
         ## Recomb stats from bin j
         numGenes <- nrow(x1)
-        minRecomb <- min(x1$cM_Mb, na.rm=T)
-        medianRecomb <- median(x1$cM_Mb, na.rm=T)
-        meanRecomb <- mean(x1$cM_Mb, na.rm=T)
-        maxRecomb <- max(x1$cM_Mb, na.rm=T)
+        minRecomb <- min(x1$recomb, na.rm=T)
+        medianRecomb <- median(x1$recomb, na.rm=T)
+        meanRecomb <- mean(x1$recomb, na.rm=T)
+        maxRecomb <- max(x1$recomb, na.rm=T)
         recStats <- cbind(numGenes,minRecomb,medianRecomb,meanRecomb,maxRecomb)
         recStats <- as.data.frame(recStats)
         recStats <- list("Recombination bin Summary"=recStats)
@@ -158,8 +159,8 @@ PopHumanAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2
         
         ## Group genes
         x1 <- droplevels(x1)
-        for (l in levels(x1$Name)) {
-          x2 <- x1[x1$Name == l, ]
+        for (l in levels(x1$ID)) {
+          x2 <- x1[x1$ID == l, ]
           
           ## DAF
           x2$DAF0f <- as.character(x2$DAF0f); x2$DAF4f <- as.character(x2$DAF4f)
@@ -224,9 +225,9 @@ PopHumanAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2
     ## Declare output list (each element 1 pop)
     outputList <- list()
     
-    for (i in levels(subsetGenes$Pop)) {
+    for (i in levels(subsetGenes$Population)) {
       print(paste0("Population = ", i))
-      x <- subsetGenes[subsetGenes$Pop == i, ]
+      x <- subsetGenes[subsetGenes$Population == i, ]
       
       ## Set counters to 0
       Pi <- c(0,0,0,0,0,0,0,0,0,0)
@@ -236,8 +237,8 @@ PopHumanAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2
       Di <- 0; D0 <- 0
       
       ## Group genes
-      for (j in levels(x$Name)) {
-        x1 <- x[x$Name == j, ]
+      for (j in levels(x$ID)) {
+        x1 <- x[x$ID == j, ]
         
         ## DAF
         x1$DAF0f <- as.character(x1$DAF0f); x1$DAF4f <- as.character(x1$DAF4f)

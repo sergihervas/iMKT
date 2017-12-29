@@ -24,7 +24,7 @@ Brief intro about lots of data right now. Then, PopFly and PopHuman as great dat
 
 Therefore, iMKT package includes some functions which allow an easy retrieval and analysis of population genetics information stored in these genome browsers. Specifically, the functions permit the download of population genetics parameters computed for every gene annotation in several populations for both model species *Drosophila melanogaster* and *Homo sapiens*.
 
-The examples in this vignette focus only on PopFly data and analysis, but the same process could be performed using human data and funcions (**loadPopHumandata()**, **PopHumanAnalysis()**, and **PopHumanData**), following the same steps described here. Recombination rate values of human data are retrieved from Bheller et al. and correspond to the sex average estimates.
+The examples in this vignette focus only on PopFly data and analysis, but the same process could be performed using human data and funcions (**PopHumanData**, **loadPopHumandata()**, **PopHumanAnalysis()**), following the same steps described here. Recombination rate values of human data are retrieved from Bheller et al. and correspond to the sex average estimates.
 
 &nbsp;
 &nbsp;

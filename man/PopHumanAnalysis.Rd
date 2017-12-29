@@ -34,9 +34,10 @@ Recombination values (recomb=T) from Bheller et al. (reference!)
 }
 \examples{
 ## List of genes
-# mygenes <- c("")
+# mygenes <- c("AHNAK2","MUC5B","MUC4","TTN","MUC16","PLIN4", 
+#              "OBSCN","PLEC","MUC12","PKD1","LAMA5","HELZ2")
 ## Perform analyses
-# PopHumanAnalysis(genes=mygenes , pops=c(""), recomb=F, test="iMK", xlow=0, xhigh=0.9)
-# PopHumanAnalysis(genes=mygenes , pops=c(""), recomb=T, bins=3, test="DGRP")
+# PopHumanAnalysis(genes=mygenes , pops=c("CEU","YRI"), recomb=F, test="standard")
+# PopHumanAnalysis(genes=mygenes , pops=c("CEU"), recomb=T, bins=3, test="DGRP")
 
 }
