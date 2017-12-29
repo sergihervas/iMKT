@@ -79,7 +79,7 @@ Licence of package
 
 Development & Contact
 ---------------------
-iMKT has been developed by Sergi Hervas (sergi.hervas@uab.cat), Marta Coronado (marta.coronado@uab.cat) and Jesús Murga (jesus.murga@uab.cat), from the Bioinformatics of Genome Diversity group (http://bioinformatica.uab.cat/bdg from the Universitat Autònoma de Barcelona (UAB) and the Institut de Biotecnologia i Biomedicina (IBB).
+iMKT has been developed by Sergi Hervas (sergi.hervas@uab.cat), Marta Coronado (marta.coronado@uab.cat) and Jesús Murga (jesus.murga@uab.cat), from the Bioinformatics of Genome Diversity group from the Universitat Autònoma de Barcelona (UAB) and the Institut de Biotecnologia i Biomedicina (IBB).
 
 If you have feedback or feature requests, please contact antonio.barbadilla@uab.cat or jesus.murga@uab.cat.
 
