@@ -15,7 +15,7 @@ The package is deposited in GitHub and must be installed using the devtools libr
 ## Install devtools package if necessary
 install.packages("devtools")
 
-## Install iMKT from GitHub
+## Install iMKT package from GitHub
 devtools::install_github("sergihervas/iMKT")
 
 ## Load iMKT library
@@ -101,7 +101,6 @@ If you have feedback or feature requests, please contact antonio.barbadilla@uab.
 	- Rename variables (wordWord2). **Do it for all variables inside all functions or only for functionNames and dataFrames?**
 	- Check consistency of variables and style along functions
 - Functions:
-  - rename standard to standardMK
 	- Put in functions comparision scripts (Jesus) **What is this?**
 	- PopHuman functions: **Sergi**
 		- **S** Check times of download functions: loadPopFly() & loadPopHuman. Around 20 seconds the first one	
