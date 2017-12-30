@@ -5,8 +5,8 @@
 \title{PopHumanAnalysis}
 \usage{
 PopHumanAnalysis(genes = c("gene1", "gene2", "..."), pops = c("pop1",
-  "pop2", "..."), recomb = TRUE/FALSE, bins = 0, test = c("standard",
-  "DGRP", "FWW", "asymptotic", "iMK"), xlow = 0, xhigh = 1)
+  "pop2", "..."), recomb = TRUE/FALSE, bins = 0, test = c("standardMK",
+  "DGRP", "FWW", "asymptoticMK", "iMK"), xlow = 0, xhigh = 1)
 }
 \arguments{
 \item{genes}{list of genes}
@@ -17,7 +17,7 @@ PopHumanAnalysis(genes = c("gene1", "gene2", "..."), pops = c("pop1",
 
 \item{bins}{number of recombination bins to compute (mandatory if recomb = TRUE)}
 
-\item{test}{which test to perform. Options include: standard (default), DGRP, FWW, asymptotic, iMK}
+\item{test}{which test to perform. Options include: standardMK (default), DGRP, FWW, asymptoticMK, iMK}
 
 \item{xlow}{lower limit for asymptotic alpha fit (default=0)}
 
@@ -37,7 +37,7 @@ Recombination values (recomb=T) from Bheller et al. (reference!)
 # mygenes <- c("AHNAK2","MUC5B","MUC4","TTN","MUC16","PLIN4", 
 #              "OBSCN","PLEC","MUC12","PKD1","LAMA5","HELZ2")
 ## Perform analyses
-# PopHumanAnalysis(genes=mygenes , pops=c("CEU","YRI"), recomb=F, test="standard")
+# PopHumanAnalysis(genes=mygenes , pops=c("CEU","YRI"), recomb=F, test="standardMK")
 # PopHumanAnalysis(genes=mygenes , pops=c("CEU"), recomb=T, bins=3, test="DGRP")
 
 }

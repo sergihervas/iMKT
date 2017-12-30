@@ -8,7 +8,7 @@
 #' @param pops list of populations
 #' @param recomb group genes according to recombination values (must specify number of bins). TRUE/FALSE. Recomb values (cM/Mb) from Comeron et al. 2012.
 #' @param bins number of recombination bins to compute (mandatory if recomb = TRUE)
-#' @param test which test to perform. Options include: standard (default), DGRP, FWW, asymptotic, iMK
+#' @param test which test to perform. Options include: standardMK (default), DGRP, FWW, asymptoticMK, iMK
 #' @param xlow lower limit for asymptotic alpha fit (default=0)
 #' @param xhigh higher limit for asymptotic alpha fit (default=1)
 #' 
@@ -28,7 +28,7 @@
 #'
 #' @export
 
-PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2","..."), recomb=TRUE/FALSE, bins=0, test=c("standard","DGRP","FWW","asymptotic","iMK"), xlow=0, xhigh=1) { 
+PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2","..."), recomb=TRUE/FALSE, bins=0, test=c("standardMK","DGRP","FWW","asymptoticMK","iMK"), xlow=0, xhigh=1) { 
   
   ## Get PopFly data
   if (exists("PopFlyData") == TRUE) {
@@ -40,7 +40,7 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
   ## Check input variables
   ## Numer of arguments
   if (nargs() < 3 && nargs()) {
-    stop("You must specify 3 arguments at least: genes, pops, recomb (T/F).\nIf test = asymptotic or test = iMK, you must specify xlow and xhigh values.") }
+    stop("You must specify 3 arguments at least: genes, pops, recomb (T/F).\nIf test = asymptoticMK or test = iMK, you must specify xlow and xhigh values.") }
   
   ## Argument genes
   if (length(genes) == 0 || genes == "" || !is.character(genes)) {
@@ -77,14 +77,14 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
   
   ## Argument test and xlow + xhigh (when necessary)
   if(missing(test)) {
-    test <- "standard"
+    test <- "standardMK"
   }
-  else if (test != "standard" && test != "DGRP" && test != "FWW" && test != "asymptotic" && test != "iMK") {
-    stop("Parameter test must be one of the following: standard, DGRP, FWW, asymptotic, iMK")
+  else if (test != "standardMK" && test != "DGRP" && test != "FWW" && test != "asymptoticMK" && test != "iMK") {
+    stop("Parameter test must be one of the following: standardMK, DGRP, FWW, asymptoticMK, iMK")
   }
   if (length(test) > 1) {
-    stop("Select only one of the following tests to perform: standard, DGRP, FWW, asymptotic, iMK") }
-  if ((test == "standard" || test == "DGRP" || test == "FWW") && (xlow != 0 || xhigh != 1)) {
+    stop("Select only one of the following tests to perform: standardMK, DGRP, FWW, asymptoticMK, iMK") }
+  if ((test == "standardMK" || test == "DGRP" || test == "FWW") && (xlow != 0 || xhigh != 1)) {
     warningMssgTest <- paste0("Parameters xlow and xhigh not used! (test = ",test," selected)")
     warning(warningMssgTest) }
   
@@ -183,8 +183,8 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
         
         ## Check data inside each test!
         ## Perform test
-        if(test == "standard") {
-          output <- standard(daf, div) 
+        if(test == "standardMK") {
+          output <- standardMK(daf, div) 
           output <- c(output, recStats) } ## Add recomb summary for bin j
         else if(test == "DGRP") {
           output <- DGRP(daf, div) 
@@ -192,7 +192,7 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
         else if(test == "FWW") {
           output <- FWW(daf, div)           
           output <- c(output, recStats) }
-        else if(test == "asymptotic") {
+        else if(test == "asymptoticMK") {
           output <- asymptoticMK(daf, div, xlow, xhigh) 
           output <- c(output, recStats) }
         else if(test == "iMK") {
@@ -261,13 +261,13 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
       
       ## Check data inside each test!
       ## Perform test
-      if(test == "standard") {
-        output <- standard(daf, div) }
+      if(test == "standardMK") {
+        output <- standardMK(daf, div) }
       else if(test == "DGRP") {
         output <- DGRP(daf, div) }
       else if(test == "FWW") {
         output <- FWW(daf, div) }
-      else if(test == "asymptotic") {
+      else if(test == "asymptoticMK") {
         output <- asymptoticMK(daf, div, xlow, xhigh) }
       else if(test == "iMK") {
         output <- iMK(daf, div, xlow, xhigh) }

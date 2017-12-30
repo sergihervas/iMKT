@@ -21,7 +21,7 @@ head(myDafData)
 myDivergenceData
 
 ## ----Standard MKT, echo=TRUE---------------------------------------------
-standard(daf=myDafData, divergence=myDivergenceData)
+standardMK(daf=myDafData, divergence=myDivergenceData)
 
 ## ----FWW, echo=TRUE------------------------------------------------------
 FWW(daf=myDafData, divergence=myDivergenceData)

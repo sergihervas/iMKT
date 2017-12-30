@@ -50,11 +50,11 @@ names(PopFlyData)
 #  names(divAdhZI) <- c("mi","Di","m0","D0")
 
 ## ----PopFly data retrieve Adh RAL, echo=FALSE, eval=F--------------------
-#  standard(daf = dafAdhRAL, divergence = divAdhRAL)
+#  standardMK(daf = dafAdhRAL, divergence = divAdhRAL)
 #  DGRP(daf = dafAdhRAL, divergence = divAdhRAL,plot = TRUE)
 
 ## ----PopFly data retrieve Adh ZI, echo=F, eval=F-------------------------
-#  standard(daf = dafAdhZI, divergence = divAdhZI)
+#  standardMK(daf = dafAdhZI, divergence = divAdhZI)
 #  DGRP(daf = dafAdhZI, divergence = divAdhZI,plot = TRUE)
 
 ## ----PopFly data retrieve automated no recomb, echo=TRUE-----------------

@@ -1,17 +1,13 @@
-#' ggplot theme for publication ready Plots
+#' @title ggplot Theme for publication ready plots
 #'
-#' Date = 04/07/2015
-#' Author = Koundinya Desiraju
+#' @description Theme with the configuration and parameters necessary to generate publication ready plots using ggplot
 #'
-#' Default theme used for plot images. From http://rpubs.com/Koundy/71792
+#' @details Theme used for plot images developed by Koundinya Desiraju (04/07/2015). Code adapted from http://rpubs.com/Koundy/71792.
 #'
 #' @param base_size base size required from themePublication
 #' @param base_family font to load in themePublication
 #' 
 #' @return plot theme
-#'
-#' @examples
-#' # themePublication(14, "sans")
 #'
 #' @import ggplot2
 #' @importFrom ggthemes theme_foundation

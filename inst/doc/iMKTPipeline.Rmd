@@ -66,7 +66,7 @@ The iMKT package includes several funcions, classified as follows:
   MKT derived methodologies calculation
   \begin{itemize}
   \item
-    standard(): Standard MKT 
+    standardMK(): Standard MKT 
   \item
     FWW(): FWW correction 
   \item
@@ -104,7 +104,7 @@ The iMKT package includes several funcions, classified as follows:
 
 &nbsp;
 
-Each function has an associated help page with its description, details about its parameters, usage, examples and so on. Rembember you can access it writting ?? and the function name (or ??library::function) in your console (*example*: ??iMKT::standard).
+Each function has an associated help page with its description, details about its parameters, usage, examples and so on. Rembember you can access it writting ?? and the function name (or ??library::function) in your console (*example*: ??iMKT::standardMK).
 
 This vignette focuses on the first category of functions: "MKT derived methodologies calculation". Specifically, it contains examples of each function using the sample data described above. For details about functions from "iMKT using PopFly and PopHuman data" category check the corresponding vignette. The functions from the third category are used within other functions and do not produce analyses output.
 
@@ -129,7 +129,7 @@ The output of each function always contains the corresponding alpha estimate, to
 
 Brief theoretical description about MKT
 
-The **standard()** function uses daf and divergence input parameters and returns as output a list containing:
+The **standardMK()** function uses daf and divergence input parameters and returns as output a list containing:
 
 \begin{itemize}
 \item
@@ -145,7 +145,7 @@ The **standard()** function uses daf and divergence input parameters and returns
 &nbsp;
 
 ```{r Standard MKT, echo=TRUE}
-standard(daf=myDafData, divergence=myDivergenceData)
+standardMK(daf=myDafData, divergence=myDivergenceData)
 ```
 
 &nbsp;
@@ -225,7 +225,7 @@ Petrov reference + explanation
 
 This function is adapted from the code developed in "Haller BC, Messer PW. asymptoticMK: A Web-Based Tool for the Asymptotic McDonald-Kreitman Test. G3 (Bethesda). 2017 May 5;7(5):1569-1575", stored in: http://github.com/MesserLab/asymptoticMK. The main adaptation we did is that the function presented here only fits an exponential model, removing the linear fitting performed initially in the cases where it was not possible to fit an asymptotic curve.
 
-The **asymptoticMKT()** function uses the common daf and divergence parameters along with two arguments which define the lower and higher limit for the asymptotic alpha fit (xlow and xhigh). These two optional parameters are set to 0 and 1 by default, although it is recommended to use a higher limit of 0.9 in order to remove possible biases due to polarization error.
+The **asymptoticMK()** function uses the common daf and divergence parameters along with two arguments which define the lower and higher limit for the asymptotic alpha fit (xlow and xhigh). These two optional parameters are set to 0 and 1 by default, although it is recommended to use a higher limit of 0.9 in order to remove possible biases due to polarization error.
 
 The function's output is a table with: the model type (exponential) along with the fitted function values (a, b, c), the asymptotic alpha estimate with its corresponding lower and higher confidence interval values, and the original alpha estimate (using the standard MKT methodology and the polymorphic sites within the xlow and xhigh cutoffs).
 

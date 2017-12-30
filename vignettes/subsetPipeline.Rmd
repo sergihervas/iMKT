@@ -94,12 +94,12 @@ names(divAdhZI) <- c("mi","Di","m0","D0")
 <!-- Once the data is in the proper form you can perform the test without problems -->
 
 ```{r PopFly data retrieve Adh RAL, echo=FALSE, eval=F}
-standard(daf = dafAdhRAL, divergence = divAdhRAL)
+standardMK(daf = dafAdhRAL, divergence = divAdhRAL)
 DGRP(daf = dafAdhRAL, divergence = divAdhRAL,plot = TRUE)
 ```
 
 ```{r PopFly data retrieve Adh ZI, echo=F, eval=F}
-standard(daf = dafAdhZI, divergence = divAdhZI)
+standardMK(daf = dafAdhZI, divergence = divAdhZI)
 DGRP(daf = dafAdhZI, divergence = divAdhZI,plot = TRUE)
 ```
 
@@ -118,7 +118,7 @@ The **PopFlyAnalisys()** function allows performing any MK test using a subset o
 
   - **recomb**: group genes according to recombination values (must specify number of bins). Options are: TRUE/FALSE. Recombination values (cM/Mb) from Comeron et al. 2012.
   - **bins**: number of recombination bins to compute (mandatory if recomb = TRUE)
-  - **test**: which test to perform. Options include: standard (default), DGRP, FWW, asymptotic, iMK
+  - **test**: which test to perform. Options include: standardMK (default), DGRP, FWW, asymptoticMK, iMK
   - **xlow**: lower limit for asymptotic alpha fit (default=0)
   - **xhigh**: higher limit for asymptotic alpha fit (default=1)
   

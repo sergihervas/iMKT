@@ -2,7 +2,7 @@
 % Please edit documentation in R/themePublication.R
 \name{themePublication}
 \alias{themePublication}
-\title{ggplot theme for publication ready Plots}
+\title{ggplot Theme for publication ready plots}
 \usage{
 themePublication(base_size = 14, base_family = "sans")
 }
@@ -15,13 +15,8 @@ themePublication(base_size = 14, base_family = "sans")
 plot theme
 }
 \description{
-Date = 04/07/2015
-Author = Koundinya Desiraju
+Theme with the configuration and parameters necessary to generate publication ready plots using ggplot
 }
 \details{
-Default theme used for plot images. From http://rpubs.com/Koundy/71792
-}
-\examples{
-# themePublication(14, "sans")
-
+Theme used for plot images developed by Koundinya Desiraju (04/07/2015). Code adapted from http://rpubs.com/Koundy/71792.
 }

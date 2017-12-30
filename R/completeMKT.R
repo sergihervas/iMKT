@@ -1,8 +1,8 @@
-#' @title completeMKT
+#' @title Complete MK methodologies
 #'
-#' @description \code{completeMKT()} put details here
-#'
-#' @details put description here
+#' @description MKT calculation using all methodologies included in the package: standardMK, FWW, DGRP, asymptoticMK, iMK.
+#' 
+#' @details Perform all MKT derived methodologies at the same time using the same input parameters.
 #'
 #' @param daf data frame containing DAF, Pi and P0 values
 #' @param divergence data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes
@@ -10,17 +10,17 @@
 #' @param xhigh higher limit for asymptotic alpha fit
 #' @param seed seed value (optional). No seed by default
 #'
-#' @return Execute all the MKT extensions
+#' @return List with all MKT results: standardMK, FWW, DGRP, asymptoticMK, iMK
 #'
 #' @examples 
-#' completeMKT(myDafData, myDivergenceData, 0, 0.9)
+#' completeMK(myDafData, myDivergenceData, 0, 0.9)
 #' 
 #' @import utils
 #' @import stats
 #'
 #' @export
 
-completeMKT <- function(daf, divergence, xlow, xhigh, seed) {
+completeMK <- function(daf, divergence, xlow, xhigh, seed) {
   
   ## Check data
   check <- checkInput(daf, divergence, xlow, xhigh)
@@ -35,10 +35,10 @@ completeMKT <- function(daf, divergence, xlow, xhigh, seed) {
   }
 
   ## Create output list
-  fullResults<-list()
+  fullResults <- list()
   
   ## Standard MKT
-  fullResults[["StandardMK"]] <- standard(daf,divergence)
+  fullResults[["StandardMK"]] <- standardMK(daf,divergence)
   
   ## FWW MKT
   fullResults[["FWW"]] <- FWW(daf,divergence)

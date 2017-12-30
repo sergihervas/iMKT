@@ -5,8 +5,8 @@
 \title{PopFlyAnalysis}
 \usage{
 PopFlyAnalysis(genes = c("gene1", "gene2", "..."), pops = c("pop1", "pop2",
-  "..."), recomb = TRUE/FALSE, bins = 0, test = c("standard", "DGRP",
-  "FWW", "asymptotic", "iMK"), xlow = 0, xhigh = 1)
+  "..."), recomb = TRUE/FALSE, bins = 0, test = c("standardMK", "DGRP",
+  "FWW", "asymptoticMK", "iMK"), xlow = 0, xhigh = 1)
 }
 \arguments{
 \item{genes}{list of genes}
@@ -17,7 +17,7 @@ PopFlyAnalysis(genes = c("gene1", "gene2", "..."), pops = c("pop1", "pop2",
 
 \item{bins}{number of recombination bins to compute (mandatory if recomb = TRUE)}
 
-\item{test}{which test to perform. Options include: standard (default), DGRP, FWW, asymptotic, iMK}
+\item{test}{which test to perform. Options include: standardMK (default), DGRP, FWW, asymptoticMK, iMK}
 
 \item{xlow}{lower limit for asymptotic alpha fit (default=0)}
 
