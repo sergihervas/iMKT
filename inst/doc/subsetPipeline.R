@@ -14,49 +14,6 @@ loadPopFly()
 ls() ## new object created
 names(PopFlyData)
 
-## ----PopFly data manual retrieve, echo=FALSE, eval=FALSE-----------------
-#  ## Preparing RAL Adh
-#  adhRAL<-dataPopfly[dataPopfly$Name=='FBgn0000055' & dataPopfly$Pop=='RAL',]
-#  
-#  adhRAL$DAF0f <- as.character(adhRAL$DAF0f); adhRAL$DAF4f <- as.character(adhRAL$DAF4f)
-#  adhRAL0f<-unlist(strsplit(adhRAL$DAF0f, split=";"))
-#  adhRAL4f <- unlist(strsplit(adhRAL$DAF4f, split=":"))
-#  adhRAL0f <- as.numeric(adhRAL0f); adhRAL4f <- as.numeric(adhRAL0f)
-#  
-#  f <- seq(0.05,0.95,0.1)
-#  mi <- adhRAL$mi; m0 <- adhRAL$m0
-#  Di <- adhRAL$di; D0 <- adhRAL$d0
-#  
-#  dafAdhRAL <- cbind(f, adhRAL0f, adhRAL4f); dafAdhRAL <- as.data.frame(dafAdhRAL)
-#  names(dafAdhRAL) <- c("daf","Pi","P0")
-#  divAdhRAL <- cbind(mi, Di, m0, D0); divAdhRAL <- as.data.frame(divAdhRAL)
-#  names(divAdhRAL) <- c("mi","Di","m0","D0")
-#  
-#  ## Preparing ZI Adh
-#  adhZI<-dataPopfly[dataPopfly$Name=='FBgn0000055' & dataPopfly$Pop=='ZI',]
-#  
-#  adhZI$DAF0f <- as.character(adhZI$DAF0f); adhZI$DAF4f <- as.character(adhZI$DAF4f)
-#  adhZI0f<-unlist(strsplit(adhZI$DAF0f, split=";"))
-#  adhZI4f <- unlist(strsplit(adhZI$DAF4f, split=":"))
-#  adhZI0f <- as.numeric(adhZI0f); adhZI4f <- as.numeric(adhZI0f)
-#  
-#  f <- seq(0.05,0.95,0.1)
-#  mi <- adhZI$mi; m0 <- adhZI$m0
-#  Di <- adhZI$di; D0 <- adhZI$d0
-#  
-#  dafAdhZI <- cbind(f, adhZI0f, adhZI4f); dafAdhZI <- as.data.frame(dafAdhZI)
-#  names(dafAdhZI) <- c("daf","Pi","P0")
-#  divAdhZI <- cbind(mi, Di, m0, D0); divAdhZI <- as.data.frame(divAdhZI)
-#  names(divAdhZI) <- c("mi","Di","m0","D0")
-
-## ----PopFly data retrieve Adh RAL, echo=FALSE, eval=F--------------------
-#  standardMK(daf = dafAdhRAL, divergence = divAdhRAL)
-#  DGRP(daf = dafAdhRAL, divergence = divAdhRAL,plot = TRUE)
-
-## ----PopFly data retrieve Adh ZI, echo=F, eval=F-------------------------
-#  standardMK(daf = dafAdhZI, divergence = divAdhZI)
-#  DGRP(daf = dafAdhZI, divergence = divAdhZI,plot = TRUE)
-
 ## ----PopFly data retrieve automated no recomb, echo=TRUE-----------------
 PopFlyAnalysis(genes=c("FBgn0000055","FBgn0003016"), pops=c("RAL","ZI"), recomb=F, test="DGRP")
 

@@ -39,8 +39,7 @@ Keep in mind that you are downloading the complete gene information of several p
 Once the function finishes,the **PopFlyData** object is loaded into the workspace. This object can be manually examined or used when performing the main iMKT analyses.
   
 &nbsp;
-&nbsp;
-  
+
 ```{r popfly data, echo=TRUE, fig.width=7}
 library(iMKT)
 loadPopFly()
@@ -49,61 +48,8 @@ names(PopFlyData)
 ```
 
 &nbsp;
-&nbsp;
-  
   
 Each row of the **PopFlyData** dataframe contains information regarding one gene annotation in one single population. In total, 16 populations and 13745 genes are included. Metrics for each gene contain information about segrating, divergent and analyzed sites and the Derived Allele Frequency (DAF) for neutral (4fold) and putatively selected (0fold) sites; together with some neutrality tests statistics (Standard MKT, Direction of Selection, Ka/Ks) and gene-associated recombination rate estimates (from Comeron et al.).
-
-<!-- As we compress the Derived Allele Frequency in a column field, you will need to create the correct variables forms to pass them properly at the functions. It can be done in a few R basics lines! -->
-
-```{r PopFly data manual retrieve, echo=FALSE, eval=FALSE}
-## Preparing RAL Adh
-adhRAL<-dataPopfly[dataPopfly$Name=='FBgn0000055' & dataPopfly$Pop=='RAL',]
-
-adhRAL$DAF0f <- as.character(adhRAL$DAF0f); adhRAL$DAF4f <- as.character(adhRAL$DAF4f)
-adhRAL0f<-unlist(strsplit(adhRAL$DAF0f, split=";"))
-adhRAL4f <- unlist(strsplit(adhRAL$DAF4f, split=":"))
-adhRAL0f <- as.numeric(adhRAL0f); adhRAL4f <- as.numeric(adhRAL0f)
-
-f <- seq(0.05,0.95,0.1)
-mi <- adhRAL$mi; m0 <- adhRAL$m0
-Di <- adhRAL$di; D0 <- adhRAL$d0
-
-dafAdhRAL <- cbind(f, adhRAL0f, adhRAL4f); dafAdhRAL <- as.data.frame(dafAdhRAL)
-names(dafAdhRAL) <- c("daf","Pi","P0")
-divAdhRAL <- cbind(mi, Di, m0, D0); divAdhRAL <- as.data.frame(divAdhRAL)
-names(divAdhRAL) <- c("mi","Di","m0","D0")
-
-## Preparing ZI Adh
-adhZI<-dataPopfly[dataPopfly$Name=='FBgn0000055' & dataPopfly$Pop=='ZI',]
-
-adhZI$DAF0f <- as.character(adhZI$DAF0f); adhZI$DAF4f <- as.character(adhZI$DAF4f)
-adhZI0f<-unlist(strsplit(adhZI$DAF0f, split=";"))
-adhZI4f <- unlist(strsplit(adhZI$DAF4f, split=":"))
-adhZI0f <- as.numeric(adhZI0f); adhZI4f <- as.numeric(adhZI0f)
-
-f <- seq(0.05,0.95,0.1)
-mi <- adhZI$mi; m0 <- adhZI$m0
-Di <- adhZI$di; D0 <- adhZI$d0
-
-dafAdhZI <- cbind(f, adhZI0f, adhZI4f); dafAdhZI <- as.data.frame(dafAdhZI)
-names(dafAdhZI) <- c("daf","Pi","P0")
-divAdhZI <- cbind(mi, Di, m0, D0); divAdhZI <- as.data.frame(divAdhZI)
-names(divAdhZI) <- c("mi","Di","m0","D0")
-```
-<!-- Once the data is in the proper form you can perform the test without problems -->
-
-```{r PopFly data retrieve Adh RAL, echo=FALSE, eval=F}
-standardMK(daf = dafAdhRAL, divergence = divAdhRAL)
-DGRP(daf = dafAdhRAL, divergence = divAdhRAL,plot = TRUE)
-```
-
-```{r PopFly data retrieve Adh ZI, echo=F, eval=F}
-standardMK(daf = dafAdhZI, divergence = divAdhZI)
-DGRP(daf = dafAdhZI, divergence = divAdhZI,plot = TRUE)
-```
-
-<!-- This proccess could be tedious depending on the number of genes you want to analyze. To solve this, we just add  -->
 
 Once the data is loaded into the workspace, analyses can be performed using the function **PopFlyAnalysis()**.
 
@@ -140,7 +86,6 @@ The function groups polymorphism and divergence values of the custom genes, crea
 Explain output of DGRP function.
 
 &nbsp;
-&nbsp;
 
 ```{r PopFly data retrieve automated no recomb, echo=TRUE}
 PopFlyAnalysis(genes=c("FBgn0000055","FBgn0003016"), pops=c("RAL","ZI"), recomb=F, test="DGRP")
@@ -158,7 +103,6 @@ In this case, the function creates two different "concatenated" genes containing
 Explain iMK function output.
 
 &nbsp;
-&nbsp;
 
 ```{r PopFly data retrieve automated, echo=TRUE}
 geneList <- c("FBgn0053196","FBgn0086906","FBgn0261836","FBgn0031617","FBgn0260965",
@@ -168,5 +112,4 @@ PopFlyAnalysis(genes=geneList , pops=c("RAL"), recomb=T, bins=2, test="iMK", xlo
 rm(geneList)
 ```
   
-&nbsp;
 &nbsp;

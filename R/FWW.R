@@ -2,11 +2,11 @@
 #'
 #' @description MKT calculation corrected using FWW method (Fay et al. 2001 Genetics).
 #'
-#' @details In the standard McDonald and Kreitman test, the estimate of adaptive evolution (alpha) can be easily biased by the segregation of slightly deleterious non-synonymous substitutions. Specifically, slightly deleterious mutations contribute to polymorphism but not to divergence, and thus, lead to an underestimation of alpha. Because they tend to segregate at lower frequencies than do neutral mutations, they can be partially controled by removing low frequency polymorphisms from the analysis. This is known as the FWW method.
+#' @details In the standard McDonald and Kreitman test, the estimate of adaptive evolution (alpha) can be easily biased by the segregation of slightly deleterious non-synonymous substitutions. Specifically, slightly deleterious mutations contribute more to polymorphism than they do to divergence, and thus, lead to an underestimation of alpha. Because they tend to segregate at lower frequencies than do neutral mutations, they can be partially controled by removing low frequency polymorphisms from the analysis. This is known as the FWW method.
 #'
 #' @param daf data frame containing DAF, Pi and P0 values
 #' @param divergence data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes
-#' @param list_cutoffs list of cutoffs to use (optional). Default cutoffs are: 0, 0.05, 0.1
+#' @param listCutoffs list of cutoffs to use (optional). Default cutoffs are: 0, 0.05, 0.1
 #' @param plot report plot (optional). Default is FALSE
 #' 
 #' @return MKT corrected by the FWW method. List with alpha results, graph (optional), divergence metrics, MKT tables and negative selection fractions
@@ -23,9 +23,10 @@
 #' @importFrom ggthemes theme_foundation
 #' @importFrom cowplot plot_grid
 #'
+#' @keywords MKT
 #' @export
 
-FWW <- function(daf, divergence, list_cutoffs=c(0, 0.05, 0.1), plot=FALSE) {
+FWW <- function(daf, divergence, listCutoffs=c(0,0.05,0.1), plot=FALSE) {
   
   ## Check data
   check <- checkInput(daf, divergence, 0, 1)
@@ -46,7 +47,7 @@ FWW <- function(daf, divergence, list_cutoffs=c(0, 0.05, 0.1), plot=FALSE) {
   names(div_table) <- c("Ka", "Ks", "omega")
   
   ## Iterate along cutoffs
-  for (cutoff in list_cutoffs) {
+  for (cutoff in listCutoffs) {
     
     daf_remove <-daf[daf$daf > cutoff,] 
   

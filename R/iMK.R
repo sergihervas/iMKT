@@ -25,6 +25,8 @@
 #' @importFrom reshape2 melt
 #' @importFrom ggthemes theme_foundation
 #' @importFrom cowplot plot_grid
+#' 
+#' @keywords MKT
 #' @export
 
 iMK <- function(daf, divergence, xlow, xhigh, seed, plot=FALSE) {

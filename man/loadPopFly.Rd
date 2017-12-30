@@ -20,3 +20,4 @@ This function loads PopFly data (Hervas et al. 2017 Bioinformatics, http://popfl
 # loadPopFly()
 
 }
+\keyword{PopData}

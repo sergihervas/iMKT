@@ -1,6 +1,6 @@
-#' Example data frames
+#' @title Sample Divergence data frame
 #'
-#' Data frame containing divergence sample data
+#' @description Data frame containing divergence sample data
 #' \itemize{
 #'   \item mi. number of selected (i) analyzed sites
 #'   \item Di. number of selected divergent sites
@@ -8,6 +8,6 @@
 #'   \item D0. number of neutral divergent sites
 #' }
 #' @docType data
-#' @keywords datasets
+#' @keywords SampleData
 #' @format A data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes
 "myDivergenceData"

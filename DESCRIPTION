@@ -2,17 +2,19 @@ Package: iMKT
 Title: Integrative McDonald and Kreitman Test
 Version: 0.1.1
 Date: 2017-12-01
-Description: McDonald and Kreitman Test and MK-derived methodologies.
-Author: Sergi Hervas <sergi.hervas@uab.cat>
-		Marta Coronado <marta.coronado@uab.cat>
-		Jesús Murga <jesus.murga@uab.cat>
+Description: iMKT is an R package to compute the Integrative McDonald and Kreitman test. 
+    It includes several MK derived methodologies which allow inferring the rate of adap-
+    tive evolution and two new approximations to quantify the different negative selection
+    regimes (d: strongly deleterious, b: weakly deleterious, f: neutral) from polymorphism
+    and divergence genomic data.
+Author: Sergi Hervas <sergi.hervas@uab.cat> 
+    Marta Coronado <marta.coronado@uab.cat>
+    Jesús Murga <jesus.murga@uab.cat>
 Maintainer: Jesús Murga <jesus.murga@uab.cat>
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
-Depends: R (>= 3.3), ggplot2,
+Depends: R (>= 3.3), ggplot2
 Imports: knitr, utils, stats, cowplot, reshape2, nls2, MASS, ggthemes
 VignetteBuilder: knitr
-NeedsCompilation: no
-Packaged: 2017-12-21 12:19:43 UTC; jmurga

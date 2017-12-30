@@ -104,7 +104,7 @@ The iMKT package includes several funcions, classified as follows:
 
 &nbsp;
 
-Each function has an associated help page with its description, details about its parameters, usage, examples and so on. Rembember you can access it writting ?? and the function name (or ??library::function) in your console (*example*: ??iMKT::standardMK).
+Each function has an associated help page with its description, details about its parameters, usage, examples and so on. Rembember you can access it writting ? and the function name (or ?library::function) in your console (*example*: ?iMKT::standardMK).
 
 This vignette focuses on the first category of functions: "MKT derived methodologies calculation". Specifically, it contains examples of each function using the sample data described above. For details about functions from "iMKT using PopFly and PopHuman data" category check the corresponding vignette. The functions from the third category are used within other functions and do not produce analyses output.
 
@@ -173,14 +173,14 @@ FWW(daf=myDafData, divergence=myDivergenceData)
 
 &nbsp;
 
-By default the argument **list_cutoff** uses a list of cutoffs with the following values: 0, 0.05, 0.1. Moreover, the function has an optional argument, **plot**, which is set to **FALSE** by default. This parameters can be customized, like in the following example, where we use a list of 4 cutoffs (0.05, 0.15, 0.25, 0.35) and set the plot argument to **TRUE**.
+By default the argument **listCutoffs** uses a list of cutoffs with the following values: 0, 0.05, 0.1. Moreover, the function has an optional argument, **plot**, which is set to **FALSE** by default. This parameters can be customized, like in the following example, where we use a list of 4 cutoffs (0.05, 0.15, 0.25, 0.35) and set the plot argument to **TRUE**.
 
 The output in this case contains a **Graph** which shows the adaptation value (alpha) obtained using each cutoff.
 
 &nbsp;
 
 ```{r FWW plot, echo=TRUE, fig.width=6, fig.height=4}
-FWW(daf=myDafData, divergence=myDivergenceData, list_cutoff=c(0.05, 0.15,0.25,0.35), plot=TRUE)
+FWW(daf=myDafData, divergence=myDivergenceData, listCutoffs=c(0.05, 0.15,0.25,0.35), plot=TRUE)
 ```
 
 &nbsp;
@@ -208,14 +208,14 @@ DGRP(daf=myDafData, divergence=myDivergenceData)
 
 &nbsp;
 
-Again, by default the argument **list_cutoff** uses a list of cutoffs with the following values: 0, 0.05, 0.1, and the argument **plot** is set to **FALSE**. This parameters can be customized, like in the following example, where we use a list of 4 cutoffs (0.05, 0.15, 0.25, 0.35) and set the plot argument to **TRUE**.
+Again, by default the argument **listCutoffs** uses a list of cutoffs with the following values: 0, 0.05, 0.1, and the argument **plot** is set to **FALSE**. This parameters can be customized, like in the following example, where we use a list of 4 cutoffs (0.05, 0.15, 0.25, 0.35) and set the plot argument to **TRUE**.
 
 The output in this case contains two **Graphs** which show the adaptation value (alpha) and the negative selection fractions obtained using each cutoff.
 
 &nbsp;
 
 ```{r, echo=TRUE, fig.width=6, fig.height=6}
-DGRP(daf=myDafData, divergence=myDivergenceData, list_cutoff=c(0.05, 0.15,0.25,0.35), plot=TRUE)
+DGRP(daf=myDafData, divergence=myDivergenceData, listCutoffs=c(0.05, 0.15,0.25,0.35), plot=TRUE)
 ```
 
 &nbsp;

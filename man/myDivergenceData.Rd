@@ -3,7 +3,7 @@
 \docType{data}
 \name{myDivergenceData}
 \alias{myDivergenceData}
-\title{Example data frames}
+\title{Sample Divergence data frame}
 \format{A data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes}
 \usage{
 myDivergenceData
@@ -17,4 +17,4 @@ Data frame containing divergence sample data
   \item D0. number of neutral divergent sites
 }
 }
-\keyword{datasets}
+\keyword{SampleData}

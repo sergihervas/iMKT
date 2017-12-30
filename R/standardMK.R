@@ -16,6 +16,7 @@
 #' @import stats
 #' @importFrom knitr kable 
 #'
+#' @keywords MKT
 #' @export
 
 standardMK <- function(daf, divergence) {

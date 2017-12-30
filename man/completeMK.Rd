@@ -18,15 +18,16 @@ completeMK(daf, divergence, xlow, xhigh, seed)
 \item{seed}{seed value (optional). No seed by default}
 }
 \value{
-List with all MKT results: standardMK, FWW, DGRP, asymptoticMK, iMK
+List with the diverse MKT results: standardMK, FWW, DGRP, asymptoticMK, iMK
 }
 \description{
 MKT calculation using all methodologies included in the package: standardMK, FWW, DGRP, asymptoticMK, iMK.
 }
 \details{
-Perform all MKT derived methodologies at the same time using the same input parameters.
+Perform all MKT derived methodologies at once using the same input data and parameters.
 }
 \examples{
-completeMK(myDafData, myDivergenceData, 0, 0.9)
+completeMK(myDafData, myDivergenceData, xlow=0, xhigh=0.9)
 
 }
+\keyword{MKT}

@@ -20,3 +20,4 @@ This function loads PopHuman data (Mulet et al. 2017 NAR, http://pophuman.uab.ca
 # loadPopHuman()
 
 }
+\keyword{PopData}

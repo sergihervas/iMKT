@@ -27,13 +27,13 @@ standardMK(daf=myDafData, divergence=myDivergenceData)
 FWW(daf=myDafData, divergence=myDivergenceData)
 
 ## ----FWW plot, echo=TRUE, fig.width=6, fig.height=4----------------------
-FWW(daf=myDafData, divergence=myDivergenceData, list_cutoff=c(0.05, 0.15,0.25,0.35), plot=TRUE)
+FWW(daf=myDafData, divergence=myDivergenceData, listCutoffs=c(0.05, 0.15,0.25,0.35), plot=TRUE)
 
 ## ----DGRP, echo=TRUE-----------------------------------------------------
 DGRP(daf=myDafData, divergence=myDivergenceData)
 
 ## ---- echo=TRUE, fig.width=6, fig.height=6-------------------------------
-DGRP(daf=myDafData, divergence=myDivergenceData, list_cutoff=c(0.05, 0.15,0.25,0.35), plot=TRUE)
+DGRP(daf=myDafData, divergence=myDivergenceData, listCutoffs=c(0.05, 0.15,0.25,0.35), plot=TRUE)
 
 ## ----Asymptotic MKT, echo=TRUE-------------------------------------------
 asymptoticMK(daf=myDafData, divergence=myDivergenceData, xlow=0, xhigh=0.9)

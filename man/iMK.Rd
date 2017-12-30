@@ -35,3 +35,4 @@ iMK(myDafData, myDivergenceData, xlow=0, xhigh=0.9)
 iMK(myDafData, myDivergenceData, xlow=0, xhigh=0.9, plot=TRUE)
 
 }
+\keyword{MKT}

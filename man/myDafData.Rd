@@ -3,7 +3,7 @@
 \docType{data}
 \name{myDafData}
 \alias{myDafData}
-\title{Example data frames}
+\title{Sample DAF data frame}
 \format{A data frame containing polymorphic sites for selected (i) and neutral (0) classes at different DAF categories}
 \usage{
 myDafData
@@ -16,4 +16,4 @@ Data frame containing polymorphism sample data
   \item P0. number of neutral (0) polymorphic sites for each daf category
 }
 }
-\keyword{datasets}
+\keyword{SampleData}

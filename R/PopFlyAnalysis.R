@@ -26,6 +26,7 @@
 #' @import utils
 #' @import stats
 #'
+#' @keywords PopData
 #' @export
 
 PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2","..."), recomb=TRUE/FALSE, bins=0, test=c("standardMK","DGRP","FWW","asymptoticMK","iMK"), xlow=0, xhigh=1) { 

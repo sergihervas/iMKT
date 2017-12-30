@@ -4,14 +4,14 @@
 \alias{FWW}
 \title{FWW correction method}
 \usage{
-FWW(daf, divergence, list_cutoffs = c(0, 0.05, 0.1), plot = FALSE)
+FWW(daf, divergence, listCutoffs = c(0, 0.05, 0.1), plot = FALSE)
 }
 \arguments{
 \item{daf}{data frame containing DAF, Pi and P0 values}
 
 \item{divergence}{data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes}
 
-\item{list_cutoffs}{list of cutoffs to use (optional). Default cutoffs are: 0, 0.05, 0.1}
+\item{listCutoffs}{list of cutoffs to use (optional). Default cutoffs are: 0, 0.05, 0.1}
 
 \item{plot}{report plot (optional). Default is FALSE}
 }
@@ -22,7 +22,7 @@ MKT corrected by the FWW method. List with alpha results, graph (optional), dive
 MKT calculation corrected using FWW method (Fay et al. 2001 Genetics).
 }
 \details{
-In the standard McDonald and Kreitman test, the estimate of adaptive evolution (alpha) can be easily biased by the segregation of slightly deleterious non-synonymous substitutions. Specifically, slightly deleterious mutations contribute to polymorphism but not to divergence, and thus, lead to an underestimation of alpha. Because they tend to segregate at lower frequencies than do neutral mutations, they can be partially controled by removing low frequency polymorphisms from the analysis. This is known as the FWW method.
+In the standard McDonald and Kreitman test, the estimate of adaptive evolution (alpha) can be easily biased by the segregation of slightly deleterious non-synonymous substitutions. Specifically, slightly deleterious mutations contribute more to polymorphism than they do to divergence, and thus, lead to an underestimation of alpha. Because they tend to segregate at lower frequencies than do neutral mutations, they can be partially controled by removing low frequency polymorphisms from the analysis. This is known as the FWW method.
 }
 \examples{
 ## Using default cutoffs
@@ -31,3 +31,4 @@ FWW(myDafData, myDivergenceData)
 FWW(myDafData, myDivergenceData, c(0.05, 0.1, 0.15), plot=TRUE)
 
 }
+\keyword{MKT}

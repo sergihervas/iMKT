@@ -42,3 +42,4 @@ PopFlyAnalysis(genes=mygenes , pops=c("RAL","ZI"), recomb=FALSE, test="iMK", xlo
 PopFlyAnalysis(genes=mygenes , pops=c("RAL","ZI"), recomb=TRUE, bins=3, test="DGRP")
 
 }
+\keyword{PopData}

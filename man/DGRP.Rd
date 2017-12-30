@@ -4,14 +4,14 @@
 \alias{DGRP}
 \title{DGRP correction method}
 \usage{
-DGRP(daf, divergence, list_cutoffs = c(0, 0.05, 0.1), plot = FALSE)
+DGRP(daf, divergence, listCutoffs = c(0, 0.05, 0.1), plot = FALSE)
 }
 \arguments{
 \item{daf}{data frame containing DAF, Pi and P0 values}
 
 \item{divergence}{data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes}
 
-\item{list_cutoffs}{list of cutoffs to use (optional). Default cutoffs are: 0, 0.05, 0.1}
+\item{listCutoffs}{list of cutoffs to use (optional). Default cutoffs are: 0, 0.05, 0.1}
 
 \item{plot}{report plot (optional). Default is FALSE}
 }
@@ -22,7 +22,7 @@ MKT corrected by the DGRP method. List with alpha results, graph (optional), div
 MKT calculation corrected using DGRP method (Mackay et al. 2012 Nature).
 }
 \details{
-In the standard McDonald and Kreitman test, the estimate of adaptive evolution (alpha) can be easily biased by the segregation of slightly deleterious non-synonymous substitutions. Specifically, slightly deleterious mutations contribute to polymorphism but not to divergence, and thus, lead to an underestimation of alpha. Because adaptive mutations and weakly deleterious selection act in opposite directions on the MKT, alpha and the fraction of substitutions that are slighlty deleterious, b, will be both underestimated when both selection regimes occur. To take adaptive and slighlty deleterious mutations mutually into account, Pi, the count off segregatning sites in class i, should be separated into the number of neutral variants and the number of weakly deleterious variants, Pi = Pineutral + Pi weak del. Alpha is then estimated as 1-(Pineutral/P0)(D0/Di). As weakly deleterious mutations tend to segregate at low frequencies, neutral and weakly deleterious fractions from Pi can be estimated based on any frequency cutoff established.
+In the standard McDonald and Kreitman test, the estimate of adaptive evolution (alpha) can be easily biased by the segregation of slightly deleterious non-synonymous substitutions. Specifically, slightly deleterious mutations contribute more to polymorphism than they do to divergence, and thus, lead to an underestimation of alpha. Because adaptive mutations and weakly deleterious selection act in opposite directions on the MKT, alpha and the fraction of substitutions that are slighlty deleterious, b, will be both underestimated when both selection regimes occur. To take adaptive and slighlty deleterious mutations mutually into account, Pi, the count off segregatning sites in class i, should be separated into the number of neutral variants and the number of weakly deleterious variants, Pi = Pineutral + Pi weak del. Alpha is then estimated as 1-(Pineutral/P0)(D0/Di). As weakly deleterious mutations tend to segregate at low frequencies, neutral and weakly deleterious fractions from Pi can be estimated based on any frequency cutoff established.
 }
 \examples{
 ## Using default cutoffs
@@ -31,3 +31,4 @@ DGRP(myDafData, myDivergenceData)
 DGRP(myDafData, myDivergenceData, c(0.05, 0.1, 0.15), plot=TRUE)
 
 }
+\keyword{MKT}

@@ -41,3 +41,4 @@ PopHumanAnalysis(genes=mygenes , pops=c("CEU","YRI"), recomb=FALSE, test="standa
 PopHumanAnalysis(genes=mygenes , pops=c("CEU"), recomb=TRUE, bins=3, test="DGRP")
 
 }
+\keyword{PopData}

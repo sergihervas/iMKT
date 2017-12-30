@@ -12,6 +12,7 @@
 #' 
 #' @import utils
 #'
+#' @keywords PopData
 #' @export
 
 loadPopFly <- function() {

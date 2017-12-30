@@ -2,11 +2,11 @@
 #'
 #' @description MKT calculation corrected using DGRP method (Mackay et al. 2012 Nature).
 #'
-#' @details In the standard McDonald and Kreitman test, the estimate of adaptive evolution (alpha) can be easily biased by the segregation of slightly deleterious non-synonymous substitutions. Specifically, slightly deleterious mutations contribute to polymorphism but not to divergence, and thus, lead to an underestimation of alpha. Because adaptive mutations and weakly deleterious selection act in opposite directions on the MKT, alpha and the fraction of substitutions that are slighlty deleterious, b, will be both underestimated when both selection regimes occur. To take adaptive and slighlty deleterious mutations mutually into account, Pi, the count off segregatning sites in class i, should be separated into the number of neutral variants and the number of weakly deleterious variants, Pi = Pineutral + Pi weak del. Alpha is then estimated as 1-(Pineutral/P0)(D0/Di). As weakly deleterious mutations tend to segregate at low frequencies, neutral and weakly deleterious fractions from Pi can be estimated based on any frequency cutoff established.
+#' @details In the standard McDonald and Kreitman test, the estimate of adaptive evolution (alpha) can be easily biased by the segregation of slightly deleterious non-synonymous substitutions. Specifically, slightly deleterious mutations contribute more to polymorphism than they do to divergence, and thus, lead to an underestimation of alpha. Because adaptive mutations and weakly deleterious selection act in opposite directions on the MKT, alpha and the fraction of substitutions that are slighlty deleterious, b, will be both underestimated when both selection regimes occur. To take adaptive and slighlty deleterious mutations mutually into account, Pi, the count off segregatning sites in class i, should be separated into the number of neutral variants and the number of weakly deleterious variants, Pi = Pineutral + Pi weak del. Alpha is then estimated as 1-(Pineutral/P0)(D0/Di). As weakly deleterious mutations tend to segregate at low frequencies, neutral and weakly deleterious fractions from Pi can be estimated based on any frequency cutoff established.
 #'
 #' @param daf data frame containing DAF, Pi and P0 values
 #' @param divergence data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes
-#' @param list_cutoffs list of cutoffs to use (optional). Default cutoffs are: 0, 0.05, 0.1
+#' @param listCutoffs list of cutoffs to use (optional). Default cutoffs are: 0, 0.05, 0.1
 #' @param plot report plot (optional). Default is FALSE
 #' 
 #' @return MKT corrected by the DGRP method. List with alpha results, graph (optional), divergence metrics, MKT tables and negative selection fractions
@@ -25,6 +25,7 @@
 #' @importFrom reshape2 melt 
 #' @importFrom knitr kable 
 #'
+#' @keywords MKT
 #' @export
 
 
@@ -32,7 +33,7 @@
 ################# MKT-FWW function #################
 ####################################################
 
-DGRP <- function(daf, divergence, list_cutoffs=c(0, 0.05, 0.1), plot=FALSE) {
+DGRP <- function(daf, divergence, listCutoffs=c(0,0.05,0.1), plot=FALSE) {
   
   ## Check data
   check <- checkInput(daf, divergence, 0, 1)
@@ -54,7 +55,7 @@ DGRP <- function(daf, divergence, list_cutoffs=c(0, 0.05, 0.1), plot=FALSE) {
   names(div_table) <- c("Ka", "Ks", "omega")
   
   ## Iterate along cutoffs
-  for (cutoff in list_cutoffs) {
+  for (cutoff in listCutoffs) {
     
     daf_below_cutoff <- daf[daf$daf <= cutoff, ] ## below DAF
     daf_above_cutoff <- daf[daf$daf > cutoff, ] ## over DAF 

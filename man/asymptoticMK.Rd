@@ -24,9 +24,10 @@ Estimation of asymptotic alpha and details about the model fit (function paramet
 MKT calculation using asymptoticMK method (Messer and Petrov 2012 PNAS; Haller and Messer 2017 G3)
 }
 \details{
-In the standard McDonald and Kreitman test, the estimate of adaptive evolution (alpha) can be easily biased by the segregation of slightly deleterious non-synonymous substitutions. Specifically, slightly deleterious mutations contribute to polymorphism but not to divergence, and thus, lead to an underestimation of alpha. Messer and Petrov proposed a simple asymptotic extension of the MK test that yields accurate estimates of alpha. Briefly, this method first estimates alpha for each DAF category using its specific Pi and P0 values and then fits an exponential function to this values, of the form: alpha Fit(x) = a + b exp(-cx). Finally, the asymptotic alpha estimate is obtained by extrapolating the value of this function to x = 1: alpha Asymptotic = alpha Fit (x=1). The code of this function is adapted from Haller and Messer 2017 G3 (http://github.com/MesserLab/asymptoticMK).
+In the standard McDonald and Kreitman test, the estimate of adaptive evolution (alpha) can be easily biased by the segregation of slightly deleterious non-synonymous substitutions. Specifically, slightly deleterious mutations contribute more to polymorphism than they do to divergence, and thus, lead to an underestimation of alpha. Messer and Petrov proposed a simple asymptotic extension of the MK test that yields accurate estimates of alpha. Briefly, this method first estimates alpha for each DAF category using its specific Pi and P0 values and then fits an exponential function to this values, of the form: alpha Fit(x) = a + b exp(-cx). Finally, the asymptotic alpha estimate is obtained by extrapolating the value of this function to x = 1: alpha Asymptotic = alpha Fit (x=1). The code of this function is adapted from Haller and Messer 2017 G3 (http://github.com/MesserLab/asymptoticMK).
 }
 \examples{
 asymptoticMK(myDafData, myDivergenceData, xlow=0, xhigh=0.9)
 
 }
+\keyword{MKT}

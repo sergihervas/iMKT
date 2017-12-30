@@ -2,7 +2,7 @@
 #'
 #' @description MKT calculation using all methodologies included in the package: standardMK, FWW, DGRP, asymptoticMK, iMK.
 #' 
-#' @details Perform all MKT derived methodologies at the same time using the same input parameters.
+#' @details Perform all MKT derived methodologies at once using the same input data and parameters.
 #'
 #' @param daf data frame containing DAF, Pi and P0 values
 #' @param divergence data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes
@@ -10,14 +10,15 @@
 #' @param xhigh higher limit for asymptotic alpha fit
 #' @param seed seed value (optional). No seed by default
 #'
-#' @return List with all MKT results: standardMK, FWW, DGRP, asymptoticMK, iMK
+#' @return List with the diverse MKT results: standardMK, FWW, DGRP, asymptoticMK, iMK
 #'
 #' @examples 
-#' completeMK(myDafData, myDivergenceData, 0, 0.9)
+#' completeMK(myDafData, myDivergenceData, xlow=0, xhigh=0.9)
 #' 
 #' @import utils
 #' @import stats
 #'
+#' @keywords MKT
 #' @export
 
 completeMK <- function(daf, divergence, xlow, xhigh, seed) {
