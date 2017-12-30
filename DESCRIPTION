@@ -2,8 +2,8 @@ Package: iMKT
 Title: Integrative McDonald and Kreitman Test
 Version: 0.1.1
 Date: 2017-12-01
-Description: McDonald and Kreitman Test and MK-derived methodologies
-Authors: Sergi Hervas <sergi.hervas@uab.cat>
+Description: McDonald and Kreitman Test and MK-derived methodologies.
+Author: Sergi Hervas <sergi.hervas@uab.cat>
 		Marta Coronado <marta.coronado@uab.cat>
 		Jesús Murga <jesus.murga@uab.cat>
 Maintainer: Jesús Murga <jesus.murga@uab.cat>

@@ -19,8 +19,8 @@
 #' mygenes <- c("AHNAK2","MUC5B","MUC4","TTN","MUC16","PLIN4", 
 #'              "OBSCN","PLEC","MUC12","PKD1","LAMA5","HELZ2")
 #' ## Perform analyses
-#' PopHumanAnalysis(genes=mygenes , pops=c("CEU","YRI"), recomb=F, test="standardMK")
-#' PopHumanAnalysis(genes=mygenes , pops=c("CEU"), recomb=T, bins=3, test="DGRP")
+#' PopHumanAnalysis(genes=mygenes , pops=c("CEU","YRI"), recomb=FALSE, test="standardMK")
+#' PopHumanAnalysis(genes=mygenes , pops=c("CEU"), recomb=TRUE, bins=3, test="DGRP")
 #' 
 #' @import utils
 #' @import stats

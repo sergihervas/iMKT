@@ -20,8 +20,8 @@
 #'              "FBgn0260965", "FBgn0028899", "FBgn0052580", "FBgn0036181",
 #'              "FBgn0263077", "FBgn0013733", "FBgn0031857", "FBgn0037836")
 #' ## Perform analyses
-#' PopFlyAnalysis(genes=mygenes , pops=c("RAL","ZI"), recomb=F, test="iMK", xlow=0, xhigh=0.9)
-#' PopFlyAnalysis(genes=mygenes , pops=c("RAL","ZI"), recomb=T, bins=3, test="DGRP")
+#' PopFlyAnalysis(genes=mygenes , pops=c("RAL","ZI"), recomb=FALSE, test="iMK", xlow=0, xhigh=0.9)
+#' PopFlyAnalysis(genes=mygenes , pops=c("RAL","ZI"), recomb=TRUE, bins=3, test="DGRP")
 #' 
 #' @import utils
 #' @import stats
