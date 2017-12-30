@@ -9,9 +9,14 @@ knitr::opts_chunk$set(
 )
 
 ## ----popfly data, echo=TRUE, fig.width=7---------------------------------
+## Load the iMKT library
 library(iMKT)
+
+## Load PopFlyData
 loadPopFly()
-ls() ## new object created
+
+## Check data object
+ls()
 names(PopFlyData)
 
 ## ----PopFly data retrieve automated no recomb, echo=TRUE-----------------
