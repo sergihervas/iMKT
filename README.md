@@ -5,7 +5,7 @@
 
 Overview
 --------
-iMKT is an R package to compute the integrative McDonald and Kreitman test. It includes several MK derived methodologies which allow inferring the rate of adaptive evolution (α) and two new approximations to quantify the different negative selection regimes (d: strongly deleterious, b: weakly deleterious, f: neutral) from polymorphism and divergence genomic data.
+iMKT is an R package to compute the integrative McDonald and Kreitman test. It includes several MK derived methodologies which allow inferring the rate of adaptive evolution (alpha) and two new approximations to quantify the different negative selection regimes (d: strongly deleterious, b: weakly deleterious, f: neutral) from polymorphism and divergence genomic data.
 
 
 Installation
@@ -25,11 +25,11 @@ library(iMKT)
 
 Usage
 -----
-Shortly, iMKT allows performing diverse MK-derived tests using the number of polymorphic (P, classified in DAF categories), divergent (D) and analyzed (m) sites for neutral (0) and selected (i) classes. In brief, most functions require two input parameters: ```daf``` (data frame containing daf, Pi and P0) and ```divergence``` (data frame containing mi, Di, m0, D0) and return the estimation of α together with specific details of the methodology.
+In summary, iMKT allows performing diverse MK-derived tests using the number of polymorphic (P, classified in DAF categories), divergent (D) and analyzed (m) sites for neutral (0) and selected (i) classes. Briefly, most functions require two input parameters: ```daf``` (data frame containing daf, Pi and P0) and ```divergence``` (data frame containing mi, Di, m0, D0) and return the estimation of α together with specific details of the methodology.
 
-The package includes two sample data frames (```myDafData```, ```myDivergenceData```). The vignettes and manual documentation contains detailed descriptions and examples regarding each function, types of analyses, how to use PopFly and PopHuman genomic data, etc.
+The package includes two sample data frames (```myDafData```, ```myDivergenceData```). The vignettes and manual documentation contain detailed descriptions and examples regarding each function, types of analyses, how to use PopFly and PopHuman genomic data, etc.
 
-The following example shows how to perform standard MKT using sample data:
+The following example shows how to perform standard MKT using sample data and illustrates how iMKT package works.
 ``` r
 ## Sample daf data included in the package
 head(myDafData)
@@ -91,27 +91,21 @@ If you have any feedback or feature requests regarding iMKT, please contact anto
 ## List of things to do:
 
 ### R Package
-- Update Readme.md
-- Update manual.pdf: "R CMD Rd2pdf /home/sergi/git/iMKT/"
-- Build package:
-	- Extra stuff about Roxygen2 and the .Rd format
-	- Document correctly functions
-	- Vignettes 
-	- Check functions independently / Tests
-	- Rename variables (wordWord2). **Do it for all variables inside all functions or only for functionNames and dataFrames?**
-	- Check consistency of variables and style along functions
+- Check and Update Readme.md (License, Citation, Usage)
+- Check manual.pdf (https://github.com/sergihervas/iMKT/blob/master/inst/doc/iMKT.pdf)
+- Update vignettes
+- Check functions independently and with diverse types of data. Error handling!
+- Check consistency of variables and style along functions
 - Functions:
 	- Put in functions comparision scripts (Jesus) **What is this?**
-	- PopHuman functions: **Sergi**
-		- **S** Check times of download functions: loadPopFly() & loadPopHuman. Around 20 seconds the first one	
-		- Update pophuman data file!		
-- Reference Messer & Haller code (Question: Shall we write to them to let them know we're implementing their code into another package?). **S** We reference their code in the asymptoticMK function. We can write them later, as Antonio suggested.
+	- Update PopHuman data file!	
+- We reference Messer and Haller code in the asymptoticMK function. We should write them when everything is almost finished, as Antonio suggested.
 
 
 ### Server
 - Implement GUI through web-server (with Django) (Ask Esteve for help? **M** the web looks awesome Jesus!!!)(Jesús **in progress**)  
 - Rewrite funcionts to run from terminal (receiving input/inputs) and generate html (Jesús **in progress**)
-- daf.pl: Modify perl functions to extract the correct files.
+- daf.pl: Modify perl functions to extract the correct files (**S**)
 
 
 ### Manuscript
