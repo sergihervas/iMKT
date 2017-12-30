@@ -1,26 +1,26 @@
-#' @title PopHumanAnalysis
+#' @title iMKT using PopHuman data
 #'
-#' @description Perform any MK test using a subset of PopHuman data defined by custom genes and populations lists
+#' @description Perform any MKT method using a subset of PopHuman data defined by custom genes and populations lists
 #'
-#' @details Recombination values (recomb=T) from Bheller et al. (reference!)
+#' @details Execute any MKT method (standardMK, FWW, DGRP, asymptoticMK, iMKT) using a subset of PopHuman data defined by custom genes and populations lists. It uses the dataframe PopHumanData, which can be already loaded in the workspace (using loadPopHuman()) or is directly loaded when executing this function. It also allows deciding whether to analyze genes groupped by recombination bins or not, using recombination rate values corresponding to the sex average estimates from Bhérer et al. 2017 Nature Commun. 
 #'
-#' @param genes list of genes
-#' @param pops list of populations
-#' @param recomb group genes according to recombination values (must specify number of bins). TRUE/FALSE. Recomb values (cM/Mb) from Bheller et al.
-#' @param bins number of recombination bins to compute (mandatory if recomb = TRUE)
+#' @param genes list of genes to analyze
+#' @param pops list of populations to analyze
+#' @param recomb group genes according to recombination values (TRUE/FALSE)
+#' @param bins number of recombination bins to compute (mandatory if recomb=TRUE)
 #' @param test which test to perform. Options include: standardMK (default), DGRP, FWW, asymptoticMK, iMK
 #' @param xlow lower limit for asymptotic alpha fit (default=0)
 #' @param xhigh higher limit for asymptotic alpha fit (default=1)
 #' 
-#' @return None
+#' @return List of lists with the default test output for each selected population (and recombination bin when defined)
 #'
 #' @examples
 #' ## List of genes
-#' # mygenes <- c("AHNAK2","MUC5B","MUC4","TTN","MUC16","PLIN4", 
-#' #              "OBSCN","PLEC","MUC12","PKD1","LAMA5","HELZ2")
+#' mygenes <- c("AHNAK2","MUC5B","MUC4","TTN","MUC16","PLIN4", 
+#'              "OBSCN","PLEC","MUC12","PKD1","LAMA5","HELZ2")
 #' ## Perform analyses
-#' # PopHumanAnalysis(genes=mygenes , pops=c("CEU","YRI"), recomb=F, test="standardMK")
-#' # PopHumanAnalysis(genes=mygenes , pops=c("CEU"), recomb=T, bins=3, test="DGRP")
+#' PopHumanAnalysis(genes=mygenes , pops=c("CEU","YRI"), recomb=F, test="standardMK")
+#' PopHumanAnalysis(genes=mygenes , pops=c("CEU"), recomb=T, bins=3, test="DGRP")
 #' 
 #' @import utils
 #' @import stats

@@ -2,20 +2,21 @@
 % Please edit documentation in R/loadPopHuman.R
 \name{loadPopHuman}
 \alias{loadPopHuman}
-\title{loadPopHuman}
+\title{Load PopHuman dataset}
 \usage{
 loadPopHuman()
 }
 \value{
-None
+PopHumanData object loaded in the workspace
 }
 \description{
-Load PopHuman dataset
+Load PopHuman dataset with information regarding protein coding gene annotations
 }
 \details{
-This function loads PopHuman data (http://pophuman.uab.cat/) into the current workspace. Data is stored in a dataframe named PopFlyData.
+This function loads PopHuman data (Mulet et al. 2017 NAR, http://pophuman.uab.cat/) into the current workspace. Data is stored in a dataframe named PopHumanData, which includes population genetics estimates (nucleotide diversity, divergence, basic tests of neutrality, recombination rates, etc.) regarding each protein coding gene for 26 worldwide Homo sapiens populations from the 1000 Genomes Project (The 1000 Genomes Project Consortium 2012 Nature, The 1000 Genomes Project Consortium 2015 Nature).
 }
 \examples{
+## Load PopHuman data if necessary. This process may take several seconds to complete.
 # loadPopHuman()
 
 }

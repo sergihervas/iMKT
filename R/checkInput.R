@@ -1,14 +1,13 @@
-#' @title checkInput
+#' @title Check input data
 #' 
-#' @description Check input data and return detailed errors when it is malformed.
-#' @details This function checks input data used in most package's functions (arguments daf, divergence, xlow and xhigh) and returns a brief description of the error(s) found. If data does not pass check_input() the requested analysis is not performed.
+#' @description Check input data and return detailed errors when it is malformed
+#' 
+#' @details Check input data used in most package's functions (arguments daf, divergence, xlow and xhigh) and return a brief description of the error(s) found. This function is called within each analysis function (standardMK, FWW, DGRP, asymptoticMK, iMK) and if data does not pass checkInput() without errors, the requested analysis is not performed. 
 #'
 #' @param daf data frame containing DAF, Pi and P0 values
 #' @param divergence data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes
 #' @param xlow lower limit for asymptotic alpha fit
 #' @param xhigh higher limit for asymptotic alpha fit
-#'
-#' @return None
 #'
 #' @import utils
 #' @import stats

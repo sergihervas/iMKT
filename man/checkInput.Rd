@@ -2,7 +2,7 @@
 % Please edit documentation in R/checkInput.R
 \name{checkInput}
 \alias{checkInput}
-\title{checkInput}
+\title{Check input data}
 \usage{
 checkInput(daf, divergence, xlow, xhigh)
 }
@@ -15,12 +15,9 @@ checkInput(daf, divergence, xlow, xhigh)
 
 \item{xhigh}{higher limit for asymptotic alpha fit}
 }
-\value{
-None
-}
 \description{
-Check input data and return detailed errors when it is malformed.
+Check input data and return detailed errors when it is malformed
 }
 \details{
-This function checks input data used in most package's functions (arguments daf, divergence, xlow and xhigh) and returns a brief description of the error(s) found. If data does not pass check_input() the requested analysis is not performed.
+Check input data used in most package's functions (arguments daf, divergence, xlow and xhigh) and return a brief description of the error(s) found. This function is called within each analysis function (standardMK, FWW, DGRP, asymptoticMK, iMK) and if data does not pass checkInput() without errors, the requested analysis is not performed.
 }

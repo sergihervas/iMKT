@@ -2,20 +2,20 @@
 % Please edit documentation in R/PopFlyAnalysis.R
 \name{PopFlyAnalysis}
 \alias{PopFlyAnalysis}
-\title{PopFlyAnalysis}
+\title{iMKT using PopFly data}
 \usage{
 PopFlyAnalysis(genes = c("gene1", "gene2", "..."), pops = c("pop1", "pop2",
   "..."), recomb = TRUE/FALSE, bins = 0, test = c("standardMK", "DGRP",
   "FWW", "asymptoticMK", "iMK"), xlow = 0, xhigh = 1)
 }
 \arguments{
-\item{genes}{list of genes}
+\item{genes}{list of genes to analyze}
 
-\item{pops}{list of populations}
+\item{pops}{list of populations to analyze}
 
-\item{recomb}{group genes according to recombination values (must specify number of bins). TRUE/FALSE. Recomb values (cM/Mb) from Comeron et al. 2012.}
+\item{recomb}{group genes according to recombination values (TRUE/FALSE)}
 
-\item{bins}{number of recombination bins to compute (mandatory if recomb = TRUE)}
+\item{bins}{number of recombination bins to compute (mandatory if recomb=TRUE)}
 
 \item{test}{which test to perform. Options include: standardMK (default), DGRP, FWW, asymptoticMK, iMK}
 
@@ -24,21 +24,21 @@ PopFlyAnalysis(genes = c("gene1", "gene2", "..."), pops = c("pop1", "pop2",
 \item{xhigh}{higher limit for asymptotic alpha fit (default=1)}
 }
 \value{
-None
+List of lists with the default test output for each selected population (and recombination bin when defined)
 }
 \description{
-Perform any MK test using a subset of PopFly data defined by custom genes and populations lists
+Perform any MKT method using a subset of PopFly data defined by custom genes and populations lists
 }
 \details{
-Recombination values (recomb=T) from Comeron et al. 2012 (reference!)
+Execute any MKT method (standardMK, FWW, DGRP, asymptoticMK, iMKT) using a subset of PopFly data defined by custom genes and populations lists. It uses the dataframe PopFlyData, which can be already loaded in the workspace (using loadPopFly()) or is directly loaded when executing this function. It also allows deciding whether to analyze genes groupped by recombination bins or not, using recombination rate estimates from Comeron et al. 2012 Plos Genetics.
 }
 \examples{
 ## List of genes
-# mygenes <- c("FBgn0053196", "FBgn0086906", "FBgn0261836", "FBgn0031617", 
-#              "FBgn0260965", "FBgn0028899", "FBgn0052580", "FBgn0036181",
-#              "FBgn0263077", "FBgn0013733", "FBgn0031857", "FBgn0037836")
+mygenes <- c("FBgn0053196", "FBgn0086906", "FBgn0261836", "FBgn0031617", 
+             "FBgn0260965", "FBgn0028899", "FBgn0052580", "FBgn0036181",
+             "FBgn0263077", "FBgn0013733", "FBgn0031857", "FBgn0037836")
 ## Perform analyses
-# PopFlyAnalysis(genes=mygenes , pops=c("RAL","ZI"), recomb=F, test="iMK", xlow=0, xhigh=0.9)
-# PopFlyAnalysis(genes=mygenes , pops=c("RAL","ZI"), recomb=T, bins=3, test="DGRP")
+PopFlyAnalysis(genes=mygenes , pops=c("RAL","ZI"), recomb=F, test="iMK", xlow=0, xhigh=0.9)
+PopFlyAnalysis(genes=mygenes , pops=c("RAL","ZI"), recomb=T, bins=3, test="DGRP")
 
 }
