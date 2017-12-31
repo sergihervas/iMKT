@@ -116,6 +116,7 @@ If you have any feedback or feature requests regarding iMKT, please contact anto
 - Manuscript: **M** suggests: 
 
 	- first, start writing the **Methods** (Sergi/Jesús: explain the data pipeline and such; Marta: I'm defining the different statistical test performed)
+	- **Follow methods progress at: https://github.com/sergihervas/genesMKT/blob/master/comparison-mcdonald-kreitman.pdf**
 		- Drosophila genome data: input seqs (DGN), reference annotations and outgroup species (refer PopFly).
 		- Human genome data: same as before (refer PopHuman). Maybe join 1 and 2 in Data description or sth like this.
 		- Main pipeline / workflow: Fasta/VCF > Recodification > DAF / div 
