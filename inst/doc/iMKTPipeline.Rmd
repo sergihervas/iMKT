@@ -40,7 +40,7 @@ This vignette contains three different sections:
 
 ## Loading the package and checking test data
 
-First of all, install (if this is not done yet) and load the package. Notice that iMKT package includes two sample dataframes named myDafData and myDivergenceData which are the ones used in this tutorial and correspond to XXXXXXXX (Chr2L RAL and simulans??). Therefore, it is possible to replicate the vignettes in order to better understand all the package functionalities. 
+First of all, install (if this is not done yet) and load the package. Notice that iMKT package includes two sample dataframes named myDafData and myDivergenceData which are the ones used in this tutorial and correspond to **Chr2L RAL and simulans??**. Therefore, it is possible to replicate the vignettes in order to better understand all the package functionalities. 
 
 &nbsp;
 
@@ -59,7 +59,7 @@ myDivergenceData
 
 &nbsp;
 
-The iMKT package includes several funcions, classified as follows:
+The iMKT package includes several functions, classified as follows:
 
 \begin{itemize}
 \item
