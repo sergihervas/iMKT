@@ -83,15 +83,18 @@ checkInput <- function(daf, divergence, xlow, xhigh){
         dataIsGood <- FALSE
         error <- "Daf contains all values == 0 (not allowed)."
         mainErrors <- append(mainErrors,error) }
-    if (any(Pi < 0) || all(Pi == 0)){   # note that zero is allowed, although not recommended
+    if (any(Pi < 0) ){ 
         dataIsGood <- FALSE
-        error <- "Pi contains values < 0 (not allowed) or Pi contains all values == 0 (not allowed)."
+        error <- "Pi contains values < 0 (not allowed)."
         mainErrors <- append(mainErrors,error) }
+    if (all(Pi == 0)){
+        warning("Pi contains all values == 0.") }
     if (any(P0 < 0) || all(P0 == 0)){ 
         dataIsGood <- FALSE
         error <- "P0 contains values < 0 (not allowed) or P0 contains all values == 0 (not allowed)."
         mainErrors <- append(mainErrors,error) } 
-    # if (any(P0 == 0)){ 
+    
+    # if (any(P0 == 0)){  ## Only for asymptoticMK and iMK
     #    warning("Input daf file contains P0 values = 0.\nThis can bias the function fitting and the estimation of alpha.")}
 
     ## Check if daf argument has enough data points
@@ -141,10 +144,12 @@ checkInput <- function(daf, divergence, xlow, xhigh){
         dataIsGood <- FALSE
         error <- "m0 must be greater than zero."
         mainErrors <- append(mainErrors,error) }
-    if (D0 <= 0){
+    if (D0 < 0){
         dataIsGood <- FALSE
         error <- "D0 must be greater than zero."
         mainErrors <- append(mainErrors,error) }
+    if (D0 == 0) {
+        warning("D0 == 0.") }
     if (Di <= 0){
         dataIsGood <- FALSE
         error <- "Di must be greater than zero."
