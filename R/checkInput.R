@@ -146,7 +146,7 @@ checkInput <- function(daf, divergence, xlow, xhigh){
         mainErrors <- append(mainErrors,error) }
     if (D0 < 0){
         dataIsGood <- FALSE
-        error <- "D0 must be greater than zero."
+        error <- "D0 must be greater or equal than zero."
         mainErrors <- append(mainErrors,error) }
     if (D0 == 0) {
         warning("D0 == 0.") }
