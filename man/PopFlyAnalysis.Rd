@@ -6,7 +6,7 @@
 \usage{
 PopFlyAnalysis(genes = c("gene1", "gene2", "..."), pops = c("pop1", "pop2",
   "..."), recomb = TRUE/FALSE, bins = 0, test = c("standardMK", "DGRP",
-  "FWW", "asymptoticMK", "iMK"), xlow = 0, xhigh = 1)
+  "FWW", "asymptoticMK", "iMK"), xlow = 0, xhigh = 1, plot = FALSE)
 }
 \arguments{
 \item{genes}{list of genes to analyze}
@@ -22,6 +22,8 @@ PopFlyAnalysis(genes = c("gene1", "gene2", "..."), pops = c("pop1", "pop2",
 \item{xlow}{lower limit for asymptotic alpha fit (default=0)}
 
 \item{xhigh}{higher limit for asymptotic alpha fit (default=1)}
+
+\item{plot}{report plot (optional). Default is FALSE}
 }
 \value{
 List of lists with the default test output for each selected population (and recombination bin when defined)
@@ -38,8 +40,8 @@ mygenes <- c("FBgn0053196", "FBgn0086906", "FBgn0261836", "FBgn0031617",
              "FBgn0260965", "FBgn0028899", "FBgn0052580", "FBgn0036181",
              "FBgn0263077", "FBgn0013733", "FBgn0031857", "FBgn0037836")
 ## Perform analyses
-PopFlyAnalysis(genes=mygenes , pops=c("RAL","ZI"), recomb=FALSE, test="iMK", xlow=0, xhigh=0.9)
-PopFlyAnalysis(genes=mygenes , pops=c("RAL","ZI"), recomb=TRUE, bins=3, test="DGRP")
+PopFlyAnalysis(genes=mygenes , pops="RAL", recomb=FALSE, test="iMK", xlow=0, xhigh=0.9, plot=TRUE)
+PopFlyAnalysis(genes=mygenes , pops=c("RAL","ZI"), recomb=TRUE, bins=3, test="DGRP", plot=FALSE)
 
 }
 \keyword{PopData}

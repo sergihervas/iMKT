@@ -6,7 +6,8 @@
 \usage{
 PopHumanAnalysis(genes = c("gene1", "gene2", "..."), pops = c("pop1",
   "pop2", "..."), recomb = TRUE/FALSE, bins = 0, test = c("standardMK",
-  "DGRP", "FWW", "asymptoticMK", "iMK"), xlow = 0, xhigh = 1)
+  "DGRP", "FWW", "asymptoticMK", "iMK"), xlow = 0, xhigh = 1,
+  plot = FALSE)
 }
 \arguments{
 \item{genes}{list of genes to analyze}
@@ -22,6 +23,8 @@ PopHumanAnalysis(genes = c("gene1", "gene2", "..."), pops = c("pop1",
 \item{xlow}{lower limit for asymptotic alpha fit (default=0)}
 
 \item{xhigh}{higher limit for asymptotic alpha fit (default=1)}
+
+\item{plot}{report plot (optional). Default is FALSE}
 }
 \value{
 List of lists with the default test output for each selected population (and recombination bin when defined)

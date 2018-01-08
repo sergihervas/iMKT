@@ -11,6 +11,7 @@
 #' @param test which test to perform. Options include: standardMK (default), DGRP, FWW, asymptoticMK, iMK
 #' @param xlow lower limit for asymptotic alpha fit (default=0)
 #' @param xhigh higher limit for asymptotic alpha fit (default=1)
+#' @param plot report plot (optional). Default is FALSE
 #' 
 #' @return List of lists with the default test output for each selected population (and recombination bin when defined)
 #'
@@ -28,7 +29,7 @@
 #' @keywords PopData
 #' @export
 
-PopHumanAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2","..."), recomb=TRUE/FALSE, bins=0, test=c("standardMK","DGRP","FWW","asymptoticMK","iMK"), xlow=0, xhigh=1) { 
+PopHumanAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2","..."), recomb=TRUE/FALSE, bins=0, test=c("standardMK","DGRP","FWW","asymptoticMK","iMK"), xlow=0, xhigh=1, plot=FALSE) { 
   
   ## Get PopHuman data
   if (exists("PopHumanData") == TRUE) {
@@ -186,17 +187,26 @@ PopHumanAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2
         if(test == "standardMK") {
           output <- standardMK(daf, div) 
           output <- c(output, recStats) } ## Add recomb summary for bin j
-        else if(test == "DGRP") {
+        else if(test == "DGRP" && plot == FALSE) {
           output <- DGRP(daf, div) 
           output <- c(output, recStats) }
-        else if(test == "FWW") {
+        else if(test == "DGRP" && plot == TRUE) {
+          output <- DGRP(daf, div, plot=TRUE) 
+          output <- c(output, recStats) }
+        else if(test == "FWW" && plot == FALSE) {
           output <- FWW(daf, div)           
+          output <- c(output, recStats) }
+        else if(test == "FWW" && plot == TRUE) {
+          output <- FWW(daf, div, plot=TRUE)           
           output <- c(output, recStats) }
         else if(test == "asymptoticMK") {
           output <- asymptoticMK(daf, div, xlow, xhigh) 
           output <- c(output, recStats) }
-        else if(test == "iMK") {
+        else if(test == "iMK" && plot == FALSE) {
           output <- iMK(daf, div, xlow, xhigh)
+          output <- c(output, recStats) }
+        else if(test == "iMK" && plot == TRUE) {
+          output <- iMK(daf, div, xlow, xhigh, plot=TRUE)
           output <- c(output, recStats) }
         
         ## Fill list with each bin
@@ -263,14 +273,20 @@ PopHumanAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2
       ## Perform test
       if(test == "standardMK") {
         output <- standardMK(daf, div) }
-      else if(test == "DGRP") {
+      else if(test == "DGRP" && plot == FALSE) {
         output <- DGRP(daf, div) }
-      else if(test == "FWW") {
+      else if(test == "DGRP" && plot == TRUE) {
+        output <- DGRP(daf, div, plot=TRUE) }
+      else if(test == "FWW" && plot == FALSE) {
         output <- FWW(daf, div) }
+      else if(test == "FWW" && plot == TRUE) {
+        output <- FWW(daf, div, plot=TRUE) }
       else if(test == "asymptoticMK") {
         output <- asymptoticMK(daf, div, xlow, xhigh) }
-      else if(test == "iMK") {
+      else if(test == "iMK" && plot == FALSE) {
         output <- iMK(daf, div, xlow, xhigh) }
+      else if(test == "iMK" && plot == TRUE) {
+        output <- iMK(daf, div, xlow, xhigh, plot=TRUE) }
       
       ## Fill list with each pop
       outputList[[paste("Population = ",i)]] <- output
