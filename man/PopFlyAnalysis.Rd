@@ -40,8 +40,8 @@ mygenes <- c("FBgn0053196", "FBgn0086906", "FBgn0261836", "FBgn0031617",
              "FBgn0260965", "FBgn0028899", "FBgn0052580", "FBgn0036181",
              "FBgn0263077", "FBgn0013733", "FBgn0031857", "FBgn0037836")
 ## Perform analyses
-PopFlyAnalysis(genes=mygenes , pops="RAL", recomb=FALSE, test="iMK", xlow=0, xhigh=0.9, plot=TRUE)
-PopFlyAnalysis(genes=mygenes , pops=c("RAL","ZI"), recomb=TRUE, bins=3, test="DGRP", plot=FALSE)
+PopFlyAnalysis(genes=mygenes, pops="RAL", recomb=FALSE, test="iMK", xlow=0, xhigh=0.9, plot=TRUE)
+PopFlyAnalysis(genes=mygenes, pops=c("RAL","ZI"), recomb=TRUE, bins=3, test="DGRP", plot=FALSE)
 
 }
 \keyword{PopData}
