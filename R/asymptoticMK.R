@@ -2,7 +2,7 @@
 #' 
 #' @description MKT calculation using asymptoticMK method (Messer and Petrov 2012 PNAS; Haller and Messer 2017 G3)
 #'
-#' @details In the standard McDonald and Kreitman test, the estimate of adaptive evolution (alpha) can be easily biased by the segregation of slightly deleterious non-synonymous substitutions. Specifically, slightly deleterious mutations contribute more to polymorphism than they do to divergence, and thus, lead to an underestimation of alpha. Messer and Petrov proposed a simple asymptotic extension of the MK test that yields accurate estimates of alpha. Briefly, this method first estimates alpha for each DAF category using its specific Pi and P0 values and then fits an exponential function to this values, of the form: alpha Fit(x) = a + b exp(-cx). Finally, the asymptotic alpha estimate is obtained by extrapolating the value of this function to x = 1: alpha Asymptotic = alpha Fit (x=1). The code of this function is adapted from Haller and Messer 2017 G3 (http://github.com/MesserLab/asymptoticMK).
+#' @details In the standard McDonald and Kreitman test, the estimate of adaptive evolution (alpha) can be easily biased by the segregation of slightly deleterious non-synonymous substitutions. Specifically, slightly deleterious mutations contribute more to polymorphism than they do to divergence, and thus, lead to an underestimation of alpha. Messer and Petrov proposed a simple asymptotic extension of the MK test that yields accurate estimates of alpha. Briefly, this method first estimates alpha for each DAF category using its specific Pi and P0 values and then fits an exponential function to this values, of the form: alpha Fit(x) = a + b exp(-cx). Although the exponential function is generally expected to provide the best fit, a linear function is also fit to the data, of the form: alpha Fit(x) = a + bx. Finally, the asymptotic alpha estimate is obtained by extrapolating the value of this function to x = 1: alpha Asymptotic = alpha Fit (x=1). The exponential fit is always reported, except if the exponential fit fails to converge or if the linear fit is superior according to AIC. The code of this function is adapted from Haller and Messer 2017 G3 (http://github.com/MesserLab/asymptoticMK).
 #'
 #' @param daf data frame containing DAF, Pi and P0 values
 #' @param divergence data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes
@@ -98,7 +98,7 @@ asymptoticMK <- function(daf, divergence, xlow, xhigh, seed) {
   if (length(mod1) == 0) {
     mod1 <- fitMKmodel(alpha_trimmed, f_trimmed, 20)
   } 
-  
+
   tryCatch({
     mod2 <- lm(alpha_trimmed ~ f_trimmed)
   }, error=function(cond) {})
@@ -206,20 +206,51 @@ asymptoticMK <- function(daf, divergence, xlow, xhigh, seed) {
     return(outMAT)      
   }
   
-  tryCatch({
-    ci_pred <- predictNLS(mod1, newdata=data.frame(f_trimmed=1.0))
-    alpha_1_low <- ci_pred[6]
-    alpha_1_high <- ci_pred[7]
+  ## Compare linear and exponential fit
+  linear_better <- FALSE
+
+  if ((length(mod1) == 0) || (AIC(mod2) < AIC(mod1))) {
+    linear_better <- TRUE }
+
+  ## If linear is not better, check wide of confidence intervals of exp fit
+  if (!linear_better) {
+    
+    tryCatch({
+      ci_pred <- predictNLS(mod1, newdata=data.frame(f_trimmed=1.0))
+      alpha_1_low <- ci_pred[6]
+      alpha_1_high <- ci_pred[7]
   
+      if ((alpha_1_low < -100) || (alpha_1_high > 100)) {
+        linear_better <- TRUE }
+  
+    }, error=function(cond) {cat("Could not compute CI for the exponential alpha fit.\n")})
+  }
+
+  ## If linear fit better than exp fit
+  if (linear_better) {
+
+    ## Predict linear model confidence, not prediction
+    ci_pred <- predict.lm(mod2, newdata=data.frame(f_trimmed=1.0), interval="confidence")
+    alpha_1_low <- ci_pred[2]
+    alpha_1_high <- ci_pred[3]
+    
+    alpha_1_est <- predict(mod2, newdata=data.frame(f_trimmed=1.0))
+    const_a <- coef(mod2)["(Intercept)"]
+    const_b <- coef(mod2)["f_trimmed"]
+    const_c <- NA
+  
+  ## If exp is the best fit
+  } else {
     ## Preparation of ouput (alpha asym, a, b, c)
     alpha_1_est <- predict(mod1, newdata=data.frame(f_trimmed=1.0))
     const_a <- coef(mod1)["const_a"]
     const_b <- coef(mod1)["const_b"]
     const_c <- coef(mod1)["const_c"]
-  
-    ## Output table
-    result_df <- data.frame(model="exponential", a=const_a, b=const_b, c=const_c, alpha_asymptotic=alpha_1_est, CI_low=ci_pred[6], CI_high=ci_pred[7], alpha_original=alpha_nonasymp, row.names=NULL)
-    return(result_df)
-  }, error=function(cond) {cat("Could not fit exponential model for the computation of asymptotic alpha.\n")})
-  
+    alpha_1_low <- ci_pred[6]
+    alpha_1_high <- ci_pred[7]
+  }
+
+  ## Output table
+  result_df <- data.frame(model=(if ((length(mod1) == 0) || linear_better) "linear" else "exponential"), a=const_a, b=const_b, c=const_c, alpha_asymptotic=alpha_1_est, CI_low=alpha_1_low, CI_high=alpha_1_high, alpha_original=alpha_nonasymp, row.names=NULL)
+  return(result_df)
 }
