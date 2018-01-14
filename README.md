@@ -5,7 +5,7 @@
 
 Overview
 --------
-iMKT is an R package to compute the McDonald and Kreitman test (McDonald and Kreitman, 1991, Nature) on polymorphism and divergence genomic data provided by the user or automatically downloaded from PopFly (Hervas et al. 2017 Bioinformatics) or PopHuman (Casillas et al., 2017 Nucleic Acids Res.). It includes five MK derived methodologies which allow inferring the rate of adaptive evolution (α) as well as the fraction of strongly deleterious (d), weakly deleterious (b), and neutral (f) sites.
+iMKT is an R package to compute the McDonald and Kreitman test (McDonald and Kreitman 1991 Nature) on polymorphism and divergence genomic data provided by the user or automatically downloaded from PopFly (Hervas et al. 2017 Bioinformatics) or PopHuman (Casillas et al. 2017 Nucleic Acids Res.). It includes five MK derived methodologies which allow inferring the rate of adaptive evolution (α) as well as the fraction of strongly deleterious (d), weakly deleterious (b), and neutral (f) sites.
 
 
 Installation
