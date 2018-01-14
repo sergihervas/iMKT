@@ -2,11 +2,12 @@ Package: iMKT
 Title: Integrative McDonald and Kreitman Test
 Version: 0.1.1
 Date: 2017-12-01
-Description: iMKT is an R package to compute the Integrative McDonald and Kreitman test. 
-    It includes several MK derived methodologies which allow inferring the rate of adap-
-    tive evolution and two new approximations to quantify the different negative selection
-    regimes (d: strongly deleterious, b: weakly deleterious, f: neutral) from polymorphism
-    and divergence genomic data.
+Description: iMKT is an R package to compute the McDonald and Kreitman test (McDonald 
+    and Kreitman 1991 Nature) on polymorphism and divergence genomic data provided by 
+    the user or automatically downloaded from PopFly (Hervas et al. 2017 Bioinformatics)
+    or PopHuman (Casillas et al. 2017 Nucleic Acids Res.). It includes five MK derived meth-
+    odologies which allow inferring the rate of adaptive evolution (alpha) as well as the frac-
+    tion of strongly deleterious (d), weakly deleterious (b), and neutral (f) sites.
 Author: Sergi Hervas <sergi.hervas@uab.cat> 
     Marta Coronado <marta.coronado@uab.cat>
     Jesús Murga <jesus.murga@uab.cat>
