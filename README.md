@@ -5,12 +5,12 @@
 
 Overview
 --------
-iMKT is an R package to compute the integrative McDonald and Kreitman test. It includes several MK derived methodologies which allow inferring the rate of adaptive evolution (alpha) and two new approximations to quantify the different negative selection regimes (d: strongly deleterious, b: weakly deleterious, f: neutral) from polymorphism and divergence genomic data.
+iMKT is an R package to compute the McDonald and Kreitman test (McDonald and Kreitman, 1991, Nature) on polymorphism and divergence genomic data provided by the user or automatically downloaded from PopFly (Hervas et al. 2017 Bioinformatics) or PopHuman (Casillas et al., 2017 Nucleic Acids Res.). It includes five MK derived methodologies which allow inferring the rate of adaptive evolution (α) as well as the fraction of strongly deleterious (d), weakly deleterious (b), and neutral (f) sites.
 
 
 Installation
 ------------
-The package is deposited in GitHub and must be installed using the devtools library.
+The package is deposited in GitHub and can be installed using the devtools library.
 ``` r
 ## Install devtools package if necessary
 install.packages("devtools")
@@ -25,11 +25,11 @@ library(iMKT)
 
 Usage
 -----
-In summary, iMKT allows performing diverse MK-derived tests using the number of polymorphic (P, classified in DAF categories), divergent (D) and analyzed (m) sites for neutral (0) and selected (i) classes. Briefly, most functions require two input parameters: ```daf``` (data frame containing daf, Pi and P0) and ```divergence``` (data frame containing mi, Di, m0, D0) and return the estimation of α together with specific details of the methodology.
+In summary, iMKT allows performing diverse MK-derived tests using the number of polymorphic (P, classified in Derived Allel Frequency (DAF) categories), divergent (D) and analyzed (m) sites for neutral (0) and selected (i) classes. Briefly, most functions require two input parameters: ```daf``` (data frame containing DAF, Pi and P0) and ```divergence``` (data frame containing mi, Di, m0, D0) and return the estimation of α together with specific details of the methodology.
 
-The package includes two sample data frames (```myDafData```, ```myDivergenceData```). The vignettes and manual documentation contain detailed descriptions and examples regarding each function, types of analyses, how to use PopFly and PopHuman genomic data, etc.
+The package includes two sample data frames (```myDafData```, ```myDivergenceData```). The vignettes and manual documentation contain detailed descriptions and examples of each function and type of analysis, and instructions on how to use PopFly and PopHuman genomic data.
 
-The following example shows how to perform standard MKT using sample data and illustrates how iMKT package works.
+The following example, which shows how to perform a standard MK test using sample data, is aimet at illustrating how the iMKT package works.
 ``` r
 ## Sample daf data included in the package
 head(myDafData)
@@ -82,54 +82,3 @@ Development & Contact
 iMKT has been developed by Sergi Hervas (sergi.hervas@uab.cat), Marta Coronado (marta.coronado@uab.cat) and Jesús Murga (jesus.murga@uab.cat), from the Bioinformatics of Genome Diversity group from the Universitat Autònoma de Barcelona (UAB) and the Institut de Biotecnologia i Biomedicina (IBB).
 
 If you have any feedback or feature requests regarding iMKT, please contact antonio.barbadilla@uab.cat or jesus.murga@uab.cat.
-
-
-
----------------------------------------------------------------------
----------------------------------------------------------------------
-
-## List of things to do:
-
-### R Package
-- Check and Update Readme.md (License, Citation, Usage)
-- Check manual.pdf (https://github.com/sergihervas/iMKT/blob/master/inst/doc/iMKT.pdf)
-- Update vignettes
-- Check functions independently and with diverse types of data. Error handling!
-- Check consistency of variables and style along functions
-- Functions:
-	- Put in functions comparision scripts (Jesus) **What is this?**
-	- Update PopHuman data file!	
-- We reference Messer and Haller code in the asymptoticMK function. We should write them when everything is almost finished, as Antonio suggested.
-
-
-### Server
-- Implement GUI through web-server (with Django) (Ask Esteve for help? **M** the web looks awesome Jesus!!!)(Jesús **in progress**)  
-- Rewrite funcionts to run from terminal (receiving input/inputs) and generate html (Jesús **in progress**)
-- daf.pl: Modify perl functions to extract the correct files (**S**)
-
-
-### Manuscript
-- **Follow the manuscript progress at: https://github.com/marta-coronado/statistics_mkt/tree/master/Report**
-- Prepare list of genes analyzable with the iMKT (not the same as asymptotic because the exponential model is forced)
-- **S** It would also be great to know the minimum number of sites required to run the different tests. This makes sense for asymptotic alpha basically (and the iMK function). Should be done with simulated data, but is a tough work. **M** This was also commented on one of the meetengs and that I should definitely take a look on this, also is super important and nobody tested it yet. And not only the minimum number, but also the minimum number of concatenated genes for the asymptotic and DFE-alpha.
-
-- Manuscript: **M** suggests: 
-
-	- first, start writing the **Methods** (Sergi/Jesús: explain the data pipeline and such; Marta: I'm defining the different statistical test performed)
-	- **Follow methods progress at: https://github.com/sergihervas/genesMKT/blob/master/comparison-mcdonald-kreitman.pdf**
-		- Drosophila genome data: input seqs (DGN), reference annotations and outgroup species (refer PopFly).
-		- Human genome data: same as before (refer PopHuman). Maybe join 1 and 2 in Data description or sth like this.
-		- Main pipeline / workflow: Fasta/VCF > Recodification > DAF / div 
-		- Statistical tests (iMK negative selection is completely new and unpublished before, although it is based on DGRP idea. In fact what is new is the way to estimate b -weakly deleterious fraction. Also the DGRP method was never mentioned, only in the suplementary material where has been forgotten. So this time we should really promote them!)
-		- Simulations.
-		- R package
-		- Web server
-		- Things about candidate genes. Statistical tests used, GO...
-	
-	- **Results**: **M** I was thinking in organizing the following parts:
-		- Comprison of methodologies: using Drosophila data, apply the different MKT tests (standard, DGRP, FWW, integrative). **S** And human data? I say so because of point 4. Or here we just assess the best method and apply this one in point 4? **M** Okay, at the moment is done with Drosophila because we still don't have the human data
-		- DFE-Based Extensions of the MK: add a part devoted to DFE-alpha (**S** all methods are in here, right? DGRP, FWW and asymptotic are based on DFE assumptions which allow spliting mutations according to their fitness. **M** No, DFE-Based extensions is only DFE-alpha (and some more which I don't know), the rest no, they are extensions of MK test. The difference is that DFE-alpha try to estimate how many non-adaptive substitutions will become fix given an inferred DFE. The others, assume that the non-adaptive substitutions can be removed removing low-frequency variants (FWW) or a more sophisticated solution (DGRP) or extrapolating alpha using a function that fits data at different frequencyes (asymptotic), but nothing to do with inferring the DFE of mutations. Hope its clear :) **S** Okay! I thought they also assumed an specific DFE to remove non-adaptive substitutions, my bad.)
-		- Simulations: comparison of the different methodologies against simulated data
-		- Adaptation in the human and D. melanogaster genome: genes that have alfa positive and significative, and study of them (eg: GO, networks...)
-		- The package and the webpage. The pipeline for obtaining the DAF? **S** This pipeline is a result or a method? I always doubt on this kind of things. However, it is something referees can criticize a lot because it is not perfect and I think the work is very complete and long enough, so I would not talk about it in the Results section, just in the Methods. **M** Okay, then we only comment it on the methods!
-		- Something else?
