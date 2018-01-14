@@ -25,7 +25,7 @@ library(iMKT)
 
 Usage
 -----
-In summary, iMKT allows performing diverse MK-derived tests using the number of polymorphic (P, classified in Derived Allel Frequency (DAF) categories), divergent (D) and analyzed (m) sites for neutral (0) and selected (i) classes. Briefly, most functions require two input parameters: ```daf``` (data frame containing DAF, Pi and P0) and ```divergence``` (data frame containing mi, Di, m0, D0) and return the estimation of α together with specific details of the methodology.
+In summary, iMKT allows performing diverse MK-derived tests using the number of polymorphic (P, classified in Derived Allele Frequency (DAF) categories), divergent (D) and analyzed (m) sites for neutral (0) and selected (i) classes. Briefly, most functions require two input parameters: ```daf``` (data frame containing DAF, Pi and P0) and ```divergence``` (data frame containing mi, Di, m0, D0) and return the estimation of α together with specific details of the methodology.
 
 The package includes two sample data frames (```myDafData```, ```myDivergenceData```). The vignettes and manual documentation contain detailed descriptions and examples of each function and type of analysis, and instructions on how to use PopFly and PopHuman genomic data.
 
