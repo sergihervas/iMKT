@@ -49,7 +49,7 @@ PopHumanAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2
   if (!all(genes %in% data$ID) == TRUE) {
     difGenes <- setdiff(genes, data$ID)
     difGenes <- paste(difGenes, collapse=", ")
-    stopMssg <- paste0("MKT data is not available for the requested gene(s).\nRemember to use gene IDs from NCBI.\nThe genes that caused the error are: ", difGenes, ".")
+    stopMssg <- paste0("MKT data is not available for the requested gene(s).\nRemember to use gene IDs from Ensembl (ENSG...).\nThe genes that caused the error are: ", difGenes, ".")
     stop(stopMssg) }
   
   ## Argument pops
