@@ -17,18 +17,20 @@
 #'
 #' @examples
 #' ## List of genes
-#' #mygenes <- c("AHNAK2","MUC5B","MUC4","TTN","MUC16","PLIN4",  ### MUST UPDATE
-#'              "OBSCN","PLEC","MUC12","PKD1","LAMA5","HELZ2")
+#' mygenes <- c("ENSG00000011021.21_3","ENSG00000091483.6_3","ENSG00000116191.17_3",
+#'              "ENSG00000116337.15_4","ENSG00000116584.17_3","ENSG00000116745.6_3",
+#'              "ENSG00000116852.14_3","ENSG00000116898.11_3","ENSG00000117010.15_3",
+#'              "ENSG00000117090.14_3","ENSG00000117222.13_3","ENSG00000117394.20_3")
 #' ## Perform analyses
-#' #PopHumanAnalysis(genes=mygenes , pops=c("CEU","YRI"), recomb=FALSE, test="standardMK")
-#' #PopHumanAnalysis(genes=mygenes , pops=c("CEU"), recomb=TRUE, bins=3, test="DGRP")
+#' PopHumanAnalysis(genes=mygenes , pops=c("CEU","YRI"), recomb=FALSE, test="standardMK")
+#' PopHumanAnalysis(genes=mygenes , pops=c("CEU"), recomb=TRUE, bins=3, test="DGRP")
 #' 
 #' @import utils
 #' @import stats
 #'
 #' @keywords PopData
 #' @export
-
+            
 PopHumanAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2","..."), recomb=TRUE/FALSE, bins=0, test=c("standardMK","DGRP","FWW","asymptoticMK","iMK"), xlow=0, xhigh=1, plot=FALSE) { 
   
   ## Get PopHuman data

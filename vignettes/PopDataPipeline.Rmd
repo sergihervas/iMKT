@@ -1,12 +1,14 @@
 ---
 title: "iMKT using PopFly or PopHuman data"
-output: 
+output:
+  html_document:
+    df_print: paged
   pdf_document:
     highlight: monochrome
     latex_engine: xelatex
 vignette: >
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{PopData Pipeline}
+  %\VignetteEngine{knitr::rmarkdown} 
+  %\VignetteIndexEntry{PopData Pipeline} 
   %\VignetteEncoding{UTF-8}
 ---
 ```{r setup, include=FALSE}

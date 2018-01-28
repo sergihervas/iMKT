@@ -37,8 +37,10 @@ Execute any MKT method (standardMK, FWW, DGRP, asymptoticMK, iMKT) using a subse
 }
 \examples{
 ## List of genes
-mygenes <- c("AHNAK2","MUC5B","MUC4","TTN","MUC16","PLIN4", 
-             "OBSCN","PLEC","MUC12","PKD1","LAMA5","HELZ2")
+mygenes <- c("ENSG00000011021.21_3","ENSG00000091483.6_3","ENSG00000116191.17_3",
+             "ENSG00000116337.15_4","ENSG00000116584.17_3","ENSG00000116745.6_3",
+             "ENSG00000116852.14_3","ENSG00000116898.11_3","ENSG00000117010.15_3",
+             "ENSG00000117090.14_3","ENSG00000117222.13_3","ENSG00000117394.20_3")
 ## Perform analyses
 PopHumanAnalysis(genes=mygenes , pops=c("CEU","YRI"), recomb=FALSE, test="standardMK")
 PopHumanAnalysis(genes=mygenes , pops=c("CEU"), recomb=TRUE, bins=3, test="DGRP")
