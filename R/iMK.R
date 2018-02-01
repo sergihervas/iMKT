@@ -46,7 +46,7 @@ iMK <- function(daf, divergence, xlow, xhigh, seed, plot=FALSE) {
   } else {
     set.seed(seed)
   }
-  
+
   ## Create MKT table standard
   mkt_table_standard <- data.frame(Polymorphism = c(sum(daf$P0), sum(daf$Pi)), 
                                    Divergence=c(divergence$D0,divergence$Di),

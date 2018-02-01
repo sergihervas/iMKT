@@ -184,6 +184,15 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
         names(div) <- c("mi","Di","m0","D0")
         
         ## Check data inside each test!
+        
+        ## Transform daf20 to daf10 (faster fitting) for asymptoticMK and iMK
+        if (nrow(daf) == 20) {
+          daf1 <- daf
+          daf1$daf10 <- sort(rep(seq(0.05,0.95,0.1),2)) ## Add column with the daf10 frequencies
+          daf1 <- daf1[c("daf10","Pi","P0")] ## Keep new frequencies, Pi and P0
+          daf1 <- aggregate(. ~ daf10, data=daf1, FUN=sum)  ## Sum Pi and P0 two by two based on daf
+          colnames(daf1)<-c("daf","Pi","P0") ## Final daf columns name
+        }
         ## Perform test
         if(test == "standardMK") {
           output <- standardMK(daf, div) 
@@ -201,13 +210,13 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
           output <- FWW(daf, div, plot=TRUE)           
           output <- c(output, recStats) }
         else if(test == "asymptoticMK") {
-          output <- asymptoticMK(daf, div, xlow, xhigh) 
+          output <- asymptoticMK(daf1, div, xlow, xhigh) 
           output <- c(output, recStats) }
         else if(test == "iMK" && plot == FALSE) {
-          output <- iMK(daf, div, xlow, xhigh)
+          output <- iMK(daf1, div, xlow, xhigh)
           output <- c(output, recStats) }
         else if(test == "iMK" && plot == TRUE) {
-          output <- iMK(daf, div, xlow, xhigh, plot=TRUE)
+          output <- iMK(daf1, div, xlow, xhigh, plot=TRUE)
           output <- c(output, recStats) }
         
         ## Fill list with each bin
@@ -271,6 +280,16 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
       names(div) <- c("mi","Di","m0","D0")
       
       ## Check data inside each test!
+      
+      ## Transform daf20 to daf10 (faster fitting) for asymptoticMK and iMK
+      if (nrow(daf) == 20) {
+        daf1 <- daf
+        daf1$daf10 <- sort(rep(seq(0.05,0.95,0.1),2)) ## Add column with the daf10 frequencies
+        daf1 <- daf1[c("daf10","Pi","P0")] ## Keep new frequencies, Pi and P0
+        daf1 <- aggregate(. ~ daf10, data=daf1, FUN=sum)  ## Sum Pi and P0 two by two based on daf
+        colnames(daf1)<-c("daf","Pi","P0") ## Final daf columns name
+      }
+      
       ## Perform test
       if(test == "standardMK") {
         output <- standardMK(daf, div) }
@@ -283,11 +302,11 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
       else if(test == "FWW" && plot == TRUE) {
         output <- FWW(daf, div, plot=TRUE) }
       else if(test == "asymptoticMK") {
-        output <- asymptoticMK(daf, div, xlow, xhigh) }
+        output <- asymptoticMK(daf1, div, xlow, xhigh) }
       else if(test == "iMK" && plot == FALSE) {
-        output <- iMK(daf, div, xlow, xhigh) }
+        output <- iMK(daf1, div, xlow, xhigh) }
       else if(test == "iMK" && plot == TRUE) {
-        output <- iMK(daf, div, xlow, xhigh, plot=TRUE) }
+        output <- iMK(daf1, div, xlow, xhigh, plot=TRUE) }
       
       ## Fill list with each pop
       outputList[[paste("Population = ",i)]] <- output
