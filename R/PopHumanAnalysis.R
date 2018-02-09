@@ -155,9 +155,9 @@ PopHumanAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2
         recStats <- list("Recombination bin Summary"=recStats)
         
         ## Set counters to 0
-        Pi <- c(0,0,0,0,0,0,0,0,0,0)
-        P0 <- c(0,0,0,0,0,0,0,0,0,0)
-        f <- seq(0.05,0.95,0.1)
+        Pi <- c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+        P0 <- c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+        f <- seq(0.025,0.975,0.05)
         mi <- 0; m0 <- 0
         Di <- 0; D0 <- 0
         
@@ -253,9 +253,9 @@ PopHumanAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2
       x <- subsetGenes[subsetGenes$Population == i, ]
       
       ## Set counters to 0
-      Pi <- c(0,0,0,0,0,0,0,0,0,0)
-      P0 <- c(0,0,0,0,0,0,0,0,0,0)
-      f <- seq(0.05,0.95,0.1)
+      Pi <- c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+      P0 <- c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+      f <- seq(0.025,0.975,0.05)
       mi <- 0; m0 <- 0
       Di <- 0; D0 <- 0
       
