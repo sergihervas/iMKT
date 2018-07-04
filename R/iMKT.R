@@ -1,8 +1,8 @@
 #' @title integrative MKT method
 #' 
-#' @description iMK: MKT using asymptoticMK method and estimation of negative selection fractions (d, b, f)
+#' @description iMKT: MKT using asymptoticMKT method and estimation of negative selection fractions (d, b, f)
 #'
-#' @details The integrative MKT (iMKT) allows the estimation of the rate of adaptive evolution (alpha) and the diverse negative selection regimens. iMKT uses asymptotic MK method (Messer and Petrov 2012 PNAS; Haller and Messer 2017 G3) to estimate alpha and the diverse negative selection fractions (d: strongly deleterious, b: weakly deleterious, f: neutral), based on the assumption that weakly deleterious mutations usually do not reach high allele frequencies and therefore, produce the underestimation of alpha at low DAF categories. The fraction of strongly deleterious mutations is estimated as the difference between neutral (0) and selected (i) polymorphic sites relative to the number of analyzed sites: d = 1 - (P0/m0 / Pi/mi). The fraction of weakly deleterious sites (b) corresponds to the relative proportion of selected polymorphic sites that cause the underestimation of alpha at low DAF categories. Finally, the fraction of neutral sites (f) is estimated as: f = 1 - d - b. iMK() only fits an exponential model for the computation of alpha.
+#' @details The integrative MKT (iMKT) allows the estimation of the rate of adaptive evolution (alpha) and the diverse negative selection regimens. iMKT uses asymptotic MKT method (Messer and Petrov 2012 PNAS; Haller and Messer 2017 G3) to estimate alpha and the diverse negative selection fractions (d: strongly deleterious, b: weakly deleterious, f: neutral), based on the assumption that weakly deleterious mutations usually do not reach high allele frequencies and therefore, produce the underestimation of alpha at low DAF categories. The fraction of strongly deleterious mutations is estimated as the difference between neutral (0) and selected (i) polymorphic sites relative to the number of analyzed sites: d = 1 - (P0/m0 / Pi/mi). The fraction of weakly deleterious sites (b) corresponds to the relative proportion of selected polymorphic sites that cause the underestimation of alpha at low DAF categories. Finally, the fraction of neutral sites (f) is estimated as: f = 1 - d - b. iMKT() only fits an exponential model for the computation of alpha.
 #' 
 #' @param daf data frame containing DAF, Pi and P0 values
 #' @param divergence data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes
@@ -15,9 +15,9 @@
 #'
 #' @examples
 #' ## Without plot
-#' iMK(myDafData, myDivergenceData, xlow=0, xhigh=0.9)
+#' iMKT(myDafData, myDivergenceData, xlow=0, xhigh=0.9)
 #' ## With plot
-#' iMK(myDafData, myDivergenceData, xlow=0, xhigh=0.9, plot=TRUE)
+#' iMKT(myDafData, myDivergenceData, xlow=0, xhigh=0.9, plot=TRUE)
 #' 
 #' @import utils
 #' @import stats
@@ -29,7 +29,7 @@
 #' @keywords MKT
 #' @export
 
-iMK <- function(daf, divergence, xlow, xhigh, seed, plot=FALSE) {
+iMKT <- function(daf, divergence, xlow, xhigh, seed, plot=FALSE) {
   
   ## Check data
   check <- checkInput(daf, divergence, xlow, xhigh)
@@ -56,8 +56,8 @@ iMK <- function(daf, divergence, xlow, xhigh, seed, plot=FALSE) {
   mi <- divergence$mi
   m0 <- divergence$m0
   
-  ## Run asymptotic MK and retrieve alphas 
-  ## iMK only fits exponential model in asymptotic alpha. it uses asymptoticMKExp()
+  ## Run asymptotic MKT and retrieve alphas 
+  ## iMKT only fits exponential model in asymptotic alpha. it uses asymptoticMKExp()
   
   asymptoticMKExp <- function(daf, divergence, xlow, xhigh, seed) {
     

@@ -2,7 +2,7 @@
 #' 
 #' @description Check input data and return detailed errors when it is malformed
 #' 
-#' @details Check input data used in most package's functions (arguments daf, divergence, xlow and xhigh) and return a brief description of the error(s) found. This function is called within each analysis function (standardMK, FWW, DGRP, asymptoticMK, iMK) and if data does not pass checkInput() without errors, the requested analysis is not performed. 
+#' @details Check input data used in most package's functions (arguments daf, divergence, xlow and xhigh) and return a brief description of the error(s) found. This function is called within each analysis function (standardMKT, FWW, DGRP, asymptoticMKT, iMKT) and if data does not pass checkInput() without errors, the requested analysis is not performed. 
 #'
 #' @param daf data frame containing DAF, Pi and P0 values
 #' @param divergence data frame containing divergent and analyzed sites for selected (i) and neutral (0) classes
@@ -94,7 +94,7 @@ checkInput <- function(daf, divergence, xlow, xhigh){
         error <- "P0 contains values < 0 (not allowed) or P0 contains all values == 0 (not allowed)."
         mainErrors <- append(mainErrors,error) } 
     
-    # if (any(P0 == 0)){  ## Only for asymptoticMK and iMK
+    # if (any(P0 == 0)){  ## Only for asymptoticMKT and iMKT
     #    warning("Input daf file contains P0 values = 0.\nThis can bias the function fitting and the estimation of alpha.")}
 
     ## Check if daf argument has enough data points

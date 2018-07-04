@@ -19,5 +19,5 @@ checkInput(daf, divergence, xlow, xhigh)
 Check input data and return detailed errors when it is malformed
 }
 \details{
-Check input data used in most package's functions (arguments daf, divergence, xlow and xhigh) and return a brief description of the error(s) found. This function is called within each analysis function (standardMK, FWW, DGRP, asymptoticMK, iMK) and if data does not pass checkInput() without errors, the requested analysis is not performed.
+Check input data used in most package's functions (arguments daf, divergence, xlow and xhigh) and return a brief description of the error(s) found. This function is called within each analysis function (standardMKT, FWW, DGRP, asymptoticMKT, iMKT) and if data does not pass checkInput() without errors, the requested analysis is not performed.
 }

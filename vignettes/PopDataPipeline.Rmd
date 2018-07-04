@@ -76,7 +76,7 @@ The **PopFlyAnalisys()** function allows performing any MK test using a subset o
 
   - **recomb**: group genes according to recombination values (TRUE/FALSE)
   - **bins**: number of recombination bins to compute (mandatory if recomb=TRUE)
-  - **test**: which test to perform. Options include: standardMK (default), DGRP, FWW, asymptoticMK, iMK
+  - **test**: which test to perform. Options include: standardMKT (default), DGRP, FWW, asymptoticMKT, iMKT
   - **xlow**: lower limit for asymptotic alpha fit (default=0)
   - **xhigh**: higher limit for asymptotic alpha fit (default=1)
   - **plot**: report plot (optional, default=FALSE)
@@ -104,13 +104,13 @@ PopFlyAnalysis(genes=c("FBgn0000055","FBgn0003016"), pops=c("RAL","ZI"), recomb=
 &nbsp;
 &nbsp;
   
-### Example 2. iMK analysis using recombination bins
+### Example 2. iMKT analysis using recombination bins
  
-In this second example, genes from RAL population are groupped in 2 recombination bins, using recombination values from Comeron et al. 2012 Plos Genetics. The test used is iMK, with xlow and xhigh values set to 0 and 0.9, respectively.
+In this second example, genes from RAL population are groupped in 2 recombination bins, using recombination values from Comeron et al. 2012 Plos Genetics. The test used is iMKT, with xlow and xhigh values set to 0 and 0.9, respectively.
 
 In this case, the function creates two different "concatenated" genes containing the same number of genes each (6 in this case), grouping again polymorphism and divergence values. These aggrupations are made according to the gene associated recombination rate estimates. The function returns a list of lists with the default test output (iMKT in this case) for each population (RAL) and recombination bin (1 and 2).
 
-Explain iMK function output.
+Explain iMKT function output.
 
 &nbsp;
 
@@ -118,7 +118,7 @@ Explain iMK function output.
 geneList <- c("FBgn0053196","FBgn0086906","FBgn0261836","FBgn0031617","FBgn0260965",
               "FBgn0028899","FBgn0052580","FBgn0036181","FBgn0263077","FBgn0013733",
               "FBgn0031857","FBgn0037836")
-PopFlyAnalysis(genes=geneList , pops="RAL", recomb=T, bins=2, test="iMK", xlow=0, xhigh=0.9, plot=TRUE)
+PopFlyAnalysis(genes=geneList , pops="RAL", recomb=T, bins=2, test="iMKT", xlow=0, xhigh=0.9, plot=TRUE)
 rm(geneList)
 ```
   

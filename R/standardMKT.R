@@ -10,7 +10,7 @@
 #' @return Standard MKT. List with alpha estimate, Fisher's exact test p-value,  MKT table and divergence metrics.
 #'
 #' @examples 
-#' standardMK(myDafData, myDivergenceData)
+#' standardMKT(myDafData, myDivergenceData)
 #' 
 #' @import utils
 #' @import stats
@@ -19,7 +19,7 @@
 #' @keywords MKT
 #' @export
 
-standardMK <- function(daf, divergence) {
+standardMKT <- function(daf, divergence) {
   
   ## Check data
   check <-checkInput(daf, divergence, 0, 1)

@@ -21,7 +21,7 @@ head(myDafData)
 myDivergenceData
 
 ## ----Standard MKT, echo=TRUE---------------------------------------------
-standardMK(daf=myDafData, divergence=myDivergenceData)
+standardMKT(daf=myDafData, divergence=myDivergenceData)
 
 ## ----FWW, echo=TRUE------------------------------------------------------
 FWW(daf=myDafData, divergence=myDivergenceData)
@@ -36,13 +36,13 @@ DGRP(daf=myDafData, divergence=myDivergenceData)
 DGRP(daf=myDafData, divergence=myDivergenceData, listCutoffs=c(0.05, 0.15,0.25,0.35), plot=TRUE)
 
 ## ----Asymptotic MKT, echo=TRUE-------------------------------------------
-asymptoticMK(daf=myDafData, divergence=myDivergenceData, xlow=0, xhigh=0.9)
+asymptoticMKT(daf=myDafData, divergence=myDivergenceData, xlow=0, xhigh=0.9)
 
-## ----iMK, echo=TRUE, fig.width=6, fig.height=9---------------------------
-iMK(daf=myDafData, divergence=myDivergenceData, xlow=0, xhigh=0.9, plot=TRUE)
+## ----iMKT, echo=TRUE, fig.width=6, fig.height=9--------------------------
+iMKT(daf=myDafData, divergence=myDivergenceData, xlow=0, xhigh=0.9, plot=TRUE)
 
 ## ----summary, echo=FALSE-------------------------------------------------
-results <- data.frame("Standard"=0.2365, "FWW_0.05"=0.5409, "FWW_0.1"=0.5798, "DGRP_0.05"=0.4249, "DGRP_0.1"=0.4249, "asymptotic_iMK"=0.6259)
+results <- data.frame("Standard"=0.2365, "FWW_0.05"=0.5409, "FWW_0.1"=0.5798, "DGRP_0.05"=0.4249, "DGRP_0.1"=0.4249, "asymptotic_iMKT"=0.6259)
 knitr::kable(results, align="c")
 rm(results)
 

@@ -13,7 +13,7 @@
 #' @return Estimation of asymptotic alpha and details about the model fit (function parameters, confidence intervals, etc.)
 #'
 #' @examples
-#' asymptoticMK(myDafData, myDivergenceData, xlow=0, xhigh=0.9)
+#' asymptoticMKT(myDafData, myDivergenceData, xlow=0, xhigh=0.9)
 #'
 #' @import utils
 #' @import stats
@@ -23,7 +23,7 @@
 #' @keywords MKT
 #' @export
 
-asymptoticMK <- function(daf, divergence, xlow, xhigh, seed) {
+asymptoticMKT <- function(daf, divergence, xlow, xhigh, seed) {
   
   ## Check data
   check <- checkInput(daf, divergence, xlow, xhigh)

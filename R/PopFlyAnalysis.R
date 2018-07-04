@@ -2,13 +2,13 @@
 #'
 #' @description Perform any MKT method using a subset of PopFly data defined by custom genes and populations lists
 #'
-#' @details Execute any MKT method (standardMK, FWW, DGRP, asymptoticMK, iMKT) using a subset of PopFly data defined by custom genes and populations lists. It uses the dataframe PopFlyData, which can be already loaded in the workspace (using loadPopFly()) or is directly loaded when executing this function. It also allows deciding whether to analyze genes groupped by recombination bins or not, using recombination rate estimates from Comeron et al. 2012 Plos Genetics. 
+#' @details Execute any MKT method (standardMKT, FWW, DGRP, asymptoticMKT, iMKT) using a subset of PopFly data defined by custom genes and populations lists. It uses the dataframe PopFlyData, which can be already loaded in the workspace (using loadPopFly()) or is directly loaded when executing this function. It also allows deciding whether to analyze genes groupped by recombination bins or not, using recombination rate estimates from Comeron et al. 2012 Plos Genetics. 
 #' 
 #' @param genes list of genes to analyze
 #' @param pops list of populations to analyze
 #' @param recomb group genes according to recombination values (TRUE/FALSE)
 #' @param bins number of recombination bins to compute (mandatory if recomb=TRUE)
-#' @param test which test to perform. Options include: standardMK (default), DGRP, FWW, asymptoticMK, iMK
+#' @param test which test to perform. Options include: standardMKT (default), DGRP, FWW, asymptoticMKT, iMKT
 #' @param xlow lower limit for asymptotic alpha fit (default=0)
 #' @param xhigh higher limit for asymptotic alpha fit (default=1)
 #' @param plot report plot (optional). Default is FALSE
@@ -21,7 +21,7 @@
 #'              "FBgn0260965", "FBgn0028899", "FBgn0052580", "FBgn0036181",
 #'              "FBgn0263077", "FBgn0013733", "FBgn0031857", "FBgn0037836")
 #' ## Perform analyses
-#' PopFlyAnalysis(genes=mygenes, pops="RAL", recomb=FALSE, test="iMK", xlow=0, xhigh=0.9, plot=TRUE)
+#' PopFlyAnalysis(genes=mygenes, pops="RAL", recomb=FALSE, test="iMKT", xlow=0, xhigh=0.9, plot=TRUE)
 #' PopFlyAnalysis(genes=mygenes, pops=c("RAL","ZI"), recomb=TRUE, bins=3, test="DGRP", plot=FALSE)
 #' 
 #' @import utils
@@ -30,7 +30,7 @@
 #' @keywords PopData
 #' @export
 
-PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2","..."), recomb=TRUE/FALSE, bins=0, test=c("standardMK","DGRP","FWW","asymptoticMK","iMK"), xlow=0, xhigh=1, plot=FALSE) { 
+PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2","..."), recomb=TRUE/FALSE, bins=0, test=c("standardMKT","DGRP","FWW","asymptoticMKT","iMKT"), xlow=0, xhigh=1, plot=FALSE) { 
   
   ## Get PopFly data
   if (exists("PopFlyData") == TRUE) {
@@ -42,7 +42,7 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
   ## Check input variables
   ## Numer of arguments
   if (nargs() < 3 && nargs()) {
-    stop("You must specify 3 arguments at least: genes, pops, recomb (T/F).\nIf test = asymptoticMK or test = iMK, you must specify xlow and xhigh values.") }
+    stop("You must specify 3 arguments at least: genes, pops, recomb (T/F).\nIf test = asymptoticMKT or test = iMKT, you must specify xlow and xhigh values.") }
   
   ## Argument genes
   if (length(genes) == 0 || genes == "" || !is.character(genes)) {
@@ -79,14 +79,14 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
   
   ## Argument test and xlow + xhigh (when necessary)
   if(missing(test)) {
-    test <- "standardMK"
+    test <- "standardMKT"
   }
-  else if (test != "standardMK" && test != "DGRP" && test != "FWW" && test != "asymptoticMK" && test != "iMK") {
-    stop("Parameter test must be one of the following: standardMK, DGRP, FWW, asymptoticMK, iMK")
+  else if (test != "standardMKT" && test != "DGRP" && test != "FWW" && test != "asymptoticMKT" && test != "iMKT") {
+    stop("Parameter test must be one of the following: standardMKT, DGRP, FWW, asymptoticMKT, iMKT")
   }
   if (length(test) > 1) {
-    stop("Select only one of the following tests to perform: standardMK, DGRP, FWW, asymptoticMK, iMK") }
-  if ((test == "standardMK" || test == "DGRP" || test == "FWW") && (xlow != 0 || xhigh != 1)) {
+    stop("Select only one of the following tests to perform: standardMKT, DGRP, FWW, asymptoticMKT, iMKT") }
+  if ((test == "standardMKT" || test == "DGRP" || test == "FWW") && (xlow != 0 || xhigh != 1)) {
     warningMssgTest <- paste0("Parameters xlow and xhigh not used! (test = ",test," selected)")
     warning(warningMssgTest) }
   
@@ -185,7 +185,7 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
         
         ## Check data inside each test!
         
-        ## Transform daf20 to daf10 (faster fitting) for asymptoticMK and iMK
+        ## Transform daf20 to daf10 (faster fitting) for asymptoticMKT and iMKT
         if (nrow(daf) == 20) {
           daf1 <- daf
           daf1$daf10 <- sort(rep(seq(0.05,0.95,0.1),2)) ## Add column with the daf10 frequencies
@@ -194,8 +194,8 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
           colnames(daf1)<-c("daf","Pi","P0") ## Final daf columns name
         }
         ## Perform test
-        if(test == "standardMK") {
-          output <- standardMK(daf, div) 
+        if(test == "standardMKT") {
+          output <- standardMKT(daf, div) 
           output <- c(output, recStats) } ## Add recomb summary for bin j
         else if(test == "DGRP" && plot == FALSE) {
           output <- DGRP(daf, div) 
@@ -209,14 +209,14 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
         else if(test == "FWW" && plot == TRUE) {
           output <- FWW(daf, div, plot=TRUE)           
           output <- c(output, recStats) }
-        else if(test == "asymptoticMK") {
-          output <- asymptoticMK(daf1, div, xlow, xhigh) 
+        else if(test == "asymptoticMKT") {
+          output <- asymptoticMKT(daf1, div, xlow, xhigh) 
           output <- c(output, recStats) }
-        else if(test == "iMK" && plot == FALSE) {
-          output <- iMK(daf1, div, xlow, xhigh)
+        else if(test == "iMKT" && plot == FALSE) {
+          output <- iMKT(daf1, div, xlow, xhigh)
           output <- c(output, recStats) }
-        else if(test == "iMK" && plot == TRUE) {
-          output <- iMK(daf1, div, xlow, xhigh, plot=TRUE)
+        else if(test == "iMKT" && plot == TRUE) {
+          output <- iMKT(daf1, div, xlow, xhigh, plot=TRUE)
           output <- c(output, recStats) }
         
         ## Fill list with each bin
@@ -281,7 +281,7 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
       
       ## Check data inside each test!
       
-      ## Transform daf20 to daf10 (faster fitting) for asymptoticMK and iMK
+      ## Transform daf20 to daf10 (faster fitting) for asymptoticMKT and iMKT
       if (nrow(daf) == 20) {
         daf1 <- daf
         daf1$daf10 <- sort(rep(seq(0.05,0.95,0.1),2)) ## Add column with the daf10 frequencies
@@ -291,8 +291,8 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
       }
       
       ## Perform test
-      if(test == "standardMK") {
-        output <- standardMK(daf, div) }
+      if(test == "standardMKT") {
+        output <- standardMKT(daf, div) }
       else if(test == "DGRP" && plot == FALSE) {
         output <- DGRP(daf, div) }
       else if(test == "DGRP" && plot == TRUE) {
@@ -301,12 +301,12 @@ PopFlyAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2",
         output <- FWW(daf, div) }
       else if(test == "FWW" && plot == TRUE) {
         output <- FWW(daf, div, plot=TRUE) }
-      else if(test == "asymptoticMK") {
-        output <- asymptoticMK(daf1, div, xlow, xhigh) }
-      else if(test == "iMK" && plot == FALSE) {
-        output <- iMK(daf1, div, xlow, xhigh) }
-      else if(test == "iMK" && plot == TRUE) {
-        output <- iMK(daf1, div, xlow, xhigh, plot=TRUE) }
+      else if(test == "asymptoticMKT") {
+        output <- asymptoticMKT(daf1, div, xlow, xhigh) }
+      else if(test == "iMKT" && plot == FALSE) {
+        output <- iMKT(daf1, div, xlow, xhigh) }
+      else if(test == "iMKT" && plot == TRUE) {
+        output <- iMKT(daf1, div, xlow, xhigh, plot=TRUE) }
       
       ## Fill list with each pop
       outputList[[paste("Population = ",i)]] <- output
