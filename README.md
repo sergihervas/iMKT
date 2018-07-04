@@ -47,7 +47,7 @@ myDivergenceData
 #> 1 2598805 54641 620019 52537
 
 ## Perform standard MKT
-standardMK(myDafData, myDivergenceData)
+standardMKT(myDafData, myDivergenceData)
 #> $alpha.symbol
 #> [1] 0.2364499
 
