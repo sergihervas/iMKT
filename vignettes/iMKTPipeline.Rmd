@@ -20,27 +20,28 @@ knitr::opts_chunk$set(
 )
 ```
 
-Brief intro about why we developed the package. The importance of detecting adaptation, and the many MKT derived methodologies. Take from paper.
+A major issue in population genetics is the accurate detection of the impact of natural selection along the genome. In this regard, several tests have been developed in the last years, being the McDonald and Kreitman Test (Standard MKT, McDonald & Kreitman 1991) the most used method. Several modifications to the Standard MKT have been applied over the last years, leading to a battery of
+MKT-derived methods. 
 
-Explain also that iMKT faces this variety of methodologies, and is able to compute several tests in order to detect adaptation in diverse situations. 
+The Integrative McDonald and Kreitman Test (iMKT) package allows computing the McDonald and Kreitman test on polymorphism and divergence genomic data provided by the user or automatically downloaded from PopFly (Hervas et al. 2017) or PopHuman (Casillas et al. 2018). 
 
-In addition, it also provides a way to quantify negative selection, which may overlap with signals of positive selection in the target region, causing the failing of certain MK tests.
+It includes five MKT derived tests: Standard MKT, FWW correction (Fay et al. 2001), DGRP correction (Mackay et al. 2012), asymptotic MK (Messer & Petrov 2013), and the novel iMKT approach; which allow inferring the rate of adaptive evolution ($\alpha$), as well as the fraction of strongly deleterious ($d$), weakly deleterious ($b$), and neutral ($f$) sites, using user custom input data.
 
-This vignette contains three different sections:
+In this document, we show how to install the package and how to analyze the sample data using different MKT-derived methods. Finally, we briefly discuss the results obtained with each of the available tests. This vignette contains three different sections:
 \begin{itemize}
 \item
   Loading the package and checking test data
 \item
-  Performing MKT derived methodologies calculation
+  Performing MKT analyses
 \item
-  Conclusion: comparison of the different MK estimates
+  Conclusion: comparison of the different MKT estimates
 \end{itemize}
 
 &nbsp;
 
 ## Loading the package and checking test data
 
-First of all, install (if this is not done yet) and load the package. Notice that iMKT package includes two sample dataframes named myDafData and myDivergenceData which are the ones used in this tutorial and correspond to **Chr2L RAL and simulans??**. Therefore, it is possible to replicate the vignettes in order to better understand all the package functionalities. 
+First of all, install (if this is not done yet) and load the package. Notice that iMKT package includes two sample dataframes named myDafData and myDivergenceData which are the ones used in this tutorial and correspond to the chromosome arm 2R of the North American Raleigh population (RAL, North Carolina, $n=205$), using *D. simulans* as outgroup species to estimate divergence metrics. Therefore, it is possible to replicate the vignettes in order to better understand all the package functionalities. 
 
 &nbsp;
 
@@ -63,7 +64,7 @@ The iMKT package includes several functions, classified as follows:
 
 \begin{itemize}
 \item
-  MKT derived methodologies calculation
+  Calculation of MKT-derived methods
   \begin{itemize}
   \item
     standardMKT(): Standard MKT 
@@ -106,11 +107,11 @@ The iMKT package includes several functions, classified as follows:
 
 Each function has an associated help page with its description, details about its parameters, usage, examples and so on. Rembember you can access it writting ? and the function name (or ?library::function) in your console (*example*: ?iMKT::standardMKT).
 
-This vignette focuses on the first category of functions: "MKT derived methodologies calculation". Specifically, it contains examples of each function using the sample data described above. For details about functions from "iMKT using PopFly and PopHuman data" category check the corresponding vignette. The functions from the third category are used within other functions and do not produce analyses output.
+This vignette focuses on the first category of functions: "Calculation of MKT-derived methods". Specifically, it contains examples of each function using the sample data described above. For details about functions from "iMKT using PopFly and PopHuman data" category check the corresponding vignette. The functions from the third category are used within other functions and do not produce analyses output.
 
 &nbsp;
 
-## Performing MKT derived methodologies calculation
+## Performing MKT analyses
 
 The diverse functions from this category have two common input parameters which are required to perform the corresponding test:
 
@@ -239,7 +240,7 @@ asymptoticMKT(daf=myDafData, divergence=myDivergenceData, xlow=0, xhigh=0.9)
 
 ### iMKT
 
-Asymptotic explanation + Sergi slightly deleterious approach
+The integrative MKT combines the approach developed by Messer & Petrov (2013) to estimate the fraction of adaptive substitutions ($\alpha$) and an adaptation of the theoretical framework established by Mackay et al. (2012) to quantify the fraction of putatively selected sites that are under purifying selection pressures.
 
 The **iMKT()** function takes the default input parameters (daf and divergence), the xlow and xhigh arguments (presented in the **asymptoticMKT()** function) and it also has the optional argument **plot**, set as **FALSE** by default. However, in this example we use **plot=TRUE** to display the graphical results. 
 
@@ -260,16 +261,19 @@ iMKT(daf=myDafData, divergence=myDivergenceData, xlow=0, xhigh=0.9, plot=TRUE)
 
 &nbsp;
 
-## Conclusion: comparison of the different MK estimates
+## Conclusion: comparison of the different MKT estimates
 
-Summary of each alpha estimate:
+The following table includes the estimates of the rate of adaptive evolution ($\alpha$) obtained using the same data and each of the MKT methods included in the iMKT package. Results for FWW and DGRP corrections were produced using two different cut-offs (0.05 and 0.1).
 
 &nbsp;
 
 ```{r summary, echo=FALSE}
-results <- data.frame("Standard"=0.2365, "FWW_0.05"=0.5409, "FWW_0.1"=0.5798, "DGRP_0.05"=0.4249, "DGRP_0.1"=0.4249, "asymptotic_iMKT"=0.6259)
+results <- data.frame("Standard"=0.2365, "FWW_0.05"=0.5409, "FWW_0.1"=0.5798, "DGRP_0.05"=0.4249, "DGRP_0.1"=0.4126, "asymptotic_iMKT"=0.6259)
 knitr::kable(results, align="c")
 rm(results)
 ```
 
-Comment results and strengths and weakness of each method.
+We observe that the Standard MKT tends to underestimate the true rate of adaptation, probably due to the presence of weakly deleterious mutations which reduce the power of the test to detect adaptive evolution.
+
+Besides, we observe an increase of α when using any of the other methods
+Comment results and strengths and weakness of each method. Specifically, FWW correction seems to perform better than DGRP. Finally, the asymptotic method allows to estimate the largest rate of adaptive evolution. As we are analyzing a complete chromosome arm with a large number of segregating sites (in all DAF categories), the asymptotic test is able to remove almost all weakly deleterious mutations from the analysis and thus, we obtain the α estimates closest to the true level of adaptation. 

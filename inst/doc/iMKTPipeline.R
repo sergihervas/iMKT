@@ -42,7 +42,7 @@ asymptoticMKT(daf=myDafData, divergence=myDivergenceData, xlow=0, xhigh=0.9)
 iMKT(daf=myDafData, divergence=myDivergenceData, xlow=0, xhigh=0.9, plot=TRUE)
 
 ## ----summary, echo=FALSE-------------------------------------------------
-results <- data.frame("Standard"=0.2365, "FWW_0.05"=0.5409, "FWW_0.1"=0.5798, "DGRP_0.05"=0.4249, "DGRP_0.1"=0.4249, "asymptotic_iMKT"=0.6259)
+results <- data.frame("Standard"=0.2365, "FWW_0.05"=0.5409, "FWW_0.1"=0.5798, "DGRP_0.05"=0.4249, "DGRP_0.1"=0.4126, "asymptotic_iMKT"=0.6259)
 knitr::kable(results, align="c")
 rm(results)
 

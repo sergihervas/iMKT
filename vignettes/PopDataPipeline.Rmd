@@ -22,9 +22,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-Brief intro about lots of data right now. Then, PopFly and PopHuman as great databases.
+The improvement of NGS technologies that lead to the sequencing of hundreds or even thousands of individuals from the same species provides us with the necessary data on which to empirically test evolutionary theoretical hypotheses. The availability of such datasets increases the request of developing high performance specific tools able to deal and analyze this information.
 
-Therefore, iMKT package includes some functions which allow an easy retrieval and analysis of population genetics information stored in these genome browsers. Specifically, the functions permit the download of population genetics parameters computed for every gene annotation in several populations for both model species *Drosophila melanogaster* and *Homo sapiens*.
+The PopFly (Hervas et al. 2017) and PopHuman (Casillas et al. 2018) genome browsers are the two central repositories of population genomics estimates for *D. melanogaster* and *Homo sapiens* model species, respectively. Thus, we decided to provide functionalities to directly link the iMKT software to both databases, which allows retrieving and and analyzing population genomics information in a single step.
+
+Therefore, iMKT package includes some functions which allow an easy retrieval and analysis of population genetics information stored in these genome browsers. Specifically, the functions permit the download of population genetics parameters computed for every gene annotation in several populations for both model species.
 
 This vignette is divided in two main sections:
 
@@ -43,7 +45,7 @@ Although the examples presented here focus only on PopFly data and analyses, the
 
 The first step is to load the information into your working enviroment. This would allow a manual examination of the data before starting any alaysis. However, to speed analyses, this step can be skipped and the main data object is loaded into the workspace the first time that the corresponding analysis function is called. To download PopFly data use the **loadPopFly()** function, without any argument. 
 
-Keep in mind that you are downloading full-genome information of several populations (13745 gene annotations for 16 populations in *D.melanogaster* and 18145 gene annotations for 26 populationsin *H. sapiens*), and this procces could take a while.
+Keep in mind that you are downloading full-genome information of several populations (13,745 gene annotations for 16 populations in *D.melanogaster* and 18,145 gene annotations for 26 populationsin *H. sapiens*), and this procces could take a while.
 
 Once the function finishes,the **PopFlyData** object is loaded into the workspace. This object can be manually examined or used when performing iMKT analyses.
   
@@ -106,18 +108,24 @@ PopFlyAnalysis(genes=c("FBgn0000055","FBgn0003016"), pops=c("RAL","ZI"), recomb=
   
 ### Example 2. iMKT analysis using recombination bins
  
-In this second example, genes from RAL population are groupped in 2 recombination bins, using recombination values from Comeron et al. 2012 Plos Genetics. The test used is iMKT, with xlow and xhigh values set to 0 and 0.9, respectively.
+In this second example, genes from RAL population are groupped in 2 recombination bins, using recombination values from (Comeron et al. 2012). The test used is iMKT, with xlow and xhigh values set to 0 and 0.9, respectively. We are analyzing the complete set of genes located in the chromosome 2R ($n=2,822$)
 
-In this case, the function creates two different "concatenated" genes containing the same number of genes each (6 in this case), grouping again polymorphism and divergence values. These aggrupations are made according to the gene associated recombination rate estimates. The function returns a list of lists with the default test output (iMKT in this case) for each population (RAL) and recombination bin (1 and 2).
+In this case, the function creates two different "concatenated" genes containing the same number of genes each (1,411 in this case), grouping again polymorphism and divergence values. These aggrupations are made according to the gene associated recombination rate estimates. The function returns a list of lists with the default test output (iMKT in this case) for each population (RAL) and recombination bin (1 and 2).
 
-Explain iMKT function output.
+The output of the function is a list that contains:
+
+\begin{itemize}
+\item Asymptotic MK table: table including information about the model type (exponential) along with the fitted function values (a, b, c), the α asymptotic estimate with its corresponding lower and higher confidence interval values, and the α original estimate (using the standard MKT methodology and the polymorphic sites within the xlow and xhigh cutoffs).
+
+\item Fractions of sites: negative selection fractions ($d$: strongly deleterious, $f$: neutral and $b$: weakly deleterious). 
+
+\item Graphs: 3 plots showing: **(A)** the distribution of alleles frequencies (DAF) for neutral and selected sites, **(B)** the adaptation values ($\alpha$) for each DAF category along with the function fit, the α asymptotic and α original estimates and the limits used for function fitting and adaptation values calculation, and **(C)** the negative selection fractions.
+\end{itemize}
 
 &nbsp;
 
 ```{r PopFly data retrieve automated, echo=TRUE}
-geneList <- c("FBgn0053196","FBgn0086906","FBgn0261836","FBgn0031617","FBgn0260965",
-              "FBgn0028899","FBgn0052580","FBgn0036181","FBgn0263077","FBgn0013733",
-              "FBgn0031857","FBgn0037836")
+geneList <- as.vector(unique(PopFlyData[PopFlyData$Chr=="2R",]$Name))
 PopFlyAnalysis(genes=geneList , pops="RAL", recomb=T, bins=2, test="iMKT", xlow=0, xhigh=0.9, plot=TRUE)
 rm(geneList)
 ```
