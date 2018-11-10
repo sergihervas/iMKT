@@ -16,7 +16,7 @@ The package is deposited in GitHub and can be installed using the devtools libra
 install.packages("devtools")
 
 ## Install iMKT package from GitHub
-devtools::install_github("BGD-UAB/iMKT")
+devtools::install_github("sergihervas/iMKT")
 
 ## Load iMKT library
 library(iMKT)
