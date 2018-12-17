@@ -23,7 +23,6 @@
 #' @importFrom ggthemes theme_foundation
 #' @importFrom cowplot plot_grid
 #' @importFrom reshape2 melt 
-#' @importFrom knitr kable 
 #'
 #' @keywords MKT
 #' @export
@@ -100,12 +99,11 @@ DGRP <- function(daf, divergence, listCutoffs=c(0,0.05,0.1), plot=FALSE) {
     ## Store output  
     output[[paste("Cutoff = ",cutoff)]] <- c(cutoff, alpha, pvalue)
     div_cutoff[[paste("Cutoff = ",cutoff)]] <- c(cutoff, omegaA, omegaD)
-    mkt_table <- kable(mkt_table, caption = "cutoff")
     mkt_tables[[paste("Number of segregating sites by DAF category - Cutoff = ",cutoff)]]  <- mkt_table
   } 
 
   ## MKT tables
-  mkt_tables[[paste("MKT standard table")]]  <- kable(mkt_table_standard)
+  mkt_tables[[paste("MKT standard table")]]  <- mkt_table_standard
   
   ## Results table
   output <- as.data.frame(do.call("rbind",output))
