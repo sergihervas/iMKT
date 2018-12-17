@@ -14,7 +14,6 @@
 #' 
 #' @import utils
 #' @import stats
-#' @importFrom knitr kable 
 #'
 #' @keywords MKT
 #' @export
@@ -47,8 +46,8 @@ standardMKT <- function(daf, divergence) {
   ## Output  
   output <- list(`alpha.symbol`=alpha, 
                  `Fishers exact test P-value`= pvalue, 
-                 `MKT table`= kable(mkt_table),
-                 `Divergence metrics` = kable(divergence_metrics))
+                 `MKT table`= mkt_table,
+                 `Divergence metrics` = divergence_metrics)
   return(output)
 }
 

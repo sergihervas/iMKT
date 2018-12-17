@@ -67,7 +67,7 @@ FWW <- function(daf, divergence, listCutoffs=c(0,0.05,0.1), plot=FALSE) {
     ## Store output  
     output[[paste("Cutoff = ",cutoff)]] <- c(cutoff, alpha,pvalue)
     div_cutoff[[paste("Cutoff = ",cutoff)]] <- c(cutoff, omegaA, omegaD)
-    mkt_tables[[paste("Cutoff = ",cutoff)]]  <- kable(mkt_table,caption = "cutoff")
+    mkt_tables[[paste("Cutoff = ",cutoff)]]  <- mkt_table
   }
   
   ## Output format
