@@ -7,6 +7,7 @@
 #' @param genes list of genes to analyze
 #' @param pops list of populations to analyze
 #' @param recomb group genes according to recombination values (TRUE/FALSE)
+#' @param cutoffs list of cutofs to perform FWW and/or DGRP
 #' @param bins number of recombination bins to compute (mandatory if recomb=TRUE)
 #' @param test which test to perform. Options include: standardMKT (default), DGRP, FWW, asymptoticMKT, iMKT
 #' @param xlow lower limit for asymptotic alpha fit (default=0)
@@ -31,7 +32,7 @@
 #' @keywords PopData
 #' @export
             
-PopHumanAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2","..."), recomb=TRUE/FALSE, bins=0, test=c("standardMKT","DGRP","FWW","asymptoticMKT","iMKT"), xlow=0, xhigh=1, plot=FALSE) { 
+PopHumanAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2","..."), cutoffs=c(0,0.05,0.1), recomb=TRUE/FALSE, bins=0, test=c("standardMKT","DGRP","FWW","asymptoticMKT","iMKT"), xlow=0, xhigh=1, plot=FALSE) { 
   
   ## Get PopHuman data
   if (exists("PopHumanData") == TRUE) {
@@ -200,16 +201,16 @@ PopHumanAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2
           output <- standardMKT(daf, div) 
           output <- c(output, recStats) } ## Add recomb summary for bin j
         else if(test == "DGRP" && plot == FALSE) {
-          output <- DGRP(daf, div) 
+          output <- DGRP(daf, div, listCutoffs=cutoffs) 
           output <- c(output, recStats) }
         else if(test == "DGRP" && plot == TRUE) {
-          output <- DGRP(daf, div, plot=TRUE) 
+          output <- DGRP(daf, div, listCutoffs=cutoffs, plot=TRUE) 
           output <- c(output, recStats) }
         else if(test == "FWW" && plot == FALSE) {
-          output <- FWW(daf, div)           
+          output <- FWW(daf, div, listCutoffs=cutoffs)           
           output <- c(output, recStats) }
         else if(test == "FWW" && plot == TRUE) {
-          output <- FWW(daf, div, plot=TRUE)           
+          output <- FWW(daf, div, listCutoffs=cutoffs, plot=TRUE)           
           output <- c(output, recStats) }
         else if(test == "asymptoticMKT") {
           output <- asymptoticMKT(daf1, div, xlow, xhigh) 
@@ -296,13 +297,13 @@ PopHumanAnalysis <- function(genes=c("gene1","gene2","..."), pops=c("pop1","pop2
       if(test == "standardMKT") {
         output <- standardMKT(daf, div) }
       else if(test == "DGRP" && plot == FALSE) {
-        output <- DGRP(daf, div) }
+        output <- DGRP(daf, div, listCutoffs=cutoffs) }
       else if(test == "DGRP" && plot == TRUE) {
-        output <- DGRP(daf, div, plot=TRUE) }
+        output <- DGRP(daf, div, listCutoffs=cutoffs, plot=TRUE) }
       else if(test == "FWW" && plot == FALSE) {
-        output <- FWW(daf, div) }
+        output <- FWW(daf, div, listCutoffs=cutoffs) }
       else if(test == "FWW" && plot == TRUE) {
-        output <- FWW(daf, div, plot=TRUE) }
+        output <- FWW(daf, div, listCutoffs=cutoffs, plot=TRUE) }
       else if(test == "asymptoticMKT") {
         output <- asymptoticMKT(daf1, div, xlow, xhigh) }
       else if(test == "iMKT" && plot == FALSE) {

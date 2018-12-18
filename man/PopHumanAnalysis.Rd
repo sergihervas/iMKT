@@ -5,14 +5,16 @@
 \title{iMKT using PopHuman data}
 \usage{
 PopHumanAnalysis(genes = c("gene1", "gene2", "..."), pops = c("pop1",
-  "pop2", "..."), recomb = TRUE/FALSE, bins = 0, test = c("standardMKT",
-  "DGRP", "FWW", "asymptoticMKT", "iMKT"), xlow = 0, xhigh = 1,
-  plot = FALSE)
+  "pop2", "..."), cutoffs = c(0, 0.05, 0.1), recomb = TRUE/FALSE,
+  bins = 0, test = c("standardMKT", "DGRP", "FWW", "asymptoticMKT",
+  "iMKT"), xlow = 0, xhigh = 1, plot = FALSE)
 }
 \arguments{
 \item{genes}{list of genes to analyze}
 
 \item{pops}{list of populations to analyze}
+
+\item{cutoffs}{list of cutofs to perform FWW and/or DGRP}
 
 \item{recomb}{group genes according to recombination values (TRUE/FALSE)}
 
