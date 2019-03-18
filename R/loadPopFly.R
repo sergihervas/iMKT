@@ -18,6 +18,6 @@
 loadPopFly <- function() {
   PopFlyData <- ""
   cat("Loading PopFly data into your workspace.\nThis process may take several seconds to complete, please be patient.\n")
-  x <- read.table("http://popfly.uab.cat/files/genes/GenesData_recomb_comeron.tab", header=T, sep='\t')
+  x <- read.table("https://popfly.uab.cat/files/genes/GenesData_recomb_comeron.tab", header=T, sep='\t')
   PopFlyData <<- x
 }
